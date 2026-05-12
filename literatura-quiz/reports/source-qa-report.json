@@ -1,0 +1,984 @@
+{
+  "generatedAt": "2026-05-12T17:48:50.244Z",
+  "totals": {
+    "authorsChecked": 20,
+    "worksChecked": 27,
+    "questionsChecked": 462,
+    "findingsTotal": 610,
+    "ok": 320,
+    "warnings": 290,
+    "errors": 0
+  },
+  "byType": {
+    "authors": {
+      "ok": 109,
+      "warnings": 48,
+      "errors": 0
+    },
+    "works": {
+      "ok": 211,
+      "warnings": 94,
+      "errors": 0
+    },
+    "questions": {
+      "ok": 0,
+      "warnings": 148,
+      "errors": 0
+    }
+  },
+  "errors": [],
+  "warnings": [
+    {
+      "type": "author",
+      "id": "dimitar-talev",
+      "field": "key_facts",
+      "level": "warning",
+      "message": "KNOWN SOURCE ARTIFACT: Source markdown says \"сред вторите\" — this is an OCR/bold-markup artifact (bold markers around \"творите\" were mangled). JSON value \"сред творците\" is semantically correct and is kept unchanged. No fix needed in authors.json.",
+      "sourceFragment": "сред вторите, които изграждат...",
+      "dataValue": "Талев е сред творците, които изграждат облика на дълго търсения в българската литература жанр на социалния роман.",
+      "knownFalsePositive": true
+    },
+    {
+      "type": "author",
+      "id": "aleko-konstantinov",
+      "field": "nickname",
+      "level": "warning",
+      "message": "Nickname \"Щастливеца; съвестта на нацията\" not clearly found in source (score 67%).",
+      "score": 0.67
+    },
+    {
+      "type": "author",
+      "id": "aleko-konstantinov",
+      "field": "main_themes",
+      "level": "warning",
+      "message": "3/5 themes found in source (60%). Some themes may be paraphrased or derived — needs human review.",
+      "matchedCount": 3,
+      "totalCount": 5
+    },
+    {
+      "type": "author",
+      "id": "aleko-konstantinov",
+      "field": "key_facts[0]",
+      "level": "warning",
+      "message": "Key fact has partial/low source match (score 83%). Needs human review.",
+      "score": 0.83,
+      "value": "В културното пространство остава като „съвестта на нацията“."
+    },
+    {
+      "type": "author",
+      "id": "aleko-konstantinov",
+      "field": "key_facts[1]",
+      "level": "warning",
+      "message": "Key fact has partial/low source match (score 78%). Needs human review.",
+      "score": 0.78,
+      "value": "Избира псевдонима „Щастливеца“, мотивиран от чистата си съвест на човек, писател"
+    },
+    {
+      "type": "author",
+      "id": "stanislav-stratiev",
+      "field": "key_facts[0]",
+      "level": "warning",
+      "message": "Key fact has partial/low source match (score 75%). Needs human review.",
+      "score": 0.75,
+      "value": "Пише разкази, фейлетони и пиеси."
+    },
+    {
+      "type": "author",
+      "id": "stanislav-stratiev",
+      "field": "key_facts[1]",
+      "level": "warning",
+      "message": "Key fact has partial/low source match (score 80%). Needs human review.",
+      "score": 0.8,
+      "value": "Абсурдът и смехът са в основата на творбите му."
+    },
+    {
+      "type": "author",
+      "id": "ivan-vazov",
+      "field": "main_themes",
+      "level": "warning",
+      "message": "1/5 themes found in source (20%). Some themes may be paraphrased or derived — needs human review.",
+      "matchedCount": 1,
+      "totalCount": 5
+    },
+    {
+      "type": "author",
+      "id": "ivan-vazov",
+      "field": "works[paisiy]",
+      "level": "warning",
+      "message": "Work \"paisiy\" not found in author's source section — may be in a sub-section only."
+    },
+    {
+      "type": "author",
+      "id": "ivan-vazov",
+      "field": "works[novoto-grobishte-nad-slivnitsa]",
+      "level": "warning",
+      "message": "Work \"novoto-grobishte-nad-slivnitsa\" not found in author's source section — may be in a sub-section only."
+    },
+    {
+      "type": "author",
+      "id": "ivan-vazov",
+      "field": "works[pri-rilskiya-manastir]",
+      "level": "warning",
+      "message": "Work \"pri-rilskiya-manastir\" not found in author's source section — may be in a sub-section only."
+    },
+    {
+      "type": "author",
+      "id": "nikola-vaptsarov",
+      "field": "main_themes",
+      "level": "warning",
+      "message": "3/5 themes found in source (60%). Some themes may be paraphrased or derived — needs human review.",
+      "matchedCount": 3,
+      "totalCount": 5
+    },
+    {
+      "type": "author",
+      "id": "nikola-vaptsarov",
+      "field": "key_facts[0]",
+      "level": "warning",
+      "message": "Key fact has partial/low source match (score 67%). Needs human review.",
+      "score": 0.67,
+      "value": "Най-ярък представител на пролетарската поезия според записките."
+    },
+    {
+      "type": "author",
+      "id": "nikola-vaptsarov",
+      "field": "key_facts[1]",
+      "level": "warning",
+      "message": "Key fact has partial/low source match (score 83%). Needs human review.",
+      "score": 0.83,
+      "value": "В лириката си разкрива социалната драма на своя съвременник."
+    },
+    {
+      "type": "author",
+      "id": "yordan-radichkov",
+      "field": "main_themes",
+      "level": "warning",
+      "message": "2/5 themes found in source (40%). Some themes may be paraphrased or derived — needs human review.",
+      "matchedCount": 2,
+      "totalCount": 5
+    },
+    {
+      "type": "author",
+      "id": "yordan-radichkov",
+      "field": "key_facts[0]",
+      "level": "warning",
+      "message": "Key fact has partial/low source match (score 83%). Needs human review.",
+      "score": 0.83,
+      "value": "Откроява се с иронично-присмехулно отношение към обикновения човек."
+    },
+    {
+      "type": "author",
+      "id": "yordan-radichkov",
+      "field": "key_facts[1]",
+      "level": "warning",
+      "message": "Key fact has partial/low source match (score 50%). Needs human review.",
+      "score": 0.5,
+      "value": "Героите му съхраняват жизнелюбието си и способността да се вглеждат в природата."
+    },
+    {
+      "type": "author",
+      "id": "hristo-botev",
+      "field": "main_themes",
+      "level": "warning",
+      "message": "4/6 themes found in source (67%). Some themes may be paraphrased or derived — needs human review.",
+      "matchedCount": 4,
+      "totalCount": 6
+    },
+    {
+      "type": "author",
+      "id": "hristo-botev",
+      "field": "key_facts[0]",
+      "level": "warning",
+      "message": "Key fact has partial/low source match (score 80%). Needs human review.",
+      "score": 0.8,
+      "value": "Съчетава революционното дело, публицистиката и поезията."
+    },
+    {
+      "type": "author",
+      "id": "hristo-botev",
+      "field": "key_facts[2]",
+      "level": "warning",
+      "message": "Key fact has partial/low source match (score 75%). Needs human review.",
+      "score": 0.75,
+      "value": "В поезията му свободата е основна ценност."
+    },
+    {
+      "type": "author",
+      "id": "hristo-botev",
+      "field": "works[borba]",
+      "level": "warning",
+      "message": "Work \"borba\" not found in author's source section — may be in a sub-section only."
+    },
+    {
+      "type": "author",
+      "id": "hristo-botev",
+      "field": "works[do-moeto-parvo-libe]",
+      "level": "warning",
+      "message": "Work \"do-moeto-parvo-libe\" not found in author's source section — may be in a sub-section only."
+    },
+    {
+      "type": "author",
+      "id": "elin-pelin",
+      "field": "nickname",
+      "level": "warning",
+      "message": "Nickname \"художник на българското село; майстор на късия разказ; певецът на българското село\" not clearly found in source (score 78%).",
+      "score": 0.78
+    },
+    {
+      "type": "author",
+      "id": "elin-pelin",
+      "field": "main_themes",
+      "level": "warning",
+      "message": "4/7 themes found in source (57%). Some themes may be paraphrased or derived — needs human review.",
+      "matchedCount": 4,
+      "totalCount": 7
+    },
+    {
+      "type": "author",
+      "id": "elin-pelin",
+      "field": "works[andreshko]",
+      "level": "warning",
+      "message": "Work \"andreshko\" not found in author's source section — may be in a sub-section only."
+    },
+    {
+      "type": "author",
+      "id": "elin-pelin",
+      "field": "works[spasova-mogila]",
+      "level": "warning",
+      "message": "Work \"spasova-mogila\" not found in author's source section — may be in a sub-section only."
+    },
+    {
+      "type": "author",
+      "id": "elin-pelin",
+      "field": "works[vetrenata-melnitsa]",
+      "level": "warning",
+      "message": "Work \"vetrenata-melnitsa\" not found in author's source section — may be in a sub-section only."
+    },
+    {
+      "type": "author",
+      "id": "hristo-smirnenski",
+      "field": "key_facts[1]",
+      "level": "warning",
+      "message": "Key fact has partial/low source match (score 80%). Needs human review.",
+      "score": 0.8,
+      "value": "В творчеството му се откроява символистичната образност и естетика."
+    },
+    {
+      "type": "author",
+      "id": "emiliyan-stanev",
+      "field": "key_facts[1]",
+      "level": "warning",
+      "message": "Key fact has partial/low source match (score 80%). Needs human review.",
+      "score": 0.8,
+      "value": "В повестта се разгръща драмата на човека, потърсил щастие в свят, загърбил човеч"
+    },
+    {
+      "type": "author",
+      "id": "peyo-yavorov",
+      "field": "works[gradushka]",
+      "level": "warning",
+      "message": "Work \"gradushka\" not found in author's source section — may be in a sub-section only."
+    },
+    {
+      "type": "author",
+      "id": "peyo-yavorov",
+      "field": "works[dve-dushi]",
+      "level": "warning",
+      "message": "Work \"dve-dushi\" not found in author's source section — may be in a sub-section only."
+    },
+    {
+      "type": "author",
+      "id": "pencho-slaveykov",
+      "field": "main_themes",
+      "level": "warning",
+      "message": "1/4 themes found in source (25%). Some themes may be paraphrased or derived — needs human review.",
+      "matchedCount": 1,
+      "totalCount": 4
+    },
+    {
+      "type": "author",
+      "id": "dimcho-debelyanov",
+      "field": "key_facts[0]",
+      "level": "warning",
+      "message": "Key fact has partial/low source match (score 83%). Needs human review.",
+      "score": 0.83,
+      "value": "Сред представителите на второто поколение модернисти - символистите."
+    },
+    {
+      "type": "author",
+      "id": "dimcho-debelyanov",
+      "field": "key_facts[1]",
+      "level": "warning",
+      "message": "Key fact has partial/low source match (score 20%). Needs human review.",
+      "score": 0.2,
+      "value": "В лириката му се откриват типичните за символизма мотиви."
+    },
+    {
+      "type": "author",
+      "id": "hristo-fotev",
+      "field": "main_themes",
+      "level": "warning",
+      "message": "0/3 themes found in source (0%). Some themes may be paraphrased or derived — needs human review.",
+      "matchedCount": 0,
+      "totalCount": 3
+    },
+    {
+      "type": "author",
+      "id": "hristo-fotev",
+      "field": "key_facts[0]",
+      "level": "warning",
+      "message": "Key fact has partial/low source match (score 75%). Needs human review.",
+      "score": 0.75,
+      "value": "Поезията му не се подчинява на класическото стихосложение."
+    },
+    {
+      "type": "author",
+      "id": "petya-dubarova",
+      "field": "main_themes",
+      "level": "warning",
+      "message": "3/5 themes found in source (60%). Some themes may be paraphrased or derived — needs human review.",
+      "matchedCount": 3,
+      "totalCount": 5
+    },
+    {
+      "type": "author",
+      "id": "petya-dubarova",
+      "field": "key_facts[0]",
+      "level": "warning",
+      "message": "Key fact has partial/low source match (score 80%). Needs human review.",
+      "score": 0.8,
+      "value": "Стихотворенията ѝ са свързани с младежките копнежи по любовта."
+    },
+    {
+      "type": "author",
+      "id": "atanas-dalchev",
+      "field": "main_themes",
+      "level": "warning",
+      "message": "2/3 themes found in source (67%). Some themes may be paraphrased or derived — needs human review.",
+      "matchedCount": 2,
+      "totalCount": 3
+    },
+    {
+      "type": "author",
+      "id": "atanas-dalchev",
+      "field": "key_facts[1]",
+      "level": "warning",
+      "message": "Key fact has partial/low source match (score 60%). Needs human review.",
+      "score": 0.6,
+      "value": "Представител на следвоенния модернизъм според записките."
+    },
+    {
+      "type": "author",
+      "id": "yordan-yovkov",
+      "field": "main_themes",
+      "level": "warning",
+      "message": "2/4 themes found in source (50%). Some themes may be paraphrased or derived — needs human review.",
+      "matchedCount": 2,
+      "totalCount": 4
+    },
+    {
+      "type": "author",
+      "id": "yordan-yovkov",
+      "field": "key_facts[1]",
+      "level": "warning",
+      "message": "Key fact has partial/low source match (score 80%). Needs human review.",
+      "score": 0.8,
+      "value": "Красотата е водеща тема в разказите му."
+    },
+    {
+      "type": "author",
+      "id": "viktor-paskov",
+      "field": "main_themes",
+      "level": "warning",
+      "message": "2/5 themes found in source (40%). Some themes may be paraphrased or derived — needs human review.",
+      "matchedCount": 2,
+      "totalCount": 5
+    },
+    {
+      "type": "author",
+      "id": "viktor-paskov",
+      "field": "key_facts[1]",
+      "level": "warning",
+      "message": "Key fact has partial/low source match (score 83%). Needs human review.",
+      "score": 0.83,
+      "value": "Автобиографизмът е в основата на сюжета на „Балада за Георг Хених“."
+    },
+    {
+      "type": "author",
+      "id": "elisaveta-bagryana",
+      "field": "main_themes",
+      "level": "warning",
+      "message": "3/5 themes found in source (60%). Some themes may be paraphrased or derived — needs human review.",
+      "matchedCount": 3,
+      "totalCount": 5
+    },
+    {
+      "type": "author",
+      "id": "elisaveta-bagryana",
+      "field": "key_facts[0]",
+      "level": "warning",
+      "message": "Key fact has partial/low source match (score 71%). Needs human review.",
+      "score": 0.71,
+      "value": "Лирическата ѝ героиня не желае да се примири с ограниченията на родовия бит."
+    },
+    {
+      "type": "author",
+      "id": "boris-hristov",
+      "field": "main_themes",
+      "level": "warning",
+      "message": "2/4 themes found in source (50%). Some themes may be paraphrased or derived — needs human review.",
+      "matchedCount": 2,
+      "totalCount": 4
+    },
+    {
+      "type": "author",
+      "id": "boris-hristov",
+      "field": "key_facts[1]",
+      "level": "warning",
+      "message": "Key fact has partial/low source match (score 67%). Needs human review.",
+      "score": 0.67,
+      "value": "Не може да приеме нещата в изкуството според записките."
+    },
+    {
+      "type": "work",
+      "id": "jelezniyat-svetilnik",
+      "field": "motifs",
+      "level": "warning",
+      "message": "0/3 motifs found in source (0%). Needs human review.",
+      "matchedCount": 0,
+      "totalCount": 3
+    },
+    {
+      "type": "work",
+      "id": "jelezniyat-svetilnik",
+      "field": "key_facts[0]",
+      "level": "warning",
+      "message": "Key fact has partial/low match (score 80%). Needs human review.",
+      "score": 0.8,
+      "value": "Първи роман от тетралогията на Димитър Талев."
+    },
+    {
+      "type": "work",
+      "id": "jelezniyat-svetilnik",
+      "field": "key_facts[2]",
+      "level": "warning",
+      "message": "Key fact has partial/low match (score 33%). Needs human review.",
+      "score": 0.33,
+      "value": "Състои се от четири части."
+    },
+    {
+      "type": "work",
+      "id": "bai-ganyo-jurnalist",
+      "field": "motifs",
+      "level": "warning",
+      "message": "1/3 motifs found in source (33%). Needs human review.",
+      "matchedCount": 1,
+      "totalCount": 3
+    },
+    {
+      "type": "work",
+      "id": "bai-ganyo-jurnalist",
+      "field": "key_facts[1]",
+      "level": "warning",
+      "message": "Key fact has partial/low match (score 70%). Needs human review.",
+      "score": 0.7,
+      "value": "„Бай Ганьо журналист“ е един от трите очерка във втората част на книгата."
+    },
+    {
+      "type": "work",
+      "id": "bai-ganyo-jurnalist",
+      "field": "key_facts[2]",
+      "level": "warning",
+      "message": "Key fact has partial/low match (score 20%). Needs human review.",
+      "score": 0.2,
+      "value": "Годината 1985 е записана така в записките."
+    },
+    {
+      "type": "work",
+      "id": "bai-ganyo-jurnalist",
+      "field": "year_or_period[1985-note]",
+      "level": "warning",
+      "message": "Year \"1985\" appears in both source and data. This is historically unusual for a work associated with the 1890s. Source note explicitly says 1985 — preserved as-is. Needs expert review.",
+      "note": "data.key_facts explicitly acknowledges: \"Годината 1985 е записана така в записките.\""
+    },
+    {
+      "type": "work",
+      "id": "balkanski-sindrom",
+      "field": "key_facts[1]",
+      "level": "warning",
+      "message": "Key fact has partial/low match (score 67%). Needs human review.",
+      "score": 0.67,
+      "value": "Комедията е в две действия."
+    },
+    {
+      "type": "work",
+      "id": "balkanski-sindrom",
+      "field": "key_facts[2]",
+      "level": "warning",
+      "message": "Key fact has partial/low match (score 0%). Needs human review.",
+      "score": 0,
+      "value": "Композицията е фрагментарна."
+    },
+    {
+      "type": "work",
+      "id": "paisiy",
+      "field": "motifs",
+      "level": "warning",
+      "message": "1/2 motifs found in source (50%). Needs human review.",
+      "matchedCount": 1,
+      "totalCount": 2
+    },
+    {
+      "type": "work",
+      "id": "paisiy",
+      "field": "key_facts[0]",
+      "level": "warning",
+      "message": "Key fact has partial/low match (score 75%). Needs human review.",
+      "score": 0.75,
+      "value": "Част от цикъла „Епопея на забравените“."
+    },
+    {
+      "type": "work",
+      "id": "paisiy",
+      "field": "key_facts[1]",
+      "level": "warning",
+      "message": "Key fact has partial/low match (score 33%). Needs human review.",
+      "score": 0.33,
+      "value": "Създадена е след Освобождението."
+    },
+    {
+      "type": "work",
+      "id": "paisiy",
+      "field": "key_facts[2]",
+      "level": "warning",
+      "message": "Key fact has partial/low match (score 0%). Needs human review.",
+      "score": 0,
+      "value": "Композицията е триделна."
+    },
+    {
+      "type": "work",
+      "id": "novoto-grobishte-nad-slivnitsa",
+      "field": "themes",
+      "level": "warning",
+      "message": "1/2 themes found in source (50%). Some themes may be paraphrased — needs human review.",
+      "matchedCount": 1,
+      "totalCount": 2
+    },
+    {
+      "type": "work",
+      "id": "novoto-grobishte-nad-slivnitsa",
+      "field": "key_facts[0]",
+      "level": "warning",
+      "message": "Key fact has partial/low match (score 67%). Needs human review.",
+      "score": 0.67,
+      "value": "Част от стихосбирката „Сливница“."
+    },
+    {
+      "type": "work",
+      "id": "novoto-grobishte-nad-slivnitsa",
+      "field": "key_facts[1]",
+      "level": "warning",
+      "message": "Key fact has partial/low match (score 75%). Needs human review.",
+      "score": 0.75,
+      "value": "Написана е по повод на Сръбско-българската война."
+    },
+    {
+      "type": "work",
+      "id": "novoto-grobishte-nad-slivnitsa",
+      "field": "key_facts[2]",
+      "level": "warning",
+      "message": "Key fact has partial/low match (score 25%). Needs human review.",
+      "score": 0.25,
+      "value": "Композицията включва седем строфи."
+    },
+    {
+      "type": "work",
+      "id": "pri-rilskiya-manastir",
+      "field": "motifs",
+      "level": "warning",
+      "message": "1/3 motifs found in source (33%). Needs human review.",
+      "matchedCount": 1,
+      "totalCount": 3
+    },
+    {
+      "type": "work",
+      "id": "pri-rilskiya-manastir",
+      "field": "key_facts[0]",
+      "level": "warning",
+      "message": "Key fact has partial/low match (score 75%). Needs human review.",
+      "score": 0.75,
+      "value": "Част от цикъла „В лоното на Рила“."
+    },
+    {
+      "type": "work",
+      "id": "pri-rilskiya-manastir",
+      "field": "key_facts[1]",
+      "level": "warning",
+      "message": "Key fact has partial/low match (score 60%). Needs human review.",
+      "score": 0.6,
+      "value": "Има рефрен „Сега съм у дома“."
+    },
+    {
+      "type": "work",
+      "id": "pri-rilskiya-manastir",
+      "field": "key_facts[2]",
+      "level": "warning",
+      "message": "Key fact has partial/low match (score 83%). Needs human review.",
+      "score": 0.83,
+      "value": "Първата и последната строфа оформят смислова рамка."
+    },
+    {
+      "type": "work",
+      "id": "istoriya",
+      "field": "motifs",
+      "level": "warning",
+      "message": "1/2 motifs found in source (50%). Needs human review.",
+      "matchedCount": 1,
+      "totalCount": 2
+    },
+    {
+      "type": "work",
+      "id": "istoriya",
+      "field": "key_facts[1]",
+      "level": "warning",
+      "message": "Key fact has partial/low match (score 71%). Needs human review.",
+      "score": 0.71,
+      "value": "Поставя въпроса за мястото на „малкия човек“ в голямата история."
+    },
+    {
+      "type": "work",
+      "id": "istoriya",
+      "field": "key_facts[2]",
+      "level": "warning",
+      "message": "Key fact has partial/low match (score 0%). Needs human review.",
+      "score": 0,
+      "value": "Композицията е антитезисна."
+    },
+    {
+      "type": "work",
+      "id": "vyara",
+      "field": "themes",
+      "level": "warning",
+      "message": "1/2 themes found in source (50%). Some themes may be paraphrased — needs human review.",
+      "matchedCount": 1,
+      "totalCount": 2
+    },
+    {
+      "type": "work",
+      "id": "vyara",
+      "field": "motifs",
+      "level": "warning",
+      "message": "1/2 motifs found in source (50%). Needs human review.",
+      "matchedCount": 1,
+      "totalCount": 2
+    },
+    {
+      "type": "work",
+      "id": "vyara",
+      "field": "key_facts[1]",
+      "level": "warning",
+      "message": "Key fact has partial/low match (score 60%). Needs human review.",
+      "score": 0.6,
+      "value": "Първа творба в цикъла „Песни за човека“."
+    },
+    {
+      "type": "work",
+      "id": "vyara",
+      "field": "key_facts[2]",
+      "level": "warning",
+      "message": "Key fact has partial/low match (score 67%). Needs human review.",
+      "score": 0.67,
+      "value": "Има манифестен характер."
+    },
+    {
+      "type": "work",
+      "id": "vyara",
+      "field": "key_facts[3]",
+      "level": "warning",
+      "message": "Key fact has partial/low match (score 67%). Needs human review.",
+      "score": 0.67,
+      "value": "Състои се от девет строфи."
+    },
+    {
+      "type": "work",
+      "id": "noev-kovcheg",
+      "field": "motifs",
+      "level": "warning",
+      "message": "0/3 motifs found in source (0%). Needs human review.",
+      "matchedCount": 0,
+      "totalCount": 3
+    },
+    {
+      "type": "work",
+      "id": "noev-kovcheg",
+      "field": "key_facts[0]",
+      "level": "warning",
+      "message": "Key fact has partial/low match (score 71%). Needs human review.",
+      "score": 0.71,
+      "value": "Излиза за пръв път през 1984 г. в списание „Съвременник“."
+    },
+    {
+      "type": "work",
+      "id": "noev-kovcheg",
+      "field": "key_facts[2]",
+      "level": "warning",
+      "message": "Key fact has partial/low match (score 50%). Needs human review.",
+      "score": 0.5,
+      "value": "Включва 13 фрагмента."
+    }
+  ],
+  "topErrors": [],
+  "topWarnings": [
+    {
+      "type": "author",
+      "id": "dimitar-talev",
+      "field": "key_facts",
+      "level": "warning",
+      "message": "KNOWN SOURCE ARTIFACT: Source markdown says \"сред вторите\" — this is an OCR/bold-markup artifact (bold markers around \"творите\" were mangled). JSON value \"сред творците\" is semantically correct and is kept unchanged. No fix needed in authors.json.",
+      "sourceFragment": "сред вторите, които изграждат...",
+      "dataValue": "Талев е сред творците, които изграждат облика на дълго търсения в българската литература жанр на социалния роман.",
+      "knownFalsePositive": true
+    },
+    {
+      "type": "author",
+      "id": "aleko-konstantinov",
+      "field": "nickname",
+      "level": "warning",
+      "message": "Nickname \"Щастливеца; съвестта на нацията\" not clearly found in source (score 67%).",
+      "score": 0.67
+    },
+    {
+      "type": "author",
+      "id": "aleko-konstantinov",
+      "field": "main_themes",
+      "level": "warning",
+      "message": "3/5 themes found in source (60%). Some themes may be paraphrased or derived — needs human review.",
+      "matchedCount": 3,
+      "totalCount": 5
+    },
+    {
+      "type": "author",
+      "id": "aleko-konstantinov",
+      "field": "key_facts[0]",
+      "level": "warning",
+      "message": "Key fact has partial/low source match (score 83%). Needs human review.",
+      "score": 0.83,
+      "value": "В културното пространство остава като „съвестта на нацията“."
+    },
+    {
+      "type": "author",
+      "id": "aleko-konstantinov",
+      "field": "key_facts[1]",
+      "level": "warning",
+      "message": "Key fact has partial/low source match (score 78%). Needs human review.",
+      "score": 0.78,
+      "value": "Избира псевдонима „Щастливеца“, мотивиран от чистата си съвест на човек, писател"
+    },
+    {
+      "type": "author",
+      "id": "stanislav-stratiev",
+      "field": "key_facts[0]",
+      "level": "warning",
+      "message": "Key fact has partial/low source match (score 75%). Needs human review.",
+      "score": 0.75,
+      "value": "Пише разкази, фейлетони и пиеси."
+    },
+    {
+      "type": "author",
+      "id": "stanislav-stratiev",
+      "field": "key_facts[1]",
+      "level": "warning",
+      "message": "Key fact has partial/low source match (score 80%). Needs human review.",
+      "score": 0.8,
+      "value": "Абсурдът и смехът са в основата на творбите му."
+    },
+    {
+      "type": "author",
+      "id": "ivan-vazov",
+      "field": "main_themes",
+      "level": "warning",
+      "message": "1/5 themes found in source (20%). Some themes may be paraphrased or derived — needs human review.",
+      "matchedCount": 1,
+      "totalCount": 5
+    },
+    {
+      "type": "author",
+      "id": "ivan-vazov",
+      "field": "works[paisiy]",
+      "level": "warning",
+      "message": "Work \"paisiy\" not found in author's source section — may be in a sub-section only."
+    },
+    {
+      "type": "author",
+      "id": "ivan-vazov",
+      "field": "works[novoto-grobishte-nad-slivnitsa]",
+      "level": "warning",
+      "message": "Work \"novoto-grobishte-nad-slivnitsa\" not found in author's source section — may be in a sub-section only."
+    },
+    {
+      "type": "author",
+      "id": "ivan-vazov",
+      "field": "works[pri-rilskiya-manastir]",
+      "level": "warning",
+      "message": "Work \"pri-rilskiya-manastir\" not found in author's source section — may be in a sub-section only."
+    },
+    {
+      "type": "author",
+      "id": "nikola-vaptsarov",
+      "field": "main_themes",
+      "level": "warning",
+      "message": "3/5 themes found in source (60%). Some themes may be paraphrased or derived — needs human review.",
+      "matchedCount": 3,
+      "totalCount": 5
+    },
+    {
+      "type": "author",
+      "id": "nikola-vaptsarov",
+      "field": "key_facts[0]",
+      "level": "warning",
+      "message": "Key fact has partial/low source match (score 67%). Needs human review.",
+      "score": 0.67,
+      "value": "Най-ярък представител на пролетарската поезия според записките."
+    },
+    {
+      "type": "author",
+      "id": "nikola-vaptsarov",
+      "field": "key_facts[1]",
+      "level": "warning",
+      "message": "Key fact has partial/low source match (score 83%). Needs human review.",
+      "score": 0.83,
+      "value": "В лириката си разкрива социалната драма на своя съвременник."
+    },
+    {
+      "type": "author",
+      "id": "yordan-radichkov",
+      "field": "main_themes",
+      "level": "warning",
+      "message": "2/5 themes found in source (40%). Some themes may be paraphrased or derived — needs human review.",
+      "matchedCount": 2,
+      "totalCount": 5
+    },
+    {
+      "type": "author",
+      "id": "yordan-radichkov",
+      "field": "key_facts[0]",
+      "level": "warning",
+      "message": "Key fact has partial/low source match (score 83%). Needs human review.",
+      "score": 0.83,
+      "value": "Откроява се с иронично-присмехулно отношение към обикновения човек."
+    },
+    {
+      "type": "author",
+      "id": "yordan-radichkov",
+      "field": "key_facts[1]",
+      "level": "warning",
+      "message": "Key fact has partial/low source match (score 50%). Needs human review.",
+      "score": 0.5,
+      "value": "Героите му съхраняват жизнелюбието си и способността да се вглеждат в природата."
+    },
+    {
+      "type": "author",
+      "id": "hristo-botev",
+      "field": "main_themes",
+      "level": "warning",
+      "message": "4/6 themes found in source (67%). Some themes may be paraphrased or derived — needs human review.",
+      "matchedCount": 4,
+      "totalCount": 6
+    },
+    {
+      "type": "author",
+      "id": "hristo-botev",
+      "field": "key_facts[0]",
+      "level": "warning",
+      "message": "Key fact has partial/low source match (score 80%). Needs human review.",
+      "score": 0.8,
+      "value": "Съчетава революционното дело, публицистиката и поезията."
+    },
+    {
+      "type": "author",
+      "id": "hristo-botev",
+      "field": "key_facts[2]",
+      "level": "warning",
+      "message": "Key fact has partial/low source match (score 75%). Needs human review.",
+      "score": 0.75,
+      "value": "В поезията му свободата е основна ценност."
+    },
+    {
+      "type": "author",
+      "id": "hristo-botev",
+      "field": "works[borba]",
+      "level": "warning",
+      "message": "Work \"borba\" not found in author's source section — may be in a sub-section only."
+    },
+    {
+      "type": "author",
+      "id": "hristo-botev",
+      "field": "works[do-moeto-parvo-libe]",
+      "level": "warning",
+      "message": "Work \"do-moeto-parvo-libe\" not found in author's source section — may be in a sub-section only."
+    },
+    {
+      "type": "author",
+      "id": "elin-pelin",
+      "field": "nickname",
+      "level": "warning",
+      "message": "Nickname \"художник на българското село; майстор на късия разказ; певецът на българското село\" not clearly found in source (score 78%).",
+      "score": 0.78
+    },
+    {
+      "type": "author",
+      "id": "elin-pelin",
+      "field": "main_themes",
+      "level": "warning",
+      "message": "4/7 themes found in source (57%). Some themes may be paraphrased or derived — needs human review.",
+      "matchedCount": 4,
+      "totalCount": 7
+    },
+    {
+      "type": "author",
+      "id": "elin-pelin",
+      "field": "works[andreshko]",
+      "level": "warning",
+      "message": "Work \"andreshko\" not found in author's source section — may be in a sub-section only."
+    },
+    {
+      "type": "author",
+      "id": "elin-pelin",
+      "field": "works[spasova-mogila]",
+      "level": "warning",
+      "message": "Work \"spasova-mogila\" not found in author's source section — may be in a sub-section only."
+    },
+    {
+      "type": "author",
+      "id": "elin-pelin",
+      "field": "works[vetrenata-melnitsa]",
+      "level": "warning",
+      "message": "Work \"vetrenata-melnitsa\" not found in author's source section — may be in a sub-section only."
+    },
+    {
+      "type": "author",
+      "id": "hristo-smirnenski",
+      "field": "key_facts[1]",
+      "level": "warning",
+      "message": "Key fact has partial/low source match (score 80%). Needs human review.",
+      "score": 0.8,
+      "value": "В творчеството му се откроява символистичната образност и естетика."
+    },
+    {
+      "type": "author",
+      "id": "emiliyan-stanev",
+      "field": "key_facts[1]",
+      "level": "warning",
+      "message": "Key fact has partial/low source match (score 80%). Needs human review.",
+      "score": 0.8,
+      "value": "В повестта се разгръща драмата на човека, потърсил щастие в свят, загърбил човеч"
+    },
+    {
+      "type": "author",
+      "id": "peyo-yavorov",
+      "field": "works[gradushka]",
+      "level": "warning",
+      "message": "Work \"gradushka\" not found in author's source section — may be in a sub-section only."
+    }
+  ]
+}
