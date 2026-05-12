@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-export default function Quiz({ questions, onFinish }) {
+export default function Quiz({ questions, modeLabel, onFinish, onHome }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [score, setScore] = useState(0);
@@ -38,12 +38,25 @@ export default function Quiz({ questions, onFinish }) {
 
   return (
     <div className="quiz-container">
+      <div className="quiz-top-bar">
+        {modeLabel
+          ? <span className="quiz-mode-label">{modeLabel}</span>
+          : <span />
+        }
+        <button className="btn-ghost" onClick={onHome}>Към началото</button>
+      </div>
+
       <div className="quiz-header">
         <span>Въпрос {currentIndex + 1} от {questions.length}</span>
         <span className="quiz-score-label">Верни: {score}</span>
       </div>
 
-      <div className="progress-bar" role="progressbar" aria-valuenow={currentIndex + 1} aria-valuemax={questions.length}>
+      <div
+        className="progress-bar"
+        role="progressbar"
+        aria-valuenow={currentIndex + 1}
+        aria-valuemax={questions.length}
+      >
         <div className="progress-fill" style={{ width: `${progressPercent}%` }} />
       </div>
 
@@ -66,7 +79,10 @@ export default function Quiz({ questions, onFinish }) {
         {answered && (
           <div className={`feedback ${isCorrect ? 'feedback-correct' : 'feedback-wrong'}`}>
             <p className="feedback-status">
-              {isCorrect ? 'Верен отговор!' : `Грешен отговор! Правилният е: „${question.correctAnswer}"`}
+              {isCorrect
+                ? 'Верен отговор!'
+                : `Грешен отговор! Правилният е: „${question.correctAnswer}"`
+              }
             </p>
             <p className="feedback-explanation">{question.explanation}</p>
           </div>

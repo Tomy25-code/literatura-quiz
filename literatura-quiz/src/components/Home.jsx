@@ -1,4 +1,6 @@
-export default function Home({ authorCount, workCount, questionCount, onStart }) {
+import ModeSelector from './ModeSelector';
+
+export default function Home({ authorCount, workCount, questionCount, onSelectMode }) {
   return (
     <div className="home-container">
       <div className="home-header">
@@ -24,9 +26,7 @@ export default function Home({ authorCount, workCount, questionCount, onStart })
         </div>
       </div>
 
-      <button className="btn-primary btn-large" onClick={onStart}>
-        Започни случаен тест
-      </button>
+      <ModeSelector onSelect={onSelectMode} />
     </div>
   );
 }

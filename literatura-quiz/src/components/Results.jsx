@@ -1,4 +1,4 @@
-export default function Results({ score, total, onRestart, onHome }) {
+export default function Results({ score, total, modeLabel, onRestart, onHome }) {
   const percentage = Math.round((score / total) * 100);
 
   function getMessage() {
@@ -8,7 +8,7 @@ export default function Results({ score, total, onRestart, onHome }) {
     return 'Трябва повече упражнения. Не се отказвай!';
   }
 
-  function getScoreColor() {
+  function getScoreClass() {
     if (percentage >= 70) return 'score-good';
     if (percentage >= 50) return 'score-ok';
     return 'score-low';
@@ -16,10 +16,13 @@ export default function Results({ score, total, onRestart, onHome }) {
 
   return (
     <div className="results-container">
+      {modeLabel && <p className="results-mode-label">{modeLabel}</p>}
       <h2 className="results-title">Краен резултат</h2>
 
-      <div className={`score-circle ${getScoreColor()}`}>
-        <span className="score-fraction">{score}<span className="score-total">/{total}</span></span>
+      <div className={`score-circle ${getScoreClass()}`}>
+        <span className="score-fraction">
+          {score}<span className="score-total">/{total}</span>
+        </span>
         <span className="score-percent">{percentage}%</span>
       </div>
 
