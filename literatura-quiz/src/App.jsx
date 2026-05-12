@@ -6,7 +6,10 @@ import Home from './components/Home';
 import Quiz from './components/Quiz';
 import Results from './components/Results';
 import FilterSelection from './components/FilterSelection';
+import FlashcardSelection from './components/FlashcardSelection';
+import Flashcards from './components/Flashcards';
 import { buildQuiz, shuffle, QUIZ_LENGTH, MODE_LABELS } from './utils/quiz';
+import { buildAuthorCards, buildWorkCards, buildMixedCards } from './utils/flashcards';
 import { getWrongQuestionIds } from './utils/wrongAnswers';
 import './App.css';
 
@@ -18,6 +21,7 @@ export default function App() {
   const [quizQuestions, setQuizQuestions] = useState([]);
   const [finalScore, setFinalScore] = useState(0);
   const [wrongCount, setWrongCount] = useState(() => getWrongQuestionIds().length);
+  const [flashcardDeck, setFlashcardDeck] = useState([]);
 
   function startQuiz(mode, filterValue, label) {
     let qs;
@@ -42,6 +46,8 @@ export default function App() {
       startQuiz('random', null, MODE_LABELS.random);
     } else if (mode === 'wrong') {
       startQuiz('wrong', null, MODE_LABELS.wrong);
+    } else if (mode === 'flashcards') {
+      setScreen('flashcard-select');
     } else {
       setQuizMode(mode);
       setScreen('filter');
@@ -50,6 +56,15 @@ export default function App() {
 
   function handleFilterSelect(filterValue, label) {
     startQuiz(quizMode, filterValue, label);
+  }
+
+  function handleFlashcardTypeSelect(type) {
+    let deck;
+    if (type === 'author') deck = buildAuthorCards(authors, works);
+    else if (type === 'work') deck = buildWorkCards(works, authors);
+    else deck = buildMixedCards(authors, works);
+    setFlashcardDeck(shuffle(deck));
+    setScreen('flashcards');
   }
 
   function handleFinish(score) {
@@ -80,6 +95,26 @@ export default function App() {
         questions={questions}
         onSelect={handleFilterSelect}
         onBack={goHome}
+      />
+    );
+  }
+
+  if (screen === 'flashcard-select') {
+    return (
+      <FlashcardSelection
+        authors={authors}
+        works={works}
+        onSelect={handleFlashcardTypeSelect}
+        onBack={goHome}
+      />
+    );
+  }
+
+  if (screen === 'flashcards') {
+    return (
+      <Flashcards
+        deck={flashcardDeck}
+        onHome={goHome}
       />
     );
   }

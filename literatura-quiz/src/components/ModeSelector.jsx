@@ -24,6 +24,11 @@ const BASE_MODES = [
     label: 'Тест по трудност',
     description: 'Избери ниво на трудност',
   },
+  {
+    id: 'flashcards',
+    label: 'Флашкарти',
+    description: 'Преговаряй автори, произведения, жанрове и композиция',
+  },
 ];
 
 export default function ModeSelector({ onSelect, wrongCount }) {
