@@ -39,7 +39,7 @@ export function shuffle(arr) {
   return a;
 }
 
-export function buildQuiz(allQuestions, mode, filterValue, allWorks = []) {
+export function buildQuiz(allQuestions, mode, filterValue, allWorks = [], length = QUIZ_LENGTH) {
   let pool;
 
   switch (mode) {
@@ -50,13 +50,13 @@ export function buildQuiz(allQuestions, mode, filterValue, allWorks = []) {
     case 'work': {
       const work = allWorks.find(w => w.id === filterValue);
       const primary = allQuestions.filter(q => q.workId === filterValue);
-      if (!work || primary.length >= QUIZ_LENGTH) {
+      if (!work || primary.length >= length) {
         pool = primary;
       } else {
         const secondary = shuffle(
           allQuestions.filter(q => q.authorId === work.authorId && q.workId !== filterValue)
         );
-        pool = [...primary, ...secondary.slice(0, QUIZ_LENGTH - primary.length)];
+        pool = [...primary, ...secondary.slice(0, length - primary.length)];
       }
       break;
     }
@@ -74,6 +74,6 @@ export function buildQuiz(allQuestions, mode, filterValue, allWorks = []) {
   }
 
   return shuffle([...pool])
-    .slice(0, QUIZ_LENGTH)
+    .slice(0, length)
     .map(q => ({ ...q, options: shuffle([...q.options]) }));
 }

@@ -8,9 +8,10 @@ import Results from './components/Results';
 import FilterSelection from './components/FilterSelection';
 import FlashcardSelection from './components/FlashcardSelection';
 import Flashcards from './components/Flashcards';
-import { buildQuiz, shuffle, QUIZ_LENGTH, MODE_LABELS } from './utils/quiz';
+import { buildQuiz, shuffle, MODE_LABELS } from './utils/quiz';
 import { buildAuthorCards, buildWorkCards, buildMixedCards } from './utils/flashcards';
-import { getWrongQuestionIds } from './utils/wrongAnswers';
+import { getWrongQuestionIds, clearWrongQuestionIds } from './utils/wrongAnswers';
+import { getStoredQuizLength, storeQuizLength } from './utils/settings';
 import './App.css';
 
 export default function App() {
@@ -23,6 +24,12 @@ export default function App() {
   const [wrongCount, setWrongCount] = useState(() => getWrongQuestionIds().length);
   const [flashcardDeck, setFlashcardDeck] = useState([]);
   const [filterError, setFilterError] = useState('');
+  const [quizLength, setQuizLength] = useState(() => getStoredQuizLength());
+
+  function handleSetQuizLength(n) {
+    storeQuizLength(n);
+    setQuizLength(n);
+  }
 
   function startQuiz(mode, filterValue, label) {
     let qs;
@@ -30,10 +37,10 @@ export default function App() {
       const wrongIds = getWrongQuestionIds();
       const pool = questions.filter(q => wrongIds.includes(q.id));
       qs = shuffle([...pool])
-        .slice(0, QUIZ_LENGTH)
+        .slice(0, quizLength)
         .map(q => ({ ...q, options: shuffle([...q.options]) }));
     } else {
-      qs = buildQuiz(questions, mode, filterValue, works);
+      qs = buildQuiz(questions, mode, filterValue, works, quizLength);
     }
     setQuizMode(mode);
     setQuizFilter(filterValue);
@@ -47,7 +54,12 @@ export default function App() {
     if (mode === 'random') {
       startQuiz('random', null, MODE_LABELS.random);
     } else if (mode === 'wrong') {
-      startQuiz('wrong', null, MODE_LABELS.wrong);
+      const current = getWrongQuestionIds().length;
+      if (current === 0) {
+        setScreen('wrong-empty');
+      } else {
+        startQuiz('wrong', null, MODE_LABELS.wrong);
+      }
     } else if (mode === 'flashcards') {
       setScreen('flashcard-select');
     } else {
@@ -57,7 +69,7 @@ export default function App() {
   }
 
   function handleFilterSelect(filterValue, label) {
-    const testPool = buildQuiz(questions, quizMode, filterValue, works);
+    const testPool = buildQuiz(questions, quizMode, filterValue, works, quizLength);
     if (testPool.length === 0) {
       setFilterError('Няма въпроси за този избор.');
       return;
@@ -89,10 +101,30 @@ export default function App() {
     startQuiz(quizMode, quizFilter, modeLabel);
   }
 
+  function handleClearWrong() {
+    if (window.confirm('Сигурен/сигурна ли си, че искаш да изчистиш всички грешни въпроси?')) {
+      clearWrongQuestionIds();
+      setWrongCount(0);
+    }
+  }
+
   function goHome() {
     setFilterError('');
     setWrongCount(getWrongQuestionIds().length);
     setScreen('home');
+  }
+
+  if (screen === 'wrong-empty') {
+    return (
+      <div className="wrong-empty-container">
+        <h2 className="wrong-empty-title">Преговор на грешните</h2>
+        <p className="wrong-empty-text">Все още няма грешни въпроси.</p>
+        <p className="wrong-empty-sub">
+          След като сгрешиш въпрос в тест, той ще се появи тук за преговор.
+        </p>
+        <button className="btn-primary" onClick={goHome}>Към началото</button>
+      </div>
+    );
   }
 
   if (screen === 'filter') {
@@ -161,7 +193,10 @@ export default function App() {
       workCount={works.length}
       questionCount={questions.length}
       wrongCount={wrongCount}
+      quizLength={quizLength}
       onSelectMode={handleModeSelect}
+      onSetQuizLength={handleSetQuizLength}
+      onClearWrong={handleClearWrong}
     />
   );
 }

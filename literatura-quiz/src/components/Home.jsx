@@ -1,6 +1,16 @@
 import ModeSelector from './ModeSelector';
+import { VALID_LENGTHS } from '../utils/settings';
 
-export default function Home({ authorCount, workCount, questionCount, wrongCount, onSelectMode }) {
+export default function Home({
+  authorCount,
+  workCount,
+  questionCount,
+  wrongCount,
+  quizLength,
+  onSelectMode,
+  onSetQuizLength,
+  onClearWrong,
+}) {
   return (
     <div className="home-container">
       <div className="home-header">
@@ -26,7 +36,37 @@ export default function Home({ authorCount, workCount, questionCount, wrongCount
         </div>
       </div>
 
-      <ModeSelector onSelect={onSelectMode} wrongCount={wrongCount} />
+      <div className="quiz-length-picker">
+        <span className="qlp-label">Брой въпроси в тест</span>
+        <div className="qlp-options">
+          {VALID_LENGTHS.map(n => (
+            <button
+              key={n}
+              className={`qlp-btn${quizLength === n ? ' active' : ''}`}
+              onClick={() => onSetQuizLength(n)}
+              aria-pressed={quizLength === n}
+            >
+              {n}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <ModeSelector
+        onSelect={onSelectMode}
+        wrongCount={wrongCount}
+        onClearWrong={onClearWrong}
+      />
+
+      <details className="help-section">
+        <summary className="help-summary">Как да използваш сайта?</summary>
+        <ul className="help-list">
+          <li>Започни със случаен тест, за да провериш общите си знания.</li>
+          <li>Използвай тест по автор или произведение за целенасочен преговор.</li>
+          <li>Грешните отговори се запазват автоматично.</li>
+          <li>Флашкартите са подходящи за бърз преговор преди изпит.</li>
+        </ul>
+      </details>
     </div>
   );
 }

@@ -20,3 +20,7 @@ export function removeWrongQuestionId(id) {
   const ids = getWrongQuestionIds();
   localStorage.setItem(STORAGE_KEY, JSON.stringify(ids.filter(x => x !== id)));
 }
+
+export function clearWrongQuestionIds() {
+  localStorage.removeItem(STORAGE_KEY);
+}

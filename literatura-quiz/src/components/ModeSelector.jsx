@@ -31,7 +31,7 @@ const BASE_MODES = [
   },
 ];
 
-export default function ModeSelector({ onSelect, wrongCount }) {
+export default function ModeSelector({ onSelect, wrongCount, onClearWrong }) {
   return (
     <div className="mode-selector">
       <p className="mode-selector-title">Избери режим</p>
@@ -48,9 +48,8 @@ export default function ModeSelector({ onSelect, wrongCount }) {
         ))}
 
         <button
-          className={`mode-card mode-card-wrong${wrongCount === 0 ? ' mode-card-disabled' : ''}`}
-          onClick={() => wrongCount > 0 && onSelect('wrong')}
-          disabled={wrongCount === 0}
+          className={`mode-card mode-card-wrong${wrongCount === 0 ? ' mode-card-empty' : ''}`}
+          onClick={() => onSelect('wrong')}
         >
           <span className="mode-card-label">
             Преговор на грешните
@@ -66,6 +65,14 @@ export default function ModeSelector({ onSelect, wrongCount }) {
           </span>
         </button>
       </div>
+
+      {wrongCount > 0 && (
+        <div className="wrong-actions">
+          <button className="btn-clear-wrong" onClick={onClearWrong}>
+            Изчисти грешните
+          </button>
+        </div>
+      )}
     </div>
   );
 }
