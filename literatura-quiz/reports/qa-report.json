@@ -1,0 +1,541 @@
+{
+  "generatedAt": "2026-05-12T17:05:09.093Z",
+  "summary": {
+    "authors": 20,
+    "works": 27,
+    "questions": 462,
+    "totalErrors": 0,
+    "totalWarnings": 91,
+    "questionsWithErrors": 0,
+    "questionsNeedingReview": 0
+  },
+  "categoryCounts": {
+    "period": 47,
+    "literary_context": 20,
+    "nickname": 8,
+    "work": 40,
+    "themes": 47,
+    "true_false": 94,
+    "essay_preparation": 47,
+    "author": 27,
+    "genre": 27,
+    "creative_history": 27,
+    "composition": 54,
+    "motifs": 24
+  },
+  "difficultyCounts": {
+    "easy": 122,
+    "medium": 219,
+    "hard": 121
+  },
+  "authorQuestionCounts": {
+    "Димитър Талев": 20,
+    "Алеко Константинов": 20,
+    "Станислав Стратиев": 19,
+    "Иван Вазов": 41,
+    "Никола Вапцаров": 31,
+    "Йордан Радичков": 19,
+    "Христо Ботев": 31,
+    "Елин Пелин": 40,
+    "Христо Смирненски": 19,
+    "Емилиян Станев": 19,
+    "Пейо Яворов": 30,
+    "Пенчо Славейков": 19,
+    "Димчо Дебелянов": 19,
+    "Христо Фотев": 19,
+    "Петя Дубарова": 19,
+    "Атанас Далчев": 20,
+    "Йордан Йовков": 20,
+    "Виктор Пасков": 19,
+    "Елисавета Багряна": 19,
+    "Борис Христов": 19
+  },
+  "workQuestionCounts": {
+    "Железният светилник": 12,
+    "Бай Ганьо журналист": 12,
+    "Балкански синдром": 12,
+    "Паисий": 12,
+    "Новото гробище над Сливница": 10,
+    "При Рилския манастир": 11,
+    "История": 12,
+    "Вяра": 11,
+    "Ноев ковчег": 12,
+    "Борба": 12,
+    "До моето първо либе": 11,
+    "Андрешко": 11,
+    "Спасова могила": 10,
+    "Ветрената мелница": 11,
+    "Приказка за стълбата": 12,
+    "Крадецът на праскови": 12,
+    "Градушка": 12,
+    "Две души": 11,
+    "Спи езерото": 12,
+    "Аз искам да те помня все така": 12,
+    "Колко си хубава!": 12,
+    "Посвещение": 12,
+    "Молитва": 12,
+    "Песента на колелетата": 12,
+    "Балада за Георг Хених": 12,
+    "Потомка": 12,
+    "Честен кръст": 12
+  },
+  "errors": [],
+  "warnings": [
+    {
+      "id": "q-author-dimitar-talev-010",
+      "code": "GENERIC_EXPLANATION",
+      "message": "explanation matches generic pattern /Твърдението е взето от записките/"
+    },
+    {
+      "id": "q-author-aleko-konstantinov-010",
+      "code": "GENERIC_EXPLANATION",
+      "message": "explanation matches generic pattern /Твърдението е взето от записките/"
+    },
+    {
+      "id": "q-author-stanislav-stratiev-008",
+      "code": "GENERIC_EXPLANATION",
+      "message": "explanation matches generic pattern /Твърдението е взето от записките/"
+    },
+    {
+      "id": "q-author-ivan-vazov-012",
+      "code": "GENERIC_EXPLANATION",
+      "message": "explanation matches generic pattern /Твърдението е взето от записките/"
+    },
+    {
+      "id": "q-author-nikola-vaptsarov-011",
+      "code": "GENERIC_EXPLANATION",
+      "message": "explanation matches generic pattern /Твърдението е взето от записките/"
+    },
+    {
+      "id": "q-author-yordan-radichkov-009",
+      "code": "GENERIC_EXPLANATION",
+      "message": "explanation matches generic pattern /Твърдението е взето от записките/"
+    },
+    {
+      "id": "q-author-hristo-botev-012",
+      "code": "GENERIC_EXPLANATION",
+      "message": "explanation matches generic pattern /Твърдението е взето от записките/"
+    },
+    {
+      "id": "q-author-elin-pelin-014",
+      "code": "GENERIC_EXPLANATION",
+      "message": "explanation matches generic pattern /Твърдението е взето от записките/"
+    },
+    {
+      "id": "q-author-hristo-smirnenski-010",
+      "code": "GENERIC_EXPLANATION",
+      "message": "explanation matches generic pattern /Твърдението е взето от записките/"
+    },
+    {
+      "id": "q-author-emiliyan-stanev-009",
+      "code": "GENERIC_EXPLANATION",
+      "message": "explanation matches generic pattern /Твърдението е взето от записките/"
+    },
+    {
+      "id": "q-author-peyo-yavorov-009",
+      "code": "GENERIC_EXPLANATION",
+      "message": "explanation matches generic pattern /Твърдението е взето от записките/"
+    },
+    {
+      "id": "q-author-pencho-slaveykov-008",
+      "code": "GENERIC_EXPLANATION",
+      "message": "explanation matches generic pattern /Твърдението е взето от записките/"
+    },
+    {
+      "id": "q-author-dimcho-debelyanov-008",
+      "code": "GENERIC_EXPLANATION",
+      "message": "explanation matches generic pattern /Твърдението е взето от записките/"
+    },
+    {
+      "id": "q-author-hristo-fotev-007",
+      "code": "GENERIC_EXPLANATION",
+      "message": "explanation matches generic pattern /Твърдението е взето от записките/"
+    },
+    {
+      "id": "q-author-petya-dubarova-009",
+      "code": "GENERIC_EXPLANATION",
+      "message": "explanation matches generic pattern /Твърдението е взето от записките/"
+    },
+    {
+      "id": "q-author-atanas-dalchev-008",
+      "code": "GENERIC_EXPLANATION",
+      "message": "explanation matches generic pattern /Твърдението е взето от записките/"
+    },
+    {
+      "id": "q-author-yordan-yovkov-009",
+      "code": "GENERIC_EXPLANATION",
+      "message": "explanation matches generic pattern /Твърдението е взето от записките/"
+    },
+    {
+      "id": "q-author-viktor-paskov-009",
+      "code": "GENERIC_EXPLANATION",
+      "message": "explanation matches generic pattern /Твърдението е взето от записките/"
+    },
+    {
+      "id": "q-author-elisaveta-bagryana-009",
+      "code": "GENERIC_EXPLANATION",
+      "message": "explanation matches generic pattern /Твърдението е взето от записките/"
+    },
+    {
+      "id": "q-author-boris-hristov-008",
+      "code": "GENERIC_EXPLANATION",
+      "message": "explanation matches generic pattern /Твърдението е взето от записките/"
+    },
+    {
+      "id": "q-work-jelezniyat-svetilnik-013",
+      "code": "GENERIC_EXPLANATION",
+      "message": "explanation matches generic pattern /Твърдението е взето от записките/"
+    },
+    {
+      "id": "q-work-bai-ganyo-jurnalist-005",
+      "code": "LONG_OPTION",
+      "message": "option[0] is 283 chars (max 280): \"Първа публикация през 1902 г. с посвещение „Брату си Хр. Ива…\""
+    },
+    {
+      "id": "q-work-bai-ganyo-jurnalist-005",
+      "code": "LONG_OPTION",
+      "message": "option[1] is 352 chars (max 280): \"Творбата е създадена в годините след Освобождението, време н…\""
+    },
+    {
+      "id": "q-work-bai-ganyo-jurnalist-005",
+      "code": "LONG_OPTION",
+      "message": "option[2] is 303 chars (max 280): \"Първата публикация на творбата е в списание „Смях“ със загла…\""
+    },
+    {
+      "id": "q-work-bai-ganyo-jurnalist-006",
+      "code": "LONG_OPTION",
+      "message": "option[3] is 304 chars (max 280): \"Композиционна рамка, разказ в разказа. Книгата се състои от …\""
+    },
+    {
+      "id": "q-work-bai-ganyo-jurnalist-013",
+      "code": "GENERIC_EXPLANATION",
+      "message": "explanation matches generic pattern /Твърдението е взето от записките/"
+    },
+    {
+      "id": "q-work-bai-ganyo-jurnalist-020",
+      "code": "LONG_OPTION",
+      "message": "option[2] is 304 chars (max 280): \"Композиционна рамка, разказ в разказа. Книгата се състои от …\""
+    },
+    {
+      "id": "q-work-balkanski-sindrom-012",
+      "code": "GENERIC_EXPLANATION",
+      "message": "explanation matches generic pattern /Твърдението е взето от записките/"
+    },
+    {
+      "id": "q-work-balkanski-sindrom-019",
+      "code": "LONG_OPTION",
+      "message": "option[0] is 304 chars (max 280): \"Композиционна рамка, разказ в разказа. Книгата се състои от …\""
+    },
+    {
+      "id": "q-work-paisiy-006",
+      "code": "LONG_OPTION",
+      "message": "option[3] is 304 chars (max 280): \"Композиционна рамка, разказ в разказа. Книгата се състои от …\""
+    },
+    {
+      "id": "q-work-paisiy-011",
+      "code": "GENERIC_EXPLANATION",
+      "message": "explanation matches generic pattern /Твърдението е взето от записките/"
+    },
+    {
+      "id": "q-work-novoto-grobishte-nad-slivnitsa-009",
+      "code": "GENERIC_EXPLANATION",
+      "message": "explanation matches generic pattern /Твърдението е взето от записките/"
+    },
+    {
+      "id": "q-work-pri-rilskiya-manastir-013",
+      "code": "GENERIC_EXPLANATION",
+      "message": "explanation matches generic pattern /Твърдението е взето от записките/"
+    },
+    {
+      "id": "q-work-istoriya-005",
+      "code": "LONG_OPTION",
+      "message": "option[2] is 283 chars (max 280): \"Първа публикация през 1902 г. с посвещение „Брату си Хр. Ива…\""
+    },
+    {
+      "id": "q-work-istoriya-005",
+      "code": "LONG_OPTION",
+      "message": "option[3] is 281 chars (max 280): \"Творбата е създадена във време на драматични социални конфли…\""
+    },
+    {
+      "id": "q-work-istoriya-012",
+      "code": "GENERIC_EXPLANATION",
+      "message": "explanation matches generic pattern /Твърдението е взето от записките/"
+    },
+    {
+      "id": "q-work-vyara-005",
+      "code": "LONG_OPTION",
+      "message": "option[0] is 337 chars (max 280): \"Творбата е от първия творчески период на поета, когато социа…\""
+    },
+    {
+      "id": "q-work-vyara-011",
+      "code": "GENERIC_EXPLANATION",
+      "message": "explanation matches generic pattern /Твърдението е взето от записките/"
+    },
+    {
+      "id": "q-work-noev-kovcheg-013",
+      "code": "GENERIC_EXPLANATION",
+      "message": "explanation matches generic pattern /Твърдението е взето от записките/"
+    },
+    {
+      "id": "q-work-borba-003",
+      "code": "ENGLISH_WORDS",
+      "message": "explanation contains English words: distractor"
+    },
+    {
+      "id": "q-work-borba-012",
+      "code": "GENERIC_EXPLANATION",
+      "message": "explanation matches generic pattern /Твърдението е взето от записките/"
+    },
+    {
+      "id": "q-work-do-moeto-parvo-libe-012",
+      "code": "GENERIC_EXPLANATION",
+      "message": "explanation matches generic pattern /Твърдението е взето от записките/"
+    },
+    {
+      "id": "q-work-andreshko-005",
+      "code": "LONG_OPTION",
+      "message": "option[1] is 281 chars (max 280): \"Творбата е създадена във време на драматични социални конфли…\""
+    },
+    {
+      "id": "q-work-andreshko-009",
+      "code": "GENERIC_EXPLANATION",
+      "message": "explanation matches generic pattern /Твърдението е взето от записките/"
+    },
+    {
+      "id": "q-work-spasova-mogila-009",
+      "code": "GENERIC_EXPLANATION",
+      "message": "explanation matches generic pattern /Твърдението е взето от записките/"
+    },
+    {
+      "id": "q-work-vetrenata-melnitsa-005",
+      "code": "LONG_OPTION",
+      "message": "option[0] is 283 chars (max 280): \"Първа публикация през 1902 г. с посвещение „Брату си Хр. Ива…\""
+    },
+    {
+      "id": "q-work-vetrenata-melnitsa-006",
+      "code": "LONG_OPTION",
+      "message": "option[3] is 304 chars (max 280): \"Композиционна рамка, разказ в разказа. Книгата се състои от …\""
+    },
+    {
+      "id": "q-work-vetrenata-melnitsa-012",
+      "code": "GENERIC_EXPLANATION",
+      "message": "explanation matches generic pattern /Твърдението е взето от записките/"
+    },
+    {
+      "id": "q-work-prikazka-za-stalbata-013",
+      "code": "GENERIC_EXPLANATION",
+      "message": "explanation matches generic pattern /Твърдението е взето от записките/"
+    },
+    {
+      "id": "q-work-kradetsat-na-praskovi-005",
+      "code": "LONG_OPTION",
+      "message": "option[2] is 303 chars (max 280): \"Първата публикация на творбата е в списание „Смях“ със загла…\""
+    },
+    {
+      "id": "q-work-kradetsat-na-praskovi-012",
+      "code": "GENERIC_EXPLANATION",
+      "message": "explanation matches generic pattern /Твърдението е взето от записките/"
+    },
+    {
+      "id": "q-work-gradushka-005",
+      "code": "LONG_OPTION",
+      "message": "option[1] is 337 chars (max 280): \"Творбата е от първия творчески период на поета, когато социа…\""
+    },
+    {
+      "id": "q-work-gradushka-011",
+      "code": "GENERIC_EXPLANATION",
+      "message": "explanation matches generic pattern /Твърдението е взето от записките/"
+    },
+    {
+      "id": "q-work-dve-dushi-011",
+      "code": "GENERIC_EXPLANATION",
+      "message": "explanation matches generic pattern /Твърдението е взето от записките/"
+    },
+    {
+      "id": "q-work-spi-ezeroto-005",
+      "code": "LONG_OPTION",
+      "message": "option[3] is 283 chars (max 280): \"Първа публикация през 1902 г. с посвещение „Брату си Хр. Ива…\""
+    },
+    {
+      "id": "q-work-spi-ezeroto-012",
+      "code": "GENERIC_EXPLANATION",
+      "message": "explanation matches generic pattern /Твърдението е взето от записките/"
+    },
+    {
+      "id": "q-work-az-iskam-da-te-pomnya-vse-taka-005",
+      "code": "LONG_OPTION",
+      "message": "option[2] is 281 chars (max 280): \"Творбата е създадена във време на драматични социални конфли…\""
+    },
+    {
+      "id": "q-work-az-iskam-da-te-pomnya-vse-taka-005",
+      "code": "LONG_OPTION",
+      "message": "option[3] is 303 chars (max 280): \"Първата публикация на творбата е в списание „Смях“ със загла…\""
+    },
+    {
+      "id": "q-work-az-iskam-da-te-pomnya-vse-taka-012",
+      "code": "GENERIC_EXPLANATION",
+      "message": "explanation matches generic pattern /Твърдението е взето от записките/"
+    },
+    {
+      "id": "q-work-kolko-si-hubava-005",
+      "code": "LONG_OPTION",
+      "message": "option[3] is 352 chars (max 280): \"Творбата е създадена в годините след Освобождението, време н…\""
+    },
+    {
+      "id": "q-work-kolko-si-hubava-012",
+      "code": "GENERIC_EXPLANATION",
+      "message": "explanation matches generic pattern /Твърдението е взето от записките/"
+    },
+    {
+      "id": "q-work-posveshtenie-012",
+      "code": "GENERIC_EXPLANATION",
+      "message": "explanation matches generic pattern /Твърдението е взето от записките/"
+    },
+    {
+      "id": "q-work-posveshtenie-019",
+      "code": "LONG_OPTION",
+      "message": "option[1] is 304 chars (max 280): \"Композиционна рамка, разказ в разказа. Книгата се състои от …\""
+    },
+    {
+      "id": "q-work-molitva-012",
+      "code": "GENERIC_EXPLANATION",
+      "message": "explanation matches generic pattern /Твърдението е взето от записките/"
+    },
+    {
+      "id": "q-work-pesenta-na-koleletata-011",
+      "code": "GENERIC_EXPLANATION",
+      "message": "explanation matches generic pattern /Твърдението е взето от записките/"
+    },
+    {
+      "id": "q-work-balada-za-georg-henig-012",
+      "code": "GENERIC_EXPLANATION",
+      "message": "explanation matches generic pattern /Твърдението е взето от записките/"
+    },
+    {
+      "id": "q-work-potomka-005",
+      "code": "LONG_OPTION",
+      "message": "option[1] is 283 chars (max 280): \"Първа публикация през 1902 г. с посвещение „Брату си Хр. Ива…\""
+    },
+    {
+      "id": "q-work-potomka-012",
+      "code": "GENERIC_EXPLANATION",
+      "message": "explanation matches generic pattern /Твърдението е взето от записките/"
+    },
+    {
+      "id": "q-work-chesten-krast-005",
+      "code": "LONG_OPTION",
+      "message": "option[2] is 281 chars (max 280): \"Творбата е създадена във време на драматични социални конфли…\""
+    },
+    {
+      "id": "q-work-chesten-krast-013",
+      "code": "GENERIC_EXPLANATION",
+      "message": "explanation matches generic pattern /Твърдението е взето от записките/"
+    },
+    {
+      "id": "q-author-dimitar-talev-004",
+      "code": "MISSING_WORK_ID",
+      "message": "question mentions \"Железният светилник\" but workId is null (work id: jelezniyat-svetilnik)"
+    },
+    {
+      "id": "q-author-aleko-konstantinov-004",
+      "code": "MISSING_WORK_ID",
+      "message": "question mentions \"Бай Ганьо журналист\" but workId is null (work id: bai-ganyo-jurnalist)"
+    },
+    {
+      "id": "q-author-stanislav-stratiev-003",
+      "code": "MISSING_WORK_ID",
+      "message": "question mentions \"Балкански синдром\" but workId is null (work id: balkanski-sindrom)"
+    },
+    {
+      "id": "q-author-ivan-vazov-004",
+      "code": "MISSING_WORK_ID",
+      "message": "question mentions \"Паисий\" but workId is null (work id: paisiy)"
+    },
+    {
+      "id": "q-author-nikola-vaptsarov-004",
+      "code": "MISSING_WORK_ID",
+      "message": "question mentions \"История\" but workId is null (work id: istoriya)"
+    },
+    {
+      "id": "q-author-yordan-radichkov-003",
+      "code": "MISSING_WORK_ID",
+      "message": "question mentions \"Ноев ковчег\" but workId is null (work id: noev-kovcheg)"
+    },
+    {
+      "id": "q-author-hristo-botev-004",
+      "code": "MISSING_WORK_ID",
+      "message": "question mentions \"Борба\" but workId is null (work id: borba)"
+    },
+    {
+      "id": "q-author-elin-pelin-004",
+      "code": "MISSING_WORK_ID",
+      "message": "question mentions \"Андрешко\" but workId is null (work id: andreshko)"
+    },
+    {
+      "id": "q-author-hristo-smirnenski-003",
+      "code": "MISSING_WORK_ID",
+      "message": "question mentions \"Приказка за стълбата\" but workId is null (work id: prikazka-za-stalbata)"
+    },
+    {
+      "id": "q-author-emiliyan-stanev-003",
+      "code": "MISSING_WORK_ID",
+      "message": "question mentions \"Крадецът на праскови\" but workId is null (work id: kradetsat-na-praskovi)"
+    },
+    {
+      "id": "q-author-emiliyan-stanev-009",
+      "code": "MISSING_WORK_ID",
+      "message": "question mentions \"Крадецът на праскови\" but workId is null (work id: kradetsat-na-praskovi)"
+    },
+    {
+      "id": "q-author-peyo-yavorov-003",
+      "code": "MISSING_WORK_ID",
+      "message": "question mentions \"Градушка\" but workId is null (work id: gradushka)"
+    },
+    {
+      "id": "q-author-pencho-slaveykov-003",
+      "code": "MISSING_WORK_ID",
+      "message": "question mentions \"Спи езерото\" but workId is null (work id: spi-ezeroto)"
+    },
+    {
+      "id": "q-author-dimcho-debelyanov-003",
+      "code": "MISSING_WORK_ID",
+      "message": "question mentions \"Аз искам да те помня все така\" but workId is null (work id: az-iskam-da-te-pomnya-vse-taka)"
+    },
+    {
+      "id": "q-author-hristo-fotev-003",
+      "code": "MISSING_WORK_ID",
+      "message": "question mentions \"Колко си хубава!\" but workId is null (work id: kolko-si-hubava)"
+    },
+    {
+      "id": "q-author-petya-dubarova-003",
+      "code": "MISSING_WORK_ID",
+      "message": "question mentions \"Посвещение\" but workId is null (work id: posveshtenie)"
+    },
+    {
+      "id": "q-author-atanas-dalchev-004",
+      "code": "MISSING_WORK_ID",
+      "message": "question mentions \"Молитва\" but workId is null (work id: molitva)"
+    },
+    {
+      "id": "q-author-yordan-yovkov-004",
+      "code": "MISSING_WORK_ID",
+      "message": "question mentions \"Песента на колелетата\" but workId is null (work id: pesenta-na-koleletata)"
+    },
+    {
+      "id": "q-author-viktor-paskov-003",
+      "code": "MISSING_WORK_ID",
+      "message": "question mentions \"Балада за Георг Хених\" but workId is null (work id: balada-za-georg-henig)"
+    },
+    {
+      "id": "q-author-elisaveta-bagryana-003",
+      "code": "MISSING_WORK_ID",
+      "message": "question mentions \"Потомка\" but workId is null (work id: potomka)"
+    },
+    {
+      "id": "q-author-boris-hristov-003",
+      "code": "MISSING_WORK_ID",
+      "message": "question mentions \"Честен кръст\" but workId is null (work id: chesten-krast)"
+    }
+  ],
+  "questionsNeedingReview": []
+}
