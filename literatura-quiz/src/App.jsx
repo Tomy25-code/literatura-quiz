@@ -6,7 +6,8 @@ import Home from './components/Home';
 import Quiz from './components/Quiz';
 import Results from './components/Results';
 import FilterSelection from './components/FilterSelection';
-import { buildQuiz, MODE_LABELS } from './utils/quiz';
+import { buildQuiz, shuffle, QUIZ_LENGTH, MODE_LABELS } from './utils/quiz';
+import { getWrongQuestionIds } from './utils/wrongAnswers';
 import './App.css';
 
 export default function App() {
@@ -16,9 +17,19 @@ export default function App() {
   const [modeLabel, setModeLabel] = useState('');
   const [quizQuestions, setQuizQuestions] = useState([]);
   const [finalScore, setFinalScore] = useState(0);
+  const [wrongCount, setWrongCount] = useState(() => getWrongQuestionIds().length);
 
   function startQuiz(mode, filterValue, label) {
-    const qs = buildQuiz(questions, mode, filterValue, works);
+    let qs;
+    if (mode === 'wrong') {
+      const wrongIds = getWrongQuestionIds();
+      const pool = questions.filter(q => wrongIds.includes(q.id));
+      qs = shuffle([...pool])
+        .slice(0, QUIZ_LENGTH)
+        .map(q => ({ ...q, options: shuffle([...q.options]) }));
+    } else {
+      qs = buildQuiz(questions, mode, filterValue, works);
+    }
     setQuizMode(mode);
     setQuizFilter(filterValue);
     setModeLabel(label);
@@ -29,6 +40,8 @@ export default function App() {
   function handleModeSelect(mode) {
     if (mode === 'random') {
       startQuiz('random', null, MODE_LABELS.random);
+    } else if (mode === 'wrong') {
+      startQuiz('wrong', null, MODE_LABELS.wrong);
     } else {
       setQuizMode(mode);
       setScreen('filter');
@@ -41,14 +54,20 @@ export default function App() {
 
   function handleFinish(score) {
     setFinalScore(score);
+    setWrongCount(getWrongQuestionIds().length);
     setScreen('results');
   }
 
   function handleRestart() {
+    if (quizMode === 'wrong' && getWrongQuestionIds().length === 0) {
+      goHome();
+      return;
+    }
     startQuiz(quizMode, quizFilter, modeLabel);
   }
 
   function goHome() {
+    setWrongCount(getWrongQuestionIds().length);
     setScreen('home');
   }
 
@@ -70,6 +89,7 @@ export default function App() {
       <Quiz
         questions={quizQuestions}
         modeLabel={modeLabel}
+        isWrongMode={quizMode === 'wrong'}
         onFinish={handleFinish}
         onHome={goHome}
       />
@@ -82,6 +102,8 @@ export default function App() {
         score={finalScore}
         total={quizQuestions.length}
         modeLabel={modeLabel}
+        isWrongMode={quizMode === 'wrong'}
+        wrongCount={wrongCount}
         onRestart={handleRestart}
         onHome={goHome}
       />
@@ -93,6 +115,7 @@ export default function App() {
       authorCount={authors.length}
       workCount={works.length}
       questionCount={questions.length}
+      wrongCount={wrongCount}
       onSelectMode={handleModeSelect}
     />
   );

@@ -1,4 +1,4 @@
-export default function Results({ score, total, modeLabel, onRestart, onHome }) {
+export default function Results({ score, total, modeLabel, isWrongMode, wrongCount, onRestart, onHome }) {
   const percentage = Math.round((score / total) * 100);
 
   function getMessage() {
@@ -14,6 +14,8 @@ export default function Results({ score, total, modeLabel, onRestart, onHome }) 
     return 'score-low';
   }
 
+  const restartDisabled = isWrongMode && wrongCount === 0;
+
   return (
     <div className="results-container">
       {modeLabel && <p className="results-mode-label">{modeLabel}</p>}
@@ -28,8 +30,28 @@ export default function Results({ score, total, modeLabel, onRestart, onHome }) 
 
       <p className="score-message">{getMessage()}</p>
 
+      <div className="results-stats">
+        {isWrongMode ? (
+          wrongCount > 0
+            ? <p className="results-stat-row">Остават за преговор: <strong>{wrongCount}</strong></p>
+            : <p className="results-stat-row results-all-mastered">Всички грешни въпроси са усвоени!</p>
+        ) : (
+          wrongCount > 0 && (
+            <p className="results-stat-row">
+              Запазени грешни въпроси: <strong>{wrongCount}</strong>
+            </p>
+          )
+        )}
+      </div>
+
       <div className="results-actions">
-        <button className="btn-primary" onClick={onRestart}>Нов тест</button>
+        <button
+          className="btn-primary"
+          onClick={onRestart}
+          disabled={restartDisabled}
+        >
+          Нов тест
+        </button>
         <button className="btn-secondary" onClick={onHome}>Към началото</button>
       </div>
     </div>

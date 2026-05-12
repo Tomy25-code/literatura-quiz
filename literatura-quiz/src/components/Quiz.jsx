@@ -1,9 +1,11 @@
 import { useState } from 'react';
+import { saveWrongQuestionId, removeWrongQuestionId } from '../utils/wrongAnswers';
 
-export default function Quiz({ questions, modeLabel, onFinish, onHome }) {
+export default function Quiz({ questions, modeLabel, isWrongMode, onFinish, onHome }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [score, setScore] = useState(0);
+  const [wasRemoved, setWasRemoved] = useState(false);
 
   const question = questions[currentIndex];
   const answered = selectedAnswer !== null;
@@ -13,8 +15,17 @@ export default function Quiz({ questions, modeLabel, onFinish, onHome }) {
   function handleSelect(option) {
     if (answered) return;
     setSelectedAnswer(option);
-    if (option === question.correctAnswer) {
+    const correct = option === question.correctAnswer;
+    if (correct) {
       setScore(s => s + 1);
+      if (isWrongMode) {
+        removeWrongQuestionId(question.id);
+        setWasRemoved(true);
+      }
+    } else {
+      if (!isWrongMode) {
+        saveWrongQuestionId(question.id);
+      }
     }
   }
 
@@ -24,6 +35,7 @@ export default function Quiz({ questions, modeLabel, onFinish, onHome }) {
     } else {
       setCurrentIndex(i => i + 1);
       setSelectedAnswer(null);
+      setWasRemoved(false);
     }
   }
 
@@ -85,6 +97,11 @@ export default function Quiz({ questions, modeLabel, onFinish, onHome }) {
               }
             </p>
             <p className="feedback-explanation">{question.explanation}</p>
+            {wasRemoved && (
+              <p className="mastered-msg">
+                Браво! Този въпрос е премахнат от грешните.
+              </p>
+            )}
           </div>
         )}
 

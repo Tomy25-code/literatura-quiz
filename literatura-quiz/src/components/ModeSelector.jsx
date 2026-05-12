@@ -1,4 +1,4 @@
-const MODES = [
+const BASE_MODES = [
   {
     id: 'random',
     label: 'Случаен тест',
@@ -26,12 +26,12 @@ const MODES = [
   },
 ];
 
-export default function ModeSelector({ onSelect }) {
+export default function ModeSelector({ onSelect, wrongCount }) {
   return (
     <div className="mode-selector">
       <p className="mode-selector-title">Избери режим</p>
       <div className="mode-grid">
-        {MODES.map(mode => (
+        {BASE_MODES.map(mode => (
           <button
             key={mode.id}
             className="mode-card"
@@ -41,6 +41,25 @@ export default function ModeSelector({ onSelect }) {
             <span className="mode-card-desc">{mode.description}</span>
           </button>
         ))}
+
+        <button
+          className={`mode-card mode-card-wrong${wrongCount === 0 ? ' mode-card-disabled' : ''}`}
+          onClick={() => wrongCount > 0 && onSelect('wrong')}
+          disabled={wrongCount === 0}
+        >
+          <span className="mode-card-label">
+            Преговор на грешните
+            {wrongCount > 0 && (
+              <span className="wrong-badge">{wrongCount}</span>
+            )}
+          </span>
+          <span className="mode-card-desc">
+            {wrongCount > 0
+              ? `${wrongCount} грешни въпроса`
+              : 'Все още няма грешни въпроси'
+            }
+          </span>
+        </button>
       </div>
     </div>
   );

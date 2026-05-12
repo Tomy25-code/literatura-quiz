@@ -1,6 +1,6 @@
 import ModeSelector from './ModeSelector';
 
-export default function Home({ authorCount, workCount, questionCount, onSelectMode }) {
+export default function Home({ authorCount, workCount, questionCount, wrongCount, onSelectMode }) {
   return (
     <div className="home-container">
       <div className="home-header">
@@ -26,7 +26,7 @@ export default function Home({ authorCount, workCount, questionCount, onSelectMo
         </div>
       </div>
 
-      <ModeSelector onSelect={onSelectMode} />
+      <ModeSelector onSelect={onSelectMode} wrongCount={wrongCount} />
     </div>
   );
 }
