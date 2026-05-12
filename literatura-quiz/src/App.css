@@ -2,6 +2,71 @@
    App.css — Literatura Quiz
    ============================================= */
 
+/* ---- ACCESSIBILITY: FOCUS VISIBLE ---- */
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ---- SEARCH INPUT ---- */
+
+.search-box {
+  margin-bottom: 1rem;
+}
+
+.search-input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.7rem 1rem;
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  background: var(--bg);
+  color: var(--text-h);
+  font-size: 0.95rem;
+  font-family: var(--sans);
+  transition: border-color 0.15s;
+  outline: none;
+  -webkit-appearance: none;
+}
+
+.search-input:focus {
+  border-color: var(--accent);
+}
+
+.search-input::placeholder {
+  color: var(--text);
+  opacity: 0.65;
+}
+
+/* ---- FILTER EMPTY STATE & ERROR ---- */
+
+.filter-empty {
+  text-align: center;
+  padding: 2.5rem 1rem;
+  color: var(--text);
+  font-size: 0.95rem;
+  font-style: italic;
+}
+
+.filter-error {
+  background: rgba(220, 38, 38, 0.07);
+  border: 1px solid rgba(220, 38, 38, 0.3);
+  border-radius: 8px;
+  padding: 0.7rem 1rem;
+  font-size: 0.88rem;
+  color: var(--text-h);
+  margin-bottom: 1rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  .filter-error {
+    background: rgba(239, 68, 68, 0.09);
+    border-color: rgba(239, 68, 68, 0.3);
+  }
+}
+
 /* ---- MODE SELECTOR (home screen) ---- */
 
 .mode-selector {
@@ -41,12 +106,14 @@
   background: var(--bg);
   cursor: pointer;
   text-align: left;
-  transition: border-color 0.15s, background 0.15s, transform 0.1s;
+  transition: border-color 0.15s, background 0.15s, transform 0.12s, box-shadow 0.15s;
 }
 
 .mode-card:hover {
   border-color: var(--accent);
   background: var(--accent-bg);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.07);
 }
 
 .mode-card:active {
@@ -181,12 +248,14 @@
   background: var(--bg);
   cursor: pointer;
   text-align: left;
-  transition: border-color 0.15s, background 0.15s;
+  transition: border-color 0.15s, background 0.15s, transform 0.12s, box-shadow 0.15s;
 }
 
 .filter-card:hover {
   border-color: var(--accent);
   background: var(--accent-bg);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.07);
 }
 
 .filter-card-center {
@@ -729,12 +798,14 @@
   background: var(--bg);
   cursor: pointer;
   text-align: left;
-  transition: border-color 0.15s, background 0.15s;
+  transition: border-color 0.15s, background 0.15s, transform 0.12s, box-shadow 0.15s;
 }
 
 .fc-type-card:hover {
   border-color: var(--accent);
   background: var(--accent-bg);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.07);
 }
 
 .fc-type-card-label {

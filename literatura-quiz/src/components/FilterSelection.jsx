@@ -1,7 +1,9 @@
-import { useMemo } from 'react';
+import { useState, useMemo } from 'react';
 import { CATEGORY_LABELS, DIFFICULTY_LABELS, MODE_LABELS } from '../utils/quiz';
 
-export default function FilterSelection({ mode, authors, works, questions, onSelect, onBack }) {
+export default function FilterSelection({ mode, authors, works, questions, onSelect, onBack, error }) {
+  const [query, setQuery] = useState('');
+
   const authorMap = useMemo(() => {
     const map = {};
     authors.forEach(a => { map[a.id] = a.name; });
@@ -30,40 +32,63 @@ export default function FilterSelection({ mode, authors, works, questions, onSel
     return c;
   }, [mode, authors, works, questions]);
 
+  const normalizedQuery = query.toLowerCase().trim();
+
   function renderList() {
     if (mode === 'author') {
-      return (
-        <div className="filter-grid">
-          {authors.map(a => (
-            <button
-              key={a.id}
-              className="filter-card"
-              onClick={() => onSelect(a.id, `${MODE_LABELS.author} · ${a.name}`)}
-            >
-              <span className="filter-card-name">{a.name}</span>
-              <span className="filter-card-count">{counts[a.id] || 0} въпр.</span>
-            </button>
-          ))}
-        </div>
-      );
+      const filtered = authors.filter(a => {
+        if (!normalizedQuery) return true;
+        const inName = a.name.toLowerCase().includes(normalizedQuery);
+        const inNickname = a.nickname && a.nickname.toLowerCase().includes(normalizedQuery);
+        return inName || inNickname;
+      });
+
+      return filtered.length === 0
+        ? <p className="filter-empty">Няма намерени автори.</p>
+        : (
+          <div className="filter-grid">
+            {filtered.map(a => (
+              <button
+                key={a.id}
+                className="filter-card"
+                onClick={() => onSelect(a.id, `${MODE_LABELS.author} · ${a.name}`)}
+              >
+                <span className="filter-card-name">{a.name}</span>
+                {a.nickname && (
+                  <span className="filter-card-sub">„{a.nickname}"</span>
+                )}
+                <span className="filter-card-count">{counts[a.id] || 0} въпр.</span>
+              </button>
+            ))}
+          </div>
+        );
     }
 
     if (mode === 'work') {
-      return (
-        <div className="filter-grid">
-          {works.map(w => (
-            <button
-              key={w.id}
-              className="filter-card"
-              onClick={() => onSelect(w.id, `${MODE_LABELS.work} · ${w.title}`)}
-            >
-              <span className="filter-card-name">{w.title}</span>
-              <span className="filter-card-sub">{authorMap[w.authorId] || ''}</span>
-              <span className="filter-card-count">{counts[w.id] || 0} въпр.</span>
-            </button>
-          ))}
-        </div>
-      );
+      const filtered = works.filter(w => {
+        if (!normalizedQuery) return true;
+        const inTitle = w.title.toLowerCase().includes(normalizedQuery);
+        const inAuthor = (authorMap[w.authorId] || '').toLowerCase().includes(normalizedQuery);
+        return inTitle || inAuthor;
+      });
+
+      return filtered.length === 0
+        ? <p className="filter-empty">Няма намерени произведения.</p>
+        : (
+          <div className="filter-grid">
+            {filtered.map(w => (
+              <button
+                key={w.id}
+                className="filter-card"
+                onClick={() => onSelect(w.id, `${MODE_LABELS.work} · ${w.title}`)}
+              >
+                <span className="filter-card-name">{w.title}</span>
+                <span className="filter-card-sub">{authorMap[w.authorId] || ''}</span>
+                <span className="filter-card-count">{counts[w.id] || 0} въпр.</span>
+              </button>
+            ))}
+          </div>
+        );
     }
 
     if (mode === 'category') {
@@ -108,12 +133,33 @@ export default function FilterSelection({ mode, authors, works, questions, onSel
     return null;
   }
 
+  const showSearch = mode === 'author' || mode === 'work';
+
   return (
     <div className="filter-container">
       <div className="filter-header">
         <button className="btn-back" onClick={onBack}>← Назад</button>
         <h2 className="filter-title">{MODE_LABELS[mode]}</h2>
       </div>
+
+      {error && (
+        <div className="filter-error" role="alert">{error}</div>
+      )}
+
+      {showSearch && (
+        <div className="search-box">
+          <input
+            type="search"
+            className="search-input"
+            value={query}
+            onChange={e => setQuery(e.target.value)}
+            placeholder={mode === 'author' ? 'Търси автор...' : 'Търси произведение или автор...'}
+            autoComplete="off"
+            spellCheck={false}
+          />
+        </div>
+      )}
+
       {renderList()}
     </div>
   );

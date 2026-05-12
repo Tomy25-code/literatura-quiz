@@ -22,6 +22,7 @@ export default function App() {
   const [finalScore, setFinalScore] = useState(0);
   const [wrongCount, setWrongCount] = useState(() => getWrongQuestionIds().length);
   const [flashcardDeck, setFlashcardDeck] = useState([]);
+  const [filterError, setFilterError] = useState('');
 
   function startQuiz(mode, filterValue, label) {
     let qs;
@@ -42,6 +43,7 @@ export default function App() {
   }
 
   function handleModeSelect(mode) {
+    setFilterError('');
     if (mode === 'random') {
       startQuiz('random', null, MODE_LABELS.random);
     } else if (mode === 'wrong') {
@@ -55,6 +57,12 @@ export default function App() {
   }
 
   function handleFilterSelect(filterValue, label) {
+    const testPool = buildQuiz(questions, quizMode, filterValue, works);
+    if (testPool.length === 0) {
+      setFilterError('Няма въпроси за този избор.');
+      return;
+    }
+    setFilterError('');
     startQuiz(quizMode, filterValue, label);
   }
 
@@ -82,6 +90,7 @@ export default function App() {
   }
 
   function goHome() {
+    setFilterError('');
     setWrongCount(getWrongQuestionIds().length);
     setScreen('home');
   }
@@ -95,6 +104,7 @@ export default function App() {
         questions={questions}
         onSelect={handleFilterSelect}
         onBack={goHome}
+        error={filterError}
       />
     );
   }
