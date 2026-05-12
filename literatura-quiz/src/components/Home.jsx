@@ -1,4 +1,5 @@
 import ModeSelector from './ModeSelector';
+import StatsSummary from './StatsSummary';
 import { VALID_LENGTHS } from '../utils/settings';
 
 export default function Home({
@@ -7,9 +8,11 @@ export default function Home({
   questionCount,
   wrongCount,
   quizLength,
+  stats,
   onSelectMode,
   onSetQuizLength,
   onClearWrong,
+  onViewStats,
 }) {
   return (
     <div className="home-container">
@@ -52,6 +55,8 @@ export default function Home({
         </div>
       </div>
 
+      <StatsSummary stats={stats} onViewStats={onViewStats} />
+
       <ModeSelector
         onSelect={onSelectMode}
         wrongCount={wrongCount}
@@ -65,6 +70,7 @@ export default function Home({
           <li>Използвай тест по автор или произведение за целенасочен преговор.</li>
           <li>Грешните отговори се запазват автоматично.</li>
           <li>Флашкартите са подходящи за бърз преговор преди изпит.</li>
+          <li>След всеки завършен тест статистиката се обновява, за да виждаш напредъка си по категории и трудност.</li>
         </ul>
       </details>
     </div>

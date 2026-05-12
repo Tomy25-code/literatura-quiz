@@ -12,6 +12,8 @@ import { buildQuiz, shuffle, MODE_LABELS } from './utils/quiz';
 import { buildAuthorCards, buildWorkCards, buildMixedCards } from './utils/flashcards';
 import { getWrongQuestionIds, clearWrongQuestionIds } from './utils/wrongAnswers';
 import { getStoredQuizLength, storeQuizLength } from './utils/settings';
+import { getStats, saveAttempt, clearStats, buildAttempt } from './utils/stats';
+import StatsScreen from './components/StatsScreen';
 import './App.css';
 
 export default function App() {
@@ -25,6 +27,8 @@ export default function App() {
   const [flashcardDeck, setFlashcardDeck] = useState([]);
   const [filterError, setFilterError] = useState('');
   const [quizLength, setQuizLength] = useState(() => getStoredQuizLength());
+  const [stats, setStats] = useState(() => getStats());
+  const [lastAttemptOverallAvg, setLastAttemptOverallAvg] = useState(null);
 
   function handleSetQuizLength(n) {
     storeQuizLength(n);
@@ -87,10 +91,29 @@ export default function App() {
     setScreen('flashcards');
   }
 
-  function handleFinish(score) {
+  function handleFinish(score, answeredMap) {
+    const previousStats = getStats();
+    const overallAvg = previousStats.length > 0
+      ? Math.round(previousStats.reduce((sum, a) => sum + a.percentage, 0) / previousStats.length)
+      : null;
+    const attempt = buildAttempt({ quizMode, modeLabel, quizQuestions, score, answeredMap });
+    saveAttempt(attempt);
+    setStats(getStats());
     setFinalScore(score);
+    setLastAttemptOverallAvg(overallAvg);
     setWrongCount(getWrongQuestionIds().length);
     setScreen('results');
+  }
+
+  function handleClearStats() {
+    if (window.confirm('Сигурен/сигурна ли си, че искаш да изчистиш цялата статистика?')) {
+      clearStats();
+      setStats([]);
+    }
+  }
+
+  function goStats() {
+    setScreen('stats');
   }
 
   function handleRestart() {
@@ -181,8 +204,19 @@ export default function App() {
         modeLabel={modeLabel}
         isWrongMode={quizMode === 'wrong'}
         wrongCount={wrongCount}
+        overallAvg={lastAttemptOverallAvg}
         onRestart={handleRestart}
         onHome={goHome}
+      />
+    );
+  }
+
+  if (screen === 'stats') {
+    return (
+      <StatsScreen
+        stats={stats}
+        onHome={goHome}
+        onClearStats={handleClearStats}
       />
     );
   }
@@ -194,9 +228,11 @@ export default function App() {
       questionCount={questions.length}
       wrongCount={wrongCount}
       quizLength={quizLength}
+      stats={stats}
       onSelectMode={handleModeSelect}
       onSetQuizLength={handleSetQuizLength}
       onClearWrong={handleClearWrong}
+      onViewStats={goStats}
     />
   );
 }

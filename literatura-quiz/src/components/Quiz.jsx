@@ -6,6 +6,7 @@ export default function Quiz({ questions, modeLabel, isWrongMode, onFinish, onHo
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [score, setScore] = useState(0);
   const [wasRemoved, setWasRemoved] = useState(false);
+  const [answeredMap, setAnsweredMap] = useState({});
 
   const question = questions[currentIndex];
   const answered = selectedAnswer !== null;
@@ -16,6 +17,7 @@ export default function Quiz({ questions, modeLabel, isWrongMode, onFinish, onHo
     if (answered) return;
     setSelectedAnswer(option);
     const correct = option === question.correctAnswer;
+    setAnsweredMap(m => ({ ...m, [question.id]: correct }));
     if (correct) {
       setScore(s => s + 1);
       if (isWrongMode) {
@@ -31,7 +33,7 @@ export default function Quiz({ questions, modeLabel, isWrongMode, onFinish, onHo
 
   function handleNext() {
     if (isLastQuestion) {
-      onFinish(score);
+      onFinish(score, answeredMap);
     } else {
       setCurrentIndex(i => i + 1);
       setSelectedAnswer(null);

@@ -1,4 +1,4 @@
-export default function Results({ score, total, modeLabel, isWrongMode, wrongCount, onRestart, onHome }) {
+export default function Results({ score, total, modeLabel, isWrongMode, wrongCount, overallAvg, onRestart, onHome }) {
   const percentage = Math.round((score / total) * 100);
 
   function getMessage() {
@@ -29,6 +29,17 @@ export default function Results({ score, total, modeLabel, isWrongMode, wrongCou
       </div>
 
       <p className="score-message">{getMessage()}</p>
+
+      {overallAvg !== null && overallAvg !== undefined && (
+        <p className={`results-comparison ${percentage >= overallAvg ? 'comp-above' : 'comp-below'}`}>
+          {percentage > overallAvg
+            ? `Над средното ти (${overallAvg}%) — отлична работа!`
+            : percentage === overallAvg
+            ? `Равно на средното ти (${overallAvg}%)`
+            : `Под средното ти (${overallAvg}%) — продължавай да тренираш`
+          }
+        </p>
+      )}
 
       <div className="results-stats">
         {isWrongMode ? (
