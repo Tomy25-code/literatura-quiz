@@ -10,6 +10,7 @@ import FlashcardSelection from './components/FlashcardSelection';
 import Flashcards from './components/Flashcards';
 import { buildQuiz, shuffle, MODE_LABELS } from './utils/quiz';
 import { buildWeakSpotsQuiz, hasWeakSpots } from './utils/weakSpots';
+import { buildDailyPracticeQuiz, getDailyPracticeState, saveDailyPracticeCompletion, getLocalDateKey } from './utils/dailyPractice';
 import { buildAuthorCards, buildWorkCards, buildMixedCards } from './utils/flashcards';
 import { getWrongQuestionIds, clearWrongQuestionIds } from './utils/wrongAnswers';
 import { getStoredQuizLength, storeQuizLength } from './utils/settings';
@@ -30,6 +31,7 @@ export default function App() {
   const [quizLength, setQuizLength] = useState(() => getStoredQuizLength());
   const [stats, setStats] = useState(() => getStats());
   const [lastAttemptOverallAvg, setLastAttemptOverallAvg] = useState(null);
+  const [dailyPracticeState, setDailyPracticeState] = useState(() => getDailyPracticeState());
 
   function handleSetQuizLength(n) {
     storeQuizLength(n);
@@ -61,6 +63,18 @@ export default function App() {
         return;
       }
       qs = result.questions;
+    } else if (mode === 'dailyPractice') {
+      const result = buildDailyPracticeQuiz({
+        questions,
+        stats: getStats(),
+        wrongQuestionIds: getWrongQuestionIds(),
+        length: quizLength,
+      });
+      if (result.questions.length === 0) {
+        setScreen('daily-practice-empty');
+        return;
+      }
+      qs = result.questions;
     } else {
       qs = buildQuiz(questions, mode, filterValue, works, quizLength);
     }
@@ -75,6 +89,8 @@ export default function App() {
     setFilterError('');
     if (mode === 'random') {
       startQuiz('random', null, MODE_LABELS.random);
+    } else if (mode === 'dailyPractice') {
+      startQuiz('dailyPractice', null, MODE_LABELS.dailyPractice);
     } else if (mode === 'weakSpots') {
       startQuiz('weakSpots', null, MODE_LABELS.weakSpots);
     } else if (mode === 'wrong') {
@@ -118,6 +134,10 @@ export default function App() {
       : null;
     const attempt = buildAttempt({ quizMode, modeLabel, quizQuestions, score, answeredMap });
     saveAttempt(attempt);
+    if (quizMode === 'dailyPractice') {
+      saveDailyPracticeCompletion();
+      setDailyPracticeState(getDailyPracticeState());
+    }
     setStats(getStats());
     setFinalScore(score);
     setLastAttemptOverallAvg(overallAvg);
@@ -198,6 +218,18 @@ export default function App() {
     );
   }
 
+  if (screen === 'daily-practice-empty') {
+    return (
+      <div className="wrong-empty-container">
+        <h2 className="wrong-empty-title">Дневна тренировка</h2>
+        <p className="wrong-empty-sub">
+          Няма налични въпроси за тренировка. Опитай друг режим.
+        </p>
+        <button className="btn-primary" onClick={goHome}>Към началото</button>
+      </div>
+    );
+  }
+
   if (screen === 'filter') {
     return (
       <FilterSelection
@@ -238,7 +270,7 @@ export default function App() {
         questions={quizQuestions}
         modeLabel={modeLabel}
         isWrongMode={quizMode === 'wrong'}
-        isWeakSpotsMode={quizMode === 'weakSpots'}
+        clearWrongOnCorrect={quizMode === 'wrong' || quizMode === 'weakSpots'}
         onFinish={handleFinish}
         onHome={goHome}
       />
@@ -276,6 +308,9 @@ export default function App() {
     stats,
   });
 
+  const dailyCompletedToday = dailyPracticeState.lastDate === getLocalDateKey();
+  const dailyStreak = dailyPracticeState.streak || 0;
+
   return (
     <Home
       authorCount={authors.length}
@@ -285,6 +320,8 @@ export default function App() {
       quizLength={quizLength}
       stats={stats}
       weakSpotsActive={weakSpotsActive}
+      dailyCompletedToday={dailyCompletedToday}
+      dailyStreak={dailyStreak}
       onSelectMode={handleModeSelect}
       onSetQuizLength={handleSetQuizLength}
       onClearWrong={handleClearWrong}
