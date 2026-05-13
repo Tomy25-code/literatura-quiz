@@ -12,7 +12,7 @@ import { buildQuiz, shuffle, MODE_LABELS } from './utils/quiz';
 import { buildWeakSpotsQuiz, hasWeakSpots } from './utils/weakSpots';
 import { buildDailyPracticeQuiz, getDailyPracticeState, saveDailyPracticeCompletion, getLocalDateKey } from './utils/dailyPractice';
 import { buildAuthorCards, buildWorkCards, buildMixedCards } from './utils/flashcards';
-import { getWrongQuestionIds, clearWrongQuestionIds } from './utils/wrongAnswers';
+import { getWrongQuestionIds, clearWrongQuestionIds, buildWrongReviewQuiz } from './utils/wrongAnswers';
 import { getStoredQuizLength, storeQuizLength } from './utils/settings';
 import { getStats, saveAttempt, clearStats, buildAttempt } from './utils/stats';
 import StatsScreen from './components/StatsScreen';
@@ -41,11 +41,7 @@ export default function App() {
   function startQuiz(mode, filterValue, label) {
     let qs;
     if (mode === 'wrong') {
-      const wrongIds = getWrongQuestionIds();
-      const pool = questions.filter(q => wrongIds.includes(q.id));
-      qs = shuffle([...pool])
-        .slice(0, quizLength)
-        .map(q => ({ ...q, options: shuffle([...q.options]) }));
+      qs = buildWrongReviewQuiz({ questions, length: quizLength });
     } else if (mode === 'weakSpots') {
       const currentStats = getStats();
       if (currentStats.length === 0) {
@@ -270,7 +266,7 @@ export default function App() {
         questions={quizQuestions}
         modeLabel={modeLabel}
         isWrongMode={quizMode === 'wrong'}
-        clearWrongOnCorrect={quizMode === 'wrong' || quizMode === 'weakSpots'}
+        isRemediationMode={quizMode === 'wrong' || quizMode === 'weakSpots'}
         onFinish={handleFinish}
         onHome={goHome}
       />

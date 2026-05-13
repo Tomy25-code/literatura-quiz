@@ -762,6 +762,34 @@
   }
 }
 
+.mastered-progressing {
+  color: #b45309;
+  background: rgba(180, 83, 9, 0.1);
+  border-color: rgba(180, 83, 9, 0.3);
+}
+
+@media (prefers-color-scheme: dark) {
+  .mastered-progressing {
+    color: #fbbf24;
+    background: rgba(251, 191, 36, 0.1);
+    border-color: rgba(251, 191, 36, 0.3);
+  }
+}
+
+.mastered-stayed {
+  color: #dc2626;
+  background: rgba(220, 38, 38, 0.08);
+  border-color: rgba(220, 38, 38, 0.25);
+}
+
+@media (prefers-color-scheme: dark) {
+  .mastered-stayed {
+    color: #f87171;
+    background: rgba(248, 113, 113, 0.08);
+    border-color: rgba(248, 113, 113, 0.25);
+  }
+}
+
 /* ---- RESULTS — STATS ROW ---- */
 
 .results-stats {
