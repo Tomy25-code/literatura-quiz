@@ -1,11 +1,11 @@
 import { useState } from 'react';
-import { saveWrongQuestionId, removeWrongQuestionId } from '../utils/wrongAnswers';
+import { saveWrongQuestionId, recordWrongQuestionCorrect } from '../utils/wrongAnswers';
 
-export default function Quiz({ questions, modeLabel, isWrongMode, clearWrongOnCorrect, onFinish, onHome }) {
+export default function Quiz({ questions, modeLabel, isWrongMode, isRemediationMode, onFinish, onHome }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [score, setScore] = useState(0);
-  const [wasRemoved, setWasRemoved] = useState(false);
+  const [remediationFeedback, setRemediationFeedback] = useState(null);
   const [answeredMap, setAnsweredMap] = useState({});
 
   const question = questions[currentIndex];
@@ -18,15 +18,19 @@ export default function Quiz({ questions, modeLabel, isWrongMode, clearWrongOnCo
     setSelectedAnswer(option);
     const correct = option === question.correctAnswer;
     setAnsweredMap(m => ({ ...m, [question.id]: correct }));
+
     if (correct) {
       setScore(s => s + 1);
-      if (clearWrongOnCorrect) {
-        removeWrongQuestionId(question.id);
-        setWasRemoved(true);
+      if (isRemediationMode) {
+        const result = recordWrongQuestionCorrect(question.id);
+        if (result.wasActive) {
+          setRemediationFeedback(result.mastered ? 'mastered' : 'progressing');
+        }
       }
     } else {
-      if (!isWrongMode) {
-        saveWrongQuestionId(question.id);
+      saveWrongQuestionId(question.id);
+      if (isRemediationMode) {
+        setRemediationFeedback('stayed');
       }
     }
   }
@@ -37,7 +41,7 @@ export default function Quiz({ questions, modeLabel, isWrongMode, clearWrongOnCo
     } else {
       setCurrentIndex(i => i + 1);
       setSelectedAnswer(null);
-      setWasRemoved(false);
+      setRemediationFeedback(null);
     }
   }
 
@@ -99,9 +103,20 @@ export default function Quiz({ questions, modeLabel, isWrongMode, clearWrongOnCo
               }
             </p>
             <p className="feedback-explanation">{question.explanation}</p>
-            {wasRemoved && (
+
+            {remediationFeedback === 'progressing' && (
+              <p className="mastered-msg mastered-progressing">
+                Добре! Още 1 верен отговор за усвояване.
+              </p>
+            )}
+            {remediationFeedback === 'mastered' && (
               <p className="mastered-msg">
-                Браво! Този въпрос е премахнат от грешните.
+                Браво! Въпросът е усвоен и премахнат от преговора.
+              </p>
+            )}
+            {remediationFeedback === 'stayed' && (
+              <p className="mastered-msg mastered-stayed">
+                Въпросът остава в преговора.
               </p>
             )}
           </div>
