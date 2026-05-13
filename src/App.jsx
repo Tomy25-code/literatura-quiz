@@ -9,6 +9,7 @@ import FilterSelection from './components/FilterSelection';
 import FlashcardSelection from './components/FlashcardSelection';
 import Flashcards from './components/Flashcards';
 import { buildQuiz, shuffle, MODE_LABELS } from './utils/quiz';
+import { buildWeakSpotsQuiz, hasWeakSpots } from './utils/weakSpots';
 import { buildAuthorCards, buildWorkCards, buildMixedCards } from './utils/flashcards';
 import { getWrongQuestionIds, clearWrongQuestionIds } from './utils/wrongAnswers';
 import { getStoredQuizLength, storeQuizLength } from './utils/settings';
@@ -43,6 +44,23 @@ export default function App() {
       qs = shuffle([...pool])
         .slice(0, quizLength)
         .map(q => ({ ...q, options: shuffle([...q.options]) }));
+    } else if (mode === 'weakSpots') {
+      const currentStats = getStats();
+      if (currentStats.length === 0) {
+        setScreen('weak-spots-empty');
+        return;
+      }
+      const result = buildWeakSpotsQuiz({
+        questions,
+        wrongQuestionIds: getWrongQuestionIds(),
+        stats: currentStats,
+        length: quizLength,
+      });
+      if (result.emptyReason === 'no-weak-spots' || result.questions.length === 0) {
+        setScreen('weak-spots-no-data');
+        return;
+      }
+      qs = result.questions;
     } else {
       qs = buildQuiz(questions, mode, filterValue, works, quizLength);
     }
@@ -57,6 +75,8 @@ export default function App() {
     setFilterError('');
     if (mode === 'random') {
       startQuiz('random', null, MODE_LABELS.random);
+    } else if (mode === 'weakSpots') {
+      startQuiz('weakSpots', null, MODE_LABELS.weakSpots);
     } else if (mode === 'wrong') {
       const current = getWrongQuestionIds().length;
       if (current === 0) {
@@ -121,6 +141,9 @@ export default function App() {
       goHome();
       return;
     }
+    // weakSpots: startQuiz always rebuilds from fresh localStorage state.
+    // If qualifying questions are exhausted it routes to the positive empty
+    // screen instead of starting a quiz — no stale data, no random fallback.
     startQuiz(quizMode, quizFilter, modeLabel);
   }
 
@@ -144,6 +167,31 @@ export default function App() {
         <p className="wrong-empty-text">Все още няма грешни въпроси.</p>
         <p className="wrong-empty-sub">
           След като сгрешиш въпрос в тест, той ще се появи тук за преговор.
+        </p>
+        <button className="btn-primary" onClick={goHome}>Към началото</button>
+      </div>
+    );
+  }
+
+  if (screen === 'weak-spots-empty') {
+    return (
+      <div className="wrong-empty-container">
+        <h2 className="wrong-empty-title">Все още няма достатъчно данни</h2>
+        <p className="wrong-empty-sub">
+          Завърши няколко теста, за да може приложението да открие слабите ти места.
+        </p>
+        <button className="btn-primary" onClick={goHome}>Към началото</button>
+      </div>
+    );
+  }
+
+  if (screen === 'weak-spots-no-data') {
+    return (
+      <div className="wrong-empty-container">
+        <h2 className="wrong-empty-title">Няма открити слаби места</h2>
+        <p className="wrong-empty-sub">
+          Засега резултатите ти са достатъчно стабилни. Можеш да продължиш
+          със случаен тест или тест по автор.
         </p>
         <button className="btn-primary" onClick={goHome}>Към началото</button>
       </div>
@@ -190,6 +238,7 @@ export default function App() {
         questions={quizQuestions}
         modeLabel={modeLabel}
         isWrongMode={quizMode === 'wrong'}
+        isWeakSpotsMode={quizMode === 'weakSpots'}
         onFinish={handleFinish}
         onHome={goHome}
       />
@@ -221,6 +270,12 @@ export default function App() {
     );
   }
 
+  const weakSpotsActive = hasWeakSpots({
+    questions,
+    wrongQuestionIds: getWrongQuestionIds(),
+    stats,
+  });
+
   return (
     <Home
       authorCount={authors.length}
@@ -229,6 +284,7 @@ export default function App() {
       wrongCount={wrongCount}
       quizLength={quizLength}
       stats={stats}
+      weakSpotsActive={weakSpotsActive}
       onSelectMode={handleModeSelect}
       onSetQuizLength={handleSetQuizLength}
       onClearWrong={handleClearWrong}

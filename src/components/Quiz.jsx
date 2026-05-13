@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { saveWrongQuestionId, removeWrongQuestionId } from '../utils/wrongAnswers';
 
-export default function Quiz({ questions, modeLabel, isWrongMode, onFinish, onHome }) {
+export default function Quiz({ questions, modeLabel, isWrongMode, isWeakSpotsMode, onFinish, onHome }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [score, setScore] = useState(0);
@@ -20,7 +20,7 @@ export default function Quiz({ questions, modeLabel, isWrongMode, onFinish, onHo
     setAnsweredMap(m => ({ ...m, [question.id]: correct }));
     if (correct) {
       setScore(s => s + 1);
-      if (isWrongMode) {
+      if (isWrongMode || isWeakSpotsMode) {
         removeWrongQuestionId(question.id);
         setWasRemoved(true);
       }

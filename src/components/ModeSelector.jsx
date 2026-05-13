@@ -31,7 +31,7 @@ const BASE_MODES = [
   },
 ];
 
-export default function ModeSelector({ onSelect, wrongCount, onClearWrong }) {
+export default function ModeSelector({ onSelect, wrongCount, onClearWrong, weakSpotsActive }) {
   return (
     <div className="mode-selector">
       <p className="mode-selector-title">Избери режим</p>
@@ -46,6 +46,19 @@ export default function ModeSelector({ onSelect, wrongCount, onClearWrong }) {
             <span className="mode-card-desc">{mode.description}</span>
           </button>
         ))}
+
+        <button
+          className={`mode-card${weakSpotsActive ? ' mode-card-weakspots' : ''}`}
+          onClick={() => onSelect('weakSpots')}
+        >
+          <span className="mode-card-label">Слаби места</span>
+          <span className="mode-card-desc">
+            {weakSpotsActive
+              ? 'Упражнявай въпросите, които те затрудняват'
+              : 'Няма открити слаби места'
+            }
+          </span>
+        </button>
 
         <button
           className={`mode-card mode-card-wrong${wrongCount === 0 ? ' mode-card-empty' : ''}`}
