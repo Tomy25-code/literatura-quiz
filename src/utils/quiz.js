@@ -8,6 +8,7 @@ export const MODE_LABELS = {
   difficulty: 'Тест по трудност',
   wrong: 'Преговор на грешните',
   weakSpots: 'Слаби места',
+  dailyPractice: 'Дневна тренировка',
 };
 
 export const CATEGORY_LABELS = {

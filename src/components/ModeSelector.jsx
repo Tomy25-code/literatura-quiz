@@ -31,11 +31,29 @@ const BASE_MODES = [
   },
 ];
 
-export default function ModeSelector({ onSelect, wrongCount, onClearWrong, weakSpotsActive }) {
+export default function ModeSelector({ onSelect, wrongCount, onClearWrong, weakSpotsActive, dailyCompletedToday, dailyStreak }) {
   return (
     <div className="mode-selector">
       <p className="mode-selector-title">Избери режим</p>
       <div className="mode-grid">
+        <button
+          className="mode-card mode-card-daily"
+          onClick={() => onSelect('dailyPractice')}
+        >
+          <span className="mode-card-label">Дневна тренировка</span>
+          <span className="mode-card-desc">
+            {dailyCompletedToday
+              ? 'Днес е завършена'
+              : 'Кратък балансиран тест за днес'
+            }
+          </span>
+          {dailyStreak >= 1 && (
+            <span className="daily-streak-note">
+              Серия: {dailyStreak} {dailyStreak === 1 ? 'ден' : 'дни'}
+            </span>
+          )}
+        </button>
+
         {BASE_MODES.map(mode => (
           <button
             key={mode.id}

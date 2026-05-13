@@ -10,6 +10,8 @@ export default function Home({
   quizLength,
   stats,
   weakSpotsActive,
+  dailyCompletedToday,
+  dailyStreak,
   onSelectMode,
   onSetQuizLength,
   onClearWrong,
@@ -63,6 +65,8 @@ export default function Home({
         wrongCount={wrongCount}
         onClearWrong={onClearWrong}
         weakSpotsActive={weakSpotsActive}
+        dailyCompletedToday={dailyCompletedToday}
+        dailyStreak={dailyStreak}
       />
 
       <details className="help-section">

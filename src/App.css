@@ -871,6 +871,20 @@
   }
 }
 
+
+.daily-streak-note {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #059669;
+  margin-top: 0.1rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  .daily-streak-note {
+    color: #34d399;
+  }
+}
+
 .wrong-actions {
   display: flex;
   justify-content: center;

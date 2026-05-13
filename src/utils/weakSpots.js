@@ -7,6 +7,34 @@ const MIN_SEEN = 10;
 const WEAK_THRESHOLD = 0.70;
 
 /**
+ * Returns Sets of weak category and difficulty keys based on current stats.
+ * Shared between Weak Spots mode and Daily Practice.
+ */
+export function getWeakSets({ stats, questions }) {
+  const catStats = computeCategoryStats(stats, questions);
+  const diffStats = computeDifficultyStats(stats, questions);
+  return {
+    weakCategories: new Set(
+      Object.entries(catStats)
+        .filter(([, s]) => s.total >= MIN_SEEN && s.correct / s.total < WEAK_THRESHOLD)
+        .map(([cat]) => cat)
+    ),
+    weakDifficulties: new Set(
+      Object.entries(diffStats)
+        .filter(([, s]) => s.total >= MIN_SEEN && s.correct / s.total < WEAK_THRESHOLD)
+        .map(([d]) => d)
+    ),
+  };
+}
+
+export function hasWeakSpots({ questions, wrongQuestionIds, stats }) {
+  if (stats.length === 0) return false;
+  if (wrongQuestionIds.length > 0) return true;
+  const { weakCategories, weakDifficulties } = getWeakSets({ stats, questions });
+  return weakCategories.size > 0 || weakDifficulties.size > 0;
+}
+
+/**
  * Wrong Review vs Weak Spots — what each mode targets:
  *
  *   Wrong Review ("Преговор на грешните"):
@@ -50,17 +78,6 @@ const WEAK_THRESHOLD = 0.70;
  *
  * Quiz length = min(qualifying, requested). Never padded with random questions.
  */
-export function hasWeakSpots({ questions, wrongQuestionIds, stats }) {
-  if (stats.length === 0) return false;
-  if (wrongQuestionIds.length > 0) return true;
-  const catStats = computeCategoryStats(stats, questions);
-  const diffStats = computeDifficultyStats(stats, questions);
-  return (
-    Object.values(catStats).some(s => s.total >= MIN_SEEN && s.correct / s.total < WEAK_THRESHOLD) ||
-    Object.values(diffStats).some(s => s.total >= MIN_SEEN && s.correct / s.total < WEAK_THRESHOLD)
-  );
-}
-
 export function buildWeakSpotsQuiz({ questions, wrongQuestionIds, stats, length }) {
   const wrongIdSet = new Set(wrongQuestionIds);
   const wrongCounts = {};
@@ -75,19 +92,7 @@ export function buildWeakSpotsQuiz({ questions, wrongQuestionIds, stats, length 
     }
   }
 
-  const catStats = computeCategoryStats(stats, questions);
-  const diffStats = computeDifficultyStats(stats, questions);
-
-  const weakCategories = new Set(
-    Object.entries(catStats)
-      .filter(([, s]) => s.total >= MIN_SEEN && s.correct / s.total < WEAK_THRESHOLD)
-      .map(([cat]) => cat)
-  );
-  const weakDifficulties = new Set(
-    Object.entries(diffStats)
-      .filter(([, s]) => s.total >= MIN_SEEN && s.correct / s.total < WEAK_THRESHOLD)
-      .map(([d]) => d)
-  );
+  const { weakCategories, weakDifficulties } = getWeakSets({ stats, questions });
 
   // Qualify on active wrong list OR statistically weak category/difficulty only.
   // Historical wrongCounts alone do NOT qualify — mastered questions stay out.
