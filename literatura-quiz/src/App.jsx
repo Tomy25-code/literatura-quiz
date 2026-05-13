@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Analytics } from '@vercel/analytics/react';
 import authors from './data/authors.json';
 import works from './data/works.json';
 import questions from './data/questions.json';
@@ -139,100 +140,124 @@ export default function App() {
 
   if (screen === 'wrong-empty') {
     return (
-      <div className="wrong-empty-container">
-        <h2 className="wrong-empty-title">Преговор на грешните</h2>
-        <p className="wrong-empty-text">Все още няма грешни въпроси.</p>
-        <p className="wrong-empty-sub">
-          След като сгрешиш въпрос в тест, той ще се появи тук за преговор.
-        </p>
-        <button className="btn-primary" onClick={goHome}>Към началото</button>
-      </div>
+      <>
+        <div className="wrong-empty-container">
+          <h2 className="wrong-empty-title">Преговор на грешните</h2>
+          <p className="wrong-empty-text">Все още няма грешни въпроси.</p>
+          <p className="wrong-empty-sub">
+            След като сгрешиш въпрос в тест, той ще се появи тук за преговор.
+          </p>
+          <button className="btn-primary" onClick={goHome}>Към началото</button>
+        </div>
+        <Analytics />
+      </>
     );
   }
 
   if (screen === 'filter') {
     return (
-      <FilterSelection
-        mode={quizMode}
-        authors={authors}
-        works={works}
-        questions={questions}
-        onSelect={handleFilterSelect}
-        onBack={goHome}
-        error={filterError}
-      />
+      <>
+        <FilterSelection
+          mode={quizMode}
+          authors={authors}
+          works={works}
+          questions={questions}
+          onSelect={handleFilterSelect}
+          onBack={goHome}
+          error={filterError}
+        />
+        <Analytics />
+      </>
     );
   }
 
   if (screen === 'flashcard-select') {
     return (
-      <FlashcardSelection
-        authors={authors}
-        works={works}
-        onSelect={handleFlashcardTypeSelect}
-        onBack={goHome}
-      />
+      <>
+        <FlashcardSelection
+          authors={authors}
+          works={works}
+          onSelect={handleFlashcardTypeSelect}
+          onBack={goHome}
+        />
+        <Analytics />
+      </>
     );
   }
 
   if (screen === 'flashcards') {
     return (
-      <Flashcards
-        deck={flashcardDeck}
-        onHome={goHome}
-      />
+      <>
+        <Flashcards
+          deck={flashcardDeck}
+          onHome={goHome}
+        />
+        <Analytics />
+      </>
     );
   }
 
   if (screen === 'quiz') {
     return (
-      <Quiz
-        questions={quizQuestions}
-        modeLabel={modeLabel}
-        isWrongMode={quizMode === 'wrong'}
-        onFinish={handleFinish}
-        onHome={goHome}
-      />
+      <>
+        <Quiz
+          questions={quizQuestions}
+          modeLabel={modeLabel}
+          isWrongMode={quizMode === 'wrong'}
+          onFinish={handleFinish}
+          onHome={goHome}
+        />
+        <Analytics />
+      </>
     );
   }
 
   if (screen === 'results') {
     return (
-      <Results
-        score={finalScore}
-        total={quizQuestions.length}
-        modeLabel={modeLabel}
-        isWrongMode={quizMode === 'wrong'}
-        wrongCount={wrongCount}
-        overallAvg={lastAttemptOverallAvg}
-        onRestart={handleRestart}
-        onHome={goHome}
-      />
+      <>
+        <Results
+          score={finalScore}
+          total={quizQuestions.length}
+          modeLabel={modeLabel}
+          isWrongMode={quizMode === 'wrong'}
+          wrongCount={wrongCount}
+          overallAvg={lastAttemptOverallAvg}
+          onRestart={handleRestart}
+          onHome={goHome}
+        />
+        <Analytics />
+      </>
     );
   }
 
   if (screen === 'stats') {
     return (
-      <StatsScreen
-        stats={stats}
-        onHome={goHome}
-        onClearStats={handleClearStats}
-      />
+      <>
+        <StatsScreen
+          stats={stats}
+          onHome={goHome}
+          onClearStats={handleClearStats}
+        />
+        <Analytics />
+      </>
     );
   }
 
   return (
-    <Home
-      authorCount={authors.length}
-      workCount={works.length}
-      questionCount={questions.length}
-      wrongCount={wrongCount}
-      quizLength={quizLength}
-      stats={stats}
-      onSelectMode={handleModeSelect}
-      onSetQuizLength={handleSetQuizLength}
-      onClearWrong={handleClearWrong}
-      onViewStats={goStats}
-    />
+    <>
+      <Home
+        authorCount={authors.length}
+        workCount={works.length}
+        questionCount={questions.length}
+        wrongCount={wrongCount}
+        quizLength={quizLength}
+        stats={stats}
+        onSelectMode={handleModeSelect}
+        onSetQuizLength={handleSetQuizLength}
+        onClearWrong={handleClearWrong}
+        onViewStats={goStats}
+      />
+      <Analytics />
+    </>
   );
 }
