@@ -9,7 +9,7 @@ import FilterSelection from './components/FilterSelection';
 import FlashcardSelection from './components/FlashcardSelection';
 import Flashcards from './components/Flashcards';
 import { buildQuiz, shuffle, MODE_LABELS } from './utils/quiz';
-import { buildWeakSpotsQuiz } from './utils/weakSpots';
+import { buildWeakSpotsQuiz, hasWeakSpots } from './utils/weakSpots';
 import { buildAuthorCards, buildWorkCards, buildMixedCards } from './utils/flashcards';
 import { getWrongQuestionIds, clearWrongQuestionIds } from './utils/wrongAnswers';
 import { getStoredQuizLength, storeQuizLength } from './utils/settings';
@@ -270,6 +270,12 @@ export default function App() {
     );
   }
 
+  const weakSpotsActive = hasWeakSpots({
+    questions,
+    wrongQuestionIds: getWrongQuestionIds(),
+    stats,
+  });
+
   return (
     <Home
       authorCount={authors.length}
@@ -278,6 +284,7 @@ export default function App() {
       wrongCount={wrongCount}
       quizLength={quizLength}
       stats={stats}
+      weakSpotsActive={weakSpotsActive}
       onSelectMode={handleModeSelect}
       onSetQuizLength={handleSetQuizLength}
       onClearWrong={handleClearWrong}

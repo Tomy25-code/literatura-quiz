@@ -9,6 +9,7 @@ export default function Home({
   wrongCount,
   quizLength,
   stats,
+  weakSpotsActive,
   onSelectMode,
   onSetQuizLength,
   onClearWrong,
@@ -61,6 +62,7 @@ export default function Home({
         onSelect={onSelectMode}
         wrongCount={wrongCount}
         onClearWrong={onClearWrong}
+        weakSpotsActive={weakSpotsActive}
       />
 
       <details className="help-section">

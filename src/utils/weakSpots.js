@@ -50,6 +50,17 @@ const WEAK_THRESHOLD = 0.70;
  *
  * Quiz length = min(qualifying, requested). Never padded with random questions.
  */
+export function hasWeakSpots({ questions, wrongQuestionIds, stats }) {
+  if (stats.length === 0) return false;
+  if (wrongQuestionIds.length > 0) return true;
+  const catStats = computeCategoryStats(stats, questions);
+  const diffStats = computeDifficultyStats(stats, questions);
+  return (
+    Object.values(catStats).some(s => s.total >= MIN_SEEN && s.correct / s.total < WEAK_THRESHOLD) ||
+    Object.values(diffStats).some(s => s.total >= MIN_SEEN && s.correct / s.total < WEAK_THRESHOLD)
+  );
+}
+
 export function buildWeakSpotsQuiz({ questions, wrongQuestionIds, stats, length }) {
   const wrongIdSet = new Set(wrongQuestionIds);
   const wrongCounts = {};
