@@ -56,7 +56,7 @@ export default function App() {
         stats: currentStats,
         length: quizLength,
       });
-      if (result.emptyReason === 'no-weak-spots') {
+      if (result.emptyReason === 'no-weak-spots' || result.questions.length === 0) {
         setScreen('weak-spots-no-data');
         return;
       }
@@ -141,6 +141,9 @@ export default function App() {
       goHome();
       return;
     }
+    // weakSpots: startQuiz always rebuilds from fresh localStorage state.
+    // If qualifying questions are exhausted it routes to the positive empty
+    // screen instead of starting a quiz — no stale data, no random fallback.
     startQuiz(quizMode, quizFilter, modeLabel);
   }
 
