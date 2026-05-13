@@ -45,7 +45,22 @@ export default function App() {
         .slice(0, quizLength)
         .map(q => ({ ...q, options: shuffle([...q.options]) }));
     } else if (mode === 'weakSpots') {
-      qs = buildWeakSpotsQuiz({ questions, stats: getStats(), length: quizLength });
+      const currentStats = getStats();
+      if (currentStats.length === 0) {
+        setScreen('weak-spots-empty');
+        return;
+      }
+      const result = buildWeakSpotsQuiz({
+        questions,
+        wrongQuestionIds: getWrongQuestionIds(),
+        stats: currentStats,
+        length: quizLength,
+      });
+      if (result.emptyReason === 'no-weak-spots') {
+        setScreen('weak-spots-no-data');
+        return;
+      }
+      qs = result.questions;
     } else {
       qs = buildQuiz(questions, mode, filterValue, works, quizLength);
     }
@@ -61,11 +76,7 @@ export default function App() {
     if (mode === 'random') {
       startQuiz('random', null, MODE_LABELS.random);
     } else if (mode === 'weakSpots') {
-      if (getStats().length === 0) {
-        setScreen('weak-spots-empty');
-      } else {
-        startQuiz('weakSpots', null, MODE_LABELS.weakSpots);
-      }
+      startQuiz('weakSpots', null, MODE_LABELS.weakSpots);
     } else if (mode === 'wrong') {
       const current = getWrongQuestionIds().length;
       if (current === 0) {
@@ -171,6 +182,19 @@ export default function App() {
     );
   }
 
+  if (screen === 'weak-spots-no-data') {
+    return (
+      <div className="wrong-empty-container">
+        <h2 className="wrong-empty-title">Няма открити слаби места</h2>
+        <p className="wrong-empty-sub">
+          Засега резултатите ти са достатъчно стабилни. Можеш да продължиш
+          със случаен тест или тест по автор.
+        </p>
+        <button className="btn-primary" onClick={goHome}>Към началото</button>
+      </div>
+    );
+  }
+
   if (screen === 'filter') {
     return (
       <FilterSelection
@@ -211,6 +235,7 @@ export default function App() {
         questions={quizQuestions}
         modeLabel={modeLabel}
         isWrongMode={quizMode === 'wrong'}
+        isWeakSpotsMode={quizMode === 'weakSpots'}
         onFinish={handleFinish}
         onHome={goHome}
       />
