@@ -859,6 +859,18 @@
   opacity: 0.55;
 }
 
+.mode-card-weakspots:hover {
+  border-color: #d97706;
+  background: rgba(217, 119, 6, 0.07);
+}
+
+@media (prefers-color-scheme: dark) {
+  .mode-card-weakspots:hover {
+    border-color: #fbbf24;
+    background: rgba(251, 191, 36, 0.08);
+  }
+}
+
 .wrong-actions {
   display: flex;
   justify-content: center;

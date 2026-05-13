@@ -9,6 +9,7 @@ import FilterSelection from './components/FilterSelection';
 import FlashcardSelection from './components/FlashcardSelection';
 import Flashcards from './components/Flashcards';
 import { buildQuiz, shuffle, MODE_LABELS } from './utils/quiz';
+import { buildWeakSpotsQuiz } from './utils/weakSpots';
 import { buildAuthorCards, buildWorkCards, buildMixedCards } from './utils/flashcards';
 import { getWrongQuestionIds, clearWrongQuestionIds } from './utils/wrongAnswers';
 import { getStoredQuizLength, storeQuizLength } from './utils/settings';
@@ -43,6 +44,8 @@ export default function App() {
       qs = shuffle([...pool])
         .slice(0, quizLength)
         .map(q => ({ ...q, options: shuffle([...q.options]) }));
+    } else if (mode === 'weakSpots') {
+      qs = buildWeakSpotsQuiz({ questions, stats: getStats(), length: quizLength });
     } else {
       qs = buildQuiz(questions, mode, filterValue, works, quizLength);
     }
@@ -57,6 +60,12 @@ export default function App() {
     setFilterError('');
     if (mode === 'random') {
       startQuiz('random', null, MODE_LABELS.random);
+    } else if (mode === 'weakSpots') {
+      if (getStats().length === 0) {
+        setScreen('weak-spots-empty');
+      } else {
+        startQuiz('weakSpots', null, MODE_LABELS.weakSpots);
+      }
     } else if (mode === 'wrong') {
       const current = getWrongQuestionIds().length;
       if (current === 0) {
@@ -144,6 +153,18 @@ export default function App() {
         <p className="wrong-empty-text">Все още няма грешни въпроси.</p>
         <p className="wrong-empty-sub">
           След като сгрешиш въпрос в тест, той ще се появи тук за преговор.
+        </p>
+        <button className="btn-primary" onClick={goHome}>Към началото</button>
+      </div>
+    );
+  }
+
+  if (screen === 'weak-spots-empty') {
+    return (
+      <div className="wrong-empty-container">
+        <h2 className="wrong-empty-title">Все още няма достатъчно данни</h2>
+        <p className="wrong-empty-sub">
+          Завърши няколко теста, за да може приложението да открие слабите ти места.
         </p>
         <button className="btn-primary" onClick={goHome}>Към началото</button>
       </div>

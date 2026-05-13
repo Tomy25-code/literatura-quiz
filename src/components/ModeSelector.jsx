@@ -48,6 +48,16 @@ export default function ModeSelector({ onSelect, wrongCount, onClearWrong }) {
         ))}
 
         <button
+          className="mode-card mode-card-weakspots"
+          onClick={() => onSelect('weakSpots')}
+        >
+          <span className="mode-card-label">Слаби места</span>
+          <span className="mode-card-desc">
+            Тест от категориите, в които имаш най-нисък резултат
+          </span>
+        </button>
+
+        <button
           className={`mode-card mode-card-wrong${wrongCount === 0 ? ' mode-card-empty' : ''}`}
           onClick={() => onSelect('wrong')}
         >
