@@ -164,6 +164,12 @@ function flag(q, code, reason) {
     const ca = norm(q.correctAnswer);
     if (ca.length < 5) continue; // too short to produce a meaningful stem
 
+    // If the answer is directly listed in the work's themes or motifs, it is
+    // legitimate thematic content — skip even if composition mentions the same term.
+    const workThemes = (work.themes || []).map(norm);
+    const workMotifs = (work.motifs || []).map(norm);
+    if (workThemes.includes(ca) || workMotifs.includes(ca)) continue;
+
     const s = stem(ca, 7);
 
     for (const field of STRUCTURAL_FIELDS) {
