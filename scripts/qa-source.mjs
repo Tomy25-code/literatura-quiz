@@ -27,9 +27,14 @@ const variantQs  = (() => {
     return JSON.parse(readFileSync(resolve(ROOT, 'src/data/questions.v2.json'), 'utf8'));
   } catch { return []; }
 })();
+const typeQs = (() => {
+  try {
+    return JSON.parse(readFileSync(resolve(ROOT, 'src/data/questions.types.json'), 'utf8'));
+  } catch { return []; }
+})();
 // Generated questions are derived from already-validated authors.json / works.json.
 // They are validated structurally by qa-content.mjs and skip source cross-checking.
-const generatedCount = variantQs.length;
+const generatedCount = variantQs.length + typeQs.length;
 const questions  = baseQs; // source-check base questions only
 
 // ── Text utilities ─────────────────────────────────────────────────────────

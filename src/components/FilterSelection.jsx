@@ -1,5 +1,5 @@
 import { useState, useMemo } from 'react';
-import { CATEGORY_LABELS, DIFFICULTY_LABELS, MODE_LABELS } from '../utils/quiz';
+import { CATEGORY_LABELS, DIFFICULTY_LABELS, MODE_LABELS, questionMatchesCategory } from '../utils/quiz';
 
 export default function FilterSelection({ mode, authors, works, questions, onSelect, onBack, error }) {
   const [query, setQuery] = useState('');
@@ -22,7 +22,7 @@ export default function FilterSelection({ mode, authors, works, questions, onSel
       });
     } else if (mode === 'category') {
       Object.keys(CATEGORY_LABELS).forEach(key => {
-        c[key] = questions.filter(q => q.category === key).length;
+        c[key] = questions.filter(q => questionMatchesCategory(q, key)).length;
       });
     } else if (mode === 'difficulty') {
       ['easy', 'medium', 'hard'].forEach(d => {

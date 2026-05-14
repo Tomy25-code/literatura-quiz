@@ -120,7 +120,13 @@ export function buildWeakSpotsQuiz({ questions, wrongQuestionIds, stats, length 
 
   const selected = scored
     .slice(0, length)
-    .map(({ q }) => ({ ...q, options: shuffle([...q.options]) }));
+    .map(({ q }) => {
+      const shuffled = { ...q, options: shuffle([...(q.options || [])]) };
+      if ((q.type || 'multiple_choice') === 'match_author_work' && q.pairs) {
+        shuffled.pairs = shuffle([...q.pairs]);
+      }
+      return shuffled;
+    });
 
   return { questions: selected, emptyReason: null };
 }

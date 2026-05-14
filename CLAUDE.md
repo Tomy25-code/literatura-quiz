@@ -41,6 +41,7 @@ source/           ← source reference notes (read-only reference)
 | `src/data/works.json` | 27 literary works |
 | `src/data/questions.json` | 415 manually curated base questions (canonical) |
 | `src/data/questions.v2.json` | 81 generated variant questions (do not edit by hand) |
+| `src/data/questions.types.json` | 59 generated type questions — true/false + match (do not edit by hand) |
 
 ---
 
@@ -52,11 +53,12 @@ source/           ← source reference notes (read-only reference)
 - After any change to a JSON data file, run **all three QA scripts** and confirm 0 errors before committing.
 - Do not add, remove, or rename fields in the JSON schema without discussion first.
 
-### Generated questions file (`questions.v2.json`)
+### Generated questions files
 
-- **Never manually edit `src/data/questions.v2.json`** unless explicitly asked. It is generated output. Edit the generator script or the source data files instead.
-- `questions.json` is the canonical curated base set. `questions.v2.json` is derived output.
-- Always run `npm run generate:variants` after changing `authors.json` or `works.json` fields that affect generated questions (author names, work titles, genres, key_facts, nicknames).
+- **Never manually edit `src/data/questions.v2.json` or `src/data/questions.types.json`** unless explicitly asked. Both are generated output.
+- `questions.json` is the canonical curated base set. The other two are derived output.
+- Always run `npm run generate:variants` after changing `authors.json` or `works.json` fields that affect alternate-phrasing variants (author names, work titles, genres, key_facts, nicknames).
+- Always run `npm run generate:types` after changing `authors.json` or `works.json` (affects true/false and match questions).
 - Always run `npm run build` and all three QA scripts after regeneration.
 
 ---
@@ -64,8 +66,9 @@ source/           ← source reference notes (read-only reference)
 ## QA Scripts
 
 ```bash
-npm run generate:variants  # regenerate src/data/questions.v2.json from authors/works/questions
-npm run qa:content         # structural validation — validates both questions.json and questions.v2.json
+npm run generate:variants  # regenerate src/data/questions.v2.json from authors/works
+npm run generate:types     # regenerate src/data/questions.types.json (true/false + match)
+npm run qa:content         # structural validation — validates all three questions files
 npm run qa:source          # cross-check base data fields against source/literatura-zapiski.md (skips generated)
 npm run qa:semantic        # pedagogical quality — flags weak answers, duplicates, generic explanations
 ```
@@ -76,7 +79,7 @@ All three scripts write reports to `reports/`. `qa:content` exits with code 1 on
 
 | Script | Checks | Blocker threshold |
 |--------|--------|-------------------|
-| `qa:content` | Field presence, type correctness, cross-references, valid category/difficulty, duplicate IDs — across **both** `questions.json` and `questions.v2.json` | Any error → exits 1 |
+| `qa:content` | Field presence, type correctness, cross-references, valid category/difficulty/type, duplicate IDs — across all three question files | Any error → exits 1 |
 | `qa:source` | Correctness of data fields against `source/literatura-zapiski.md`; skips generated questions (validated by generator) | Errors only (warnings acceptable) |
 | `qa:semantic` | CATEGORY_SOURCE_MISMATCH, DUPLICATE_CONCEPT (base only), ESSAY_WEAK_ANSWER, TOO_ABSTRACT_ANSWER, GENERIC_EXPLANATION | High-severity findings must be resolved before merge |
 
