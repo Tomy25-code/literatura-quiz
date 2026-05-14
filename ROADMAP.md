@@ -119,9 +119,18 @@ Remaining backlog: ~95 `GENERIC_EXPLANATION` (low), ~20 `TOO_ABSTRACT_ANSWER` (m
 
 ---
 
-## Sprint 2 — More Question Variants
+## Sprint 2 — Question Variety ✅ COMPLETED
 
 **Branch:** `v2/feature/question-variants`
+
+### Completed in Sprint 2
+
+- [x] Question Variant Generator — 81 alternate-phrasing variants (`questions.v2.json`)
+- [x] Distractor Diversity — `pickDiverseAuthorDistractors()`, first-name clustering prevention
+- [x] New Question Types — 59 true/false + match questions (`questions.types.json`)
+- [x] Fill-in-the-blank questions — 83 cloze-style questions (`questions.fillblank.json`)
+- [x] Thematic Work-Recognition questions — 64 theme/motif-based questions (`questions.recognition.json`)
+- [x] Total pool: **702 questions** (415 base + 81 variants + 59 types + 83 fill-blank + 64 recognition)
 
 ### Step 1 — Question Variant Generator ✅ IMPLEMENTED
 
@@ -287,13 +296,6 @@ A fifth generated file (`src/data/questions.recognition.json`) adds richer work-
 | `npm run qa:semantic` | ✅ 0 high-severity findings |
 
 **Total pool:** 415 base + 81 variants + 59 types + 83 fill-blank + 64 recognition = **702 questions**
-
-### Work Recognition Questions (further)
-
-`category: "work_recognition"` is already in `VALID_CATEGORIES` and `CATEGORY_LABELS`.
-
-- `correctAnswer` is the work title.
-- `workId` must be set; `authorId` must match the work's author.
 
 ---
 
