@@ -9,7 +9,8 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "qa:content": "node scripts/qa-content.mjs",
-    "qa:source": "node scripts/qa-source.mjs"
+    "qa:source": "node scripts/qa-source.mjs",
+    "qa:semantic": "node scripts/qa-semantic-content.mjs"
   },
   "dependencies": {
     "react": "^19.2.6",
