@@ -172,15 +172,45 @@ Changes:
 | `npm run qa:source` | ✅ 0 errors, 261 warnings (pre-existing) |
 | `npm run qa:semantic` | ✅ 0 high-severity findings |
 
-### Step 2 — Remaining Variant Types (planned)
+### Step 2 — New Question Types ✅ IMPLEMENTED
 
-Question types still to add:
+**Branch:** `v2/feature/question-types`
 
-- **Period placement** — given a work or author, identify the literary period (new direction)
-- **Author from literary context** — given a literary context description, identify the author
-- **Composition recognition** — given a structural clue, identify the work
+A separate generator (`scripts/generate-question-types.mjs`, `npm run generate:types`) produces `src/data/questions.types.json`.
 
-New questions go through the content QA script before merging (`npm run qa:content` must exit 0).
+#### Implemented types
+
+| Type | Category label | Count | UI |
+|------|---------------|-------|----|
+| `true_false` | Вярно/невярно | 54 | 2-button (Вярно / Невярно) |
+| `match_author_work` | Свържи автор с произведение | 5 | Select dropdowns, one per row; scored as one question |
+
+**True/False difficulty rule:** TRUE statements → `easy`, FALSE statements → `medium`. All false statements pick a deterministic wrong author via `hash32`.
+
+**Match scoring:** all 4 pairs must be correct to score the question as correct. Incorrect pairs shown with the right answer after submission.
+
+**Backward compatibility:** existing `multiple_choice` questions are unaffected. `question.type` defaults to `"multiple_choice"` when absent — no changes to `questions.json` required.
+
+**Filtering:** author/work filters extended to check `authorIds`/`workIds` arrays on match questions. Category filter shows `"Вярно/невярно"` and `"Свържи автор с произведение"`.
+
+**Wrong Review / Weak Spots / Daily Practice:** all modes track match questions by `question.id` the same as any other question. Match questions enter wrong review on incorrect answers and follow the same 2-correct mastery rule.
+
+#### QA status
+
+| Check | Result |
+|-------|--------|
+| `npm run build` | ✅ PASS |
+| `npm run qa:content` | ✅ 0 errors, 19 LONG_OPTION warnings (pre-existing) |
+| `npm run qa:source` | ✅ 0 errors, 261 warnings (pre-existing) |
+| `npm run qa:semantic` | ✅ 0 high-severity findings |
+
+**Total pool:** 415 base + 81 variants + 59 types = **555 questions**
+
+#### Future question types (not yet implemented)
+
+- **Chronological ordering** — sort works/events by date
+- **Select-all-correct** — choose all correct answers from a list
+- **Fill-missing-word** — cloze / gap-fill questions
 
 ### Work Recognition Questions (further)
 

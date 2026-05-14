@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { saveWrongQuestionId, recordWrongQuestionCorrect } from '../utils/wrongAnswers';
+import MatchQuestion from './MatchQuestion';
 
 export default function Quiz({ questions, modeLabel, isWrongMode, isRemediationMode, onFinish, onHome }) {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -9,16 +10,20 @@ export default function Quiz({ questions, modeLabel, isWrongMode, isRemediationM
   const [answeredMap, setAnsweredMap] = useState({});
 
   const question = questions[currentIndex];
+  const qType    = question.type || 'multiple_choice';
   const answered = selectedAnswer !== null;
-  const isCorrect = selectedAnswer === question.correctAnswer;
+
+  // For multiple_choice and true_false, correctness is a simple string comparison.
+  // For match_author_work, correctness is set via sentinel values '__correct__' / '__wrong__'.
+  const isCorrect = qType === 'match_author_work'
+    ? selectedAnswer === '__correct__'
+    : selectedAnswer === question.correctAnswer;
+
   const isLastQuestion = currentIndex === questions.length - 1;
 
-  function handleSelect(option) {
-    if (answered) return;
-    setSelectedAnswer(option);
-    const correct = option === question.correctAnswer;
+  // ── Shared answer-recording logic ─────────────────────────────────────────
+  function recordAnswer(correct) {
     setAnsweredMap(m => ({ ...m, [question.id]: correct }));
-
     if (correct) {
       setScore(s => s + 1);
       if (isRemediationMode) {
@@ -35,6 +40,21 @@ export default function Quiz({ questions, modeLabel, isWrongMode, isRemediationM
     }
   }
 
+  // ── Multiple-choice / true-false handler ──────────────────────────────────
+  function handleSelect(option) {
+    if (answered) return;
+    const correct = option === question.correctAnswer;
+    setSelectedAnswer(option);
+    recordAnswer(correct);
+  }
+
+  // ── Match answer handler ───────────────────────────────────────────────────
+  function handleMatchSubmit(allCorrect) {
+    setSelectedAnswer(allCorrect ? '__correct__' : '__wrong__');
+    recordAnswer(allCorrect);
+  }
+
+  // ── Navigation ─────────────────────────────────────────────────────────────
   function handleNext() {
     if (isLastQuestion) {
       onFinish(score, answeredMap);
@@ -81,53 +101,67 @@ export default function Quiz({ questions, modeLabel, isWrongMode, isRemediationM
       <div className="question-card">
         <p className="question-text">{question.question}</p>
 
-        <div className="options">
-          {question.options.map((option, i) => (
-            <button
-              key={i}
-              className={getOptionClass(option)}
-              onClick={() => handleSelect(option)}
-              disabled={answered}
-            >
-              {option}
-            </button>
-          ))}
-        </div>
+        {qType === 'match_author_work' ? (
+          <MatchQuestion
+            question={question}
+            onSubmit={handleMatchSubmit}
+            answered={answered}
+            isCorrect={isCorrect}
+            remediationFeedback={remediationFeedback}
+            onNext={handleNext}
+            isLastQuestion={isLastQuestion}
+          />
+        ) : (
+          <>
+            <div className="options">
+              {question.options.map((option, i) => (
+                <button
+                  key={i}
+                  className={getOptionClass(option)}
+                  onClick={() => handleSelect(option)}
+                  disabled={answered}
+                >
+                  {option}
+                </button>
+              ))}
+            </div>
 
-        {answered && (
-          <div className={`feedback ${isCorrect ? 'feedback-correct' : 'feedback-wrong'}`}>
-            <p className="feedback-status">
-              {isCorrect
-                ? 'Верен отговор!'
-                : `Грешен отговор! Правилният е: „${question.correctAnswer}"`
-              }
-            </p>
-            <p className="feedback-explanation">{question.explanation}</p>
+            {answered && (
+              <div className={`feedback ${isCorrect ? 'feedback-correct' : 'feedback-wrong'}`}>
+                <p className="feedback-status">
+                  {isCorrect
+                    ? 'Верен отговор!'
+                    : `Грешен отговор! Правилният е: „${question.correctAnswer}"`
+                  }
+                </p>
+                <p className="feedback-explanation">{question.explanation}</p>
 
-            {remediationFeedback === 'progressing' && (
-              <p className="mastered-msg mastered-progressing">
-                Добре! Още 1 верен отговор за усвояване.
-              </p>
+                {remediationFeedback === 'progressing' && (
+                  <p className="mastered-msg mastered-progressing">
+                    Добре! Още 1 верен отговор за усвояване.
+                  </p>
+                )}
+                {remediationFeedback === 'mastered' && (
+                  <p className="mastered-msg">
+                    Браво! Въпросът е усвоен и премахнат от преговора.
+                  </p>
+                )}
+                {remediationFeedback === 'stayed' && (
+                  <p className="mastered-msg mastered-stayed">
+                    Въпросът остава в преговора.
+                  </p>
+                )}
+              </div>
             )}
-            {remediationFeedback === 'mastered' && (
-              <p className="mastered-msg">
-                Браво! Въпросът е усвоен и премахнат от преговора.
-              </p>
-            )}
-            {remediationFeedback === 'stayed' && (
-              <p className="mastered-msg mastered-stayed">
-                Въпросът остава в преговора.
-              </p>
-            )}
-          </div>
-        )}
 
-        {answered && (
-          <div className="quiz-action">
-            <button className="btn-primary" onClick={handleNext}>
-              {isLastQuestion ? 'Виж резултата' : 'Следващ въпрос'}
-            </button>
-          </div>
+            {answered && (
+              <div className="quiz-action">
+                <button className="btn-primary" onClick={handleNext}>
+                  {isLastQuestion ? 'Виж резултата' : 'Следващ въпрос'}
+                </button>
+              </div>
+            )}
+          </>
         )}
       </div>
     </div>

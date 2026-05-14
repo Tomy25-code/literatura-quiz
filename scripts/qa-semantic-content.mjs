@@ -38,10 +38,17 @@ const variantQuestions = (() => {
   try { return load('src/data/questions.v2.json'); }
   catch { return []; }
 })();
-// All questions for most checks; base only for DUPLICATE_CONCEPT (variants are
-// intentional alternate phrasings and must not be flagged as duplicate concepts).
-const questions    = [...baseQuestions, ...variantQuestions];
+const typeQuestions = (() => {
+  try { return load('src/data/questions.types.json'); }
+  catch { return []; }
+})();
+// All questions for most checks; base only for DUPLICATE_CONCEPT (variants and
+// type questions are generated alternate phrasings and must not be flagged as
+// duplicate concepts).
+const questions    = [...baseQuestions, ...variantQuestions, ...typeQuestions];
 const baseOnlyIds  = new Set(baseQuestions.map(q => q.id));
+// Type question IDs — skip from semantic checks (they have validated-by-generator content)
+const typeQuestionIds = new Set(typeQuestions.map(q => q.id));
 
 const authorMap = new Map(authors.map(a => [a.id, a]));
 const workMap   = new Map(works.map(w => [w.id, w]));
@@ -407,7 +414,7 @@ const RESET  = '\x1b[0m';
 
 console.log('');
 console.log(`${BOLD}${CYAN}━━━ Literatura Quiz — Semantic Content QA ━━━${RESET}`);
-console.log(`  Questions: ${questions.length}`);
+console.log(`  Questions: ${baseQuestions.length} base + ${variantQuestions.length} variants + ${typeQuestions.length} types = ${questions.length} total`);
 console.log('');
 
 function printSeverityLine(label, n, color) {

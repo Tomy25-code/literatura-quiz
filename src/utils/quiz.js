@@ -24,6 +24,7 @@ export const CATEGORY_LABELS = {
   motifs: 'Мотиви',
   literary_context: 'Литературен контекст',
   true_false: 'Вярно/невярно',
+  match_author_work: 'Свържи автор с произведение',
   essay_preparation: 'Подготовка за съчинение',
 };
 
@@ -47,12 +48,18 @@ export function buildQuiz(allQuestions, mode, filterValue, allWorks = [], length
 
   switch (mode) {
     case 'author':
-      pool = allQuestions.filter(q => q.authorId === filterValue);
+      pool = allQuestions.filter(q =>
+        q.authorId === filterValue ||
+        (q.authorIds && q.authorIds.includes(filterValue))
+      );
       break;
 
     case 'work': {
       const work = allWorks.find(w => w.id === filterValue);
-      const primary = allQuestions.filter(q => q.workId === filterValue);
+      const primary = allQuestions.filter(q =>
+        q.workId === filterValue ||
+        (q.workIds && q.workIds.includes(filterValue))
+      );
       if (!work || primary.length >= length) {
         pool = primary;
       } else {
@@ -78,5 +85,11 @@ export function buildQuiz(allQuestions, mode, filterValue, allWorks = [], length
 
   return shuffle([...pool])
     .slice(0, length)
-    .map(q => ({ ...q, options: shuffle([...q.options]) }));
+    .map(q => {
+      const shuffled = { ...q, options: shuffle([...(q.options || [])]) };
+      if ((q.type || 'multiple_choice') === 'match_author_work' && q.pairs) {
+        shuffled.pairs = shuffle([...q.pairs]);
+      }
+      return shuffled;
+    });
 }

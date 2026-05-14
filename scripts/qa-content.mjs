@@ -23,7 +23,11 @@ const variantQuestions = (() => {
   try { return load('src/data/questions.v2.json'); }
   catch { return []; } // generated file may not exist yet
 })();
-const questions = [...baseQuestions, ...variantQuestions];
+const typeQuestions = (() => {
+  try { return load('src/data/questions.types.json'); }
+  catch { return []; } // generated file may not exist yet
+})();
+const questions = [...baseQuestions, ...variantQuestions, ...typeQuestions];
 
 // ── Constants ─────────────────────────────────────────────────────────────────
 
@@ -32,8 +36,10 @@ const VALID_DIFFICULTIES = new Set(['easy', 'medium', 'hard']);
 const VALID_CATEGORIES = new Set([
   'author', 'work', 'work_recognition', 'genre', 'period', 'nickname',
   'creative_history', 'composition', 'themes', 'motifs',
-  'literary_context', 'true_false', 'essay_preparation',
+  'literary_context', 'true_false', 'essay_preparation', 'match_author_work',
 ]);
+
+const VALID_TYPES = new Set(['multiple_choice', 'true_false', 'match_author_work']);
 
 const DIFFICULTY_LABELS = { easy: 'Лесно', medium: 'Средно', hard: 'Трудно' };
 
@@ -109,11 +115,24 @@ const seenQIds       = new Map(); // id → first index
 const seenQTexts     = new Map(); // normalized text → first id
 
 questions.forEach((q, i) => {
-  const id = q.id || `questions[${i}]`;
+  const id    = q.id || `questions[${i}]`;
+  const qType = q.type || 'multiple_choice';
+  const isMatch    = qType === 'match_author_work';
+  const isTrueFalse = qType === 'true_false';
 
-  // Required fields
-  for (const field of ['id', 'question', 'options', 'correctAnswer', 'explanation', 'authorId', 'category', 'difficulty']) {
-    if (q[field] === undefined || q[field] === null || q[field] === '') {
+  // type field (if present) must be valid
+  if (q.type && !VALID_TYPES.has(q.type)) {
+    err(id, 'INVALID_TYPE', `type "${q.type}" is not a recognised type`);
+  }
+
+  // Required fields (type-aware)
+  const stdRequiredFields = isMatch
+    ? ['id', 'question', 'pairs', 'explanation', 'category', 'difficulty']
+    : ['id', 'question', 'options', 'correctAnswer', 'explanation', 'authorId', 'category', 'difficulty'];
+
+  for (const field of stdRequiredFields) {
+    const val = q[field];
+    if (val === undefined || val === null || val === '') {
       err(id, 'MISSING_FIELD', `question missing or empty field: "${field}"`);
     }
   }
@@ -127,8 +146,8 @@ questions.forEach((q, i) => {
     }
   }
 
-  // Duplicate question text
-  if (q.question) {
+  // Duplicate question text — skip for match_author_work (all share the same prompt)
+  if (q.question && !isMatch) {
     const norm = q.question.toLowerCase().replace(/\s+/g, ' ').trim();
     if (seenQTexts.has(norm)) {
       err(id, 'DUPLICATE_TEXT', `question text duplicates id "${seenQTexts.get(norm)}"`);
@@ -137,39 +156,103 @@ questions.forEach((q, i) => {
     }
   }
 
-  // Options: must be exactly 4 strings
-  if (!Array.isArray(q.options) || q.options.length !== 4) {
-    err(id, 'OPTIONS_COUNT', `options must be an array of exactly 4 (found ${Array.isArray(q.options) ? q.options.length : typeof q.options})`);
-  } else {
-    q.options.forEach((opt, oi) => {
-      if (typeof opt !== 'string' || opt.trim() === '') {
-        err(id, 'OPTION_EMPTY', `option[${oi}] is empty or not a string`);
+  // Options checks (type-aware)
+  if (isTrueFalse) {
+    // true_false must have exactly the two Bulgarian options
+    if (!Array.isArray(q.options) || q.options.length !== 2) {
+      err(id, 'TRUE_FALSE_OPTIONS',
+        `true_false question must have exactly 2 options (found ${Array.isArray(q.options) ? q.options.length : typeof q.options})`);
+    } else if (!q.options.includes('Вярно') || !q.options.includes('Невярно')) {
+      err(id, 'TRUE_FALSE_OPTIONS',
+        `true_false options must be exactly ["Вярно", "Невярно"]`);
+    }
+    // correctAnswer must be Вярно or Невярно
+    if (q.correctAnswer !== 'Вярно' && q.correctAnswer !== 'Невярно') {
+      err(id, 'TRUE_FALSE_ANSWER',
+        `true_false correctAnswer must be "Вярно" or "Невярно" (got "${q.correctAnswer}")`);
+    }
+  } else if (isMatch) {
+    // match_author_work: check pairs array
+    if (!Array.isArray(q.pairs) || q.pairs.length < 3) {
+      err(id, 'MATCH_PAIRS_COUNT',
+        `match_author_work must have at least 3 pairs (found ${Array.isArray(q.pairs) ? q.pairs.length : typeof q.pairs})`);
+    } else {
+      const pairAuthorIds = q.pairs.map(p => p.authorId);
+      const pairWorkIds   = q.pairs.map(p => p.workId);
+      if (new Set(pairAuthorIds).size !== pairAuthorIds.length) {
+        err(id, 'MATCH_DUPLICATE_AUTHOR', 'match_author_work has duplicate authorId within pairs');
       }
-    });
-  }
-
-  // correctAnswer must be in options
-  if (Array.isArray(q.options) && q.correctAnswer !== undefined) {
-    if (!q.options.includes(q.correctAnswer)) {
-      err(id, 'ANSWER_NOT_IN_OPTIONS', `correctAnswer "${String(q.correctAnswer).slice(0, 60)}…" not found in options`);
+      if (new Set(pairWorkIds).size !== pairWorkIds.length) {
+        err(id, 'MATCH_DUPLICATE_WORK', 'match_author_work has duplicate workId within pairs');
+      }
+      for (const pair of q.pairs) {
+        if (!authorMap.has(pair.authorId)) {
+          err(id, 'ORPHAN_AUTHOR', `pair.authorId "${pair.authorId}" not found in authors.json`);
+        }
+        if (!workMap.has(pair.workId)) {
+          err(id, 'ORPHAN_WORK', `pair.workId "${pair.workId}" not found in works.json`);
+        }
+      }
+    }
+    // options must match pairs count (work titles for dropdowns)
+    if (Array.isArray(q.pairs) && Array.isArray(q.options)) {
+      if (q.options.length !== q.pairs.length) {
+        err(id, 'MATCH_OPTIONS_MISMATCH', 'match_author_work options.length must equal pairs.length');
+      }
+    }
+  } else {
+    // Standard multiple_choice: exactly 4 options
+    if (!Array.isArray(q.options) || q.options.length !== 4) {
+      err(id, 'OPTIONS_COUNT',
+        `options must be an array of exactly 4 (found ${Array.isArray(q.options) ? q.options.length : typeof q.options})`);
+    } else {
+      q.options.forEach((opt, oi) => {
+        if (typeof opt !== 'string' || opt.trim() === '') {
+          err(id, 'OPTION_EMPTY', `option[${oi}] is empty or not a string`);
+        }
+      });
+    }
+    // correctAnswer must be in options
+    if (Array.isArray(q.options) && q.correctAnswer !== undefined) {
+      if (!q.options.includes(q.correctAnswer)) {
+        err(id, 'ANSWER_NOT_IN_OPTIONS',
+          `correctAnswer "${String(q.correctAnswer).slice(0, 60)}…" not found in options`);
+      }
     }
   }
 
-  // authorId must exist
-  if (q.authorId && !authorMap.has(q.authorId)) {
+  // authorId must exist (skip match — it uses authorIds array instead)
+  if (!isMatch && q.authorId && !authorMap.has(q.authorId)) {
     err(id, 'ORPHAN_AUTHOR', `question.authorId "${q.authorId}" not found in authors.json`);
   }
 
-  // workId must exist if set
-  if (q.workId !== null && q.workId !== undefined) {
+  // authorIds array for match questions
+  if (isMatch && Array.isArray(q.authorIds)) {
+    for (const aid of q.authorIds) {
+      if (!authorMap.has(aid)) {
+        err(id, 'ORPHAN_AUTHOR', `authorIds entry "${aid}" not found in authors.json`);
+      }
+    }
+  }
+
+  // workId must exist if set (skip match — it uses workIds array instead)
+  if (!isMatch && q.workId !== null && q.workId !== undefined) {
     if (!workMap.has(q.workId)) {
       err(id, 'ORPHAN_WORK', `question.workId "${q.workId}" not found in works.json`);
     } else {
-      // workId exists — verify work's authorId matches question's authorId
       const work = workMap.get(q.workId);
       if (work.authorId !== q.authorId) {
         err(id, 'AUTHOR_WORK_MISMATCH',
           `question.authorId "${q.authorId}" ≠ work "${q.workId}".authorId "${work.authorId}"`);
+      }
+    }
+  }
+
+  // workIds array for match questions
+  if (isMatch && Array.isArray(q.workIds)) {
+    for (const wid of q.workIds) {
+      if (!workMap.has(wid)) {
+        err(id, 'ORPHAN_WORK', `workIds entry "${wid}" not found in works.json`);
       }
     }
   }
@@ -217,7 +300,7 @@ questions.forEach((q, i) => {
     warn(id, 'LONG_EXPLANATION', `explanation is ${q.explanation.length} chars (max ${EXPLANATION_MAX})`);
   }
 
-  if (Array.isArray(q.options)) {
+  if (!isMatch && Array.isArray(q.options)) {
     q.options.forEach((opt, oi) => {
       if (opt.length > OPTION_MAX) {
         warn(id, 'LONG_OPTION', `option[${oi}] is ${opt.length} chars (max ${OPTION_MAX}): "${opt.slice(0, 60)}…"`);
@@ -285,7 +368,10 @@ questions.forEach((q, i) => {
 // ── 5. Content consistency checks ────────────────────────────────────────────
 
 questions.forEach(q => {
-  const id = q.id;
+  const id    = q.id;
+  const qType = q.type || 'multiple_choice';
+  // match_author_work has null authorId/workId by design — skip all consistency checks
+  if (qType === 'match_author_work') return;
 
   // genre: correctAnswer should match work.genre when workId is set
   if (q.category === 'genre' && q.workId) {
@@ -324,10 +410,10 @@ questions.forEach(q => {
   }
 
   // Warn if question text mentions a known work title but workId is null
-  if (!q.workId) {
+  // (skip for match questions which have null workId by design and null correctAnswer)
+  if (!q.workId && qType !== 'match_author_work') {
     for (const w of works) {
-      if (q.question.includes(w.title) || q.correctAnswer.includes(w.title)) {
-        // Only warn if work belongs to this author (avoid false positives)
+      if (q.question.includes(w.title) || (q.correctAnswer || '').includes(w.title)) {
         if (w.authorId === q.authorId) {
           warn(id, 'MISSING_WORK_ID',
             `question mentions "${w.title}" but workId is null (work id: ${w.id})`);
@@ -346,10 +432,23 @@ const authorQCounts = {};
 const workQCounts   = {};
 
 questions.forEach(q => {
-  catCounts[q.category]   = (catCounts[q.category]   || 0) + 1;
+  catCounts[q.category]    = (catCounts[q.category]    || 0) + 1;
   diffCounts[q.difficulty] = (diffCounts[q.difficulty] || 0) + 1;
-  authorQCounts[q.authorId] = (authorQCounts[q.authorId] || 0) + 1;
-  if (q.workId) workQCounts[q.workId] = (workQCounts[q.workId] || 0) + 1;
+  if (q.authorId) {
+    authorQCounts[q.authorId] = (authorQCounts[q.authorId] || 0) + 1;
+  } else if (Array.isArray(q.authorIds)) {
+    // match_author_work — count once per author in the group
+    for (const aid of q.authorIds) {
+      authorQCounts[aid] = (authorQCounts[aid] || 0) + 1;
+    }
+  }
+  if (q.workId) {
+    workQCounts[q.workId] = (workQCounts[q.workId] || 0) + 1;
+  } else if (Array.isArray(q.workIds)) {
+    for (const wid of q.workIds) {
+      workQCounts[wid] = (workQCounts[wid] || 0) + 1;
+    }
+  }
 });
 
 // Author name resolution for report
@@ -377,13 +476,14 @@ const needsReview = [
 ].filter(id => id !== 'authors.json' && id !== 'works.json' && id !== 'questions.json');
 
 const summary = {
-  authors:             authors.length,
-  works:               works.length,
-  baseQuestions:       baseQuestions.length,
-  generatedQuestions:  variantQuestions.length,
-  totalQuestions:      questions.length,
-  totalErrors:         errors.length,
-  totalWarnings:       warnings.length,
+  authors:              authors.length,
+  works:                works.length,
+  baseQuestions:        baseQuestions.length,
+  generatedQuestions:   variantQuestions.length,
+  typeQuestions:        typeQuestions.length,
+  totalQuestions:       questions.length,
+  totalErrors:          errors.length,
+  totalWarnings:        warnings.length,
   questionsWithErrors:      [...new Set(errors.map(e => e.id))].filter(id => seenQIds.has(id)).length,
   questionsNeedingReview:   needsReview.length,
 };
@@ -436,6 +536,7 @@ Generated: ${new Date().toLocaleString('bg-BG')}
 | Works | ${summary.works} |
 | Base questions (questions.json) | ${summary.baseQuestions} |
 | Generated variants (questions.v2.json) | ${summary.generatedQuestions} |
+| Generated type questions (questions.types.json) | ${summary.typeQuestions} |
 | **Total questions** | **${summary.totalQuestions}** |
 | **Total errors** | **${summary.totalErrors}** |
 | **Total warnings** | **${summary.totalWarnings}** |
@@ -585,7 +686,7 @@ console.log('');
 console.log(`${BOLD}${CYAN}━━━ Literatura Quiz — Content QA ━━━${RESET}`);
 console.log(`  Authors:    ${authors.length}`);
 console.log(`  Works:      ${works.length}`);
-console.log(`  Questions:  ${summary.baseQuestions} base + ${summary.generatedQuestions} generated = ${summary.totalQuestions} total`);
+console.log(`  Questions:  ${summary.baseQuestions} base + ${summary.generatedQuestions} variants + ${summary.typeQuestions} types = ${summary.totalQuestions} total`);
 console.log('');
 
 if (errors.length === 0) {

@@ -3,8 +3,9 @@ import authors from './data/authors.json';
 import works from './data/works.json';
 import baseQuestions from './data/questions.json';
 import variantQuestions from './data/questions.v2.json';
+import typeQuestions from './data/questions.types.json';
 
-const questions = [...baseQuestions, ...variantQuestions];
+const questions = [...baseQuestions, ...variantQuestions, ...typeQuestions];
 import Home from './components/Home';
 import Quiz from './components/Quiz';
 import Results from './components/Results';

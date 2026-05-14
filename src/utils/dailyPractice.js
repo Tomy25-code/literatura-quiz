@@ -130,7 +130,13 @@ export function buildDailyPracticeQuiz({ questions, stats, wrongQuestionIds, len
   if (result.length === 0) return { questions: [], emptyReason: 'empty' };
 
   return {
-    questions: shuffle(result).map(q => ({ ...q, options: shuffle([...q.options]) })),
+    questions: shuffle(result).map(q => {
+      const shuffled = { ...q, options: shuffle([...(q.options || [])]) };
+      if ((q.type || 'multiple_choice') === 'match_author_work' && q.pairs) {
+        shuffled.pairs = shuffle([...q.pairs]);
+      }
+      return shuffled;
+    }),
     emptyReason: null,
   };
 }

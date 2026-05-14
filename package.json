@@ -11,7 +11,8 @@
     "qa:content": "node scripts/qa-content.mjs",
     "qa:source": "node scripts/qa-source.mjs",
     "qa:semantic": "node scripts/qa-semantic-content.mjs",
-    "generate:variants": "node scripts/generate-question-variants.mjs"
+    "generate:variants": "node scripts/generate-question-variants.mjs",
+    "generate:types": "node scripts/generate-question-types.mjs"
   },
   "dependencies": {
     "react": "^19.2.6",

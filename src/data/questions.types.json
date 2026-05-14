@@ -1,0 +1,1146 @@
+[
+  {
+    "id": "qt-tf-jelezniyat-svetilnik-true",
+    "type": "true_false",
+    "question": "„Железният светилник\" е произведение на Димитър Талев.",
+    "options": [
+      "Вярно",
+      "Невярно"
+    ],
+    "correctAnswer": "Вярно",
+    "explanation": "„Железният светилник\" е епически роман на Димитър Талев.",
+    "authorId": "dimitar-talev",
+    "workId": "jelezniyat-svetilnik",
+    "category": "true_false",
+    "difficulty": "easy",
+    "sourceNote": "generated:true_false"
+  },
+  {
+    "id": "qt-tf-jelezniyat-svetilnik-false",
+    "type": "true_false",
+    "question": "„Железният светилник\" е произведение на Алеко Константинов.",
+    "options": [
+      "Вярно",
+      "Невярно"
+    ],
+    "correctAnswer": "Невярно",
+    "explanation": "„Железният светилник\" е епически роман на Димитър Талев, не на Алеко Константинов.",
+    "authorId": "dimitar-talev",
+    "workId": "jelezniyat-svetilnik",
+    "category": "true_false",
+    "difficulty": "medium",
+    "sourceNote": "generated:true_false_false"
+  },
+  {
+    "id": "qt-tf-bai-ganyo-jurnalist-true",
+    "type": "true_false",
+    "question": "„Бай Ганьо журналист\" е произведение на Алеко Константинов.",
+    "options": [
+      "Вярно",
+      "Невярно"
+    ],
+    "correctAnswer": "Вярно",
+    "explanation": "„Бай Ганьо журналист\" е фейлетон/очерк на Алеко Константинов.",
+    "authorId": "aleko-konstantinov",
+    "workId": "bai-ganyo-jurnalist",
+    "category": "true_false",
+    "difficulty": "easy",
+    "sourceNote": "generated:true_false"
+  },
+  {
+    "id": "qt-tf-bai-ganyo-jurnalist-false",
+    "type": "true_false",
+    "question": "„Бай Ганьо журналист\" е произведение на Христо Ботев.",
+    "options": [
+      "Вярно",
+      "Невярно"
+    ],
+    "correctAnswer": "Невярно",
+    "explanation": "„Бай Ганьо журналист\" е фейлетон/очерк на Алеко Константинов, не на Христо Ботев.",
+    "authorId": "aleko-konstantinov",
+    "workId": "bai-ganyo-jurnalist",
+    "category": "true_false",
+    "difficulty": "medium",
+    "sourceNote": "generated:true_false_false"
+  },
+  {
+    "id": "qt-tf-balkanski-sindrom-true",
+    "type": "true_false",
+    "question": "„Балкански синдром\" е произведение на Станислав Стратиев.",
+    "options": [
+      "Вярно",
+      "Невярно"
+    ],
+    "correctAnswer": "Вярно",
+    "explanation": "„Балкански синдром\" е сатирична комедия на Станислав Стратиев.",
+    "authorId": "stanislav-stratiev",
+    "workId": "balkanski-sindrom",
+    "category": "true_false",
+    "difficulty": "easy",
+    "sourceNote": "generated:true_false"
+  },
+  {
+    "id": "qt-tf-balkanski-sindrom-false",
+    "type": "true_false",
+    "question": "„Балкански синдром\" е произведение на Пейо Яворов.",
+    "options": [
+      "Вярно",
+      "Невярно"
+    ],
+    "correctAnswer": "Невярно",
+    "explanation": "„Балкански синдром\" е сатирична комедия на Станислав Стратиев, не на Пейо Яворов.",
+    "authorId": "stanislav-stratiev",
+    "workId": "balkanski-sindrom",
+    "category": "true_false",
+    "difficulty": "medium",
+    "sourceNote": "generated:true_false_false"
+  },
+  {
+    "id": "qt-tf-paisiy-true",
+    "type": "true_false",
+    "question": "„Паисий\" е произведение на Иван Вазов.",
+    "options": [
+      "Вярно",
+      "Невярно"
+    ],
+    "correctAnswer": "Вярно",
+    "explanation": "„Паисий\" е ода на Иван Вазов.",
+    "authorId": "ivan-vazov",
+    "workId": "paisiy",
+    "category": "true_false",
+    "difficulty": "easy",
+    "sourceNote": "generated:true_false"
+  },
+  {
+    "id": "qt-tf-paisiy-false",
+    "type": "true_false",
+    "question": "„Паисий\" е произведение на Никола Вапцаров.",
+    "options": [
+      "Вярно",
+      "Невярно"
+    ],
+    "correctAnswer": "Невярно",
+    "explanation": "„Паисий\" е ода на Иван Вазов, не на Никола Вапцаров.",
+    "authorId": "ivan-vazov",
+    "workId": "paisiy",
+    "category": "true_false",
+    "difficulty": "medium",
+    "sourceNote": "generated:true_false_false"
+  },
+  {
+    "id": "qt-tf-novoto-grobishte-nad-slivnitsa-true",
+    "type": "true_false",
+    "question": "„Новото гробище над Сливница\" е произведение на Иван Вазов.",
+    "options": [
+      "Вярно",
+      "Невярно"
+    ],
+    "correctAnswer": "Вярно",
+    "explanation": "„Новото гробище над Сливница\" е елегия на Иван Вазов.",
+    "authorId": "ivan-vazov",
+    "workId": "novoto-grobishte-nad-slivnitsa",
+    "category": "true_false",
+    "difficulty": "easy",
+    "sourceNote": "generated:true_false"
+  },
+  {
+    "id": "qt-tf-novoto-grobishte-nad-slivnitsa-false",
+    "type": "true_false",
+    "question": "„Новото гробище над Сливница\" е произведение на Елисавета Багряна.",
+    "options": [
+      "Вярно",
+      "Невярно"
+    ],
+    "correctAnswer": "Невярно",
+    "explanation": "„Новото гробище над Сливница\" е елегия на Иван Вазов, не на Елисавета Багряна.",
+    "authorId": "ivan-vazov",
+    "workId": "novoto-grobishte-nad-slivnitsa",
+    "category": "true_false",
+    "difficulty": "medium",
+    "sourceNote": "generated:true_false_false"
+  },
+  {
+    "id": "qt-tf-pri-rilskiya-manastir-true",
+    "type": "true_false",
+    "question": "„При Рилския манастир\" е произведение на Иван Вазов.",
+    "options": [
+      "Вярно",
+      "Невярно"
+    ],
+    "correctAnswer": "Вярно",
+    "explanation": "„При Рилския манастир\" е ода на Иван Вазов.",
+    "authorId": "ivan-vazov",
+    "workId": "pri-rilskiya-manastir",
+    "category": "true_false",
+    "difficulty": "easy",
+    "sourceNote": "generated:true_false"
+  },
+  {
+    "id": "qt-tf-pri-rilskiya-manastir-false",
+    "type": "true_false",
+    "question": "„При Рилския манастир\" е произведение на Христо Смирненски.",
+    "options": [
+      "Вярно",
+      "Невярно"
+    ],
+    "correctAnswer": "Невярно",
+    "explanation": "„При Рилския манастир\" е ода на Иван Вазов, не на Христо Смирненски.",
+    "authorId": "ivan-vazov",
+    "workId": "pri-rilskiya-manastir",
+    "category": "true_false",
+    "difficulty": "medium",
+    "sourceNote": "generated:true_false_false"
+  },
+  {
+    "id": "qt-tf-istoriya-true",
+    "type": "true_false",
+    "question": "„История\" е произведение на Никола Вапцаров.",
+    "options": [
+      "Вярно",
+      "Невярно"
+    ],
+    "correctAnswer": "Вярно",
+    "explanation": "„История\" е стихотворение на Никола Вапцаров.",
+    "authorId": "nikola-vaptsarov",
+    "workId": "istoriya",
+    "category": "true_false",
+    "difficulty": "easy",
+    "sourceNote": "generated:true_false"
+  },
+  {
+    "id": "qt-tf-istoriya-false",
+    "type": "true_false",
+    "question": "„История\" е произведение на Димчо Дебелянов.",
+    "options": [
+      "Вярно",
+      "Невярно"
+    ],
+    "correctAnswer": "Невярно",
+    "explanation": "„История\" е стихотворение на Никола Вапцаров, не на Димчо Дебелянов.",
+    "authorId": "nikola-vaptsarov",
+    "workId": "istoriya",
+    "category": "true_false",
+    "difficulty": "medium",
+    "sourceNote": "generated:true_false_false"
+  },
+  {
+    "id": "qt-tf-vyara-true",
+    "type": "true_false",
+    "question": "„Вяра\" е произведение на Никола Вапцаров.",
+    "options": [
+      "Вярно",
+      "Невярно"
+    ],
+    "correctAnswer": "Вярно",
+    "explanation": "„Вяра\" е стихотворение на Никола Вапцаров.",
+    "authorId": "nikola-vaptsarov",
+    "workId": "vyara",
+    "category": "true_false",
+    "difficulty": "easy",
+    "sourceNote": "generated:true_false"
+  },
+  {
+    "id": "qt-tf-vyara-false",
+    "type": "true_false",
+    "question": "„Вяра\" е произведение на Иван Вазов.",
+    "options": [
+      "Вярно",
+      "Невярно"
+    ],
+    "correctAnswer": "Невярно",
+    "explanation": "„Вяра\" е стихотворение на Никола Вапцаров, не на Иван Вазов.",
+    "authorId": "nikola-vaptsarov",
+    "workId": "vyara",
+    "category": "true_false",
+    "difficulty": "medium",
+    "sourceNote": "generated:true_false_false"
+  },
+  {
+    "id": "qt-tf-noev-kovcheg-true",
+    "type": "true_false",
+    "question": "„Ноев ковчег\" е произведение на Йордан Радичков.",
+    "options": [
+      "Вярно",
+      "Невярно"
+    ],
+    "correctAnswer": "Вярно",
+    "explanation": "„Ноев ковчег\" е фрагментарен роман на Йордан Радичков.",
+    "authorId": "yordan-radichkov",
+    "workId": "noev-kovcheg",
+    "category": "true_false",
+    "difficulty": "easy",
+    "sourceNote": "generated:true_false"
+  },
+  {
+    "id": "qt-tf-noev-kovcheg-false",
+    "type": "true_false",
+    "question": "„Ноев ковчег\" е произведение на Борис Христов.",
+    "options": [
+      "Вярно",
+      "Невярно"
+    ],
+    "correctAnswer": "Невярно",
+    "explanation": "„Ноев ковчег\" е фрагментарен роман на Йордан Радичков, не на Борис Христов.",
+    "authorId": "yordan-radichkov",
+    "workId": "noev-kovcheg",
+    "category": "true_false",
+    "difficulty": "medium",
+    "sourceNote": "generated:true_false_false"
+  },
+  {
+    "id": "qt-tf-borba-true",
+    "type": "true_false",
+    "question": "„Борба\" е произведение на Христо Ботев.",
+    "options": [
+      "Вярно",
+      "Невярно"
+    ],
+    "correctAnswer": "Вярно",
+    "explanation": "„Борба\" е стихотворение; философска и политическа поезия на Христо Ботев.",
+    "authorId": "hristo-botev",
+    "workId": "borba",
+    "category": "true_false",
+    "difficulty": "easy",
+    "sourceNote": "generated:true_false"
+  },
+  {
+    "id": "qt-tf-borba-false",
+    "type": "true_false",
+    "question": "„Борба\" е произведение на Станислав Стратиев.",
+    "options": [
+      "Вярно",
+      "Невярно"
+    ],
+    "correctAnswer": "Невярно",
+    "explanation": "„Борба\" е стихотворение; философска и политическа поезия на Христо Ботев, не на Станислав Стратиев.",
+    "authorId": "hristo-botev",
+    "workId": "borba",
+    "category": "true_false",
+    "difficulty": "medium",
+    "sourceNote": "generated:true_false_false"
+  },
+  {
+    "id": "qt-tf-do-moeto-parvo-libe-true",
+    "type": "true_false",
+    "question": "„До моето първо либе\" е произведение на Христо Ботев.",
+    "options": [
+      "Вярно",
+      "Невярно"
+    ],
+    "correctAnswer": "Вярно",
+    "explanation": "„До моето първо либе\" е изповедно стихотворение на Христо Ботев.",
+    "authorId": "hristo-botev",
+    "workId": "do-moeto-parvo-libe",
+    "category": "true_false",
+    "difficulty": "easy",
+    "sourceNote": "generated:true_false"
+  },
+  {
+    "id": "qt-tf-do-moeto-parvo-libe-false",
+    "type": "true_false",
+    "question": "„До моето първо либе\" е произведение на Атанас Далчев.",
+    "options": [
+      "Вярно",
+      "Невярно"
+    ],
+    "correctAnswer": "Невярно",
+    "explanation": "„До моето първо либе\" е изповедно стихотворение на Христо Ботев, не на Атанас Далчев.",
+    "authorId": "hristo-botev",
+    "workId": "do-moeto-parvo-libe",
+    "category": "true_false",
+    "difficulty": "medium",
+    "sourceNote": "generated:true_false_false"
+  },
+  {
+    "id": "qt-tf-andreshko-true",
+    "type": "true_false",
+    "question": "„Андрешко\" е произведение на Елин Пелин.",
+    "options": [
+      "Вярно",
+      "Невярно"
+    ],
+    "correctAnswer": "Вярно",
+    "explanation": "„Андрешко\" е разказ на Елин Пелин.",
+    "authorId": "elin-pelin",
+    "workId": "andreshko",
+    "category": "true_false",
+    "difficulty": "easy",
+    "sourceNote": "generated:true_false"
+  },
+  {
+    "id": "qt-tf-andreshko-false",
+    "type": "true_false",
+    "question": "„Андрешко\" е произведение на Йордан Йовков.",
+    "options": [
+      "Вярно",
+      "Невярно"
+    ],
+    "correctAnswer": "Невярно",
+    "explanation": "„Андрешко\" е разказ на Елин Пелин, не на Йордан Йовков.",
+    "authorId": "elin-pelin",
+    "workId": "andreshko",
+    "category": "true_false",
+    "difficulty": "medium",
+    "sourceNote": "generated:true_false_false"
+  },
+  {
+    "id": "qt-tf-spasova-mogila-true",
+    "type": "true_false",
+    "question": "„Спасова могила\" е произведение на Елин Пелин.",
+    "options": [
+      "Вярно",
+      "Невярно"
+    ],
+    "correctAnswer": "Вярно",
+    "explanation": "„Спасова могила\" е разказ на Елин Пелин.",
+    "authorId": "elin-pelin",
+    "workId": "spasova-mogila",
+    "category": "true_false",
+    "difficulty": "easy",
+    "sourceNote": "generated:true_false"
+  },
+  {
+    "id": "qt-tf-spasova-mogila-false",
+    "type": "true_false",
+    "question": "„Спасова могила\" е произведение на Атанас Далчев.",
+    "options": [
+      "Вярно",
+      "Невярно"
+    ],
+    "correctAnswer": "Невярно",
+    "explanation": "„Спасова могила\" е разказ на Елин Пелин, не на Атанас Далчев.",
+    "authorId": "elin-pelin",
+    "workId": "spasova-mogila",
+    "category": "true_false",
+    "difficulty": "medium",
+    "sourceNote": "generated:true_false_false"
+  },
+  {
+    "id": "qt-tf-vetrenata-melnitsa-true",
+    "type": "true_false",
+    "question": "„Ветрената мелница\" е произведение на Елин Пелин.",
+    "options": [
+      "Вярно",
+      "Невярно"
+    ],
+    "correctAnswer": "Вярно",
+    "explanation": "„Ветрената мелница\" е разказ на Елин Пелин.",
+    "authorId": "elin-pelin",
+    "workId": "vetrenata-melnitsa",
+    "category": "true_false",
+    "difficulty": "easy",
+    "sourceNote": "generated:true_false"
+  },
+  {
+    "id": "qt-tf-vetrenata-melnitsa-false",
+    "type": "true_false",
+    "question": "„Ветрената мелница\" е произведение на Станислав Стратиев.",
+    "options": [
+      "Вярно",
+      "Невярно"
+    ],
+    "correctAnswer": "Невярно",
+    "explanation": "„Ветрената мелница\" е разказ на Елин Пелин, не на Станислав Стратиев.",
+    "authorId": "elin-pelin",
+    "workId": "vetrenata-melnitsa",
+    "category": "true_false",
+    "difficulty": "medium",
+    "sourceNote": "generated:true_false_false"
+  },
+  {
+    "id": "qt-tf-prikazka-za-stalbata-true",
+    "type": "true_false",
+    "question": "„Приказка за стълбата\" е произведение на Христо Смирненски.",
+    "options": [
+      "Вярно",
+      "Невярно"
+    ],
+    "correctAnswer": "Вярно",
+    "explanation": "„Приказка за стълбата\" е притча на Христо Смирненски.",
+    "authorId": "hristo-smirnenski",
+    "workId": "prikazka-za-stalbata",
+    "category": "true_false",
+    "difficulty": "easy",
+    "sourceNote": "generated:true_false"
+  },
+  {
+    "id": "qt-tf-prikazka-za-stalbata-false",
+    "type": "true_false",
+    "question": "„Приказка за стълбата\" е произведение на Никола Вапцаров.",
+    "options": [
+      "Вярно",
+      "Невярно"
+    ],
+    "correctAnswer": "Невярно",
+    "explanation": "„Приказка за стълбата\" е притча на Христо Смирненски, не на Никола Вапцаров.",
+    "authorId": "hristo-smirnenski",
+    "workId": "prikazka-za-stalbata",
+    "category": "true_false",
+    "difficulty": "medium",
+    "sourceNote": "generated:true_false_false"
+  },
+  {
+    "id": "qt-tf-kradetsat-na-praskovi-true",
+    "type": "true_false",
+    "question": "„Крадецът на праскови\" е произведение на Емилиян Станев.",
+    "options": [
+      "Вярно",
+      "Невярно"
+    ],
+    "correctAnswer": "Вярно",
+    "explanation": "„Крадецът на праскови\" е повест на Емилиян Станев.",
+    "authorId": "emiliyan-stanev",
+    "workId": "kradetsat-na-praskovi",
+    "category": "true_false",
+    "difficulty": "easy",
+    "sourceNote": "generated:true_false"
+  },
+  {
+    "id": "qt-tf-kradetsat-na-praskovi-false",
+    "type": "true_false",
+    "question": "„Крадецът на праскови\" е произведение на Виктор Пасков.",
+    "options": [
+      "Вярно",
+      "Невярно"
+    ],
+    "correctAnswer": "Невярно",
+    "explanation": "„Крадецът на праскови\" е повест на Емилиян Станев, не на Виктор Пасков.",
+    "authorId": "emiliyan-stanev",
+    "workId": "kradetsat-na-praskovi",
+    "category": "true_false",
+    "difficulty": "medium",
+    "sourceNote": "generated:true_false_false"
+  },
+  {
+    "id": "qt-tf-gradushka-true",
+    "type": "true_false",
+    "question": "„Градушка\" е произведение на Пейо Яворов.",
+    "options": [
+      "Вярно",
+      "Невярно"
+    ],
+    "correctAnswer": "Вярно",
+    "explanation": "„Градушка\" е лиро-епическа поема на Пейо Яворов.",
+    "authorId": "peyo-yavorov",
+    "workId": "gradushka",
+    "category": "true_false",
+    "difficulty": "easy",
+    "sourceNote": "generated:true_false"
+  },
+  {
+    "id": "qt-tf-gradushka-false",
+    "type": "true_false",
+    "question": "„Градушка\" е произведение на Христо Фотев.",
+    "options": [
+      "Вярно",
+      "Невярно"
+    ],
+    "correctAnswer": "Невярно",
+    "explanation": "„Градушка\" е лиро-епическа поема на Пейо Яворов, не на Христо Фотев.",
+    "authorId": "peyo-yavorov",
+    "workId": "gradushka",
+    "category": "true_false",
+    "difficulty": "medium",
+    "sourceNote": "generated:true_false_false"
+  },
+  {
+    "id": "qt-tf-dve-dushi-true",
+    "type": "true_false",
+    "question": "„Две души\" е произведение на Пейо Яворов.",
+    "options": [
+      "Вярно",
+      "Невярно"
+    ],
+    "correctAnswer": "Вярно",
+    "explanation": "„Две души\" е стихотворение на Пейо Яворов.",
+    "authorId": "peyo-yavorov",
+    "workId": "dve-dushi",
+    "category": "true_false",
+    "difficulty": "easy",
+    "sourceNote": "generated:true_false"
+  },
+  {
+    "id": "qt-tf-dve-dushi-false",
+    "type": "true_false",
+    "question": "„Две души\" е произведение на Никола Вапцаров.",
+    "options": [
+      "Вярно",
+      "Невярно"
+    ],
+    "correctAnswer": "Невярно",
+    "explanation": "„Две души\" е стихотворение на Пейо Яворов, не на Никола Вапцаров.",
+    "authorId": "peyo-yavorov",
+    "workId": "dve-dushi",
+    "category": "true_false",
+    "difficulty": "medium",
+    "sourceNote": "generated:true_false_false"
+  },
+  {
+    "id": "qt-tf-spi-ezeroto-true",
+    "type": "true_false",
+    "question": "„Спи езерото\" е произведение на Пенчо Славейков.",
+    "options": [
+      "Вярно",
+      "Невярно"
+    ],
+    "correctAnswer": "Вярно",
+    "explanation": "„Спи езерото\" е лирическа миниатюра на Пенчо Славейков.",
+    "authorId": "pencho-slaveykov",
+    "workId": "spi-ezeroto",
+    "category": "true_false",
+    "difficulty": "easy",
+    "sourceNote": "generated:true_false"
+  },
+  {
+    "id": "qt-tf-spi-ezeroto-false",
+    "type": "true_false",
+    "question": "„Спи езерото\" е произведение на Йордан Радичков.",
+    "options": [
+      "Вярно",
+      "Невярно"
+    ],
+    "correctAnswer": "Невярно",
+    "explanation": "„Спи езерото\" е лирическа миниатюра на Пенчо Славейков, не на Йордан Радичков.",
+    "authorId": "pencho-slaveykov",
+    "workId": "spi-ezeroto",
+    "category": "true_false",
+    "difficulty": "medium",
+    "sourceNote": "generated:true_false_false"
+  },
+  {
+    "id": "qt-tf-az-iskam-da-te-pomnya-vse-taka-true",
+    "type": "true_false",
+    "question": "„Аз искам да те помня все така\" е произведение на Димчо Дебелянов.",
+    "options": [
+      "Вярно",
+      "Невярно"
+    ],
+    "correctAnswer": "Вярно",
+    "explanation": "„Аз искам да те помня все така\" е елегия на Димчо Дебелянов.",
+    "authorId": "dimcho-debelyanov",
+    "workId": "az-iskam-da-te-pomnya-vse-taka",
+    "category": "true_false",
+    "difficulty": "easy",
+    "sourceNote": "generated:true_false"
+  },
+  {
+    "id": "qt-tf-az-iskam-da-te-pomnya-vse-taka-false",
+    "type": "true_false",
+    "question": "„Аз искам да те помня все така\" е произведение на Виктор Пасков.",
+    "options": [
+      "Вярно",
+      "Невярно"
+    ],
+    "correctAnswer": "Невярно",
+    "explanation": "„Аз искам да те помня все така\" е елегия на Димчо Дебелянов, не на Виктор Пасков.",
+    "authorId": "dimcho-debelyanov",
+    "workId": "az-iskam-da-te-pomnya-vse-taka",
+    "category": "true_false",
+    "difficulty": "medium",
+    "sourceNote": "generated:true_false_false"
+  },
+  {
+    "id": "qt-tf-kolko-si-hubava-true",
+    "type": "true_false",
+    "question": "„Колко си хубава!\" е произведение на Христо Фотев.",
+    "options": [
+      "Вярно",
+      "Невярно"
+    ],
+    "correctAnswer": "Вярно",
+    "explanation": "„Колко си хубава!\" е стихотворение на Христо Фотев.",
+    "authorId": "hristo-fotev",
+    "workId": "kolko-si-hubava",
+    "category": "true_false",
+    "difficulty": "easy",
+    "sourceNote": "generated:true_false"
+  },
+  {
+    "id": "qt-tf-kolko-si-hubava-false",
+    "type": "true_false",
+    "question": "„Колко си хубава!\" е произведение на Станислав Стратиев.",
+    "options": [
+      "Вярно",
+      "Невярно"
+    ],
+    "correctAnswer": "Невярно",
+    "explanation": "„Колко си хубава!\" е стихотворение на Христо Фотев, не на Станислав Стратиев.",
+    "authorId": "hristo-fotev",
+    "workId": "kolko-si-hubava",
+    "category": "true_false",
+    "difficulty": "medium",
+    "sourceNote": "generated:true_false_false"
+  },
+  {
+    "id": "qt-tf-posveshtenie-true",
+    "type": "true_false",
+    "question": "„Посвещение\" е произведение на Петя Дубарова.",
+    "options": [
+      "Вярно",
+      "Невярно"
+    ],
+    "correctAnswer": "Вярно",
+    "explanation": "„Посвещение\" е стихотворение на Петя Дубарова.",
+    "authorId": "petya-dubarova",
+    "workId": "posveshtenie",
+    "category": "true_false",
+    "difficulty": "easy",
+    "sourceNote": "generated:true_false"
+  },
+  {
+    "id": "qt-tf-posveshtenie-false",
+    "type": "true_false",
+    "question": "„Посвещение\" е произведение на Атанас Далчев.",
+    "options": [
+      "Вярно",
+      "Невярно"
+    ],
+    "correctAnswer": "Невярно",
+    "explanation": "„Посвещение\" е стихотворение на Петя Дубарова, не на Атанас Далчев.",
+    "authorId": "petya-dubarova",
+    "workId": "posveshtenie",
+    "category": "true_false",
+    "difficulty": "medium",
+    "sourceNote": "generated:true_false_false"
+  },
+  {
+    "id": "qt-tf-molitva-true",
+    "type": "true_false",
+    "question": "„Молитва\" е произведение на Атанас Далчев.",
+    "options": [
+      "Вярно",
+      "Невярно"
+    ],
+    "correctAnswer": "Вярно",
+    "explanation": "„Молитва\" е стихотворение на Атанас Далчев.",
+    "authorId": "atanas-dalchev",
+    "workId": "molitva",
+    "category": "true_false",
+    "difficulty": "easy",
+    "sourceNote": "generated:true_false"
+  },
+  {
+    "id": "qt-tf-molitva-false",
+    "type": "true_false",
+    "question": "„Молитва\" е произведение на Христо Смирненски.",
+    "options": [
+      "Вярно",
+      "Невярно"
+    ],
+    "correctAnswer": "Невярно",
+    "explanation": "„Молитва\" е стихотворение на Атанас Далчев, не на Христо Смирненски.",
+    "authorId": "atanas-dalchev",
+    "workId": "molitva",
+    "category": "true_false",
+    "difficulty": "medium",
+    "sourceNote": "generated:true_false_false"
+  },
+  {
+    "id": "qt-tf-pesenta-na-koleletata-true",
+    "type": "true_false",
+    "question": "„Песента на колелетата\" е произведение на Йордан Йовков.",
+    "options": [
+      "Вярно",
+      "Невярно"
+    ],
+    "correctAnswer": "Вярно",
+    "explanation": "„Песента на колелетата\" е разказ на Йордан Йовков.",
+    "authorId": "yordan-yovkov",
+    "workId": "pesenta-na-koleletata",
+    "category": "true_false",
+    "difficulty": "easy",
+    "sourceNote": "generated:true_false"
+  },
+  {
+    "id": "qt-tf-pesenta-na-koleletata-false",
+    "type": "true_false",
+    "question": "„Песента на колелетата\" е произведение на Виктор Пасков.",
+    "options": [
+      "Вярно",
+      "Невярно"
+    ],
+    "correctAnswer": "Невярно",
+    "explanation": "„Песента на колелетата\" е разказ на Йордан Йовков, не на Виктор Пасков.",
+    "authorId": "yordan-yovkov",
+    "workId": "pesenta-na-koleletata",
+    "category": "true_false",
+    "difficulty": "medium",
+    "sourceNote": "generated:true_false_false"
+  },
+  {
+    "id": "qt-tf-balada-za-georg-henig-true",
+    "type": "true_false",
+    "question": "„Балада за Георг Хених\" е произведение на Виктор Пасков.",
+    "options": [
+      "Вярно",
+      "Невярно"
+    ],
+    "correctAnswer": "Вярно",
+    "explanation": "„Балада за Георг Хених\" е повест на Виктор Пасков.",
+    "authorId": "viktor-paskov",
+    "workId": "balada-za-georg-henig",
+    "category": "true_false",
+    "difficulty": "easy",
+    "sourceNote": "generated:true_false"
+  },
+  {
+    "id": "qt-tf-balada-za-georg-henig-false",
+    "type": "true_false",
+    "question": "„Балада за Георг Хених\" е произведение на Пенчо Славейков.",
+    "options": [
+      "Вярно",
+      "Невярно"
+    ],
+    "correctAnswer": "Невярно",
+    "explanation": "„Балада за Георг Хених\" е повест на Виктор Пасков, не на Пенчо Славейков.",
+    "authorId": "viktor-paskov",
+    "workId": "balada-za-georg-henig",
+    "category": "true_false",
+    "difficulty": "medium",
+    "sourceNote": "generated:true_false_false"
+  },
+  {
+    "id": "qt-tf-potomka-true",
+    "type": "true_false",
+    "question": "„Потомка\" е произведение на Елисавета Багряна.",
+    "options": [
+      "Вярно",
+      "Невярно"
+    ],
+    "correctAnswer": "Вярно",
+    "explanation": "„Потомка\" е стихотворение на Елисавета Багряна.",
+    "authorId": "elisaveta-bagryana",
+    "workId": "potomka",
+    "category": "true_false",
+    "difficulty": "easy",
+    "sourceNote": "generated:true_false"
+  },
+  {
+    "id": "qt-tf-potomka-false",
+    "type": "true_false",
+    "question": "„Потомка\" е произведение на Христо Ботев.",
+    "options": [
+      "Вярно",
+      "Невярно"
+    ],
+    "correctAnswer": "Невярно",
+    "explanation": "„Потомка\" е стихотворение на Елисавета Багряна, не на Христо Ботев.",
+    "authorId": "elisaveta-bagryana",
+    "workId": "potomka",
+    "category": "true_false",
+    "difficulty": "medium",
+    "sourceNote": "generated:true_false_false"
+  },
+  {
+    "id": "qt-tf-chesten-krast-true",
+    "type": "true_false",
+    "question": "„Честен кръст\" е произведение на Борис Христов.",
+    "options": [
+      "Вярно",
+      "Невярно"
+    ],
+    "correctAnswer": "Вярно",
+    "explanation": "„Честен кръст\" е лиро-епическа поема на Борис Христов.",
+    "authorId": "boris-hristov",
+    "workId": "chesten-krast",
+    "category": "true_false",
+    "difficulty": "easy",
+    "sourceNote": "generated:true_false"
+  },
+  {
+    "id": "qt-tf-chesten-krast-false",
+    "type": "true_false",
+    "question": "„Честен кръст\" е произведение на Йордан Йовков.",
+    "options": [
+      "Вярно",
+      "Невярно"
+    ],
+    "correctAnswer": "Невярно",
+    "explanation": "„Честен кръст\" е лиро-епическа поема на Борис Христов, не на Йордан Йовков.",
+    "authorId": "boris-hristov",
+    "workId": "chesten-krast",
+    "category": "true_false",
+    "difficulty": "medium",
+    "sourceNote": "generated:true_false_false"
+  },
+  {
+    "id": "qt-match-01",
+    "type": "match_author_work",
+    "question": "Свържи авторите с правилните произведения.",
+    "pairs": [
+      {
+        "authorId": "dimitar-talev",
+        "authorName": "Димитър Талев",
+        "workId": "jelezniyat-svetilnik",
+        "workTitle": "Железният светилник"
+      },
+      {
+        "authorId": "aleko-konstantinov",
+        "authorName": "Алеко Константинов",
+        "workId": "bai-ganyo-jurnalist",
+        "workTitle": "Бай Ганьо журналист"
+      },
+      {
+        "authorId": "stanislav-stratiev",
+        "authorName": "Станислав Стратиев",
+        "workId": "balkanski-sindrom",
+        "workTitle": "Балкански синдром"
+      },
+      {
+        "authorId": "ivan-vazov",
+        "authorName": "Иван Вазов",
+        "workId": "paisiy",
+        "workTitle": "Паисий"
+      }
+    ],
+    "options": [
+      "Железният светилник",
+      "Бай Ганьо журналист",
+      "Балкански синдром",
+      "Паисий"
+    ],
+    "correctAnswer": null,
+    "explanation": "Димитър Талев — „Железният светилник\"; Алеко Константинов — „Бай Ганьо журналист\"; Станислав Стратиев — „Балкански синдром\"; Иван Вазов — „Паисий\".",
+    "authorId": null,
+    "authorIds": [
+      "dimitar-talev",
+      "aleko-konstantinov",
+      "stanislav-stratiev",
+      "ivan-vazov"
+    ],
+    "workId": null,
+    "workIds": [
+      "jelezniyat-svetilnik",
+      "bai-ganyo-jurnalist",
+      "balkanski-sindrom",
+      "paisiy"
+    ],
+    "category": "match_author_work",
+    "difficulty": "medium",
+    "sourceNote": "generated:match_author_work"
+  },
+  {
+    "id": "qt-match-02",
+    "type": "match_author_work",
+    "question": "Свържи авторите с правилните произведения.",
+    "pairs": [
+      {
+        "authorId": "nikola-vaptsarov",
+        "authorName": "Никола Вапцаров",
+        "workId": "istoriya",
+        "workTitle": "История"
+      },
+      {
+        "authorId": "yordan-radichkov",
+        "authorName": "Йордан Радичков",
+        "workId": "noev-kovcheg",
+        "workTitle": "Ноев ковчег"
+      },
+      {
+        "authorId": "hristo-botev",
+        "authorName": "Христо Ботев",
+        "workId": "borba",
+        "workTitle": "Борба"
+      },
+      {
+        "authorId": "elin-pelin",
+        "authorName": "Елин Пелин",
+        "workId": "andreshko",
+        "workTitle": "Андрешко"
+      }
+    ],
+    "options": [
+      "История",
+      "Ноев ковчег",
+      "Борба",
+      "Андрешко"
+    ],
+    "correctAnswer": null,
+    "explanation": "Никола Вапцаров — „История\"; Йордан Радичков — „Ноев ковчег\"; Христо Ботев — „Борба\"; Елин Пелин — „Андрешко\".",
+    "authorId": null,
+    "authorIds": [
+      "nikola-vaptsarov",
+      "yordan-radichkov",
+      "hristo-botev",
+      "elin-pelin"
+    ],
+    "workId": null,
+    "workIds": [
+      "istoriya",
+      "noev-kovcheg",
+      "borba",
+      "andreshko"
+    ],
+    "category": "match_author_work",
+    "difficulty": "medium",
+    "sourceNote": "generated:match_author_work"
+  },
+  {
+    "id": "qt-match-03",
+    "type": "match_author_work",
+    "question": "Свържи авторите с правилните произведения.",
+    "pairs": [
+      {
+        "authorId": "hristo-smirnenski",
+        "authorName": "Христо Смирненски",
+        "workId": "prikazka-za-stalbata",
+        "workTitle": "Приказка за стълбата"
+      },
+      {
+        "authorId": "emiliyan-stanev",
+        "authorName": "Емилиян Станев",
+        "workId": "kradetsat-na-praskovi",
+        "workTitle": "Крадецът на праскови"
+      },
+      {
+        "authorId": "peyo-yavorov",
+        "authorName": "Пейо Яворов",
+        "workId": "gradushka",
+        "workTitle": "Градушка"
+      },
+      {
+        "authorId": "pencho-slaveykov",
+        "authorName": "Пенчо Славейков",
+        "workId": "spi-ezeroto",
+        "workTitle": "Спи езерото"
+      }
+    ],
+    "options": [
+      "Приказка за стълбата",
+      "Крадецът на праскови",
+      "Градушка",
+      "Спи езерото"
+    ],
+    "correctAnswer": null,
+    "explanation": "Христо Смирненски — „Приказка за стълбата\"; Емилиян Станев — „Крадецът на праскови\"; Пейо Яворов — „Градушка\"; Пенчо Славейков — „Спи езерото\".",
+    "authorId": null,
+    "authorIds": [
+      "hristo-smirnenski",
+      "emiliyan-stanev",
+      "peyo-yavorov",
+      "pencho-slaveykov"
+    ],
+    "workId": null,
+    "workIds": [
+      "prikazka-za-stalbata",
+      "kradetsat-na-praskovi",
+      "gradushka",
+      "spi-ezeroto"
+    ],
+    "category": "match_author_work",
+    "difficulty": "medium",
+    "sourceNote": "generated:match_author_work"
+  },
+  {
+    "id": "qt-match-04",
+    "type": "match_author_work",
+    "question": "Свържи авторите с правилните произведения.",
+    "pairs": [
+      {
+        "authorId": "dimcho-debelyanov",
+        "authorName": "Димчо Дебелянов",
+        "workId": "az-iskam-da-te-pomnya-vse-taka",
+        "workTitle": "Аз искам да те помня все така"
+      },
+      {
+        "authorId": "hristo-fotev",
+        "authorName": "Христо Фотев",
+        "workId": "kolko-si-hubava",
+        "workTitle": "Колко си хубава!"
+      },
+      {
+        "authorId": "petya-dubarova",
+        "authorName": "Петя Дубарова",
+        "workId": "posveshtenie",
+        "workTitle": "Посвещение"
+      },
+      {
+        "authorId": "atanas-dalchev",
+        "authorName": "Атанас Далчев",
+        "workId": "molitva",
+        "workTitle": "Молитва"
+      }
+    ],
+    "options": [
+      "Аз искам да те помня все така",
+      "Колко си хубава!",
+      "Посвещение",
+      "Молитва"
+    ],
+    "correctAnswer": null,
+    "explanation": "Димчо Дебелянов — „Аз искам да те помня все така\"; Христо Фотев — „Колко си хубава!\"; Петя Дубарова — „Посвещение\"; Атанас Далчев — „Молитва\".",
+    "authorId": null,
+    "authorIds": [
+      "dimcho-debelyanov",
+      "hristo-fotev",
+      "petya-dubarova",
+      "atanas-dalchev"
+    ],
+    "workId": null,
+    "workIds": [
+      "az-iskam-da-te-pomnya-vse-taka",
+      "kolko-si-hubava",
+      "posveshtenie",
+      "molitva"
+    ],
+    "category": "match_author_work",
+    "difficulty": "medium",
+    "sourceNote": "generated:match_author_work"
+  },
+  {
+    "id": "qt-match-05",
+    "type": "match_author_work",
+    "question": "Свържи авторите с правилните произведения.",
+    "pairs": [
+      {
+        "authorId": "yordan-yovkov",
+        "authorName": "Йордан Йовков",
+        "workId": "pesenta-na-koleletata",
+        "workTitle": "Песента на колелетата"
+      },
+      {
+        "authorId": "viktor-paskov",
+        "authorName": "Виктор Пасков",
+        "workId": "balada-za-georg-henig",
+        "workTitle": "Балада за Георг Хених"
+      },
+      {
+        "authorId": "elisaveta-bagryana",
+        "authorName": "Елисавета Багряна",
+        "workId": "potomka",
+        "workTitle": "Потомка"
+      },
+      {
+        "authorId": "boris-hristov",
+        "authorName": "Борис Христов",
+        "workId": "chesten-krast",
+        "workTitle": "Честен кръст"
+      }
+    ],
+    "options": [
+      "Песента на колелетата",
+      "Балада за Георг Хених",
+      "Потомка",
+      "Честен кръст"
+    ],
+    "correctAnswer": null,
+    "explanation": "Йордан Йовков — „Песента на колелетата\"; Виктор Пасков — „Балада за Георг Хених\"; Елисавета Багряна — „Потомка\"; Борис Христов — „Честен кръст\".",
+    "authorId": null,
+    "authorIds": [
+      "yordan-yovkov",
+      "viktor-paskov",
+      "elisaveta-bagryana",
+      "boris-hristov"
+    ],
+    "workId": null,
+    "workIds": [
+      "pesenta-na-koleletata",
+      "balada-za-georg-henig",
+      "potomka",
+      "chesten-krast"
+    ],
+    "category": "match_author_work",
+    "difficulty": "medium",
+    "sourceNote": "generated:match_author_work"
+  }
+]

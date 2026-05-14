@@ -55,30 +55,43 @@ All content lives in `src/data/`. Do not edit these files without running the QA
 | `src/data/authors.json` | 20 Bulgarian authors with biographical metadata |
 | `src/data/works.json` | 27 literary works with genre, period, themes, motifs |
 | `src/data/questions.json` | 415 manually curated base questions — **canonical source of truth** |
-| `src/data/questions.v2.json` | Generated variant questions — **do not edit by hand** |
+| `src/data/questions.v2.json` | 81 generated alternate-phrasing variants — **do not edit by hand** |
+| `src/data/questions.types.json` | 59 generated new question types (true/false, match) — **do not edit by hand** |
 
 Source reference notes are in `source/literatura-zapiski.md`.
 
 ### Question pool
 
-The app uses both files together (`questions.json` + `questions.v2.json`) as the active quiz pool. The combined pool currently has **496 questions**.
+The app merges all three files into one pool. **555 questions total** (415 base + 81 variants + 59 type questions).
 
-`questions.v2.json` is generated output. To regenerate it after changing `authors.json` or `works.json`:
+#### Regenerating generated files
 
 ```bash
-npm run generate:variants
+npm run generate:variants  # regenerate questions.v2.json (after changing authors/works)
+npm run generate:types     # regenerate questions.types.json (after changing authors/works)
 npm run build
 npm run qa:content
 npm run qa:source
 npm run qa:semantic
 ```
 
-**Never edit `questions.v2.json` directly.** Edit the generator (`scripts/generate-question-variants.mjs`) or the source data files instead.
+**Never edit `questions.v2.json` or `questions.types.json` directly.** Edit the generator scripts or source data files instead.
 
 #### Distractor quality rules
 
 - For question types where all four options are author names, the generator uses `pickDiverseAuthorDistractors()` to ensure no more than 2 options share the same first name.
 - `qa:content` will warn `CLUSTERED_FIRST_NAME` if 3+ options share a first name — this should never appear after a clean regeneration.
+
+#### New question types (`questions.types.json`)
+
+| Type | Category | Count | Description |
+|------|----------|-------|-------------|
+| `true_false` | `true_false` | 54 | "„X" е произведение на Y." — Вярно/Невярно; 27 true (easy) + 27 false (medium) |
+| `match_author_work` | `match_author_work` | 5 | Match 4 authors to their works; all pairs must be correct to score |
+
+True questions are `difficulty: "easy"`, false statements `"medium"`, and match questions `"medium"`.
+
+**Future question types (not yet implemented):** chronological ordering, select-all-correct, fill-missing-word.
 
 ---
 
@@ -90,7 +103,8 @@ npm run dev              # start dev server at http://localhost:5173
 npm run build            # production build → dist/
 npm run preview          # serve the production build locally
 npm run lint             # ESLint
-npm run generate:variants  # regenerate src/data/questions.v2.json from source data
+npm run generate:variants  # regenerate src/data/questions.v2.json
+npm run generate:types     # regenerate src/data/questions.types.json
 ```
 
 ---
