@@ -41,6 +41,11 @@ function hash32(str) {
   return h;
 }
 
+/** Returns the first word of a full name (the given name). */
+function firstName(fullName) {
+  return fullName.split(' ')[0];
+}
+
 /**
  * Pick `count` items from `pool`, excluding any value in `excludeSet`.
  * Selection is deterministic: sorted alphabetically, then offset by `seedStr`.
@@ -56,6 +61,53 @@ function pickDistractors(pool, count, excludeSet, seedStr) {
     result.push(sorted[(start + i) % sorted.length]);
   }
   return result;
+}
+
+/**
+ * Like pickDistractors but enforces first-name diversity across the full
+ * option set (correct answer + selected distractors).
+ *
+ * Runs three passes with progressively relaxed constraints:
+ *   Pass 1 (maxSameFirstName = 1) — each first name appears at most once in
+ *     the option set.  Produces maximally varied options.
+ *   Pass 2 (maxSameFirstName = 2) — allows pairs; still blocks triples.
+ *   Pass 3 (maxSameFirstName = 3) — no first-name constraint (emergency
+ *     fallback; never needed for the current 20-author corpus).
+ *
+ * Iteration order is the same deterministic hash-offset walk used by
+ * pickDistractors, so output is stable across repeated runs.
+ */
+function pickDiverseAuthorDistractors(pool, count, excludeSet, seedStr, correctAnswer) {
+  const candidates = pool.filter(x => !excludeSet.has(x));
+  if (candidates.length < count) return null;
+
+  const sorted = [...candidates].sort((a, b) => a.localeCompare(b));
+  const start  = hash32(seedStr) % sorted.length;
+  const order  = Array.from(
+    { length: sorted.length },
+    (_, i) => sorted[(start + i) % sorted.length]
+  );
+
+  for (let maxSame = 1; maxSame <= 3; maxSame++) {
+    const fnCounts = { [firstName(correctAnswer)]: 1 };
+    const result   = [];
+    const used     = new Set();
+
+    for (const candidate of order) {
+      if (result.length >= count) break;
+      if (used.has(candidate)) continue;
+      const fn  = firstName(candidate);
+      const cur = fnCounts[fn] || 0;
+      if (cur >= maxSame) continue;
+      result.push(candidate);
+      used.add(candidate);
+      fnCounts[fn] = cur + 1;
+    }
+
+    if (result.length >= count) return result;
+  }
+
+  return null; // unreachable with 20+ authors
 }
 
 // ── Key-fact suitability check for work_recognition ───────────────────────────
@@ -128,7 +180,7 @@ for (const work of works) {
   if (!author) continue;
 
   const correct = author.name;
-  const distractors = pickDistractors(allAuthorNames, 3, new Set([correct]), `A-${work.id}`);
+  const distractors = pickDiverseAuthorDistractors(allAuthorNames, 3, new Set([correct]), `A-${work.id}`, correct);
   if (!distractors) { skipped.insufficientDistractors++; continue; }
 
   addQuestion({
@@ -228,7 +280,7 @@ for (const author of authors) {
   if (!nickname) continue;
 
   const correct = author.name;
-  const distractors = pickDistractors(allAuthorNames, 3, new Set([correct]), `D-${author.id}`);
+  const distractors = pickDiverseAuthorDistractors(allAuthorNames, 3, new Set([correct]), `D-${author.id}`, correct);
   if (!distractors) { skipped.insufficientDistractors++; continue; }
 
   addQuestion({

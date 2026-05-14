@@ -152,12 +152,23 @@ Remaining backlog: ~95 `GENERIC_EXPLANATION` (low), ~20 `TOO_ABSTRACT_ANSWER` (m
 - `qa:semantic` DUPLICATE_CONCEPT check restricted to base questions only (generated variants are intentional alternate phrasings)
 - `qa:source` skips generated questions (validated by generator from already-verified data)
 
+#### Distractor diversity polish ✅ IMPLEMENTED
+
+**Branch:** `v2/feature/distractor-diversity`
+
+Problem: the original generator could pick 3 distractors that all share a first name (e.g. Христо Ботев, Христо Смирненски, Христо Фотев), making options hard to distinguish visually.
+
+Changes:
+- Added `firstName()` helper and `pickDiverseAuthorDistractors()` with 3-pass progressive relaxation (max 1 same first name → max 2 → no constraint as emergency fallback)
+- Applied to Type A and Type D loops (author-name option sets); Types B and C use work titles and are unaffected
+- Added `CLUSTERED_FIRST_NAME` warning to `qa:content` — fires when 3+ options share a first name in any `author`/`nickname` category question
+
 #### QA status after implementation
 
 | Check | Result |
 |-------|--------|
 | `npm run build` | ✅ PASS |
-| `npm run qa:content` | ✅ 0 errors, 19 LONG_OPTION warnings (pre-existing) |
+| `npm run qa:content` | ✅ 0 errors, 0 CLUSTERED_FIRST_NAME, 19 LONG_OPTION warnings (pre-existing) |
 | `npm run qa:source` | ✅ 0 errors, 261 warnings (pre-existing) |
 | `npm run qa:semantic` | ✅ 0 high-severity findings |
 

@@ -75,6 +75,11 @@ npm run qa:semantic
 
 **Never edit `questions.v2.json` directly.** Edit the generator (`scripts/generate-question-variants.mjs`) or the source data files instead.
 
+#### Distractor quality rules
+
+- For question types where all four options are author names, the generator uses `pickDiverseAuthorDistractors()` to ensure no more than 2 options share the same first name.
+- `qa:content` will warn `CLUSTERED_FIRST_NAME` if 3+ options share a first name — this should never appear after a clean regeneration.
+
 ---
 
 ## Local Development
