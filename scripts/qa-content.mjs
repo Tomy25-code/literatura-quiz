@@ -31,9 +31,15 @@ const fillBlankQuestions = (() => {
   try { return load('src/data/questions.fillblank.json'); }
   catch { return []; } // generated file may not exist yet
 })();
-const questions = [...baseQuestions, ...variantQuestions, ...typeQuestions, ...fillBlankQuestions];
+const recognitionQuestions = (() => {
+  try { return load('src/data/questions.recognition.json'); }
+  catch { return []; } // generated file may not exist yet
+})();
+const questions = [...baseQuestions, ...variantQuestions, ...typeQuestions, ...fillBlankQuestions, ...recognitionQuestions];
 // IDs of questions from questions.types.json — used for type-specific consistency checks
 const typeQuestionIdSet = new Set(typeQuestions.map(q => q.id));
+// IDs of generated work-recognition questions — used to enforce recognition-specific rules
+const recognitionIdSet = new Set(recognitionQuestions.map(q => q.id));
 
 // ── Constants ─────────────────────────────────────────────────────────────────
 
@@ -287,6 +293,32 @@ questions.forEach((q, i) => {
         err(id, 'ANSWER_NOT_IN_OPTIONS',
           `correctAnswer "${String(q.correctAnswer).slice(0, 60)}…" not found in options`);
       }
+    }
+  }
+
+  // ── Recognition-question checks ───────────────────────────────────────────
+  if (recognitionIdSet.has(q.id)) {
+    // workId is mandatory for all recognition questions
+    if (!q.workId) {
+      err(id, 'RECOGNITION_MISSING_WORK_ID', 'recognition question must have workId');
+    }
+    // correctAnswer must equal the referenced work's title
+    if (q.workId && workMap.has(q.workId)) {
+      const expectedTitle = workMap.get(q.workId).title;
+      if (q.correctAnswer !== expectedTitle) {
+        err(id, 'RECOGNITION_ANSWER_MISMATCH',
+          `recognition correctAnswer "${q.correctAnswer}" ≠ work.title "${expectedTitle}"`);
+      }
+    }
+    // options must be exactly 4 unique values
+    if (Array.isArray(q.options)) {
+      if (new Set(q.options).size !== q.options.length) {
+        err(id, 'RECOGNITION_DUPLICATE_OPTIONS', 'recognition question has duplicate options');
+      }
+    }
+    // sourceFields must exist
+    if (!Array.isArray(q.sourceFields) || q.sourceFields.length === 0) {
+      err(id, 'RECOGNITION_MISSING_SOURCE_FIELDS', 'recognition question must have sourceFields array');
     }
   }
 
@@ -546,13 +578,14 @@ const needsReview = [
 ].filter(id => id !== 'authors.json' && id !== 'works.json' && id !== 'questions.json');
 
 const summary = {
-  authors:              authors.length,
-  works:                works.length,
-  baseQuestions:        baseQuestions.length,
-  generatedQuestions:   variantQuestions.length,
-  typeQuestions:        typeQuestions.length,
-  fillBlankQuestions:   fillBlankQuestions.length,
-  totalQuestions:       questions.length,
+  authors:                authors.length,
+  works:                  works.length,
+  baseQuestions:          baseQuestions.length,
+  generatedQuestions:     variantQuestions.length,
+  typeQuestions:          typeQuestions.length,
+  fillBlankQuestions:     fillBlankQuestions.length,
+  recognitionQuestions:   recognitionQuestions.length,
+  totalQuestions:         questions.length,
   totalErrors:          errors.length,
   totalWarnings:        warnings.length,
   questionsWithErrors:      [...new Set(errors.map(e => e.id))].filter(id => seenQIds.has(id)).length,
@@ -757,7 +790,7 @@ console.log('');
 console.log(`${BOLD}${CYAN}━━━ Literatura Quiz — Content QA ━━━${RESET}`);
 console.log(`  Authors:    ${authors.length}`);
 console.log(`  Works:      ${works.length}`);
-console.log(`  Questions:  ${summary.baseQuestions} base + ${summary.generatedQuestions} variants + ${summary.typeQuestions} types + ${summary.fillBlankQuestions} fill-blank = ${summary.totalQuestions} total`);
+console.log(`  Questions:  ${summary.baseQuestions} base + ${summary.generatedQuestions} variants + ${summary.typeQuestions} types + ${summary.fillBlankQuestions} fill-blank + ${summary.recognitionQuestions} recognition = ${summary.totalQuestions} total`);
 console.log('');
 
 if (errors.length === 0) {

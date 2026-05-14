@@ -1,0 +1,1410 @@
+[
+  {
+    "id": "qr-theme-jelezniyat-svetilnik",
+    "type": "multiple_choice",
+    "category": "work_recognition",
+    "question": "Кое произведение се свързва с темите „народ и история\" и „борбата между старото и новото\"?",
+    "options": [
+      "Ноев ковчег",
+      "Новото гробище над Сливница",
+      "Железният светилник",
+      "Паисий"
+    ],
+    "correctAnswer": "Железният светилник",
+    "explanation": "„Железният светилник\" от Димитър Талев се свързва с темите „народ и история\" и „борбата между старото и новото\".",
+    "authorId": "dimitar-talev",
+    "workId": "jelezniyat-svetilnik",
+    "difficulty": "medium",
+    "source": "work-recognition-generator",
+    "generated": true,
+    "sourceFields": [
+      "themes"
+    ]
+  },
+  {
+    "id": "qr-motif-jelezniyat-svetilnik",
+    "type": "multiple_choice",
+    "category": "work_recognition",
+    "question": "За коя творба са характерни мотивите за родът и историята?",
+    "options": [
+      "Паисий",
+      "Железният светилник",
+      "Песента на колелетата",
+      "Посвещение"
+    ],
+    "correctAnswer": "Железният светилник",
+    "explanation": "„Железният светилник\" от Димитър Талев се характеризира с мотивите за родът и историята.",
+    "authorId": "dimitar-talev",
+    "workId": "jelezniyat-svetilnik",
+    "difficulty": "hard",
+    "source": "work-recognition-generator",
+    "generated": true,
+    "sourceFields": [
+      "motifs"
+    ]
+  },
+  {
+    "id": "qr-essay-jelezniyat-svetilnik",
+    "type": "multiple_choice",
+    "category": "work_recognition",
+    "question": "Коя творба е подходяща за интерпретативно съчинение върху темата за „борбата между старото и новото\"?",
+    "options": [
+      "Железният светилник",
+      "Ноев ковчег",
+      "Новото гробище над Сливница",
+      "Паисий"
+    ],
+    "correctAnswer": "Железният светилник",
+    "explanation": "„Железният светилник\" от Димитър Талев е подходящо за интерпретативно съчинение върху темата за „борбата между старото и новото\".",
+    "authorId": "dimitar-talev",
+    "workId": "jelezniyat-svetilnik",
+    "difficulty": "medium",
+    "source": "work-recognition-generator",
+    "generated": true,
+    "sourceFields": [
+      "themes"
+    ]
+  },
+  {
+    "id": "qr-theme-bai-ganyo-jurnalist",
+    "type": "multiple_choice",
+    "category": "work_recognition",
+    "question": "Кое произведение се свързва с темите „упадъкът на ценностите от Възраждането\" и „обърканият обществен порядък\"?",
+    "options": [
+      "Две души",
+      "Бай Ганьо журналист",
+      "Градушка",
+      "История"
+    ],
+    "correctAnswer": "Бай Ганьо журналист",
+    "explanation": "„Бай Ганьо журналист\" от Алеко Константинов се свързва с темите „упадъкът на ценностите от Възраждането\" и „обърканият обществен порядък\".",
+    "authorId": "aleko-konstantinov",
+    "workId": "bai-ganyo-jurnalist",
+    "difficulty": "medium",
+    "source": "work-recognition-generator",
+    "generated": true,
+    "sourceFields": [
+      "themes"
+    ]
+  },
+  {
+    "id": "qr-motif-bai-ganyo-jurnalist",
+    "type": "multiple_choice",
+    "category": "work_recognition",
+    "question": "За коя творба са характерни мотивите за разказ в разказа и пътуването в Европа?",
+    "options": [
+      "История",
+      "Железният светилник",
+      "Бай Ганьо журналист",
+      "Колко си хубава!"
+    ],
+    "correctAnswer": "Бай Ганьо журналист",
+    "explanation": "„Бай Ганьо журналист\" от Алеко Константинов се характеризира с мотивите за разказ в разказа и пътуването в Европа.",
+    "authorId": "aleko-konstantinov",
+    "workId": "bai-ganyo-jurnalist",
+    "difficulty": "hard",
+    "source": "work-recognition-generator",
+    "generated": true,
+    "sourceFields": [
+      "motifs"
+    ]
+  },
+  {
+    "id": "qr-essay-bai-ganyo-jurnalist",
+    "type": "multiple_choice",
+    "category": "work_recognition",
+    "question": "Коя творба е подходяща за интерпретативно съчинение върху темата за „упадъкът на ценностите от Възраждането\"?",
+    "options": [
+      "Новото гробище над Сливница",
+      "Паисий",
+      "Песента на колелетата",
+      "Бай Ганьо журналист"
+    ],
+    "correctAnswer": "Бай Ганьо журналист",
+    "explanation": "„Бай Ганьо журналист\" от Алеко Константинов е подходящо за интерпретативно съчинение върху темата за „упадъкът на ценностите от Възраждането\".",
+    "authorId": "aleko-konstantinov",
+    "workId": "bai-ganyo-jurnalist",
+    "difficulty": "medium",
+    "source": "work-recognition-generator",
+    "generated": true,
+    "sourceFields": [
+      "themes"
+    ]
+  },
+  {
+    "id": "qr-theme-balkanski-sindrom",
+    "type": "multiple_choice",
+    "category": "work_recognition",
+    "question": "Кое произведение се свързва с темите „абсурдът\" и „обществените проблеми\"?",
+    "options": [
+      "Спасова могила",
+      "Спи езерото",
+      "Балкански синдром",
+      "Ветрената мелница"
+    ],
+    "correctAnswer": "Балкански синдром",
+    "explanation": "„Балкански синдром\" от Станислав Стратиев се свързва с темите „абсурдът\" и „обществените проблеми\".",
+    "authorId": "stanislav-stratiev",
+    "workId": "balkanski-sindrom",
+    "difficulty": "medium",
+    "source": "work-recognition-generator",
+    "generated": true,
+    "sourceFields": [
+      "themes"
+    ]
+  },
+  {
+    "id": "qr-motif-balkanski-sindrom",
+    "type": "multiple_choice",
+    "category": "work_recognition",
+    "question": "За коя творба са характерни мотивите за абсурдът и смехът?",
+    "options": [
+      "Посвещение",
+      "Балкански синдром",
+      "Потомка",
+      "При Рилския манастир"
+    ],
+    "correctAnswer": "Балкански синдром",
+    "explanation": "„Балкански синдром\" от Станислав Стратиев се характеризира с мотивите за абсурдът и смехът.",
+    "authorId": "stanislav-stratiev",
+    "workId": "balkanski-sindrom",
+    "difficulty": "hard",
+    "source": "work-recognition-generator",
+    "generated": true,
+    "sourceFields": [
+      "motifs"
+    ]
+  },
+  {
+    "id": "qr-essay-balkanski-sindrom",
+    "type": "multiple_choice",
+    "category": "work_recognition",
+    "question": "Коя творба е подходяща за интерпретативно съчинение върху темата за „поведението на човека, изгубил вяра в справедливия живот\"?",
+    "options": [
+      "Балкански синдром",
+      "Градушка",
+      "История",
+      "Железният светилник"
+    ],
+    "correctAnswer": "Балкански синдром",
+    "explanation": "„Балкански синдром\" от Станислав Стратиев е подходящо за интерпретативно съчинение върху темата за „поведението на човека, изгубил вяра в справедливия живот\".",
+    "authorId": "stanislav-stratiev",
+    "workId": "balkanski-sindrom",
+    "difficulty": "medium",
+    "source": "work-recognition-generator",
+    "generated": true,
+    "sourceFields": [
+      "themes"
+    ]
+  },
+  {
+    "id": "qr-theme-paisiy",
+    "type": "multiple_choice",
+    "category": "work_recognition",
+    "question": "Кое произведение се свързва с темите „историческата памет\" и „високите образци на миналото\"?",
+    "options": [
+      "Спасова могила",
+      "Спи езерото",
+      "Паисий",
+      "Ветрената мелница"
+    ],
+    "correctAnswer": "Паисий",
+    "explanation": "„Паисий\" от Иван Вазов се свързва с темите „историческата памет\" и „високите образци на миналото\".",
+    "authorId": "ivan-vazov",
+    "workId": "paisiy",
+    "difficulty": "medium",
+    "source": "work-recognition-generator",
+    "generated": true,
+    "sourceFields": [
+      "themes"
+    ]
+  },
+  {
+    "id": "qr-motif-paisiy",
+    "type": "multiple_choice",
+    "category": "work_recognition",
+    "question": "За коя творба са характерни мотивите за паметта и миналото?",
+    "options": [
+      "Колко си хубава!",
+      "Паисий",
+      "Крадецът на праскови",
+      "Молитва"
+    ],
+    "correctAnswer": "Паисий",
+    "explanation": "„Паисий\" от Иван Вазов се характеризира с мотивите за паметта и миналото.",
+    "authorId": "ivan-vazov",
+    "workId": "paisiy",
+    "difficulty": "hard",
+    "source": "work-recognition-generator",
+    "generated": true,
+    "sourceFields": [
+      "motifs"
+    ]
+  },
+  {
+    "id": "qr-theme-novoto-grobishte-nad-slivnitsa",
+    "type": "multiple_choice",
+    "category": "work_recognition",
+    "question": "Кое произведение се свързва с темите „Сръбско-българската война\" и „защитата на Съединението\"?",
+    "options": [
+      "Две души",
+      "Градушка",
+      "Новото гробище над Сливница",
+      "История"
+    ],
+    "correctAnswer": "Новото гробище над Сливница",
+    "explanation": "„Новото гробище над Сливница\" от Иван Вазов се свързва с темите „Сръбско-българската война\" и „защитата на Съединението\".",
+    "authorId": "ivan-vazov",
+    "workId": "novoto-grobishte-nad-slivnitsa",
+    "difficulty": "medium",
+    "source": "work-recognition-generator",
+    "generated": true,
+    "sourceFields": [
+      "themes"
+    ]
+  },
+  {
+    "id": "qr-theme-pri-rilskiya-manastir",
+    "type": "multiple_choice",
+    "category": "work_recognition",
+    "question": "Кое произведение се свързва с темите „любовта към България\" и „българската природа\"?",
+    "options": [
+      "Борба",
+      "Честен кръст",
+      "До моето първо либе",
+      "При Рилския манастир"
+    ],
+    "correctAnswer": "При Рилския манастир",
+    "explanation": "„При Рилския манастир\" от Иван Вазов се свързва с темите „любовта към България\" и „българската природа\".",
+    "authorId": "ivan-vazov",
+    "workId": "pri-rilskiya-manastir",
+    "difficulty": "medium",
+    "source": "work-recognition-generator",
+    "generated": true,
+    "sourceFields": [
+      "themes"
+    ]
+  },
+  {
+    "id": "qr-motif-pri-rilskiya-manastir",
+    "type": "multiple_choice",
+    "category": "work_recognition",
+    "question": "За коя творба са характерни мотивите за домът и майчината люлка?",
+    "options": [
+      "При Рилския манастир",
+      "Спи езерото",
+      "Ветрената мелница",
+      "Вяра"
+    ],
+    "correctAnswer": "При Рилския манастир",
+    "explanation": "„При Рилския манастир\" от Иван Вазов се характеризира с мотивите за домът и майчината люлка.",
+    "authorId": "ivan-vazov",
+    "workId": "pri-rilskiya-manastir",
+    "difficulty": "hard",
+    "source": "work-recognition-generator",
+    "generated": true,
+    "sourceFields": [
+      "motifs"
+    ]
+  },
+  {
+    "id": "qr-theme-istoriya",
+    "type": "multiple_choice",
+    "category": "work_recognition",
+    "question": "Кое произведение се свързва с темите „мястото на малкия човек в голямата история\" и „драматичните социални конфликти\"?",
+    "options": [
+      "Спи езерото",
+      "Ветрената мелница",
+      "Андрешко",
+      "История"
+    ],
+    "correctAnswer": "История",
+    "explanation": "„История\" от Никола Вапцаров се свързва с темите „мястото на малкия човек в голямата история\" и „драматичните социални конфликти\".",
+    "authorId": "nikola-vaptsarov",
+    "workId": "istoriya",
+    "difficulty": "medium",
+    "source": "work-recognition-generator",
+    "generated": true,
+    "sourceFields": [
+      "themes"
+    ]
+  },
+  {
+    "id": "qr-motif-istoriya",
+    "type": "multiple_choice",
+    "category": "work_recognition",
+    "question": "За коя творба са характерни мотивите за малкият човек и историята?",
+    "options": [
+      "История",
+      "При Рилския манастир",
+      "Приказка за стълбата",
+      "Спасова могила"
+    ],
+    "correctAnswer": "История",
+    "explanation": "„История\" от Никола Вапцаров се характеризира с мотивите за малкият човек и историята.",
+    "authorId": "nikola-vaptsarov",
+    "workId": "istoriya",
+    "difficulty": "hard",
+    "source": "work-recognition-generator",
+    "generated": true,
+    "sourceFields": [
+      "motifs"
+    ]
+  },
+  {
+    "id": "qr-essay-istoriya",
+    "type": "multiple_choice",
+    "category": "work_recognition",
+    "question": "Коя творба е подходяща за интерпретативно съчинение върху темата за „мястото на малкия човек в голямата история\"?",
+    "options": [
+      "До моето първо либе",
+      "История",
+      "Две души",
+      "Градушка"
+    ],
+    "correctAnswer": "История",
+    "explanation": "„История\" от Никола Вапцаров е подходящо за интерпретативно съчинение върху темата за „мястото на малкия човек в голямата история\".",
+    "authorId": "nikola-vaptsarov",
+    "workId": "istoriya",
+    "difficulty": "medium",
+    "source": "work-recognition-generator",
+    "generated": true,
+    "sourceFields": [
+      "themes"
+    ]
+  },
+  {
+    "id": "qr-theme-vyara",
+    "type": "multiple_choice",
+    "category": "work_recognition",
+    "question": "Кое произведение се свързва с темите „вярата като основна ценност\" и „човешкият живот\"?",
+    "options": [
+      "Вяра",
+      "Новото гробище над Сливница",
+      "Паисий",
+      "Песента на колелетата"
+    ],
+    "correctAnswer": "Вяра",
+    "explanation": "„Вяра\" от Никола Вапцаров се свързва с темите „вярата като основна ценност\" и „човешкият живот\".",
+    "authorId": "nikola-vaptsarov",
+    "workId": "vyara",
+    "difficulty": "medium",
+    "source": "work-recognition-generator",
+    "generated": true,
+    "sourceFields": [
+      "themes"
+    ]
+  },
+  {
+    "id": "qr-motif-vyara",
+    "type": "multiple_choice",
+    "category": "work_recognition",
+    "question": "За коя творба са характерни мотивите за вярата и песента за човека?",
+    "options": [
+      "Колко си хубава!",
+      "Крадецът на праскови",
+      "Молитва",
+      "Вяра"
+    ],
+    "correctAnswer": "Вяра",
+    "explanation": "„Вяра\" от Никола Вапцаров се характеризира с мотивите за вярата и песента за човека.",
+    "authorId": "nikola-vaptsarov",
+    "workId": "vyara",
+    "difficulty": "hard",
+    "source": "work-recognition-generator",
+    "generated": true,
+    "sourceFields": [
+      "motifs"
+    ]
+  },
+  {
+    "id": "qr-theme-noev-kovcheg",
+    "type": "multiple_choice",
+    "category": "work_recognition",
+    "question": "Кое произведение се свързва с темите „животът на обикновения човек\" и „битовото ежедневие\"?",
+    "options": [
+      "До моето първо либе",
+      "Ноев ковчег",
+      "Две души",
+      "Градушка"
+    ],
+    "correctAnswer": "Ноев ковчег",
+    "explanation": "„Ноев ковчег\" от Йордан Радичков се свързва с темите „животът на обикновения човек\" и „битовото ежедневие\".",
+    "authorId": "yordan-radichkov",
+    "workId": "noev-kovcheg",
+    "difficulty": "medium",
+    "source": "work-recognition-generator",
+    "generated": true,
+    "sourceFields": [
+      "themes"
+    ]
+  },
+  {
+    "id": "qr-motif-noev-kovcheg",
+    "type": "multiple_choice",
+    "category": "work_recognition",
+    "question": "За коя творба са характерни мотивите за фрагментът и монтажът?",
+    "options": [
+      "Градушка",
+      "История",
+      "Ноев ковчег",
+      "Железният светилник"
+    ],
+    "correctAnswer": "Ноев ковчег",
+    "explanation": "„Ноев ковчег\" от Йордан Радичков се характеризира с мотивите за фрагментът и монтажът.",
+    "authorId": "yordan-radichkov",
+    "workId": "noev-kovcheg",
+    "difficulty": "hard",
+    "source": "work-recognition-generator",
+    "generated": true,
+    "sourceFields": [
+      "motifs"
+    ]
+  },
+  {
+    "id": "qr-theme-borba",
+    "type": "multiple_choice",
+    "category": "work_recognition",
+    "question": "Кое произведение се свързва с темите „свободата\" и „готовността за саможертва\"?",
+    "options": [
+      "Честен кръст",
+      "Борба",
+      "Две души",
+      "Градушка"
+    ],
+    "correctAnswer": "Борба",
+    "explanation": "„Борба\" от Христо Ботев се свързва с темите „свободата\" и „готовността за саможертва\".",
+    "authorId": "hristo-botev",
+    "workId": "borba",
+    "difficulty": "medium",
+    "source": "work-recognition-generator",
+    "generated": true,
+    "sourceFields": [
+      "themes"
+    ]
+  },
+  {
+    "id": "qr-motif-borba",
+    "type": "multiple_choice",
+    "category": "work_recognition",
+    "question": "За коя творба са характерни мотивите за борбата и саможертвата?",
+    "options": [
+      "Спи езерото",
+      "Ветрената мелница",
+      "Борба",
+      "Вяра"
+    ],
+    "correctAnswer": "Борба",
+    "explanation": "„Борба\" от Христо Ботев се характеризира с мотивите за борбата и саможертвата.",
+    "authorId": "hristo-botev",
+    "workId": "borba",
+    "difficulty": "hard",
+    "source": "work-recognition-generator",
+    "generated": true,
+    "sourceFields": [
+      "motifs"
+    ]
+  },
+  {
+    "id": "qr-theme-do-moeto-parvo-libe",
+    "type": "multiple_choice",
+    "category": "work_recognition",
+    "question": "Кое произведение се свързва с темите „свободата\" и „емиграцията\"?",
+    "options": [
+      "При Рилския манастир",
+      "Приказка за стълбата",
+      "Спасова могила",
+      "До моето първо либе"
+    ],
+    "correctAnswer": "До моето първо либе",
+    "explanation": "„До моето първо либе\" от Христо Ботев се свързва с темите „свободата\" и „емиграцията\".",
+    "authorId": "hristo-botev",
+    "workId": "do-moeto-parvo-libe",
+    "difficulty": "medium",
+    "source": "work-recognition-generator",
+    "generated": true,
+    "sourceFields": [
+      "themes"
+    ]
+  },
+  {
+    "id": "qr-motif-do-moeto-parvo-libe",
+    "type": "multiple_choice",
+    "category": "work_recognition",
+    "question": "За коя творба са характерни мотивите за емиграцията и изповедта?",
+    "options": [
+      "До моето първо либе",
+      "Вяра",
+      "Андрешко",
+      "Аз искам да те помня все така"
+    ],
+    "correctAnswer": "До моето първо либе",
+    "explanation": "„До моето първо либе\" от Христо Ботев се характеризира с мотивите за емиграцията и изповедта.",
+    "authorId": "hristo-botev",
+    "workId": "do-moeto-parvo-libe",
+    "difficulty": "hard",
+    "source": "work-recognition-generator",
+    "generated": true,
+    "sourceFields": [
+      "motifs"
+    ]
+  },
+  {
+    "id": "qr-theme-andreshko",
+    "type": "multiple_choice",
+    "category": "work_recognition",
+    "question": "Кое произведение се свързва с темите „селското битие\" и „социалните проблеми\"?",
+    "options": [
+      "Крадецът на праскови",
+      "Молитва",
+      "Андрешко",
+      "Ноев ковчег"
+    ],
+    "correctAnswer": "Андрешко",
+    "explanation": "„Андрешко\" от Елин Пелин се свързва с темите „селското битие\" и „социалните проблеми\".",
+    "authorId": "elin-pelin",
+    "workId": "andreshko",
+    "difficulty": "medium",
+    "source": "work-recognition-generator",
+    "generated": true,
+    "sourceFields": [
+      "themes"
+    ]
+  },
+  {
+    "id": "qr-theme-spasova-mogila",
+    "type": "multiple_choice",
+    "category": "work_recognition",
+    "question": "Кое произведение се свързва с темите „селското битие\" и „трудностите и изпитанията в живота на човека\"?",
+    "options": [
+      "Спасова могила",
+      "Посвещение",
+      "Потомка",
+      "При Рилския манастир"
+    ],
+    "correctAnswer": "Спасова могила",
+    "explanation": "„Спасова могила\" от Елин Пелин се свързва с темите „селското битие\" и „трудностите и изпитанията в живота на човека\".",
+    "authorId": "elin-pelin",
+    "workId": "spasova-mogila",
+    "difficulty": "medium",
+    "source": "work-recognition-generator",
+    "generated": true,
+    "sourceFields": [
+      "themes"
+    ]
+  },
+  {
+    "id": "qr-essay-spasova-mogila",
+    "type": "multiple_choice",
+    "category": "work_recognition",
+    "question": "Коя творба е подходяща за интерпретативно съчинение върху темата за „трудностите и изпитанията в живота на човека\"?",
+    "options": [
+      "До моето първо либе",
+      "Две души",
+      "Спасова могила",
+      "Градушка"
+    ],
+    "correctAnswer": "Спасова могила",
+    "explanation": "„Спасова могила\" от Елин Пелин е подходящо за интерпретативно съчинение върху темата за „трудностите и изпитанията в живота на човека\".",
+    "authorId": "elin-pelin",
+    "workId": "spasova-mogila",
+    "difficulty": "medium",
+    "source": "work-recognition-generator",
+    "generated": true,
+    "sourceFields": [
+      "themes"
+    ]
+  },
+  {
+    "id": "qr-theme-vetrenata-melnitsa",
+    "type": "multiple_choice",
+    "category": "work_recognition",
+    "question": "Кое произведение се свързва с темите „селското битие\" и „жизнеспособността\"?",
+    "options": [
+      "Приказка за стълбата",
+      "Спи езерото",
+      "Вяра",
+      "Ветрената мелница"
+    ],
+    "correctAnswer": "Ветрената мелница",
+    "explanation": "„Ветрената мелница\" от Елин Пелин се свързва с темите „селското битие\" и „жизнеспособността\".",
+    "authorId": "elin-pelin",
+    "workId": "vetrenata-melnitsa",
+    "difficulty": "medium",
+    "source": "work-recognition-generator",
+    "generated": true,
+    "sourceFields": [
+      "themes"
+    ]
+  },
+  {
+    "id": "qr-motif-vetrenata-melnitsa",
+    "type": "multiple_choice",
+    "category": "work_recognition",
+    "question": "За коя творба са характерни мотивите за ветрената мелница и ретроспекцията?",
+    "options": [
+      "Ветрената мелница",
+      "Молитва",
+      "Ноев ковчег",
+      "Новото гробище над Сливница"
+    ],
+    "correctAnswer": "Ветрената мелница",
+    "explanation": "„Ветрената мелница\" от Елин Пелин се характеризира с мотивите за ветрената мелница и ретроспекцията.",
+    "authorId": "elin-pelin",
+    "workId": "vetrenata-melnitsa",
+    "difficulty": "hard",
+    "source": "work-recognition-generator",
+    "generated": true,
+    "sourceFields": [
+      "motifs"
+    ]
+  },
+  {
+    "id": "qr-theme-prikazka-za-stalbata",
+    "type": "multiple_choice",
+    "category": "work_recognition",
+    "question": "Кое произведение се свързва с темите „социалното страдание\" и „социалното равенство\"?",
+    "options": [
+      "Посвещение",
+      "Потомка",
+      "При Рилския манастир",
+      "Приказка за стълбата"
+    ],
+    "correctAnswer": "Приказка за стълбата",
+    "explanation": "„Приказка за стълбата\" от Христо Смирненски се свързва с темите „социалното страдание\" и „социалното равенство\".",
+    "authorId": "hristo-smirnenski",
+    "workId": "prikazka-za-stalbata",
+    "difficulty": "medium",
+    "source": "work-recognition-generator",
+    "generated": true,
+    "sourceFields": [
+      "themes"
+    ]
+  },
+  {
+    "id": "qr-motif-prikazka-za-stalbata",
+    "type": "multiple_choice",
+    "category": "work_recognition",
+    "question": "За коя творба са характерни мотивите за стълбата и диалогът?",
+    "options": [
+      "Приказка за стълбата",
+      "Паисий",
+      "Песента на колелетата",
+      "Посвещение"
+    ],
+    "correctAnswer": "Приказка за стълбата",
+    "explanation": "„Приказка за стълбата\" от Христо Смирненски се характеризира с мотивите за стълбата и диалогът.",
+    "authorId": "hristo-smirnenski",
+    "workId": "prikazka-za-stalbata",
+    "difficulty": "hard",
+    "source": "work-recognition-generator",
+    "generated": true,
+    "sourceFields": [
+      "motifs"
+    ]
+  },
+  {
+    "id": "qr-essay-prikazka-za-stalbata",
+    "type": "multiple_choice",
+    "category": "work_recognition",
+    "question": "Коя творба е подходяща за интерпретативно съчинение върху темата за „мъдро завещание към всяко следващо поколение\"?",
+    "options": [
+      "Ноев ковчег",
+      "Приказка за стълбата",
+      "Новото гробище над Сливница",
+      "Паисий"
+    ],
+    "correctAnswer": "Приказка за стълбата",
+    "explanation": "„Приказка за стълбата\" от Христо Смирненски е подходящо за интерпретативно съчинение върху темата за „мъдро завещание към всяко следващо поколение\".",
+    "authorId": "hristo-smirnenski",
+    "workId": "prikazka-za-stalbata",
+    "difficulty": "medium",
+    "source": "work-recognition-generator",
+    "generated": true,
+    "sourceFields": [
+      "themes"
+    ]
+  },
+  {
+    "id": "qr-theme-kradetsat-na-praskovi",
+    "type": "multiple_choice",
+    "category": "work_recognition",
+    "question": "Кое произведение се свързва с темите „Първата световна война\" и „драмата на човека, потърсил щастие\"?",
+    "options": [
+      "Ноев ковчег",
+      "Новото гробище над Сливница",
+      "Крадецът на праскови",
+      "Паисий"
+    ],
+    "correctAnswer": "Крадецът на праскови",
+    "explanation": "„Крадецът на праскови\" от Емилиян Станев се свързва с темите „Първата световна война\" и „драмата на човека, потърсил щастие\".",
+    "authorId": "emiliyan-stanev",
+    "workId": "kradetsat-na-praskovi",
+    "difficulty": "medium",
+    "source": "work-recognition-generator",
+    "generated": true,
+    "sourceFields": [
+      "themes"
+    ]
+  },
+  {
+    "id": "qr-motif-kradetsat-na-praskovi",
+    "type": "multiple_choice",
+    "category": "work_recognition",
+    "question": "За коя творба са характерни мотивите за споменът и разказ в разказа?",
+    "options": [
+      "Бай Ганьо журналист",
+      "Крадецът на праскови",
+      "Балада за Георг Хених",
+      "Балкански синдром"
+    ],
+    "correctAnswer": "Крадецът на праскови",
+    "explanation": "„Крадецът на праскови\" от Емилиян Станев се характеризира с мотивите за споменът и разказ в разказа.",
+    "authorId": "emiliyan-stanev",
+    "workId": "kradetsat-na-praskovi",
+    "difficulty": "hard",
+    "source": "work-recognition-generator",
+    "generated": true,
+    "sourceFields": [
+      "motifs"
+    ]
+  },
+  {
+    "id": "qr-essay-kradetsat-na-praskovi",
+    "type": "multiple_choice",
+    "category": "work_recognition",
+    "question": "Коя творба е подходяща за интерпретативно съчинение върху темата за „драмата на човека, потърсил щастие\"?",
+    "options": [
+      "Крадецът на праскови",
+      "При Рилския манастир",
+      "Приказка за стълбата",
+      "Спасова могила"
+    ],
+    "correctAnswer": "Крадецът на праскови",
+    "explanation": "„Крадецът на праскови\" от Емилиян Станев е подходящо за интерпретативно съчинение върху темата за „драмата на човека, потърсил щастие\".",
+    "authorId": "emiliyan-stanev",
+    "workId": "kradetsat-na-praskovi",
+    "difficulty": "medium",
+    "source": "work-recognition-generator",
+    "generated": true,
+    "sourceFields": [
+      "themes"
+    ]
+  },
+  {
+    "id": "qr-theme-gradushka",
+    "type": "multiple_choice",
+    "category": "work_recognition",
+    "question": "Кое произведение се свързва с темите „тежкият живот на селянина труденик\" и „оцеляването\"?",
+    "options": [
+      "Крадецът на праскови",
+      "Градушка",
+      "Молитва",
+      "Ноев ковчег"
+    ],
+    "correctAnswer": "Градушка",
+    "explanation": "„Градушка\" от Пейо Яворов се свързва с темите „тежкият живот на селянина труденик\" и „оцеляването\".",
+    "authorId": "peyo-yavorov",
+    "workId": "gradushka",
+    "difficulty": "medium",
+    "source": "work-recognition-generator",
+    "generated": true,
+    "sourceFields": [
+      "themes"
+    ]
+  },
+  {
+    "id": "qr-essay-gradushka",
+    "type": "multiple_choice",
+    "category": "work_recognition",
+    "question": "Коя творба е подходяща за интерпретативно съчинение върху темата за „тежкият живот на селянина труденик\"?",
+    "options": [
+      "Посвещение",
+      "Потомка",
+      "При Рилския манастир",
+      "Градушка"
+    ],
+    "correctAnswer": "Градушка",
+    "explanation": "„Градушка\" от Пейо Яворов е подходящо за интерпретативно съчинение върху темата за „тежкият живот на селянина труденик\".",
+    "authorId": "peyo-yavorov",
+    "workId": "gradushka",
+    "difficulty": "medium",
+    "source": "work-recognition-generator",
+    "generated": true,
+    "sourceFields": [
+      "themes"
+    ]
+  },
+  {
+    "id": "qr-theme-dve-dushi",
+    "type": "multiple_choice",
+    "category": "work_recognition",
+    "question": "Кое произведение се свързва с темите „човекът като субективна същност\" и „символистичната поетика\"?",
+    "options": [
+      "Две души",
+      "Паисий",
+      "Песента на колелетата",
+      "Посвещение"
+    ],
+    "correctAnswer": "Две души",
+    "explanation": "„Две души\" от Пейо Яворов се свързва с темите „човекът като субективна същност\" и „символистичната поетика\".",
+    "authorId": "peyo-yavorov",
+    "workId": "dve-dushi",
+    "difficulty": "medium",
+    "source": "work-recognition-generator",
+    "generated": true,
+    "sourceFields": [
+      "themes"
+    ]
+  },
+  {
+    "id": "qr-motif-dve-dushi",
+    "type": "multiple_choice",
+    "category": "work_recognition",
+    "question": "За коя творба са характерни мотивите за рефренът „Аз не живея: аз горя“ и композиционната рамка?",
+    "options": [
+      "Молитва",
+      "Ноев ковчег",
+      "Новото гробище над Сливница",
+      "Две души"
+    ],
+    "correctAnswer": "Две души",
+    "explanation": "„Две души\" от Пейо Яворов се характеризира с мотивите за рефренът „Аз не живея: аз горя“ и композиционната рамка.",
+    "authorId": "peyo-yavorov",
+    "workId": "dve-dushi",
+    "difficulty": "hard",
+    "source": "work-recognition-generator",
+    "generated": true,
+    "sourceFields": [
+      "motifs"
+    ]
+  },
+  {
+    "id": "qr-essay-dve-dushi",
+    "type": "multiple_choice",
+    "category": "work_recognition",
+    "question": "Коя творба е подходяща за интерпретативно съчинение върху темата за „човекът като субективна същност\"?",
+    "options": [
+      "Приказка за стълбата",
+      "Спасова могила",
+      "Две души",
+      "Спи езерото"
+    ],
+    "correctAnswer": "Две души",
+    "explanation": "„Две души\" от Пейо Яворов е подходящо за интерпретативно съчинение върху темата за „човекът като субективна същност\".",
+    "authorId": "peyo-yavorov",
+    "workId": "dve-dushi",
+    "difficulty": "medium",
+    "source": "work-recognition-generator",
+    "generated": true,
+    "sourceFields": [
+      "themes"
+    ]
+  },
+  {
+    "id": "qr-theme-spi-ezeroto",
+    "type": "multiple_choice",
+    "category": "work_recognition",
+    "question": "Кое произведение се свързва с темите „състоянието\" и „усещането за тук и сега\"?",
+    "options": [
+      "Потомка",
+      "При Рилския манастир",
+      "Спи езерото",
+      "Приказка за стълбата"
+    ],
+    "correctAnswer": "Спи езерото",
+    "explanation": "„Спи езерото\" от Пенчо Славейков се свързва с темите „състоянието\" и „усещането за тук и сега\".",
+    "authorId": "pencho-slaveykov",
+    "workId": "spi-ezeroto",
+    "difficulty": "medium",
+    "source": "work-recognition-generator",
+    "generated": true,
+    "sourceFields": [
+      "themes"
+    ]
+  },
+  {
+    "id": "qr-motif-spi-ezeroto",
+    "type": "multiple_choice",
+    "category": "work_recognition",
+    "question": "За коя творба са характерни мотивите за езерото и сънят?",
+    "options": [
+      "Две души",
+      "Спи езерото",
+      "Градушка",
+      "История"
+    ],
+    "correctAnswer": "Спи езерото",
+    "explanation": "„Спи езерото\" от Пенчо Славейков се характеризира с мотивите за езерото и сънят.",
+    "authorId": "pencho-slaveykov",
+    "workId": "spi-ezeroto",
+    "difficulty": "hard",
+    "source": "work-recognition-generator",
+    "generated": true,
+    "sourceFields": [
+      "motifs"
+    ]
+  },
+  {
+    "id": "qr-essay-spi-ezeroto",
+    "type": "multiple_choice",
+    "category": "work_recognition",
+    "question": "Коя творба е подходяща за интерпретативно съчинение върху темата за „откъсването на личността от социалните проблеми\"?",
+    "options": [
+      "Спи езерото",
+      "Андрешко",
+      "Аз искам да те помня все така",
+      "Бай Ганьо журналист"
+    ],
+    "correctAnswer": "Спи езерото",
+    "explanation": "„Спи езерото\" от Пенчо Славейков е подходящо за интерпретативно съчинение върху темата за „откъсването на личността от социалните проблеми\".",
+    "authorId": "pencho-slaveykov",
+    "workId": "spi-ezeroto",
+    "difficulty": "medium",
+    "source": "work-recognition-generator",
+    "generated": true,
+    "sourceFields": [
+      "themes"
+    ]
+  },
+  {
+    "id": "qr-theme-az-iskam-da-te-pomnya-vse-taka",
+    "type": "multiple_choice",
+    "category": "work_recognition",
+    "question": "Кое произведение се свързва с темите „раздялата\" и „раната и скръбта\"?",
+    "options": [
+      "Аз искам да те помня все така",
+      "Ветрената мелница",
+      "Вяра",
+      "Андрешко"
+    ],
+    "correctAnswer": "Аз искам да те помня все така",
+    "explanation": "„Аз искам да те помня все така\" от Димчо Дебелянов се свързва с темите „раздялата\" и „раната и скръбта\".",
+    "authorId": "dimcho-debelyanov",
+    "workId": "az-iskam-da-te-pomnya-vse-taka",
+    "difficulty": "medium",
+    "source": "work-recognition-generator",
+    "generated": true,
+    "sourceFields": [
+      "themes"
+    ]
+  },
+  {
+    "id": "qr-motif-az-iskam-da-te-pomnya-vse-taka",
+    "type": "multiple_choice",
+    "category": "work_recognition",
+    "question": "За коя творба са характерни мотивите за паметта и композиционната рамка?",
+    "options": [
+      "Железният светилник",
+      "Колко си хубава!",
+      "Крадецът на праскови",
+      "Аз искам да те помня все така"
+    ],
+    "correctAnswer": "Аз искам да те помня все така",
+    "explanation": "„Аз искам да те помня все така\" от Димчо Дебелянов се характеризира с мотивите за паметта и композиционната рамка.",
+    "authorId": "dimcho-debelyanov",
+    "workId": "az-iskam-da-te-pomnya-vse-taka",
+    "difficulty": "hard",
+    "source": "work-recognition-generator",
+    "generated": true,
+    "sourceFields": [
+      "motifs"
+    ]
+  },
+  {
+    "id": "qr-essay-az-iskam-da-te-pomnya-vse-taka",
+    "type": "multiple_choice",
+    "category": "work_recognition",
+    "question": "Коя творба е подходяща за интерпретативно съчинение върху темата за „разминаването между мечта и реалност\"?",
+    "options": [
+      "Паисий",
+      "Песента на колелетата",
+      "Аз искам да те помня все така",
+      "Посвещение"
+    ],
+    "correctAnswer": "Аз искам да те помня все така",
+    "explanation": "„Аз искам да те помня все така\" от Димчо Дебелянов е подходящо за интерпретативно съчинение върху темата за „разминаването между мечта и реалност\".",
+    "authorId": "dimcho-debelyanov",
+    "workId": "az-iskam-da-te-pomnya-vse-taka",
+    "difficulty": "medium",
+    "source": "work-recognition-generator",
+    "generated": true,
+    "sourceFields": [
+      "themes"
+    ]
+  },
+  {
+    "id": "qr-theme-kolko-si-hubava",
+    "type": "multiple_choice",
+    "category": "work_recognition",
+    "question": "Кое произведение се свързва с темите „вътрешният свят на човека\" и „любовта\"?",
+    "options": [
+      "Балкански синдром",
+      "Борба",
+      "Колко си хубава!",
+      "Честен кръст"
+    ],
+    "correctAnswer": "Колко си хубава!",
+    "explanation": "„Колко си хубава!\" от Христо Фотев се свързва с темите „вътрешният свят на човека\" и „любовта\".",
+    "authorId": "hristo-fotev",
+    "workId": "kolko-si-hubava",
+    "difficulty": "medium",
+    "source": "work-recognition-generator",
+    "generated": true,
+    "sourceFields": [
+      "themes"
+    ]
+  },
+  {
+    "id": "qr-motif-kolko-si-hubava",
+    "type": "multiple_choice",
+    "category": "work_recognition",
+    "question": "За коя творба са характерни мотивите за посвещението и повторенията?",
+    "options": [
+      "Крадецът на праскови",
+      "Колко си хубава!",
+      "Молитва",
+      "Ноев ковчег"
+    ],
+    "correctAnswer": "Колко си хубава!",
+    "explanation": "„Колко си хубава!\" от Христо Фотев се характеризира с мотивите за посвещението и повторенията.",
+    "authorId": "hristo-fotev",
+    "workId": "kolko-si-hubava",
+    "difficulty": "hard",
+    "source": "work-recognition-generator",
+    "generated": true,
+    "sourceFields": [
+      "motifs"
+    ]
+  },
+  {
+    "id": "qr-theme-posveshtenie",
+    "type": "multiple_choice",
+    "category": "work_recognition",
+    "question": "Кое произведение се свързва с темите „младежките копнежи по любовта\" и „стремежът към волност и красота\"?",
+    "options": [
+      "Ветрената мелница",
+      "Вяра",
+      "Посвещение",
+      "Андрешко"
+    ],
+    "correctAnswer": "Посвещение",
+    "explanation": "„Посвещение\" от Петя Дубарова се свързва с темите „младежките копнежи по любовта\" и „стремежът към волност и красота\".",
+    "authorId": "petya-dubarova",
+    "workId": "posveshtenie",
+    "difficulty": "medium",
+    "source": "work-recognition-generator",
+    "generated": true,
+    "sourceFields": [
+      "themes"
+    ]
+  },
+  {
+    "id": "qr-motif-posveshtenie",
+    "type": "multiple_choice",
+    "category": "work_recognition",
+    "question": "За коя творба са характерни мотивите за обръщението и автобиографичният момент?",
+    "options": [
+      "При Рилския манастир",
+      "Посвещение",
+      "Приказка за стълбата",
+      "Спасова могила"
+    ],
+    "correctAnswer": "Посвещение",
+    "explanation": "„Посвещение\" от Петя Дубарова се характеризира с мотивите за обръщението и автобиографичният момент.",
+    "authorId": "petya-dubarova",
+    "workId": "posveshtenie",
+    "difficulty": "hard",
+    "source": "work-recognition-generator",
+    "generated": true,
+    "sourceFields": [
+      "motifs"
+    ]
+  },
+  {
+    "id": "qr-essay-posveshtenie",
+    "type": "multiple_choice",
+    "category": "work_recognition",
+    "question": "Коя творба е подходяща за интерпретативно съчинение върху темата за „стремежът към волност и красота\"?",
+    "options": [
+      "Посвещение",
+      "История",
+      "Железният светилник",
+      "Колко си хубава!"
+    ],
+    "correctAnswer": "Посвещение",
+    "explanation": "„Посвещение\" от Петя Дубарова е подходящо за интерпретативно съчинение върху темата за „стремежът към волност и красота\".",
+    "authorId": "petya-dubarova",
+    "workId": "posveshtenie",
+    "difficulty": "medium",
+    "source": "work-recognition-generator",
+    "generated": true,
+    "sourceFields": [
+      "themes"
+    ]
+  },
+  {
+    "id": "qr-theme-molitva",
+    "type": "multiple_choice",
+    "category": "work_recognition",
+    "question": "Кое произведение се свързва с темите „обречеността на човека\" и „изгубването на индивида в света на вещите и предметите\"?",
+    "options": [
+      "Борба",
+      "Молитва",
+      "Честен кръст",
+      "До моето първо либе"
+    ],
+    "correctAnswer": "Молитва",
+    "explanation": "„Молитва\" от Атанас Далчев се свързва с темите „обречеността на човека\" и „изгубването на индивида в света на вещите и предметите\".",
+    "authorId": "atanas-dalchev",
+    "workId": "molitva",
+    "difficulty": "medium",
+    "source": "work-recognition-generator",
+    "generated": true,
+    "sourceFields": [
+      "themes"
+    ]
+  },
+  {
+    "id": "qr-motif-molitva",
+    "type": "multiple_choice",
+    "category": "work_recognition",
+    "question": "За коя творба са характерни мотивите за молитвата и обръщението към Бог?",
+    "options": [
+      "Балада за Георг Хених",
+      "Балкански синдром",
+      "Молитва",
+      "Борба"
+    ],
+    "correctAnswer": "Молитва",
+    "explanation": "„Молитва\" от Атанас Далчев се характеризира с мотивите за молитвата и обръщението към Бог.",
+    "authorId": "atanas-dalchev",
+    "workId": "molitva",
+    "difficulty": "hard",
+    "source": "work-recognition-generator",
+    "generated": true,
+    "sourceFields": [
+      "motifs"
+    ]
+  },
+  {
+    "id": "qr-essay-molitva",
+    "type": "multiple_choice",
+    "category": "work_recognition",
+    "question": "Коя творба е подходяща за интерпретативно съчинение върху темата за „изгубването на индивида в света на вещите и предметите\"?",
+    "options": [
+      "Железният светилник",
+      "Колко си хубава!",
+      "Крадецът на праскови",
+      "Молитва"
+    ],
+    "correctAnswer": "Молитва",
+    "explanation": "„Молитва\" от Атанас Далчев е подходящо за интерпретативно съчинение върху темата за „изгубването на индивида в света на вещите и предметите\".",
+    "authorId": "atanas-dalchev",
+    "workId": "molitva",
+    "difficulty": "medium",
+    "source": "work-recognition-generator",
+    "generated": true,
+    "sourceFields": [
+      "themes"
+    ]
+  },
+  {
+    "id": "qr-theme-pesenta-na-koleletata",
+    "type": "multiple_choice",
+    "category": "work_recognition",
+    "question": "Кое произведение се свързва с темите „доброто\" и „човешкото у персонажа\"?",
+    "options": [
+      "Ветрената мелница",
+      "Вяра",
+      "Песента на колелетата",
+      "Андрешко"
+    ],
+    "correctAnswer": "Песента на колелетата",
+    "explanation": "„Песента на колелетата\" от Йордан Йовков се свързва с темите „доброто\" и „човешкото у персонажа\".",
+    "authorId": "yordan-yovkov",
+    "workId": "pesenta-na-koleletata",
+    "difficulty": "medium",
+    "source": "work-recognition-generator",
+    "generated": true,
+    "sourceFields": [
+      "themes"
+    ]
+  },
+  {
+    "id": "qr-theme-balada-za-georg-henig",
+    "type": "multiple_choice",
+    "category": "work_recognition",
+    "question": "Кое произведение се свързва с темите „автобиографизмът\" и „бедността\"?",
+    "options": [
+      "Приказка за стълбата",
+      "Балада за Георг Хених",
+      "Спасова могила",
+      "Спи езерото"
+    ],
+    "correctAnswer": "Балада за Георг Хених",
+    "explanation": "„Балада за Георг Хених\" от Виктор Пасков се свързва с темите „автобиографизмът\" и „бедността\".",
+    "authorId": "viktor-paskov",
+    "workId": "balada-za-georg-henig",
+    "difficulty": "medium",
+    "source": "work-recognition-generator",
+    "generated": true,
+    "sourceFields": [
+      "themes"
+    ]
+  },
+  {
+    "id": "qr-motif-balada-za-georg-henig",
+    "type": "multiple_choice",
+    "category": "work_recognition",
+    "question": "За коя творба са характерни мотивите за ретроспекцията и обръщението към героя?",
+    "options": [
+      "Две души",
+      "Градушка",
+      "Балада за Георг Хених",
+      "История"
+    ],
+    "correctAnswer": "Балада за Георг Хених",
+    "explanation": "„Балада за Георг Хених\" от Виктор Пасков се характеризира с мотивите за ретроспекцията и обръщението към героя.",
+    "authorId": "viktor-paskov",
+    "workId": "balada-za-georg-henig",
+    "difficulty": "hard",
+    "source": "work-recognition-generator",
+    "generated": true,
+    "sourceFields": [
+      "motifs"
+    ]
+  },
+  {
+    "id": "qr-theme-potomka",
+    "type": "multiple_choice",
+    "category": "work_recognition",
+    "question": "Кое произведение се свързва с темите „мястото на жената в семейството и обществото\" и „ограниченията на родовия бит\"?",
+    "options": [
+      "Две души",
+      "Градушка",
+      "Потомка",
+      "История"
+    ],
+    "correctAnswer": "Потомка",
+    "explanation": "„Потомка\" от Елисавета Багряна се свързва с темите „мястото на жената в семейството и обществото\" и „ограниченията на родовия бит\".",
+    "authorId": "elisaveta-bagryana",
+    "workId": "potomka",
+    "difficulty": "medium",
+    "source": "work-recognition-generator",
+    "generated": true,
+    "sourceFields": [
+      "themes"
+    ]
+  },
+  {
+    "id": "qr-motif-potomka",
+    "type": "multiple_choice",
+    "category": "work_recognition",
+    "question": "За коя творба са характерни мотивите за родовият бит и диалогическата насоченост на монолога?",
+    "options": [
+      "Новото гробище над Сливница",
+      "Потомка",
+      "Паисий",
+      "Песента на колелетата"
+    ],
+    "correctAnswer": "Потомка",
+    "explanation": "„Потомка\" от Елисавета Багряна се характеризира с мотивите за родовият бит и диалогическата насоченост на монолога.",
+    "authorId": "elisaveta-bagryana",
+    "workId": "potomka",
+    "difficulty": "hard",
+    "source": "work-recognition-generator",
+    "generated": true,
+    "sourceFields": [
+      "motifs"
+    ]
+  },
+  {
+    "id": "qr-essay-potomka",
+    "type": "multiple_choice",
+    "category": "work_recognition",
+    "question": "Коя творба е подходяща за интерпретативно съчинение върху темата за „мястото на жената в семейството и обществото\"?",
+    "options": [
+      "Потомка",
+      "Спасова могила",
+      "Спи езерото",
+      "Ветрената мелница"
+    ],
+    "correctAnswer": "Потомка",
+    "explanation": "„Потомка\" от Елисавета Багряна е подходящо за интерпретативно съчинение върху темата за „мястото на жената в семейството и обществото\".",
+    "authorId": "elisaveta-bagryana",
+    "workId": "potomka",
+    "difficulty": "medium",
+    "source": "work-recognition-generator",
+    "generated": true,
+    "sourceFields": [
+      "themes"
+    ]
+  },
+  {
+    "id": "qr-theme-chesten-krast",
+    "type": "multiple_choice",
+    "category": "work_recognition",
+    "question": "Кое произведение се свързва с темите „непокорният дух\" и „неприемането на наложените норми в литературата\"?",
+    "options": [
+      "Аз искам да те помня все така",
+      "Честен кръст",
+      "Бай Ганьо журналист",
+      "Балада за Георг Хених"
+    ],
+    "correctAnswer": "Честен кръст",
+    "explanation": "„Честен кръст\" от Борис Христов се свързва с темите „непокорният дух\" и „неприемането на наложените норми в литературата\".",
+    "authorId": "boris-hristov",
+    "workId": "chesten-krast",
+    "difficulty": "medium",
+    "source": "work-recognition-generator",
+    "generated": true,
+    "sourceFields": [
+      "themes"
+    ]
+  },
+  {
+    "id": "qr-motif-chesten-krast",
+    "type": "multiple_choice",
+    "category": "work_recognition",
+    "question": "За коя творба са характерни мотивите за библейските образи и мотиви и рефренът?",
+    "options": [
+      "Песента на колелетата",
+      "Посвещение",
+      "Честен кръст",
+      "Потомка"
+    ],
+    "correctAnswer": "Честен кръст",
+    "explanation": "„Честен кръст\" от Борис Христов се характеризира с мотивите за библейските образи и мотиви и рефренът.",
+    "authorId": "boris-hristov",
+    "workId": "chesten-krast",
+    "difficulty": "hard",
+    "source": "work-recognition-generator",
+    "generated": true,
+    "sourceFields": [
+      "motifs"
+    ]
+  },
+  {
+    "id": "qr-essay-chesten-krast",
+    "type": "multiple_choice",
+    "category": "work_recognition",
+    "question": "Коя творба е подходяща за интерпретативно съчинение върху темата за „неприемането на наложените норми в литературата\"?",
+    "options": [
+      "Песента на колелетата",
+      "Посвещение",
+      "Потомка",
+      "Честен кръст"
+    ],
+    "correctAnswer": "Честен кръст",
+    "explanation": "„Честен кръст\" от Борис Христов е подходящо за интерпретативно съчинение върху темата за „неприемането на наложените норми в литературата\".",
+    "authorId": "boris-hristov",
+    "workId": "chesten-krast",
+    "difficulty": "medium",
+    "source": "work-recognition-generator",
+    "generated": true,
+    "sourceFields": [
+      "themes"
+    ]
+  }
+]

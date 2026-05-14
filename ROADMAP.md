@@ -244,7 +244,49 @@ Answer matching is case-insensitive, whitespace-normalised, and ignores Bulgaria
 | `npm run qa:source` | ✅ 0 errors, 261 warnings (pre-existing) |
 | `npm run qa:semantic` | ✅ 0 high-severity findings |
 
-**Total pool:** 415 base + 81 variants + 59 types + 83 fill-blank = **638 questions**
+**Total pool after fill-blank:** 415 base + 81 variants + 59 types + 83 fill-blank = **638 questions**
+
+### Step 4 — Thematic Work-Recognition Questions ✅ IMPLEMENTED
+
+**Branch:** `v2/feature/work-recognition-questions`
+
+A fifth generated file (`src/data/questions.recognition.json`) adds richer work-recognition questions based on thematic and motif clues — distinct from the bibliographic fact-based variants in `questions.v2.json`.
+
+#### Implementation
+
+- **Generator script:** `scripts/generate-work-recognition-questions.mjs` (`npm run generate:work-recognition`)
+- **Generated file:** `src/data/questions.recognition.json` (64 questions; do not edit by hand)
+- **Integration:** `App.jsx` merges recognition questions into the full pool; all quiz modes, wrong review, weak spots, and daily practice include them automatically
+
+#### Generated templates
+
+| Template | Count | Difficulty | Clue source |
+|----------|-------|------------|-------------|
+| Theme pair (T1) | 27 | medium | First unique pair from `work.themes` |
+| Motif pair (T2) | 22 | hard | First unique pair from `work.motifs` (≥ 2 motifs required) |
+| Essay theme (T3) | 15 | medium | First unique theme ≥ 30 chars (starts lowercase) from `work.themes` |
+
+5 works skipped for T2 (insufficient motifs: novoto-grobishte, andreshko, spasova-mogila, gradushka, pesenta-na-koleletata). 12 works skipped for T3 (no qualifying long unique theme).
+
+**Clue uniqueness guarantee:** each generated clue value or pair is present in exactly one work in `works.json`. Clues that would match multiple works are skipped automatically. Additionally, semantically nested theme pairs (e.g. "свободата" + "пътят към свободата") are excluded.
+
+#### QA additions
+
+- `RECOGNITION_MISSING_WORK_ID` — recognition question must have workId
+- `RECOGNITION_ANSWER_MISMATCH` — correctAnswer must equal work.title
+- `RECOGNITION_DUPLICATE_OPTIONS` — all 4 options must be distinct
+- `RECOGNITION_MISSING_SOURCE_FIELDS` — sourceFields array must be present
+
+#### QA status
+
+| Check | Result |
+|-------|--------|
+| `npm run build` | ✅ PASS |
+| `npm run qa:content` | ✅ 0 errors, 19 LONG_OPTION warnings (pre-existing) |
+| `npm run qa:source` | ✅ 0 errors, 261 warnings (pre-existing) |
+| `npm run qa:semantic` | ✅ 0 high-severity findings |
+
+**Total pool:** 415 base + 81 variants + 59 types + 83 fill-blank + 64 recognition = **702 questions**
 
 ### Work Recognition Questions (further)
 
