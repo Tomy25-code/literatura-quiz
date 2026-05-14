@@ -54,20 +54,38 @@ All content lives in `src/data/`. Do not edit these files without running the QA
 |------|----------|
 | `src/data/authors.json` | 20 Bulgarian authors with biographical metadata |
 | `src/data/works.json` | 27 literary works with genre, period, themes, motifs |
-| `src/data/questions.json` | 415 multiple-choice quiz questions |
+| `src/data/questions.json` | 415 manually curated base questions — **canonical source of truth** |
+| `src/data/questions.v2.json` | Generated variant questions — **do not edit by hand** |
 
 Source reference notes are in `source/literatura-zapiski.md`.
+
+### Question pool
+
+The app uses both files together (`questions.json` + `questions.v2.json`) as the active quiz pool. The combined pool currently has **496 questions**.
+
+`questions.v2.json` is generated output. To regenerate it after changing `authors.json` or `works.json`:
+
+```bash
+npm run generate:variants
+npm run build
+npm run qa:content
+npm run qa:source
+npm run qa:semantic
+```
+
+**Never edit `questions.v2.json` directly.** Edit the generator (`scripts/generate-question-variants.mjs`) or the source data files instead.
 
 ---
 
 ## Local Development
 
 ```bash
-npm install      # install dependencies
-npm run dev      # start dev server at http://localhost:5173
-npm run build    # production build → dist/
-npm run preview  # serve the production build locally
-npm run lint     # ESLint
+npm install              # install dependencies
+npm run dev              # start dev server at http://localhost:5173
+npm run build            # production build → dist/
+npm run preview          # serve the production build locally
+npm run lint             # ESLint
+npm run generate:variants  # regenerate src/data/questions.v2.json from source data
 ```
 
 ---

@@ -18,10 +18,19 @@ const __dir = dirname(fileURLToPath(import.meta.url));
 const ROOT  = resolve(__dir, '..');
 
 // ── Load files ─────────────────────────────────────────────────────────────
-const sourceRaw = readFileSync(resolve(ROOT, 'source/literatura-zapiski.md'), 'utf8');
-const authors   = JSON.parse(readFileSync(resolve(ROOT, 'src/data/authors.json'),    'utf8'));
-const works     = JSON.parse(readFileSync(resolve(ROOT, 'src/data/works.json'),      'utf8'));
-const questions = JSON.parse(readFileSync(resolve(ROOT, 'src/data/questions.json'),  'utf8'));
+const sourceRaw  = readFileSync(resolve(ROOT, 'source/literatura-zapiski.md'), 'utf8');
+const authors    = JSON.parse(readFileSync(resolve(ROOT, 'src/data/authors.json'),   'utf8'));
+const works      = JSON.parse(readFileSync(resolve(ROOT, 'src/data/works.json'),     'utf8'));
+const baseQs     = JSON.parse(readFileSync(resolve(ROOT, 'src/data/questions.json'), 'utf8'));
+const variantQs  = (() => {
+  try {
+    return JSON.parse(readFileSync(resolve(ROOT, 'src/data/questions.v2.json'), 'utf8'));
+  } catch { return []; }
+})();
+// Generated questions are derived from already-validated authors.json / works.json.
+// They are validated structurally by qa-content.mjs and skip source cross-checking.
+const generatedCount = variantQs.length;
+const questions  = baseQs; // source-check base questions only
 
 // ── Text utilities ─────────────────────────────────────────────────────────
 function normalize(text) {
@@ -738,7 +747,7 @@ const RESET = '\x1b[0m';
 console.log(`\n${BOLD}${CYAN}━━━ Literatura Quiz — Source QA ━━━${RESET}`);
 console.log(`  Authors:   ${authors.length}`);
 console.log(`  Works:     ${works.length}`);
-console.log(`  Questions: ${questions.length}`);
+console.log(`  Questions: ${questions.length} base (+ ${generatedCount} generated, skipped — validated by generator)`);
 console.log(`  Findings:  ${findings.length} total`);
 console.log('');
 console.log(`${GREEN}${BOLD}  ✅ OK:       ${oks.length}${RESET}`);
