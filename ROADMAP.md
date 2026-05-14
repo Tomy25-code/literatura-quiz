@@ -81,6 +81,44 @@ Replaced the basic wrong-answer ID array with a per-question metadata model.
 
 ---
 
+## Interlude: Semantic Content QA & Cleanup ✅ COMPLETED
+
+**Branch:** `v2/content/semantic-cleanup-pass-1`
+
+Before starting Phase 2 question expansion, a dedicated content quality pass was completed to remove weak and redundant questions and raise the baseline quality of existing content.
+
+### What was done
+
+- **Semantic QA script added** — `scripts/qa-semantic-content.mjs` (`npm run qa:semantic`) flags five categories of pedagogically weak questions:
+  - `CATEGORY_SOURCE_MISMATCH` — answer derived from `work.composition`, not from thematic content
+  - `DUPLICATE_CONCEPT` — same work/author + category with identical correct answers on multiple questions
+  - `ESSAY_WEAK_ANSWER` — essay preparation answer too short to be a useful interpretative accent
+  - `TOO_ABSTRACT_ANSWER` — theme/motif answer is a single decontextualised word
+  - `GENERIC_EXPLANATION` — explanation only states the answer is in the notes without explaining why
+
+- **47 duplicate-concept questions removed** — question count reduced from **462 → 415**:
+  - `q-work-X-002` series: work-identification questions that duplicated the correct answer of an existing question in the same work + category scope
+  - `q-work-X-016/018/019/020` series: second composition questions per work with identical answers
+
+- **8 questions rewritten**:
+  - 2 `CATEGORY_SOURCE_MISMATCH` — both in „Спи езерото": `"състоянието"` replaced with `"усещането за тук и сега"` (themes) and `"откъсването на личността от социалните проблеми"` (essay_preparation); explanations made substantive
+  - 6 `ESSAY_WEAK_ANSWER` / `TOO_ABSTRACT_ANSWER` — single-word answers expanded to interpretative phrases: Димитър Талев, „Балкански синдром", „Спасова могила", „Аз искам да те помня все така", „Песента на колелетата", „Честен кръст"
+
+- **QA script false-positive fix** — `CATEGORY_SOURCE_MISMATCH` now skips answers already present in `work.themes` or `work.motifs`, preventing legitimate thematic terms from being flagged because `work.composition` references the same concept
+
+### QA status after cleanup
+
+| Script | Result |
+|--------|--------|
+| `npm run build` | PASS |
+| `npm run qa:content` | PASS — 0 errors, 19 LONG_OPTION warnings (pre-existing) |
+| `npm run qa:source` | PASS — 0 errors, 261 warnings (pre-existing) |
+| `npm run qa:semantic` | PASS — 0 high-severity findings |
+
+Remaining backlog: ~95 `GENERIC_EXPLANATION` (low), ~20 `TOO_ABSTRACT_ANSWER` (medium), ~15 `ESSAY_WEAK_ANSWER` (medium). These are not blockers and will be addressed opportunistically during content expansion.
+
+---
+
 ## Sprint 2 — More Question Variants
 
 **Branch:** `v2/sprint2-question-variants`

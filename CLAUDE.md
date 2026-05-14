@@ -48,7 +48,7 @@ source/           ← source reference notes (read-only reference)
 - **Do not modify any JSON data file unless explicitly asked by the user.**
 - Do not invent literary facts. Every fact in question/explanation fields must be traceable to the existing JSON data or to `source/literatura-zapiski.md`.
 - Questions must come from `questions.json`. Authors from `authors.json`. Works from `works.json`.
-- After any change to a JSON data file, run both QA scripts and confirm 0 errors before committing.
+- After any change to a JSON data file, run **all three QA scripts** and confirm 0 errors before committing.
 - Do not add, remove, or rename fields in the JSON schema without discussion first.
 
 ---
@@ -56,11 +56,43 @@ source/           ← source reference notes (read-only reference)
 ## QA Scripts
 
 ```bash
-npm run qa:content   # structural validation (cross-refs, duplicates, field checks)
-npm run qa:source    # cross-check data against source notes
+npm run qa:content   # structural validation (cross-refs, duplicates, field checks) — exits 1 on errors
+npm run qa:source    # cross-check data fields against source/literatura-zapiski.md
+npm run qa:semantic  # pedagogical quality — flags weak answers, duplicates, generic explanations
 ```
 
-Both scripts write reports to `reports/`. `qa:content` exits with code 1 on hard errors.
+All three scripts write reports to `reports/`. `qa:content` exits with code 1 on hard errors; the others exit 0 but print severity-tagged findings to the console.
+
+### What each script checks
+
+| Script | Checks | Blocker threshold |
+|--------|--------|-------------------|
+| `qa:content` | Field presence, type correctness, cross-references (authorId/workId exist), valid category/difficulty, duplicate IDs, option count | Any error → exits 1 |
+| `qa:source` | Correctness of data fields against `source/literatura-zapiski.md` | Errors only (warnings acceptable) |
+| `qa:semantic` | CATEGORY_SOURCE_MISMATCH, DUPLICATE_CONCEPT, ESSAY_WEAK_ANSWER, TOO_ABSTRACT_ANSWER, GENERIC_EXPLANATION | High-severity findings must be resolved before merge |
+
+### Current accepted backlog (non-blocking)
+
+| Code | Count | Severity |
+|------|-------|----------|
+| `GENERIC_EXPLANATION` | ~95 | low |
+| `TOO_ABSTRACT_ANSWER` | ~20 | medium |
+| `ESSAY_WEAK_ANSWER` | ~15 | medium |
+
+These are cosmetic quality issues, not structural errors. Address them opportunistically during content expansion.
+
+---
+
+## Content Authoring Rules
+
+Apply these rules whenever writing or editing questions, explanations, or options:
+
+1. **Do not invent literary facts.** Every answer, distractor, and explanation must be traceable to `src/data/authors.json`, `src/data/works.json`, or `source/literatura-zapiski.md`.
+2. **Do not use abstract one-word answers** (`"доброто"`, `"народ"`, `"абсурдът"`) unless the source data explicitly lists that exact phrase as a theme or motif. Prefer fuller interpretative phrases.
+3. **Do not add duplicate questions.** Before adding a question for a given `workId`/`authorId` + `category`, check that no existing question uses the same correct answer for the same scope.
+4. **Do not label structural facts as themes.** If an answer comes from `work.composition` or `work.creative_history`, do not categorize it as `themes` or `essay_preparation` unless it is also present in `work.themes` or `work.motifs`.
+5. **Essay preparation answers must be interpretative.** A correct answer for `category: "essay_preparation"` must be a phrase of at least 20 characters that names a meaningful analytical angle, not just a word extracted from the notes.
+6. **After any change to `src/data/*.json`, run all three QA scripts** (`qa:content`, `qa:source`, `qa:semantic`) and confirm zero errors before committing.
 
 ---
 
