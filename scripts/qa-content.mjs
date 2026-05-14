@@ -225,6 +225,23 @@ questions.forEach((q, i) => {
     });
   }
 
+  // ── First-name clustering in author-option questions ──────────────────────
+  // Warn when 3+ options share the same first name — the options become hard
+  // to distinguish at a glance.  Only checked for author-typed categories.
+  if (['author', 'nickname'].includes(q.category) && Array.isArray(q.options)) {
+    const fnCounts = {};
+    for (const opt of q.options) {
+      const fn = opt.split(' ')[0];
+      fnCounts[fn] = (fnCounts[fn] || 0) + 1;
+    }
+    for (const [fn, cnt] of Object.entries(fnCounts)) {
+      if (cnt >= 3) {
+        warn(id, 'CLUSTERED_FIRST_NAME',
+          `${cnt} options share first name "${fn}" — distractors are hard to distinguish`);
+      }
+    }
+  }
+
   // ── Generic explanation warnings ──────────────────────────────────────────
 
   if (q.explanation) {
@@ -530,6 +547,9 @@ function buildRecommendations() {
   }
   if (warnCodes.QUOTES) {
     recs.push(`⚠️ Fix **${warnCodes.QUOTES} item(s)** with ASCII quotes — use Bulgarian „…" quotation marks.`);
+  }
+  if (warnCodes.CLUSTERED_FIRST_NAME) {
+    recs.push(`⚠️ Fix **${warnCodes.CLUSTERED_FIRST_NAME} question(s)** where 3+ options share the same first name — regenerate with diverse distractors.`);
   }
 
   if (recs.length === 0) recs.push('✅ No recommendations — content looks clean!');

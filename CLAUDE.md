@@ -101,7 +101,8 @@ Apply these rules whenever writing or editing questions, explanations, or option
 3. **Do not add duplicate questions.** Before adding a question for a given `workId`/`authorId` + `category`, check that no existing question uses the same correct answer for the same scope.
 4. **Do not label structural facts as themes.** If an answer comes from `work.composition` or `work.creative_history`, do not categorize it as `themes` or `essay_preparation` unless it is also present in `work.themes` or `work.motifs`.
 5. **Essay preparation answers must be interpretative.** A correct answer for `category: "essay_preparation"` must be a phrase of at least 20 characters that names a meaningful analytical angle, not just a word extracted from the notes.
-6. **After any change to `src/data/*.json`, run all three QA scripts** (`qa:content`, `qa:source`, `qa:semantic`) and confirm zero errors before committing.
+6. **Do not cluster author distractors by first name.** When all four options are author names, at most 2 options may share the same first name. Use `pickDiverseAuthorDistractors()` in the generator; `qa:content` will warn `CLUSTERED_FIRST_NAME` if this rule is violated.
+7. **After any change to `src/data/*.json`, run all three QA scripts** (`qa:content`, `qa:source`, `qa:semantic`) and confirm zero errors before committing.
 
 ---
 

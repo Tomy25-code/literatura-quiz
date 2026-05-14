@@ -1,6 +1,6 @@
 # Literatura Quiz — Semantic Content QA Report
 
-Generated: 14.05.2026 г., 13:00:59 ч.
+Generated: 14.05.2026 г., 13:16:35 ч.
 
 > This report flags pedagogically weak questions that pass structural validation.
 > Use it as a prioritised review queue before Phase 2 question expansion.
