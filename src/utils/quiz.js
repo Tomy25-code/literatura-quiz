@@ -43,6 +43,21 @@ export function shuffle(arr) {
   return a;
 }
 
+/**
+ * Returns true if question q belongs to the given category for filtering purposes.
+ *
+ * The "true_false" category is type-gated: only questions with an explicit
+ * `type: "true_false"` field are considered binary true/false questions.
+ * Base questions that carry `category: "true_false"` but no `type` are
+ * statement-selection questions ("Кое твърдение е вярно...") and must not
+ * appear under the "Вярно/невярно" filter.
+ */
+export function questionMatchesCategory(q, category) {
+  if (q.category !== category) return false;
+  if (category === 'true_false') return q.type === 'true_false';
+  return true;
+}
+
 export function buildQuiz(allQuestions, mode, filterValue, allWorks = [], length = QUIZ_LENGTH) {
   let pool;
 
@@ -72,7 +87,7 @@ export function buildQuiz(allQuestions, mode, filterValue, allWorks = [], length
     }
 
     case 'category':
-      pool = allQuestions.filter(q => q.category === filterValue);
+      pool = allQuestions.filter(q => questionMatchesCategory(q, filterValue));
       break;
 
     case 'difficulty':

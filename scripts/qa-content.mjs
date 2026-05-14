@@ -28,6 +28,8 @@ const typeQuestions = (() => {
   catch { return []; } // generated file may not exist yet
 })();
 const questions = [...baseQuestions, ...variantQuestions, ...typeQuestions];
+// IDs of questions from questions.types.json — used for type-specific consistency checks
+const typeQuestionIdSet = new Set(typeQuestions.map(q => q.id));
 
 // ── Constants ─────────────────────────────────────────────────────────────────
 
@@ -125,6 +127,14 @@ questions.forEach((q, i) => {
     err(id, 'INVALID_TYPE', `type "${q.type}" is not a recognised type`);
   }
 
+  // In questions.types.json: category "true_false" requires explicit type "true_false".
+  // (Old base questions use category "true_false" for statement-selection questions — that
+  //  is a legacy convention and must not be replicated in the type questions file.)
+  if (typeQuestionIdSet.has(q.id) && q.category === 'true_false' && q.type !== 'true_false') {
+    err(id, 'TYPE_CATEGORY_MISMATCH',
+      `question in questions.types.json with category "true_false" must have type "true_false"`);
+  }
+
   // Required fields (type-aware)
   const stdRequiredFields = isMatch
     ? ['id', 'question', 'pairs', 'explanation', 'category', 'difficulty']
@@ -170,6 +180,24 @@ questions.forEach((q, i) => {
     if (q.correctAnswer !== 'Вярно' && q.correctAnswer !== 'Невярно') {
       err(id, 'TRUE_FALSE_ANSWER',
         `true_false correctAnswer must be "Вярно" or "Невярно" (got "${q.correctAnswer}")`);
+    }
+    // question text must be a declarative statement, not a statement-selection question
+    const FORBIDDEN_TF_PATTERNS = [
+      /^Кое твърдение/i,
+      /^Кое от твърденията/i,
+      /^Кое НЕ е вярно/i,
+    ];
+    for (const pat of FORBIDDEN_TF_PATTERNS) {
+      if (pat.test(q.question || '')) {
+        err(id, 'TRUE_FALSE_STATEMENT_FORMAT',
+          `true_false question must be a declarative statement, not a statement-selection question (matched /${pat.source}/)`);
+        break;
+      }
+    }
+    // category must be true_false
+    if (q.category !== 'true_false') {
+      err(id, 'TRUE_FALSE_CATEGORY',
+        `question with type "true_false" must have category "true_false" (got "${q.category}")`);
     }
   } else if (isMatch) {
     // match_author_work: check pairs array
