@@ -4,7 +4,7 @@
 
 Bulgarian literature quiz website for матура по български език и литература (Bulgarian language and literature graduation exam).
 
-Production app is live on Vercel from the `main` branch. v2 development happens in separate feature branches.
+`main` is the live v1 production branch on Vercel and must not be touched. All v2 development happens in branches off `v2/main`.
 
 ---
 
@@ -85,14 +85,16 @@ Both scripts write reports to `reports/`. `qa:content` exits with code 1 on hard
 ## Branch Workflow
 
 ```
-main                        ← production (live on Vercel) — protected
-└── v2/restructure-and-docs ← current v2 base branch
-    └── v2/feature-xyz      ← individual feature branches
+main                      ← v1 production (live on Vercel) — protected
+│
+└── v2/main               ← v2 integration branch (merge target for all v2 work)
+    └── v2/feature-xyz    ← individual v2 feature branches
 ```
 
 - **Never push experimental or in-progress work to `main`.**
-- Branch all v2 work off `v2/restructure-and-docs` (or the latest v2 base).
-- Merge to `main` only when a feature is complete, build passes, and QA passes with 0 errors.
+- **Branch all v2 work off `v2/main`.**
+- Merge to `v2/main` via PR when build and QA pass.
+- Merge to `main` only when a v2 release is fully tested and signed off.
 
 ---
 
@@ -106,3 +108,111 @@ npm run lint      # ESLint
 npm run qa:content
 npm run qa:source
 ```
+
+---
+
+## localStorage Keys
+
+All localStorage keys used by the app. Do not change key names without migrating existing data.
+
+| Key | File | Purpose |
+|-----|------|---------|
+| `literaturaQuizStats` | `src/utils/stats.js` | Array of quiz attempt records |
+| `literaturaQuizLength` | `src/utils/settings.js` | User's selected quiz length (5/10/15/20) |
+| `literaturaQuizWrongReview` | `src/utils/wrongAnswers.js` | Smart wrong-review metadata map |
+| `literaturaQuizWrongQuestionIds` | `src/utils/wrongAnswers.js` | Legacy wrong-answer ID array (auto-migrated, then deleted) |
+| `literaturaQuizDailyPractice` | `src/utils/dailyPractice.js` | Daily practice completion and streak |
+
+### `literaturaQuizStats` — shape
+
+Array of attempt objects:
+```json
+{
+  "id": "timestamp string",
+  "timestamp": "ISO 8601",
+  "quizMode": "random | author | work | category | difficulty | wrong | weakSpots | dailyPractice",
+  "modeLabel": "human-readable label",
+  "totalQuestions": 10,
+  "correctAnswers": 7,
+  "percentage": 70,
+  "questionIds": ["q-id", "..."],
+  "correctIds": ["q-id", "..."],
+  "wrongIds": ["q-id", "..."],
+  "categories": ["author", "genre", "..."],
+  "difficulties": ["easy", "medium", "..."]
+}
+```
+
+### `literaturaQuizLength` — shape
+
+Single integer stored as a string: `"10"`. Valid values: `5`, `10`, `15`, `20`. Defaults to `10` if missing or invalid.
+
+### `literaturaQuizWrongReview` — shape
+
+Object keyed by question ID:
+```json
+{
+  "question-id": {
+    "id": "question-id",
+    "wrongCount": 2,
+    "correctStreak": 1,
+    "lastWrongAt": "ISO 8601",
+    "lastCorrectAt": "ISO 8601 or null",
+    "masteredAt": "ISO 8601 or null",
+    "status": "active | mastered"
+  }
+}
+```
+
+Migration: if `literaturaQuizWrongQuestionIds` (old array format) exists and `literaturaQuizWrongReview` does not, the old IDs are migrated automatically on first read with `wrongCount: 1, correctStreak: 0, status: 'active'`. The old key is then deleted.
+
+### `literaturaQuizDailyPractice` — shape
+
+```json
+{
+  "lastDate": "YYYY-MM-DD or null",
+  "count": 5,
+  "streak": 3,
+  "bestStreak": 7
+}
+```
+
+---
+
+## Implemented V2 Features (Phase 1 — Smart Practice)
+
+### Weak Spots mode (`Слаби места`)
+
+- Entry: `src/utils/weakSpots.js` — `buildWeakSpotsQuiz()`, `hasWeakSpots()`, `getWeakSets()`
+- Qualification: a question qualifies if it is in the active wrong-review queue, OR belongs to a category/difficulty where accuracy is below 70% over at least 10 answered questions.
+- Historical wrong count is used for scoring only, not admission — mastered questions do not re-enter.
+- **Must not fall back to random questions if no weak spots exist.** Show the empty state instead.
+- Priority scoring: `+4` active wrong queue, `+3` per historical wrong answer, `+2` weak category, `+1` weak difficulty, `−1` per historical correct answer.
+
+### Daily Practice mode (`Дневна тренировка`)
+
+- Entry: `src/utils/dailyPractice.js` — `buildDailyPracticeQuiz()`, `getDailyPracticeState()`, `saveDailyPracticeCompletion()`
+- Selection split (target length N): `floor(N × 0.4)` wrong, `floor(N × 0.4)` weak, remainder random.
+- Shortfalls redistribute forward: wrong shortage → weak quota, weak shortage → random quota.
+- Random pool prefers unseen questions first.
+- **Correct answers in Daily Practice must NOT call `recordWrongQuestionCorrect` and must NOT advance `correctStreak`.** They are recorded in stats only.
+- Wrong answers in Daily Practice DO call `saveWrongQuestionId` and update the wrong-review record.
+- Streak increments at most once per local calendar date. Repeating Daily Practice on the same day is allowed.
+
+### Smart Wrong Review (`Преговор на грешните`)
+
+- Entry: `src/utils/wrongAnswers.js` — `buildWrongReviewQuiz()`, `saveWrongQuestionId()`, `recordWrongQuestionCorrect()`
+- A question is marked `status: 'mastered'` only after **2 consecutive correct answers** (`correctStreak >= 2`) in a focused remediation mode.
+- **Focused remediation modes:** Wrong Review (`wrong`) and Weak Spots (`weakSpots`) only.
+- Getting a question wrong in any mode resets `correctStreak` to 0 and increments `wrongCount`.
+- Regular quizzes and Daily Practice can add wrong-answer records but cannot master/remove questions.
+- Selection priority: higher `wrongCount` → lower `correctStreak` → more recent `lastWrongAt` → random tie-breaker.
+- Wrong Review is never padded with non-wrong questions.
+
+### Quiz.jsx remediation behavior
+
+- Prop `isRemediationMode` is `true` for `wrong` and `weakSpots` quiz modes only.
+- Correct answer + `isRemediationMode`: calls `recordWrongQuestionCorrect(id)`. Shows amber progress message if `correctStreak < 2`, green mastered message if `correctStreak >= 2`.
+- Wrong answer + `isRemediationMode`: calls `saveWrongQuestionId(id)`, shows "stays in queue" note.
+- Correct answer without `isRemediationMode`: no wrong-review interaction.
+- Wrong answer without `isRemediationMode`: calls `saveWrongQuestionId(id)`.
