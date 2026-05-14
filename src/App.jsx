@@ -5,8 +5,9 @@ import baseQuestions from './data/questions.json';
 import variantQuestions from './data/questions.v2.json';
 import typeQuestions from './data/questions.types.json';
 import fillBlankQuestions from './data/questions.fillblank.json';
+import recognitionQuestions from './data/questions.recognition.json';
 
-const questions = [...baseQuestions, ...variantQuestions, ...typeQuestions, ...fillBlankQuestions];
+const questions = [...baseQuestions, ...variantQuestions, ...typeQuestions, ...fillBlankQuestions, ...recognitionQuestions];
 import Home from './components/Home';
 import Quiz from './components/Quiz';
 import Results from './components/Results';

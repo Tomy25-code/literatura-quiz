@@ -13,7 +13,8 @@
     "qa:semantic": "node scripts/qa-semantic-content.mjs",
     "generate:variants": "node scripts/generate-question-variants.mjs",
     "generate:types": "node scripts/generate-question-types.mjs",
-    "generate:fillblank": "node scripts/generate-fill-blank-questions.mjs"
+    "generate:fillblank": "node scripts/generate-fill-blank-questions.mjs",
+    "generate:work-recognition": "node scripts/generate-work-recognition-questions.mjs"
   },
   "dependencies": {
     "react": "^19.2.6",
