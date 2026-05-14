@@ -45,6 +45,8 @@ source/           ← source reference notes (read-only reference)
 | `src/data/questions.fillblank.json` | 83 generated fill-in-the-blank questions (do not edit by hand) |
 | `src/data/questions.recognition.json` | 64 generated thematic work-recognition questions (do not edit by hand) |
 
+**Total question pool: 415 + 81 + 59 + 83 + 64 = 702 questions**
+
 ---
 
 ## Data Integrity Rules
@@ -283,6 +285,30 @@ Migration: if `literaturaQuizWrongQuestionIds` (old array format) exists and `li
 ---
 
 ## Implemented V2 Features (Phase 2 — Question Types)
+
+### Question Variant Generator (`questions.v2.json`)
+
+- Generator: `scripts/generate-question-variants.mjs` (`npm run generate:variants`)
+- `type: "multiple_choice"`, ID prefix `qv-`.
+- Four variant templates generated from existing `authors.json` / `works.json` data:
+
+| Type | Count | Template |
+|------|-------|----------|
+| Alternate work → author | 27 | "Кой е авторът на „X"?" |
+| Work recognition | 26 | "За коя творба се отнася следният факт: „X"?" |
+| Alternate author → work | 20 | "Кое от изброените произведения е написано от X?" |
+| Reverse nickname | 8 | "Кой автор е известен с прозвището „X"?" |
+
+- 1 work skipped for recognition template: „История" (title word appears in all key_facts as substring).
+- `qa:semantic` DUPLICATE_CONCEPT check is restricted to base questions only — generated variants are intentional alternate phrasings.
+- `qa:source` skips generated questions — they are validated by the generator from already-verified data.
+
+### Distractor diversity (`pickDiverseAuthorDistractors()`)
+
+- Problem: a naive random pick can produce 3 distractors that all share a first name (e.g. Христо Ботев, Христо Смирненски, Христо Фотев), making options hard to distinguish.
+- Solution: `pickDiverseAuthorDistractors()` in the variant generator uses 3-pass progressive relaxation: max 1 same first name → max 2 → no constraint as emergency fallback.
+- Applied to Type A (work → author) and Type D (nickname → author) loops; Types B and C use work titles and are unaffected.
+- `qa:content` warns `CLUSTERED_FIRST_NAME` when 3+ options share a first name in any `author`/`nickname` category question.
 
 ### True/False and Match questions (`questions.types.json`)
 
