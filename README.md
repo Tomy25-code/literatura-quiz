@@ -77,11 +77,31 @@ npm run lint     # ESLint
 Run after any changes to the JSON data files.
 
 ```bash
-npm run qa:content   # validate structure, cross-references, duplicates
-npm run qa:source    # cross-check data against source notes
+npm run qa:content   # structural validation — cross-references, field checks, duplicates (exits 1 on errors)
+npm run qa:source    # cross-check data fields against source/literatura-zapiski.md
+npm run qa:semantic  # pedagogical quality — flags weak answers, duplicates, generic explanations
 ```
 
-Reports are written to `reports/`. The content QA script exits with code 1 if hard errors are found.
+Reports are written to `reports/`. `qa:content` exits with code 1 if hard errors are found; the others always exit 0 but print severity-tagged findings.
+
+### Current QA status
+
+All three scripts pass with zero blocking errors. Accepted backlog (non-blocking):
+
+| Finding | Count | Severity | Notes |
+|---------|-------|----------|-------|
+| `GENERIC_EXPLANATION` | ~95 | low | Explanations that only cite the source notes rather than explaining the answer |
+| `TOO_ABSTRACT_ANSWER` | ~20 | medium | Very short motif/theme labels; some are intentional |
+| `ESSAY_WEAK_ANSWER` | ~15 | medium | Short essay anchors; addressed opportunistically during content expansion |
+
+High-severity semantic findings (`CATEGORY_SOURCE_MISMATCH`, `DUPLICATE_CONCEPT`) must be resolved before merging content changes.
+
+### Semantic content cleanup (pre-Phase 2)
+
+Before Phase 2 question expansion, a dedicated cleanup pass was run on `src/data/questions.json`:
+
+- **47 duplicate-concept questions removed** — `q-work-X-002` work-identification duplicates and second composition questions per work (e.g. `-016`, `-018`–`-020` series). Question count reduced from 462 → 415.
+- **8 questions rewritten** — 2 `CATEGORY_SOURCE_MISMATCH` fixes (including two "Спи езерото" questions where `"състоянието"` was replaced with proper thematic answers), and 6 `ESSAY_WEAK_ANSWER`/`TOO_ABSTRACT_ANSWER` fixes where single-word answers were expanded to interpretative phrases.
 
 ---
 
