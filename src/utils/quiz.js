@@ -14,6 +14,7 @@ export const MODE_LABELS = {
 export const CATEGORY_LABELS = {
   author: 'Автор',
   work: 'Произведение',
+  work_recognition: 'Разпознаване на творби',
   genre: 'Жанр',
   period: 'Период',
   nickname: 'Псевдоним/прякор',

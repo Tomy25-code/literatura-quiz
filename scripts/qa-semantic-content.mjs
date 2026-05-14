@@ -31,9 +31,17 @@ function load(rel) {
   return JSON.parse(readFileSync(resolve(root, rel), 'utf8'));
 }
 
-const authors   = load('src/data/authors.json');
-const works     = load('src/data/works.json');
-const questions = load('src/data/questions.json');
+const authors       = load('src/data/authors.json');
+const works         = load('src/data/works.json');
+const baseQuestions = load('src/data/questions.json');
+const variantQuestions = (() => {
+  try { return load('src/data/questions.v2.json'); }
+  catch { return []; }
+})();
+// All questions for most checks; base only for DUPLICATE_CONCEPT (variants are
+// intentional alternate phrasings and must not be flagged as duplicate concepts).
+const questions    = [...baseQuestions, ...variantQuestions];
+const baseOnlyIds  = new Set(baseQuestions.map(q => q.id));
 
 const authorMap = new Map(authors.map(a => [a.id, a]));
 const workMap   = new Map(works.map(w => [w.id, w]));
@@ -116,11 +124,14 @@ function flag(q, code, reason) {
 
 // ── Check 1: DUPLICATE_CONCEPT ────────────────────────────────────────────────
 // Same (workId OR authorId) + category with identical correctAnswer on 2+ questions.
+// Only applied to base questions — generated variants intentionally reuse the same
+// correct answer with different question phrasings and must not be flagged here.
 
 {
   // Group key: workId (if set) else authorId, plus category.
   const groups = new Map(); // key → question[]
   for (const q of questions) {
+    if (!baseOnlyIds.has(q.id)) continue; // skip generated questions
     const scopeKey = q.workId ? `work:${q.workId}` : `author:${q.authorId}`;
     const key = `${scopeKey}|${q.category}`;
     if (!groups.has(key)) groups.set(key, []);

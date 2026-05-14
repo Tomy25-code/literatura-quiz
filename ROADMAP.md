@@ -121,34 +121,60 @@ Remaining backlog: ~95 `GENERIC_EXPLANATION` (low), ~20 `TOO_ABSTRACT_ANSWER` (m
 
 ## Sprint 2 — More Question Variants
 
-**Branch:** `v2/sprint2-question-variants`
+**Branch:** `v2/feature/question-variants`
 
-### Question Variant Structure
+### Step 1 — Question Variant Generator ✅ IMPLEMENTED
 
-Reduce repetition without bloating `questions.json` by supporting lightweight variants.
+**Decision:** Option B — separate `src/data/questions.v2.json` (generated output; canonical base stays in `questions.json`).
 
-- Option A: add an optional `variants` array inside each question in `questions.json`.
-- Option B: introduce a separate `src/data/questionVariants.json` keyed by question id.
-- Each variant provides an alternate `question` string and optionally reshuffled distractors.
-- The quiz engine picks one variant at random per session; the `correctAnswer` is always inherited from the base question.
-- Decide on Option A vs B before implementing — document the decision here.
+#### Implementation
 
-### Generated Variations
+- **Generator script:** `scripts/generate-question-variants.mjs` (`npm run generate:variants`)
+- **Generated file:** `src/data/questions.v2.json` (81 variants; do not edit by hand)
+- **Combined pool:** 415 base + 81 generated = **496 questions**
+- **Integration:** `App.jsx` imports both files and merges them; all quiz modes use the full pool
 
-Question types to add for existing works and authors:
+#### Generated variant types
 
-- **Work recognition** — show an excerpt or key fact, ask which work it describes.
-- **Author recognition** — given a biographical clue, identify the author.
-- **Reverse lookup** — given a work title, name the author (distinct from existing author questions).
-- **Period placement** — given a work or author, identify the literary period.
+| Type | Count | Template |
+|------|-------|----------|
+| Alternate work → author | 27 | "Кой е авторът на „X"?" |
+| Work recognition | 26 | "За коя творба се отнася следният факт: „X"?" |
+| Alternate author → work | 20 | "Кое от изброените произведения е написано от X?" |
+| Reverse nickname | 8 | "Кой автор е известен с прозвището „X"?" |
+
+1 work skipped for recognition („История" — title word appears in all key_facts as substring).
+
+#### QA changes
+
+- `work_recognition` added to `VALID_CATEGORIES` in `qa-content.mjs` and to `CATEGORY_LABELS` in `quiz.js`
+- `qa:content` validates both `questions.json` and `questions.v2.json` (cross-file duplicate ID check)
+- `qa:semantic` DUPLICATE_CONCEPT check restricted to base questions only (generated variants are intentional alternate phrasings)
+- `qa:source` skips generated questions (validated by generator from already-verified data)
+
+#### QA status after implementation
+
+| Check | Result |
+|-------|--------|
+| `npm run build` | ✅ PASS |
+| `npm run qa:content` | ✅ 0 errors, 19 LONG_OPTION warnings (pre-existing) |
+| `npm run qa:source` | ✅ 0 errors, 261 warnings (pre-existing) |
+| `npm run qa:semantic` | ✅ 0 high-severity findings |
+
+### Step 2 — Remaining Variant Types (planned)
+
+Question types still to add:
+
+- **Period placement** — given a work or author, identify the literary period (new direction)
+- **Author from literary context** — given a literary context description, identify the author
+- **Composition recognition** — given a structural clue, identify the work
 
 New questions go through the content QA script before merging (`npm run qa:content` must exit 0).
 
-### Work Recognition Questions
+### Work Recognition Questions (further)
 
-A dedicated sub-type for `category: "work_recognition"` (add to `VALID_CATEGORIES` in `qa-content.mjs`).
+`category: "work_recognition"` is already in `VALID_CATEGORIES` and `CATEGORY_LABELS`.
 
-- Provide a short excerpt or thematic clue in the `question` field.
 - `correctAnswer` is the work title.
 - `workId` must be set; `authorId` must match the work's author.
 

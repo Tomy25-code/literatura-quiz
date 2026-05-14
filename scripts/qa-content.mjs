@@ -16,16 +16,21 @@ function load(rel) {
   return JSON.parse(readFileSync(resolve(root, rel), 'utf8'));
 }
 
-const authors = load('src/data/authors.json');
-const works   = load('src/data/works.json');
-const questions = load('src/data/questions.json');
+const authors   = load('src/data/authors.json');
+const works     = load('src/data/works.json');
+const baseQuestions = load('src/data/questions.json');
+const variantQuestions = (() => {
+  try { return load('src/data/questions.v2.json'); }
+  catch { return []; } // generated file may not exist yet
+})();
+const questions = [...baseQuestions, ...variantQuestions];
 
 // ── Constants ─────────────────────────────────────────────────────────────────
 
 const VALID_DIFFICULTIES = new Set(['easy', 'medium', 'hard']);
 
 const VALID_CATEGORIES = new Set([
-  'author', 'work', 'genre', 'period', 'nickname',
+  'author', 'work', 'work_recognition', 'genre', 'period', 'nickname',
   'creative_history', 'composition', 'themes', 'motifs',
   'literary_context', 'true_false', 'essay_preparation',
 ]);
@@ -355,13 +360,15 @@ const needsReview = [
 ].filter(id => id !== 'authors.json' && id !== 'works.json' && id !== 'questions.json');
 
 const summary = {
-  authors:           authors.length,
-  works:             works.length,
-  questions:         questions.length,
-  totalErrors:       errors.length,
-  totalWarnings:     warnings.length,
-  questionsWithErrors:   [...new Set(errors.map(e => e.id))].filter(id => seenQIds.has(id)).length,
-  questionsNeedingReview: needsReview.length,
+  authors:             authors.length,
+  works:               works.length,
+  baseQuestions:       baseQuestions.length,
+  generatedQuestions:  variantQuestions.length,
+  totalQuestions:      questions.length,
+  totalErrors:         errors.length,
+  totalWarnings:       warnings.length,
+  questionsWithErrors:      [...new Set(errors.map(e => e.id))].filter(id => seenQIds.has(id)).length,
+  questionsNeedingReview:   needsReview.length,
 };
 
 const jsonReport = {
@@ -410,7 +417,9 @@ Generated: ${new Date().toLocaleString('bg-BG')}
 |--------|-------|
 | Authors | ${summary.authors} |
 | Works | ${summary.works} |
-| Questions | ${summary.questions} |
+| Base questions (questions.json) | ${summary.baseQuestions} |
+| Generated variants (questions.v2.json) | ${summary.generatedQuestions} |
+| **Total questions** | **${summary.totalQuestions}** |
 | **Total errors** | **${summary.totalErrors}** |
 | **Total warnings** | **${summary.totalWarnings}** |
 | Questions with errors | ${summary.questionsWithErrors} |
@@ -554,9 +563,9 @@ const RESET  = '\x1b[0m';
 
 console.log('');
 console.log(`${BOLD}${CYAN}━━━ Literatura Quiz — Content QA ━━━${RESET}`);
-console.log(`  Authors:   ${authors.length}`);
-console.log(`  Works:     ${works.length}`);
-console.log(`  Questions: ${questions.length}`);
+console.log(`  Authors:    ${authors.length}`);
+console.log(`  Works:      ${works.length}`);
+console.log(`  Questions:  ${summary.baseQuestions} base + ${summary.generatedQuestions} generated = ${summary.totalQuestions} total`);
 console.log('');
 
 if (errors.length === 0) {

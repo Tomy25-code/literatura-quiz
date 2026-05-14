@@ -39,7 +39,8 @@ source/           ← source reference notes (read-only reference)
 |------|----------|
 | `src/data/authors.json` | 20 Bulgarian authors |
 | `src/data/works.json` | 27 literary works |
-| `src/data/questions.json` | 415 multiple-choice quiz questions |
+| `src/data/questions.json` | 415 manually curated base questions (canonical) |
+| `src/data/questions.v2.json` | 81 generated variant questions (do not edit by hand) |
 
 ---
 
@@ -51,14 +52,22 @@ source/           ← source reference notes (read-only reference)
 - After any change to a JSON data file, run **all three QA scripts** and confirm 0 errors before committing.
 - Do not add, remove, or rename fields in the JSON schema without discussion first.
 
+### Generated questions file (`questions.v2.json`)
+
+- **Never manually edit `src/data/questions.v2.json`** unless explicitly asked. It is generated output. Edit the generator script or the source data files instead.
+- `questions.json` is the canonical curated base set. `questions.v2.json` is derived output.
+- Always run `npm run generate:variants` after changing `authors.json` or `works.json` fields that affect generated questions (author names, work titles, genres, key_facts, nicknames).
+- Always run `npm run build` and all three QA scripts after regeneration.
+
 ---
 
 ## QA Scripts
 
 ```bash
-npm run qa:content   # structural validation (cross-refs, duplicates, field checks) — exits 1 on errors
-npm run qa:source    # cross-check data fields against source/literatura-zapiski.md
-npm run qa:semantic  # pedagogical quality — flags weak answers, duplicates, generic explanations
+npm run generate:variants  # regenerate src/data/questions.v2.json from authors/works/questions
+npm run qa:content         # structural validation — validates both questions.json and questions.v2.json
+npm run qa:source          # cross-check base data fields against source/literatura-zapiski.md (skips generated)
+npm run qa:semantic        # pedagogical quality — flags weak answers, duplicates, generic explanations
 ```
 
 All three scripts write reports to `reports/`. `qa:content` exits with code 1 on hard errors; the others exit 0 but print severity-tagged findings to the console.
@@ -67,9 +76,9 @@ All three scripts write reports to `reports/`. `qa:content` exits with code 1 on
 
 | Script | Checks | Blocker threshold |
 |--------|--------|-------------------|
-| `qa:content` | Field presence, type correctness, cross-references (authorId/workId exist), valid category/difficulty, duplicate IDs, option count | Any error → exits 1 |
-| `qa:source` | Correctness of data fields against `source/literatura-zapiski.md` | Errors only (warnings acceptable) |
-| `qa:semantic` | CATEGORY_SOURCE_MISMATCH, DUPLICATE_CONCEPT, ESSAY_WEAK_ANSWER, TOO_ABSTRACT_ANSWER, GENERIC_EXPLANATION | High-severity findings must be resolved before merge |
+| `qa:content` | Field presence, type correctness, cross-references, valid category/difficulty, duplicate IDs — across **both** `questions.json` and `questions.v2.json` | Any error → exits 1 |
+| `qa:source` | Correctness of data fields against `source/literatura-zapiski.md`; skips generated questions (validated by generator) | Errors only (warnings acceptable) |
+| `qa:semantic` | CATEGORY_SOURCE_MISMATCH, DUPLICATE_CONCEPT (base only), ESSAY_WEAK_ANSWER, TOO_ABSTRACT_ANSWER, GENERIC_EXPLANATION | High-severity findings must be resolved before merge |
 
 ### Current accepted backlog (non-blocking)
 
