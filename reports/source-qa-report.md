@@ -1,6 +1,6 @@
 # Literatura Quiz — Source QA Report
 
-Generated: 13.05.2026 г., 21:52:28 ч.
+Generated: 14.05.2026 г., 11:11:25 ч.
 Source file: `source/literatura-zapiski.md`
 
 ---
