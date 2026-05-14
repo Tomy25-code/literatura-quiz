@@ -1813,3 +1813,76 @@ details[open] .help-summary::after {
     color: #f87171;
   }
 }
+
+/* ── Fill-blank question ─────────────────────────────────────────────────── */
+.fillblank-question {
+  width: 100%;
+}
+
+.fillblank-input-row {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.fillblank-input {
+  flex: 1;
+  padding: 0.6rem 0.9rem;
+  border: 2px solid var(--border, #d1d5db);
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  font-family: var(--sans);
+  background: var(--card-bg, #fff);
+  color: var(--text);
+  outline: none;
+  transition: border-color 0.15s;
+}
+
+.fillblank-input:focus {
+  border-color: #6366f1;
+}
+
+.fillblank-input:disabled {
+  opacity: 0.85;
+  cursor: default;
+}
+
+.fillblank-input-correct {
+  border-color: #16a34a;
+  background: rgba(22, 163, 74, 0.07);
+}
+
+.fillblank-input-wrong {
+  border-color: #dc2626;
+  background: rgba(220, 38, 38, 0.07);
+}
+
+.fillblank-correct-reveal {
+  font-weight: 600;
+  margin: 0.25rem 0 0.5rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  .fillblank-input {
+    border-color: #4b5563;
+    background: #1f2937;
+  }
+
+  .fillblank-input-correct {
+    border-color: #22c55e;
+    background: rgba(34, 197, 94, 0.1);
+  }
+
+  .fillblank-input-wrong {
+    border-color: #ef4444;
+    background: rgba(239, 68, 68, 0.1);
+  }
+}
+
+@media (max-width: 480px) {
+  .fillblank-input-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}

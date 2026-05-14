@@ -204,13 +204,47 @@ A separate generator (`scripts/generate-question-types.mjs`, `npm run generate:t
 | `npm run qa:source` | ✅ 0 errors, 261 warnings (pre-existing) |
 | `npm run qa:semantic` | ✅ 0 high-severity findings |
 
-**Total pool:** 415 base + 81 variants + 59 types = **555 questions**
+**Total pool after types:** 415 base + 81 variants + 59 types = **555 questions**
 
 #### Future question types (not yet implemented)
 
 - **Chronological ordering** — sort works/events by date
 - **Select-all-correct** — choose all correct answers from a list
-- **Fill-missing-word** — cloze / gap-fill questions
+
+### Step 3 — Fill-in-the-blank questions ✅ IMPLEMENTED
+
+**Branch:** `v2/feature/fill-blank-questions`
+
+A fourth generated file (`src/data/questions.fillblank.json`) adds cloze-style questions where the user types the answer into a text field.
+
+#### Implementation
+
+- **Generator script:** `scripts/generate-fill-blank-questions.mjs` (`npm run generate:fillblank`)
+- **Generated file:** `src/data/questions.fillblank.json` (83 questions; do not edit by hand)
+- **Component:** `src/components/FillBlankQuestion.jsx` — text input, Enter-submits, reveals correct answer on wrong
+- **Integration:** `App.jsx` merges fill-blank questions into the full pool; all quiz modes, wrong review, weak spots, and daily practice include them automatically
+
+#### Generated templates
+
+| Template | Count | Difficulty | Source field |
+|----------|-------|------------|--------------|
+| Author attribution | 27 | medium | `work.authorId` → author name |
+| Genre | 27 | easy | `work.genre` (primary segment) |
+| Year | 21 | easy | `work.year_or_period` (clean single-year works only) |
+| Nickname | 8 | medium | `author.nickname` (first phrase before ";") |
+
+Answer matching is case-insensitive, whitespace-normalised, and ignores Bulgarian quotation marks. Year answers accept both `"1952"` and `"1952 г."`. Genre answers accept the primary segment, the full genre string, and the base word for compound genres.
+
+#### QA status
+
+| Check | Result |
+|-------|--------|
+| `npm run build` | ✅ PASS |
+| `npm run qa:content` | ✅ 0 errors, 19 LONG_OPTION warnings (pre-existing) |
+| `npm run qa:source` | ✅ 0 errors, 261 warnings (pre-existing) |
+| `npm run qa:semantic` | ✅ 0 high-severity findings |
+
+**Total pool:** 415 base + 81 variants + 59 types + 83 fill-blank = **638 questions**
 
 ### Work Recognition Questions (further)
 

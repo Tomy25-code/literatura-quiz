@@ -27,7 +27,11 @@ const typeQuestions = (() => {
   try { return load('src/data/questions.types.json'); }
   catch { return []; } // generated file may not exist yet
 })();
-const questions = [...baseQuestions, ...variantQuestions, ...typeQuestions];
+const fillBlankQuestions = (() => {
+  try { return load('src/data/questions.fillblank.json'); }
+  catch { return []; } // generated file may not exist yet
+})();
+const questions = [...baseQuestions, ...variantQuestions, ...typeQuestions, ...fillBlankQuestions];
 // IDs of questions from questions.types.json — used for type-specific consistency checks
 const typeQuestionIdSet = new Set(typeQuestions.map(q => q.id));
 
@@ -39,9 +43,14 @@ const VALID_CATEGORIES = new Set([
   'author', 'work', 'work_recognition', 'genre', 'period', 'nickname',
   'creative_history', 'composition', 'themes', 'motifs',
   'literary_context', 'true_false', 'essay_preparation', 'match_author_work',
+  'fill_blank',
 ]);
 
-const VALID_TYPES = new Set(['multiple_choice', 'true_false', 'match_author_work']);
+const VALID_TYPES = new Set(['multiple_choice', 'true_false', 'match_author_work', 'fill_blank']);
+
+const FILLBLANK_BANNED_ANSWERS = new Set([
+  'състоянието', 'раздялата', 'добротата', 'човешкото', 'живота', 'света',
+]);
 
 const DIFFICULTY_LABELS = { easy: 'Лесно', medium: 'Средно', hard: 'Трудно' };
 
@@ -119,8 +128,9 @@ const seenQTexts     = new Map(); // normalized text → first id
 questions.forEach((q, i) => {
   const id    = q.id || `questions[${i}]`;
   const qType = q.type || 'multiple_choice';
-  const isMatch    = qType === 'match_author_work';
+  const isMatch     = qType === 'match_author_work';
   const isTrueFalse = qType === 'true_false';
+  const isFillBlank = qType === 'fill_blank';
 
   // type field (if present) must be valid
   if (q.type && !VALID_TYPES.has(q.type)) {
@@ -138,6 +148,8 @@ questions.forEach((q, i) => {
   // Required fields (type-aware)
   const stdRequiredFields = isMatch
     ? ['id', 'question', 'pairs', 'explanation', 'category', 'difficulty']
+    : isFillBlank
+    ? ['id', 'question', 'correctAnswer', 'acceptedAnswers', 'explanation', 'authorId', 'category', 'difficulty']
     : ['id', 'question', 'options', 'correctAnswer', 'explanation', 'authorId', 'category', 'difficulty'];
 
   for (const field of stdRequiredFields) {
@@ -227,6 +239,35 @@ questions.forEach((q, i) => {
       if (q.options.length !== q.pairs.length) {
         err(id, 'MATCH_OPTIONS_MISMATCH', 'match_author_work options.length must equal pairs.length');
       }
+    }
+  } else if (isFillBlank) {
+    // fill_blank: id must start with "qfb-"
+    if (q.id && !q.id.startsWith('qfb-')) {
+      err(id, 'FILLBLANK_ID_FORMAT', `fill_blank question id must start with "qfb-" (got "${q.id}")`);
+    }
+    // acceptedAnswers must be a non-empty array
+    if (!Array.isArray(q.acceptedAnswers) || q.acceptedAnswers.length === 0) {
+      err(id, 'FILLBLANK_ACCEPTED_ANSWERS', 'fill_blank acceptedAnswers must be a non-empty array');
+    } else {
+      // correctAnswer must appear (after normalization) in acceptedAnswers
+      const normFn = s => String(s).toLowerCase().replace(/[„""«»]/g, '').replace(/\s+/g, ' ').trim();
+      if (q.correctAnswer !== null && q.correctAnswer !== undefined) {
+        const normCorrect = normFn(q.correctAnswer);
+        if (!q.acceptedAnswers.some(a => normFn(a) === normCorrect)) {
+          err(id, 'FILLBLANK_CORRECT_NOT_ACCEPTED',
+            `fill_blank correctAnswer "${q.correctAnswer}" is not present in acceptedAnswers`);
+        }
+        // check against banned vague answers
+        if (FILLBLANK_BANNED_ANSWERS.has(normCorrect)) {
+          err(id, 'FILLBLANK_VAGUE_ANSWER',
+            `fill_blank correctAnswer "${q.correctAnswer}" is a banned vague answer`);
+        }
+      }
+    }
+    // category must be fill_blank
+    if (q.category !== 'fill_blank') {
+      err(id, 'FILLBLANK_CATEGORY',
+        `question with type "fill_blank" must have category "fill_blank" (got "${q.category}")`);
     }
   } else {
     // Standard multiple_choice: exactly 4 options
@@ -398,8 +439,9 @@ questions.forEach((q, i) => {
 questions.forEach(q => {
   const id    = q.id;
   const qType = q.type || 'multiple_choice';
-  // match_author_work has null authorId/workId by design — skip all consistency checks
+  // match_author_work and fill_blank have their own validation — skip generic consistency checks
   if (qType === 'match_author_work') return;
+  if (qType === 'fill_blank') return;
 
   // genre: correctAnswer should match work.genre when workId is set
   if (q.category === 'genre' && q.workId) {
@@ -438,8 +480,8 @@ questions.forEach(q => {
   }
 
   // Warn if question text mentions a known work title but workId is null
-  // (skip for match questions which have null workId by design and null correctAnswer)
-  if (!q.workId && qType !== 'match_author_work') {
+  // (skip for match and fill_blank questions which have null workId by design)
+  if (!q.workId && qType !== 'match_author_work' && qType !== 'fill_blank') {
     for (const w of works) {
       if (q.question.includes(w.title) || (q.correctAnswer || '').includes(w.title)) {
         if (w.authorId === q.authorId) {
@@ -509,6 +551,7 @@ const summary = {
   baseQuestions:        baseQuestions.length,
   generatedQuestions:   variantQuestions.length,
   typeQuestions:        typeQuestions.length,
+  fillBlankQuestions:   fillBlankQuestions.length,
   totalQuestions:       questions.length,
   totalErrors:          errors.length,
   totalWarnings:        warnings.length,
@@ -714,7 +757,7 @@ console.log('');
 console.log(`${BOLD}${CYAN}━━━ Literatura Quiz — Content QA ━━━${RESET}`);
 console.log(`  Authors:    ${authors.length}`);
 console.log(`  Works:      ${works.length}`);
-console.log(`  Questions:  ${summary.baseQuestions} base + ${summary.generatedQuestions} variants + ${summary.typeQuestions} types = ${summary.totalQuestions} total`);
+console.log(`  Questions:  ${summary.baseQuestions} base + ${summary.generatedQuestions} variants + ${summary.typeQuestions} types + ${summary.fillBlankQuestions} fill-blank = ${summary.totalQuestions} total`);
 console.log('');
 
 if (errors.length === 0) {

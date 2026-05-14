@@ -42,6 +42,7 @@ source/           ← source reference notes (read-only reference)
 | `src/data/questions.json` | 415 manually curated base questions (canonical) |
 | `src/data/questions.v2.json` | 81 generated variant questions (do not edit by hand) |
 | `src/data/questions.types.json` | 59 generated type questions — true/false + match (do not edit by hand) |
+| `src/data/questions.fillblank.json` | 83 generated fill-in-the-blank questions (do not edit by hand) |
 
 ---
 
@@ -55,22 +56,32 @@ source/           ← source reference notes (read-only reference)
 
 ### Generated questions files
 
-- **Never manually edit `src/data/questions.v2.json` or `src/data/questions.types.json`** unless explicitly asked. Both are generated output.
-- `questions.json` is the canonical curated base set. The other two are derived output.
+- **Never manually edit `src/data/questions.v2.json`, `src/data/questions.types.json`, or `src/data/questions.fillblank.json`** unless explicitly asked. All three are generated output.
+- `questions.json` is the canonical curated base set. The other three files are derived output.
 - Always run `npm run generate:variants` after changing `authors.json` or `works.json` fields that affect alternate-phrasing variants (author names, work titles, genres, key_facts, nicknames).
 - Always run `npm run generate:types` after changing `authors.json` or `works.json` (affects true/false and match questions).
+- Always run `npm run generate:fillblank` after changing `authors.json` or `works.json` fields that affect fill-blank answers (author names, work titles, genres, year_or_period, nicknames).
 - Always run `npm run build` and all three QA scripts after regeneration.
+
+### Fill-blank question rules
+
+- **Do not hand-edit `src/data/questions.fillblank.json`.** Regenerate with `npm run generate:fillblank`.
+- Every `correctAnswer` and every entry in `acceptedAnswers` must be directly traceable to a field in `authors.json` or `works.json`. Do not invent facts.
+- `acceptedAnswers` must include the `correctAnswer` value (after normalization) and all safe alternate forms (e.g. year with and without "г.", genre base word).
+- Banned vague answers: `"състоянието"`, `"раздялата"`, `"добротата"`, `"човешкото"`, `"живота"`, `"света"`. These are caught by `qa:content` (`FILLBLANK_VAGUE_ANSWER`).
+- Do not add fill-blank templates that require subjective interpretation. Blanks must have one objectively correct answer derivable from the source data fields.
 
 ---
 
 ## QA Scripts
 
 ```bash
-npm run generate:variants  # regenerate src/data/questions.v2.json from authors/works
-npm run generate:types     # regenerate src/data/questions.types.json (true/false + match)
-npm run qa:content         # structural validation — validates all three questions files
-npm run qa:source          # cross-check base data fields against source/literatura-zapiski.md (skips generated)
-npm run qa:semantic        # pedagogical quality — flags weak answers, duplicates, generic explanations
+npm run generate:variants   # regenerate src/data/questions.v2.json from authors/works
+npm run generate:types      # regenerate src/data/questions.types.json (true/false + match)
+npm run generate:fillblank  # regenerate src/data/questions.fillblank.json (fill-in-the-blank)
+npm run qa:content          # structural validation — validates all four questions files
+npm run qa:source           # cross-check base data fields against source/literatura-zapiski.md (skips generated)
+npm run qa:semantic         # pedagogical quality — flags weak answers, duplicates, generic explanations
 ```
 
 All three scripts write reports to `reports/`. `qa:content` exits with code 1 on hard errors; the others exit 0 but print severity-tagged findings to the console.
@@ -79,7 +90,7 @@ All three scripts write reports to `reports/`. `qa:content` exits with code 1 on
 
 | Script | Checks | Blocker threshold |
 |--------|--------|-------------------|
-| `qa:content` | Field presence, type correctness, cross-references, valid category/difficulty/type, duplicate IDs — across all three question files | Any error → exits 1 |
+| `qa:content` | Field presence, type correctness, cross-references, valid category/difficulty/type, duplicate IDs — across all four question files; fill_blank-specific: ID format, acceptedAnswers, banned vague answers | Any error → exits 1 |
 | `qa:source` | Correctness of data fields against `source/literatura-zapiski.md`; skips generated questions (validated by generator) | Errors only (warnings acceptable) |
 | `qa:semantic` | CATEGORY_SOURCE_MISMATCH, DUPLICATE_CONCEPT (base only), ESSAY_WEAK_ANSWER, TOO_ABSTRACT_ANSWER, GENERIC_EXPLANATION | High-severity findings must be resolved before merge |
 
@@ -146,12 +157,15 @@ main                      ← v1 production (live on Vercel) — protected
 ## Development Commands
 
 ```bash
-npm install       # install dependencies
-npm run dev       # dev server → http://localhost:5173
-npm run build     # production build → dist/
-npm run lint      # ESLint
+npm install              # install dependencies
+npm run dev              # dev server → http://localhost:5173
+npm run build            # production build → dist/
+npm run lint             # ESLint
 npm run qa:content
 npm run qa:source
+npm run generate:variants   # regenerate questions.v2.json
+npm run generate:types      # regenerate questions.types.json
+npm run generate:fillblank  # regenerate questions.fillblank.json
 ```
 
 ---
@@ -261,3 +275,27 @@ Migration: if `literaturaQuizWrongQuestionIds` (old array format) exists and `li
 - Wrong answer + `isRemediationMode`: calls `saveWrongQuestionId(id)`, shows "stays in queue" note.
 - Correct answer without `isRemediationMode`: no wrong-review interaction.
 - Wrong answer without `isRemediationMode`: calls `saveWrongQuestionId(id)`.
+
+---
+
+## Implemented V2 Features (Phase 2 — Question Types)
+
+### True/False and Match questions (`questions.types.json`)
+
+- Generator: `scripts/generate-question-types.mjs` (`npm run generate:types`)
+- `true_false` questions have exactly `options: ["Вярно", "Невярно"]` and `type: "true_false"`.
+- `match_author_work` questions have `pairs[]`, `options[]` (work titles), `authorIds[]`, `workIds[]`.
+- The `"Вярно/невярно"` category filter is type-gated: only questions with `type: "true_false"` appear there. Legacy base questions with `category: "true_false"` but no `type` field are statement-selection questions and are excluded from that filter.
+- Match correctness uses sentinel values `'__correct__'` / `'__wrong__'` as `selectedAnswer` — correctness is determined by comparing all dropdown selections against `pair.workTitle`.
+
+### Fill-in-the-blank questions (`questions.fillblank.json`)
+
+- Generator: `scripts/generate-fill-blank-questions.mjs` (`npm run generate:fillblank`)
+- Component: `src/components/FillBlankQuestion.jsx`
+- `type: "fill_blank"`, `category: "fill_blank"`, ID prefix `qfb-`.
+- Fields: `correctAnswer` (display form), `acceptedAnswers[]` (normalized matching set).
+- Answer matching: `normalize(userInput) === normalize(acceptedAnswer)` where `normalize` does `.toLowerCase().replace(/[„""«»]/g, '').replace(/\s+/g, ' ').trim()`.
+- Correctness communicated to Quiz.jsx via the same sentinel pattern as match (`'__correct__'` / `'__wrong__'`).
+- All quiz modes, wrong review, weak spots, and daily practice treat fill-blank questions identically to multiple-choice questions (tracked by `question.id`).
+- On wrong answer: reveals "Правилният отговор е: „{correctAnswer}"" in the feedback block.
+- Enter key submits; button disabled while input is empty or after answering.
