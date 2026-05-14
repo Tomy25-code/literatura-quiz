@@ -1,6 +1,6 @@
 # Literatura Quiz — Source QA Report
 
-Generated: 14.05.2026 г., 11:11:25 ч.
+Generated: 14.05.2026 г., 11:51:32 ч.
 Source file: `source/literatura-zapiski.md`
 
 ---
@@ -11,10 +11,10 @@ Source file: `source/literatura-zapiski.md`
 |--------|-------|
 | Authors checked | 20 |
 | Works checked | 27 |
-| Questions checked | 462 |
-| **Total findings** | **610** |
+| Questions checked | 415 |
+| **Total findings** | **581** |
 | ✅ OK (source-supported) | 320 |
-| ⚠️ Warnings (needs review) | 290 |
+| ⚠️ Warnings (needs review) | 261 |
 | ❌ Possible errors | 0 |
 
 ### By type
@@ -23,7 +23,7 @@ Source file: `source/literatura-zapiski.md`
 |------|-----|---------|--------|
 | Authors | 109 | 48 | 0 |
 | Works | 211 | 94 | 0 |
-| Questions | 0 | 148 | 0 |
+| Questions | 0 | 119 | 0 |
 
 ---
 
@@ -34,7 +34,7 @@ _No errors found._
 
 ---
 
-## Top warnings (first 30 of 290)
+## Top warnings (first 30 of 261)
 
 | ID | Field | Message |
 |----|----|---|
@@ -92,7 +92,7 @@ This is treated as a **known source/OCR artifact**, not a data error, for the fo
 ## Recommendations
 
 - ✅ No errors found.
-- ⚠️ **290 warning(s)** represent items that could not be fully verified automatically from the source text. Most are due to paraphrasing, abbreviated notes, or bold-markup differences.
+- ⚠️ **261 warning(s)** represent items that could not be fully verified automatically from the source text. Most are due to paraphrasing, abbreviated notes, or bold-markup differences.
 - 📋 **The "1985" year for "Бай Ганьо журналист"** appears unusual (the work is associated with the 1890s). Both source and data agree on 1985 — check original notes for possible transcription error.
 - 📋 Warnings with score < 0.60 on `creative_history` and `composition` fields are expected: these fields are often verbatim but split across sub-sections in the source, which the section parser may not fully combine.
 - ℹ️ All question `authorId` and `workId` structural consistency checks passed with no errors.

@@ -39,7 +39,7 @@ source/           ← source reference notes (read-only reference)
 |------|----------|
 | `src/data/authors.json` | 20 Bulgarian authors |
 | `src/data/works.json` | 27 literary works |
-| `src/data/questions.json` | 462 multiple-choice quiz questions |
+| `src/data/questions.json` | 415 multiple-choice quiz questions |
 
 ---
 

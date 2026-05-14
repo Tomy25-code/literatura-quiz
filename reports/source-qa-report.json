@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-05-14T08:11:25.778Z",
+  "generatedAt": "2026-05-14T08:51:32.358Z",
   "totals": {
     "authorsChecked": 20,
     "worksChecked": 27,
-    "questionsChecked": 462,
-    "findingsTotal": 610,
+    "questionsChecked": 415,
+    "findingsTotal": 581,
     "ok": 320,
-    "warnings": 290,
+    "warnings": 261,
     "errors": 0
   },
   "byType": {
@@ -22,7 +22,7 @@
     },
     "questions": {
       "ok": 0,
-      "warnings": 148,
+      "warnings": 119,
       "errors": 0
     }
   },

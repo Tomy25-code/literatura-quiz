@@ -54,7 +54,7 @@ All content lives in `src/data/`. Do not edit these files without running the QA
 |------|----------|
 | `src/data/authors.json` | 20 Bulgarian authors with biographical metadata |
 | `src/data/works.json` | 27 literary works with genre, period, themes, motifs |
-| `src/data/questions.json` | 462 multiple-choice quiz questions |
+| `src/data/questions.json` | 415 multiple-choice quiz questions |
 
 Source reference notes are in `source/literatura-zapiski.md`.
 
