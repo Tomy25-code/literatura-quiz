@@ -5,14 +5,10 @@
 ## Branch Workflow
 
 ```
-main                          ← v1 production (live on Vercel) — do not touch
+main                      ← v1 production (live on Vercel) — do not touch
 │
-└── v2/main                   ← v2 integration branch (merge target for all sprints)
-    ├── v2/restructure-and-docs   ← completed: repo flattened, docs updated
-    ├── v2/sprint1-smart-practice
-    ├── v2/sprint2-question-variants
-    ├── v2/sprint3-essay-prep
-    └── v2/sprint4-ux-deployment
+└── v2/main               ← v2 integration branch (merge target for all sprints)
+    └── v2/feature-xyz    ← individual v2 feature branches
 ```
 
 - Branch every feature off `v2/main`. Merge back via PR when DoD is met.
@@ -30,36 +26,58 @@ main                          ← v1 production (live on Vercel) — do not touc
 
 ---
 
-## Sprint 1 — Smart Practice
+## Sprint 1 — Smart Practice ✅ COMPLETED
 
-**Branch:** `v2/sprint1-smart-practice`
+**Branches:** `v2/feature/weak-spots`, `v2/feature/daily-practice`, `v2/feature/smart-wrong-review`
 
-### Weak Spots Mode
+### Completed in Phase 1
 
-Surfaces questions the user has answered incorrectly most often or has never seen.
+- [x] Weak Spots mode (`Слаби места`)
+- [x] Daily Practice mode (`Дневна тренировка`) with daily streak tracking
+- [x] Smart Wrong Review with spaced-repetition mastery model
+- [x] Per-question wrong-review metadata (wrongCount, correctStreak, status)
+- [x] Automatic migration from legacy wrong-answer ID array to metadata model
+- [x] `getWeakSets()` shared helper used by both Weak Spots and Daily Practice
 
-- Read wrong-answer history from localStorage.
-- Weight question selection by error rate (questions answered wrong ≥ 2 times appear first).
-- Show a "Weak spots" entry point on the home screen.
-- If no history exists, fall back to random mode with a prompt to play first.
+### Weak Spots Mode — Implemented
 
-### Daily Practice Mode
+Surfaces questions from areas where the user is statistically weak.
 
-A short, consistent daily session to build habit.
+- Qualifies questions that are in the active wrong-review queue OR belong to a category/difficulty where accuracy is below 70% over at least 10 answered questions.
+- Historical wrong count used for priority scoring only — mastered questions do not re-enter.
+- If no weak spots exist, shows a positive empty state. Does not fall back to random questions.
+- Priority scoring: `+4` active wrong queue, `+3` per historical wrong answer, `+2` weak category, `+1` weak difficulty, `−1` per correct answer.
+- The `mode-card-weakspots` card shows amber hover only when weak spots exist; otherwise renders as a normal card.
 
-- Fixed length: 10 questions per day.
-- Selection algorithm: 50% weak spots + 50% unseen questions.
-- Track last-played date in localStorage; show a streak counter on the home screen.
-- Questions reset eligibility after 7 days to allow revisiting.
+### Daily Practice Mode — Implemented
 
-### Wrong Answer History Screen
+A short, balanced daily session to build habit.
 
-Replace the existing basic wrong-answers list with a richer review screen.
+- Uses the user's currently selected quiz length (5 / 10 / 15 / 20 questions).
+- Selection split: `40%` active wrong-review questions, `40%` weak-area questions, `20%` random (unseen preferred).
+- Shortfalls redistribute forward without duplication: wrong → weak → random.
+- Tracks daily completion in localStorage (`literaturaQuizDailyPractice`): last date, total count, streak, best streak.
+- Streak increments at most once per local calendar date. Repeating Daily Practice on the same day is allowed but does not increase the streak again.
+- Correct answers in Daily Practice record stats normally but do NOT advance wrong-review mastery.
+- Wrong answers in Daily Practice DO update the wrong-review metadata.
 
-- Show each wrong answer with: question text, the user's answer, the correct answer, and explanation.
-- Group by author or work (toggle).
-- Allow the user to mark individual items as "learned" to remove them from the queue.
-- Add a "Clear history" button with a confirmation step.
+### Smart Wrong Review / Spaced Repetition — Implemented
+
+Replaced the basic wrong-answer ID array with a per-question metadata model.
+
+- Storage key: `literaturaQuizWrongReview` (object keyed by question ID).
+- Per-question fields: `id`, `wrongCount`, `correctStreak`, `lastWrongAt`, `lastCorrectAt`, `masteredAt`, `status`.
+- A question is marked `status: 'mastered'` after **2 consecutive correct answers** in a focused remediation mode (Wrong Review or Weak Spots).
+- Getting a question wrong in any mode resets `correctStreak` to 0 and increments `wrongCount`.
+- Regular quiz modes and Daily Practice add wrong-answer records but cannot advance or clear mastery.
+- Selection priority: higher `wrongCount` → lower `correctStreak` → more recent `lastWrongAt` → random.
+- Wrong Review never pads with non-wrong questions.
+- Legacy wrong-answer ID array (`literaturaQuizWrongQuestionIds`) is auto-migrated on first access.
+- Quiz feedback during remediation: amber message after 1st correct answer ("Добре! Още 1 верен отговор за усвояване."), green mastered message after 2nd ("Браво! Въпросът е усвоен и премахнат от преговора.").
+
+### Not yet implemented from original Sprint 1 plan
+
+- Wrong Answer History Screen (dedicated UI to browse and manage wrong-answer records): data model is complete; the review UI is a future item, moved to Sprint 4 or beyond.
 
 ---
 
@@ -118,7 +136,7 @@ Structured practice aligned with the матура essay format (тема, тез
 - Present a тема (topic/prompt) drawn from a curated list.
 - User selects an author and work relevant to the topic.
 - App displays: key themes, motifs, and composition notes from the data files as a reference panel.
-- User writes (or thinks through) their теза — no text input required for MVP; just the reference display.
+- User works through their теза — no text input required for MVP; just the reference display.
 - Show a checklist of standard essay elements to tick off mentally.
 
 Topics list: store as a static array in a new file `src/data/essayTopics.json` (add to QA scope when created).
@@ -150,6 +168,14 @@ Quick-fire mode for practising thesis construction.
 - Show progress indicator (question N of M) throughout the quiz.
 - After answering, animate correct/incorrect feedback before advancing.
 - Prevent accidental double-tap advancing past the feedback screen.
+
+### Wrong Answer History Screen
+
+Browse and manage the wrong-review queue (data model implemented in Sprint 1).
+
+- Show each active wrong-review question with: question text, correct answer, explanation, wrongCount, correctStreak.
+- Allow filtering or grouping by author or category.
+- Allow the user to manually clear individual questions or the full queue.
 
 ### Second Vercel Project for V2
 

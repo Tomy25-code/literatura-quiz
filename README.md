@@ -8,17 +8,28 @@ Built with Vite + React. Fully static — no backend, no API calls.
 
 ## Features
 
-- Random quiz mode
+### Quiz Modes
+
+- Random quiz — questions from all authors and topics
 - Quiz filtered by author
 - Quiz filtered by literary work
-- Quiz filtered by category (author, genre, period, themes, etc.)
+- Quiz filtered by category (author, genre, period, themes, composition, etc.)
 - Quiz filtered by difficulty (easy / medium / hard)
-- Configurable quiz length
-- Wrong answers review mode (stored in localStorage)
-- Flashcards mode
-- Search in author and work selection screens
-- Learning statistics (stored in localStorage)
-- Mobile-responsive UI
+- Configurable quiz length (5 / 10 / 15 / 20 questions)
+- Flashcards — author and work reference cards
+
+### V2 Smart Practice
+
+- **Weak Spots mode** (`Слаби места`) — selects questions from the active wrong-review queue and from categories/difficulties where the user's accuracy is statistically low (below 70% over at least 10 answered questions). Shows a positive empty state when no weak areas exist; never falls back to random questions silently.
+- **Daily Practice mode** (`Дневна тренировка`) — builds a short balanced quiz using the user's selected quiz length. Selection is split 40% active wrong-review questions, 40% weak-area questions, 20% random (unseen preferred). Tracks daily completion with a streak counter. Repeating on the same day is allowed but does not advance the streak.
+- **Smart Wrong Review** (`Преговор на грешните`) — spaced-repetition style. Wrong answers are tracked with per-question metadata (wrong count, correct streak, last dates). A question requires **2 consecutive correct answers** in a focused remediation mode (Wrong Review or Weak Spots) to be marked mastered and removed from the queue. Priority is given to questions answered wrong more times and with a lower correct streak.
+
+### Stats and Progress
+
+- Learning statistics per quiz attempt stored in localStorage
+- Per-category and per-difficulty accuracy tracking
+- Comparison to personal average on results screen
+- Daily practice streak and best streak
 
 ---
 
@@ -76,20 +87,20 @@ Reports are written to `reports/`. The content QA script exits with code 1 if ha
 
 ## Deployment
 
-Production is deployed on Vercel directly from the **`main`** branch.
-
-- The `main` branch is the live production app — do not push experimental work there.
-- All v2 development happens in feature branches branched off `main` or `v2/restructure-and-docs`.
-- Merge to `main` only when a feature is fully tested and QA passes.
+- **`main`** — v1 production, live on Vercel. Do not push v2 work here.
+- **`v2/main`** — v2 integration branch, merge target for all v2 feature branches.
+- Individual v2 features are developed in branches off `v2/main` and merged back via PR once build and QA pass.
+- A separate Vercel project for v2 preview is planned for Sprint 4.
 
 ---
 
 ## Branch Workflow
 
 ```
-main                        ← production (live on Vercel)
-└── v2/restructure-and-docs ← current v2 base branch
-    └── v2/feature-xyz      ← individual feature branches
+main                      ← v1 production (live on Vercel) — protected
+│
+└── v2/main               ← v2 integration branch
+    └── v2/feature-xyz    ← individual v2 feature branches
 ```
 
 ---
