@@ -26,6 +26,7 @@ export const CATEGORY_LABELS = {
   true_false: 'Вярно/невярно',
   match_author_work: 'Свържи автор с произведение',
   essay_preparation: 'Подготовка за съчинение',
+  fill_blank: 'Попълни липсваща дума',
 };
 
 export const DIFFICULTY_LABELS = {

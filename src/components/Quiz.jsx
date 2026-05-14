@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { saveWrongQuestionId, recordWrongQuestionCorrect } from '../utils/wrongAnswers';
 import MatchQuestion from './MatchQuestion';
+import FillBlankQuestion from './FillBlankQuestion';
 
 export default function Quiz({ questions, modeLabel, isWrongMode, isRemediationMode, onFinish, onHome }) {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -14,8 +15,8 @@ export default function Quiz({ questions, modeLabel, isWrongMode, isRemediationM
   const answered = selectedAnswer !== null;
 
   // For multiple_choice and true_false, correctness is a simple string comparison.
-  // For match_author_work, correctness is set via sentinel values '__correct__' / '__wrong__'.
-  const isCorrect = qType === 'match_author_work'
+  // For match_author_work and fill_blank, correctness is set via sentinel values.
+  const isCorrect = (qType === 'match_author_work' || qType === 'fill_blank')
     ? selectedAnswer === '__correct__'
     : selectedAnswer === question.correctAnswer;
 
@@ -52,6 +53,12 @@ export default function Quiz({ questions, modeLabel, isWrongMode, isRemediationM
   function handleMatchSubmit(allCorrect) {
     setSelectedAnswer(allCorrect ? '__correct__' : '__wrong__');
     recordAnswer(allCorrect);
+  }
+
+  // ── Fill-blank answer handler ──────────────────────────────────────────────
+  function handleFillBlankSubmit(correct) {
+    setSelectedAnswer(correct ? '__correct__' : '__wrong__');
+    recordAnswer(correct);
   }
 
   // ── Navigation ─────────────────────────────────────────────────────────────
@@ -105,6 +112,16 @@ export default function Quiz({ questions, modeLabel, isWrongMode, isRemediationM
           <MatchQuestion
             question={question}
             onSubmit={handleMatchSubmit}
+            answered={answered}
+            isCorrect={isCorrect}
+            remediationFeedback={remediationFeedback}
+            onNext={handleNext}
+            isLastQuestion={isLastQuestion}
+          />
+        ) : qType === 'fill_blank' ? (
+          <FillBlankQuestion
+            question={question}
+            onSubmit={handleFillBlankSubmit}
             answered={answered}
             isCorrect={isCorrect}
             remediationFeedback={remediationFeedback}

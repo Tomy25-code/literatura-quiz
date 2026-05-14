@@ -1,0 +1,1300 @@
+[
+  {
+    "id": "qfb-author-jelezniyat-svetilnik",
+    "type": "fill_blank",
+    "category": "fill_blank",
+    "question": "„Железният светилник\" е произведение на ____.",
+    "correctAnswer": "Димитър Талев",
+    "acceptedAnswers": [
+      "Димитър Талев"
+    ],
+    "explanation": "„Железният светилник\" е произведение на Димитър Талев.",
+    "authorId": "dimitar-talev",
+    "workId": "jelezniyat-svetilnik",
+    "difficulty": "medium",
+    "source": "generated-fillblank"
+  },
+  {
+    "id": "qfb-author-bai-ganyo-jurnalist",
+    "type": "fill_blank",
+    "category": "fill_blank",
+    "question": "„Бай Ганьо журналист\" е произведение на ____.",
+    "correctAnswer": "Алеко Константинов",
+    "acceptedAnswers": [
+      "Алеко Константинов"
+    ],
+    "explanation": "„Бай Ганьо журналист\" е произведение на Алеко Константинов.",
+    "authorId": "aleko-konstantinov",
+    "workId": "bai-ganyo-jurnalist",
+    "difficulty": "medium",
+    "source": "generated-fillblank"
+  },
+  {
+    "id": "qfb-author-balkanski-sindrom",
+    "type": "fill_blank",
+    "category": "fill_blank",
+    "question": "„Балкански синдром\" е произведение на ____.",
+    "correctAnswer": "Станислав Стратиев",
+    "acceptedAnswers": [
+      "Станислав Стратиев"
+    ],
+    "explanation": "„Балкански синдром\" е произведение на Станислав Стратиев.",
+    "authorId": "stanislav-stratiev",
+    "workId": "balkanski-sindrom",
+    "difficulty": "medium",
+    "source": "generated-fillblank"
+  },
+  {
+    "id": "qfb-author-paisiy",
+    "type": "fill_blank",
+    "category": "fill_blank",
+    "question": "„Паисий\" е произведение на ____.",
+    "correctAnswer": "Иван Вазов",
+    "acceptedAnswers": [
+      "Иван Вазов"
+    ],
+    "explanation": "„Паисий\" е произведение на Иван Вазов.",
+    "authorId": "ivan-vazov",
+    "workId": "paisiy",
+    "difficulty": "medium",
+    "source": "generated-fillblank"
+  },
+  {
+    "id": "qfb-author-novoto-grobishte-nad-slivnitsa",
+    "type": "fill_blank",
+    "category": "fill_blank",
+    "question": "„Новото гробище над Сливница\" е произведение на ____.",
+    "correctAnswer": "Иван Вазов",
+    "acceptedAnswers": [
+      "Иван Вазов"
+    ],
+    "explanation": "„Новото гробище над Сливница\" е произведение на Иван Вазов.",
+    "authorId": "ivan-vazov",
+    "workId": "novoto-grobishte-nad-slivnitsa",
+    "difficulty": "medium",
+    "source": "generated-fillblank"
+  },
+  {
+    "id": "qfb-author-pri-rilskiya-manastir",
+    "type": "fill_blank",
+    "category": "fill_blank",
+    "question": "„При Рилския манастир\" е произведение на ____.",
+    "correctAnswer": "Иван Вазов",
+    "acceptedAnswers": [
+      "Иван Вазов"
+    ],
+    "explanation": "„При Рилския манастир\" е произведение на Иван Вазов.",
+    "authorId": "ivan-vazov",
+    "workId": "pri-rilskiya-manastir",
+    "difficulty": "medium",
+    "source": "generated-fillblank"
+  },
+  {
+    "id": "qfb-author-istoriya",
+    "type": "fill_blank",
+    "category": "fill_blank",
+    "question": "„История\" е произведение на ____.",
+    "correctAnswer": "Никола Вапцаров",
+    "acceptedAnswers": [
+      "Никола Вапцаров"
+    ],
+    "explanation": "„История\" е произведение на Никола Вапцаров.",
+    "authorId": "nikola-vaptsarov",
+    "workId": "istoriya",
+    "difficulty": "medium",
+    "source": "generated-fillblank"
+  },
+  {
+    "id": "qfb-author-vyara",
+    "type": "fill_blank",
+    "category": "fill_blank",
+    "question": "„Вяра\" е произведение на ____.",
+    "correctAnswer": "Никола Вапцаров",
+    "acceptedAnswers": [
+      "Никола Вапцаров"
+    ],
+    "explanation": "„Вяра\" е произведение на Никола Вапцаров.",
+    "authorId": "nikola-vaptsarov",
+    "workId": "vyara",
+    "difficulty": "medium",
+    "source": "generated-fillblank"
+  },
+  {
+    "id": "qfb-author-noev-kovcheg",
+    "type": "fill_blank",
+    "category": "fill_blank",
+    "question": "„Ноев ковчег\" е произведение на ____.",
+    "correctAnswer": "Йордан Радичков",
+    "acceptedAnswers": [
+      "Йордан Радичков"
+    ],
+    "explanation": "„Ноев ковчег\" е произведение на Йордан Радичков.",
+    "authorId": "yordan-radichkov",
+    "workId": "noev-kovcheg",
+    "difficulty": "medium",
+    "source": "generated-fillblank"
+  },
+  {
+    "id": "qfb-author-borba",
+    "type": "fill_blank",
+    "category": "fill_blank",
+    "question": "„Борба\" е произведение на ____.",
+    "correctAnswer": "Христо Ботев",
+    "acceptedAnswers": [
+      "Христо Ботев"
+    ],
+    "explanation": "„Борба\" е произведение на Христо Ботев.",
+    "authorId": "hristo-botev",
+    "workId": "borba",
+    "difficulty": "medium",
+    "source": "generated-fillblank"
+  },
+  {
+    "id": "qfb-author-do-moeto-parvo-libe",
+    "type": "fill_blank",
+    "category": "fill_blank",
+    "question": "„До моето първо либе\" е произведение на ____.",
+    "correctAnswer": "Христо Ботев",
+    "acceptedAnswers": [
+      "Христо Ботев"
+    ],
+    "explanation": "„До моето първо либе\" е произведение на Христо Ботев.",
+    "authorId": "hristo-botev",
+    "workId": "do-moeto-parvo-libe",
+    "difficulty": "medium",
+    "source": "generated-fillblank"
+  },
+  {
+    "id": "qfb-author-andreshko",
+    "type": "fill_blank",
+    "category": "fill_blank",
+    "question": "„Андрешко\" е произведение на ____.",
+    "correctAnswer": "Елин Пелин",
+    "acceptedAnswers": [
+      "Елин Пелин"
+    ],
+    "explanation": "„Андрешко\" е произведение на Елин Пелин.",
+    "authorId": "elin-pelin",
+    "workId": "andreshko",
+    "difficulty": "medium",
+    "source": "generated-fillblank"
+  },
+  {
+    "id": "qfb-author-spasova-mogila",
+    "type": "fill_blank",
+    "category": "fill_blank",
+    "question": "„Спасова могила\" е произведение на ____.",
+    "correctAnswer": "Елин Пелин",
+    "acceptedAnswers": [
+      "Елин Пелин"
+    ],
+    "explanation": "„Спасова могила\" е произведение на Елин Пелин.",
+    "authorId": "elin-pelin",
+    "workId": "spasova-mogila",
+    "difficulty": "medium",
+    "source": "generated-fillblank"
+  },
+  {
+    "id": "qfb-author-vetrenata-melnitsa",
+    "type": "fill_blank",
+    "category": "fill_blank",
+    "question": "„Ветрената мелница\" е произведение на ____.",
+    "correctAnswer": "Елин Пелин",
+    "acceptedAnswers": [
+      "Елин Пелин"
+    ],
+    "explanation": "„Ветрената мелница\" е произведение на Елин Пелин.",
+    "authorId": "elin-pelin",
+    "workId": "vetrenata-melnitsa",
+    "difficulty": "medium",
+    "source": "generated-fillblank"
+  },
+  {
+    "id": "qfb-author-prikazka-za-stalbata",
+    "type": "fill_blank",
+    "category": "fill_blank",
+    "question": "„Приказка за стълбата\" е произведение на ____.",
+    "correctAnswer": "Христо Смирненски",
+    "acceptedAnswers": [
+      "Христо Смирненски"
+    ],
+    "explanation": "„Приказка за стълбата\" е произведение на Христо Смирненски.",
+    "authorId": "hristo-smirnenski",
+    "workId": "prikazka-za-stalbata",
+    "difficulty": "medium",
+    "source": "generated-fillblank"
+  },
+  {
+    "id": "qfb-author-kradetsat-na-praskovi",
+    "type": "fill_blank",
+    "category": "fill_blank",
+    "question": "„Крадецът на праскови\" е произведение на ____.",
+    "correctAnswer": "Емилиян Станев",
+    "acceptedAnswers": [
+      "Емилиян Станев"
+    ],
+    "explanation": "„Крадецът на праскови\" е произведение на Емилиян Станев.",
+    "authorId": "emiliyan-stanev",
+    "workId": "kradetsat-na-praskovi",
+    "difficulty": "medium",
+    "source": "generated-fillblank"
+  },
+  {
+    "id": "qfb-author-gradushka",
+    "type": "fill_blank",
+    "category": "fill_blank",
+    "question": "„Градушка\" е произведение на ____.",
+    "correctAnswer": "Пейо Яворов",
+    "acceptedAnswers": [
+      "Пейо Яворов"
+    ],
+    "explanation": "„Градушка\" е произведение на Пейо Яворов.",
+    "authorId": "peyo-yavorov",
+    "workId": "gradushka",
+    "difficulty": "medium",
+    "source": "generated-fillblank"
+  },
+  {
+    "id": "qfb-author-dve-dushi",
+    "type": "fill_blank",
+    "category": "fill_blank",
+    "question": "„Две души\" е произведение на ____.",
+    "correctAnswer": "Пейо Яворов",
+    "acceptedAnswers": [
+      "Пейо Яворов"
+    ],
+    "explanation": "„Две души\" е произведение на Пейо Яворов.",
+    "authorId": "peyo-yavorov",
+    "workId": "dve-dushi",
+    "difficulty": "medium",
+    "source": "generated-fillblank"
+  },
+  {
+    "id": "qfb-author-spi-ezeroto",
+    "type": "fill_blank",
+    "category": "fill_blank",
+    "question": "„Спи езерото\" е произведение на ____.",
+    "correctAnswer": "Пенчо Славейков",
+    "acceptedAnswers": [
+      "Пенчо Славейков"
+    ],
+    "explanation": "„Спи езерото\" е произведение на Пенчо Славейков.",
+    "authorId": "pencho-slaveykov",
+    "workId": "spi-ezeroto",
+    "difficulty": "medium",
+    "source": "generated-fillblank"
+  },
+  {
+    "id": "qfb-author-az-iskam-da-te-pomnya-vse-taka",
+    "type": "fill_blank",
+    "category": "fill_blank",
+    "question": "„Аз искам да те помня все така\" е произведение на ____.",
+    "correctAnswer": "Димчо Дебелянов",
+    "acceptedAnswers": [
+      "Димчо Дебелянов"
+    ],
+    "explanation": "„Аз искам да те помня все така\" е произведение на Димчо Дебелянов.",
+    "authorId": "dimcho-debelyanov",
+    "workId": "az-iskam-da-te-pomnya-vse-taka",
+    "difficulty": "medium",
+    "source": "generated-fillblank"
+  },
+  {
+    "id": "qfb-author-kolko-si-hubava",
+    "type": "fill_blank",
+    "category": "fill_blank",
+    "question": "„Колко си хубава!\" е произведение на ____.",
+    "correctAnswer": "Христо Фотев",
+    "acceptedAnswers": [
+      "Христо Фотев"
+    ],
+    "explanation": "„Колко си хубава!\" е произведение на Христо Фотев.",
+    "authorId": "hristo-fotev",
+    "workId": "kolko-si-hubava",
+    "difficulty": "medium",
+    "source": "generated-fillblank"
+  },
+  {
+    "id": "qfb-author-posveshtenie",
+    "type": "fill_blank",
+    "category": "fill_blank",
+    "question": "„Посвещение\" е произведение на ____.",
+    "correctAnswer": "Петя Дубарова",
+    "acceptedAnswers": [
+      "Петя Дубарова"
+    ],
+    "explanation": "„Посвещение\" е произведение на Петя Дубарова.",
+    "authorId": "petya-dubarova",
+    "workId": "posveshtenie",
+    "difficulty": "medium",
+    "source": "generated-fillblank"
+  },
+  {
+    "id": "qfb-author-molitva",
+    "type": "fill_blank",
+    "category": "fill_blank",
+    "question": "„Молитва\" е произведение на ____.",
+    "correctAnswer": "Атанас Далчев",
+    "acceptedAnswers": [
+      "Атанас Далчев"
+    ],
+    "explanation": "„Молитва\" е произведение на Атанас Далчев.",
+    "authorId": "atanas-dalchev",
+    "workId": "molitva",
+    "difficulty": "medium",
+    "source": "generated-fillblank"
+  },
+  {
+    "id": "qfb-author-pesenta-na-koleletata",
+    "type": "fill_blank",
+    "category": "fill_blank",
+    "question": "„Песента на колелетата\" е произведение на ____.",
+    "correctAnswer": "Йордан Йовков",
+    "acceptedAnswers": [
+      "Йордан Йовков"
+    ],
+    "explanation": "„Песента на колелетата\" е произведение на Йордан Йовков.",
+    "authorId": "yordan-yovkov",
+    "workId": "pesenta-na-koleletata",
+    "difficulty": "medium",
+    "source": "generated-fillblank"
+  },
+  {
+    "id": "qfb-author-balada-za-georg-henig",
+    "type": "fill_blank",
+    "category": "fill_blank",
+    "question": "„Балада за Георг Хених\" е произведение на ____.",
+    "correctAnswer": "Виктор Пасков",
+    "acceptedAnswers": [
+      "Виктор Пасков"
+    ],
+    "explanation": "„Балада за Георг Хених\" е произведение на Виктор Пасков.",
+    "authorId": "viktor-paskov",
+    "workId": "balada-za-georg-henig",
+    "difficulty": "medium",
+    "source": "generated-fillblank"
+  },
+  {
+    "id": "qfb-author-potomka",
+    "type": "fill_blank",
+    "category": "fill_blank",
+    "question": "„Потомка\" е произведение на ____.",
+    "correctAnswer": "Елисавета Багряна",
+    "acceptedAnswers": [
+      "Елисавета Багряна"
+    ],
+    "explanation": "„Потомка\" е произведение на Елисавета Багряна.",
+    "authorId": "elisaveta-bagryana",
+    "workId": "potomka",
+    "difficulty": "medium",
+    "source": "generated-fillblank"
+  },
+  {
+    "id": "qfb-author-chesten-krast",
+    "type": "fill_blank",
+    "category": "fill_blank",
+    "question": "„Честен кръст\" е произведение на ____.",
+    "correctAnswer": "Борис Христов",
+    "acceptedAnswers": [
+      "Борис Христов"
+    ],
+    "explanation": "„Честен кръст\" е произведение на Борис Христов.",
+    "authorId": "boris-hristov",
+    "workId": "chesten-krast",
+    "difficulty": "medium",
+    "source": "generated-fillblank"
+  },
+  {
+    "id": "qfb-genre-jelezniyat-svetilnik",
+    "type": "fill_blank",
+    "category": "fill_blank",
+    "question": "Жанрът на „Железният светилник\" е ____.",
+    "correctAnswer": "епически роман",
+    "acceptedAnswers": [
+      "епически роман",
+      "роман"
+    ],
+    "explanation": "Жанрът на „Железният светилник\" е епически роман.",
+    "authorId": "dimitar-talev",
+    "workId": "jelezniyat-svetilnik",
+    "difficulty": "easy",
+    "source": "generated-fillblank"
+  },
+  {
+    "id": "qfb-genre-bai-ganyo-jurnalist",
+    "type": "fill_blank",
+    "category": "fill_blank",
+    "question": "Жанрът на „Бай Ганьо журналист\" е ____.",
+    "correctAnswer": "фейлетон",
+    "acceptedAnswers": [
+      "фейлетон",
+      "фейлетон/очерк"
+    ],
+    "explanation": "Жанрът на „Бай Ганьо журналист\" е фейлетон/очерк.",
+    "authorId": "aleko-konstantinov",
+    "workId": "bai-ganyo-jurnalist",
+    "difficulty": "easy",
+    "source": "generated-fillblank"
+  },
+  {
+    "id": "qfb-genre-balkanski-sindrom",
+    "type": "fill_blank",
+    "category": "fill_blank",
+    "question": "Жанрът на „Балкански синдром\" е ____.",
+    "correctAnswer": "сатирична комедия",
+    "acceptedAnswers": [
+      "сатирична комедия",
+      "комедия"
+    ],
+    "explanation": "Жанрът на „Балкански синдром\" е сатирична комедия.",
+    "authorId": "stanislav-stratiev",
+    "workId": "balkanski-sindrom",
+    "difficulty": "easy",
+    "source": "generated-fillblank"
+  },
+  {
+    "id": "qfb-genre-paisiy",
+    "type": "fill_blank",
+    "category": "fill_blank",
+    "question": "Жанрът на „Паисий\" е ____.",
+    "correctAnswer": "ода",
+    "acceptedAnswers": [
+      "ода"
+    ],
+    "explanation": "Жанрът на „Паисий\" е ода.",
+    "authorId": "ivan-vazov",
+    "workId": "paisiy",
+    "difficulty": "easy",
+    "source": "generated-fillblank"
+  },
+  {
+    "id": "qfb-genre-novoto-grobishte-nad-slivnitsa",
+    "type": "fill_blank",
+    "category": "fill_blank",
+    "question": "Жанрът на „Новото гробище над Сливница\" е ____.",
+    "correctAnswer": "елегия",
+    "acceptedAnswers": [
+      "елегия"
+    ],
+    "explanation": "Жанрът на „Новото гробище над Сливница\" е елегия.",
+    "authorId": "ivan-vazov",
+    "workId": "novoto-grobishte-nad-slivnitsa",
+    "difficulty": "easy",
+    "source": "generated-fillblank"
+  },
+  {
+    "id": "qfb-genre-pri-rilskiya-manastir",
+    "type": "fill_blank",
+    "category": "fill_blank",
+    "question": "Жанрът на „При Рилския манастир\" е ____.",
+    "correctAnswer": "ода",
+    "acceptedAnswers": [
+      "ода"
+    ],
+    "explanation": "Жанрът на „При Рилския манастир\" е ода.",
+    "authorId": "ivan-vazov",
+    "workId": "pri-rilskiya-manastir",
+    "difficulty": "easy",
+    "source": "generated-fillblank"
+  },
+  {
+    "id": "qfb-genre-istoriya",
+    "type": "fill_blank",
+    "category": "fill_blank",
+    "question": "Жанрът на „История\" е ____.",
+    "correctAnswer": "стихотворение",
+    "acceptedAnswers": [
+      "стихотворение"
+    ],
+    "explanation": "Жанрът на „История\" е стихотворение.",
+    "authorId": "nikola-vaptsarov",
+    "workId": "istoriya",
+    "difficulty": "easy",
+    "source": "generated-fillblank"
+  },
+  {
+    "id": "qfb-genre-vyara",
+    "type": "fill_blank",
+    "category": "fill_blank",
+    "question": "Жанрът на „Вяра\" е ____.",
+    "correctAnswer": "стихотворение",
+    "acceptedAnswers": [
+      "стихотворение"
+    ],
+    "explanation": "Жанрът на „Вяра\" е стихотворение.",
+    "authorId": "nikola-vaptsarov",
+    "workId": "vyara",
+    "difficulty": "easy",
+    "source": "generated-fillblank"
+  },
+  {
+    "id": "qfb-genre-noev-kovcheg",
+    "type": "fill_blank",
+    "category": "fill_blank",
+    "question": "Жанрът на „Ноев ковчег\" е ____.",
+    "correctAnswer": "фрагментарен роман",
+    "acceptedAnswers": [
+      "фрагментарен роман",
+      "роман"
+    ],
+    "explanation": "Жанрът на „Ноев ковчег\" е фрагментарен роман.",
+    "authorId": "yordan-radichkov",
+    "workId": "noev-kovcheg",
+    "difficulty": "easy",
+    "source": "generated-fillblank"
+  },
+  {
+    "id": "qfb-genre-borba",
+    "type": "fill_blank",
+    "category": "fill_blank",
+    "question": "Жанрът на „Борба\" е ____.",
+    "correctAnswer": "стихотворение",
+    "acceptedAnswers": [
+      "стихотворение",
+      "стихотворение; философска и политическа поезия"
+    ],
+    "explanation": "Жанрът на „Борба\" е стихотворение; философска и политическа поезия.",
+    "authorId": "hristo-botev",
+    "workId": "borba",
+    "difficulty": "easy",
+    "source": "generated-fillblank"
+  },
+  {
+    "id": "qfb-genre-do-moeto-parvo-libe",
+    "type": "fill_blank",
+    "category": "fill_blank",
+    "question": "Жанрът на „До моето първо либе\" е ____.",
+    "correctAnswer": "изповедно стихотворение",
+    "acceptedAnswers": [
+      "изповедно стихотворение",
+      "стихотворение"
+    ],
+    "explanation": "Жанрът на „До моето първо либе\" е изповедно стихотворение.",
+    "authorId": "hristo-botev",
+    "workId": "do-moeto-parvo-libe",
+    "difficulty": "easy",
+    "source": "generated-fillblank"
+  },
+  {
+    "id": "qfb-genre-andreshko",
+    "type": "fill_blank",
+    "category": "fill_blank",
+    "question": "Жанрът на „Андрешко\" е ____.",
+    "correctAnswer": "разказ",
+    "acceptedAnswers": [
+      "разказ"
+    ],
+    "explanation": "Жанрът на „Андрешко\" е разказ.",
+    "authorId": "elin-pelin",
+    "workId": "andreshko",
+    "difficulty": "easy",
+    "source": "generated-fillblank"
+  },
+  {
+    "id": "qfb-genre-spasova-mogila",
+    "type": "fill_blank",
+    "category": "fill_blank",
+    "question": "Жанрът на „Спасова могила\" е ____.",
+    "correctAnswer": "разказ",
+    "acceptedAnswers": [
+      "разказ"
+    ],
+    "explanation": "Жанрът на „Спасова могила\" е разказ.",
+    "authorId": "elin-pelin",
+    "workId": "spasova-mogila",
+    "difficulty": "easy",
+    "source": "generated-fillblank"
+  },
+  {
+    "id": "qfb-genre-vetrenata-melnitsa",
+    "type": "fill_blank",
+    "category": "fill_blank",
+    "question": "Жанрът на „Ветрената мелница\" е ____.",
+    "correctAnswer": "разказ",
+    "acceptedAnswers": [
+      "разказ"
+    ],
+    "explanation": "Жанрът на „Ветрената мелница\" е разказ.",
+    "authorId": "elin-pelin",
+    "workId": "vetrenata-melnitsa",
+    "difficulty": "easy",
+    "source": "generated-fillblank"
+  },
+  {
+    "id": "qfb-genre-prikazka-za-stalbata",
+    "type": "fill_blank",
+    "category": "fill_blank",
+    "question": "Жанрът на „Приказка за стълбата\" е ____.",
+    "correctAnswer": "притча",
+    "acceptedAnswers": [
+      "притча"
+    ],
+    "explanation": "Жанрът на „Приказка за стълбата\" е притча.",
+    "authorId": "hristo-smirnenski",
+    "workId": "prikazka-za-stalbata",
+    "difficulty": "easy",
+    "source": "generated-fillblank"
+  },
+  {
+    "id": "qfb-genre-kradetsat-na-praskovi",
+    "type": "fill_blank",
+    "category": "fill_blank",
+    "question": "Жанрът на „Крадецът на праскови\" е ____.",
+    "correctAnswer": "повест",
+    "acceptedAnswers": [
+      "повест"
+    ],
+    "explanation": "Жанрът на „Крадецът на праскови\" е повест.",
+    "authorId": "emiliyan-stanev",
+    "workId": "kradetsat-na-praskovi",
+    "difficulty": "easy",
+    "source": "generated-fillblank"
+  },
+  {
+    "id": "qfb-genre-gradushka",
+    "type": "fill_blank",
+    "category": "fill_blank",
+    "question": "Жанрът на „Градушка\" е ____.",
+    "correctAnswer": "лиро-епическа поема",
+    "acceptedAnswers": [
+      "лиро-епическа поема",
+      "поема"
+    ],
+    "explanation": "Жанрът на „Градушка\" е лиро-епическа поема.",
+    "authorId": "peyo-yavorov",
+    "workId": "gradushka",
+    "difficulty": "easy",
+    "source": "generated-fillblank"
+  },
+  {
+    "id": "qfb-genre-dve-dushi",
+    "type": "fill_blank",
+    "category": "fill_blank",
+    "question": "Жанрът на „Две души\" е ____.",
+    "correctAnswer": "стихотворение",
+    "acceptedAnswers": [
+      "стихотворение"
+    ],
+    "explanation": "Жанрът на „Две души\" е стихотворение.",
+    "authorId": "peyo-yavorov",
+    "workId": "dve-dushi",
+    "difficulty": "easy",
+    "source": "generated-fillblank"
+  },
+  {
+    "id": "qfb-genre-spi-ezeroto",
+    "type": "fill_blank",
+    "category": "fill_blank",
+    "question": "Жанрът на „Спи езерото\" е ____.",
+    "correctAnswer": "лирическа миниатюра",
+    "acceptedAnswers": [
+      "лирическа миниатюра",
+      "миниатюра"
+    ],
+    "explanation": "Жанрът на „Спи езерото\" е лирическа миниатюра.",
+    "authorId": "pencho-slaveykov",
+    "workId": "spi-ezeroto",
+    "difficulty": "easy",
+    "source": "generated-fillblank"
+  },
+  {
+    "id": "qfb-genre-az-iskam-da-te-pomnya-vse-taka",
+    "type": "fill_blank",
+    "category": "fill_blank",
+    "question": "Жанрът на „Аз искам да те помня все така\" е ____.",
+    "correctAnswer": "елегия",
+    "acceptedAnswers": [
+      "елегия"
+    ],
+    "explanation": "Жанрът на „Аз искам да те помня все така\" е елегия.",
+    "authorId": "dimcho-debelyanov",
+    "workId": "az-iskam-da-te-pomnya-vse-taka",
+    "difficulty": "easy",
+    "source": "generated-fillblank"
+  },
+  {
+    "id": "qfb-genre-kolko-si-hubava",
+    "type": "fill_blank",
+    "category": "fill_blank",
+    "question": "Жанрът на „Колко си хубава!\" е ____.",
+    "correctAnswer": "стихотворение",
+    "acceptedAnswers": [
+      "стихотворение"
+    ],
+    "explanation": "Жанрът на „Колко си хубава!\" е стихотворение.",
+    "authorId": "hristo-fotev",
+    "workId": "kolko-si-hubava",
+    "difficulty": "easy",
+    "source": "generated-fillblank"
+  },
+  {
+    "id": "qfb-genre-posveshtenie",
+    "type": "fill_blank",
+    "category": "fill_blank",
+    "question": "Жанрът на „Посвещение\" е ____.",
+    "correctAnswer": "стихотворение",
+    "acceptedAnswers": [
+      "стихотворение"
+    ],
+    "explanation": "Жанрът на „Посвещение\" е стихотворение.",
+    "authorId": "petya-dubarova",
+    "workId": "posveshtenie",
+    "difficulty": "easy",
+    "source": "generated-fillblank"
+  },
+  {
+    "id": "qfb-genre-molitva",
+    "type": "fill_blank",
+    "category": "fill_blank",
+    "question": "Жанрът на „Молитва\" е ____.",
+    "correctAnswer": "стихотворение",
+    "acceptedAnswers": [
+      "стихотворение"
+    ],
+    "explanation": "Жанрът на „Молитва\" е стихотворение.",
+    "authorId": "atanas-dalchev",
+    "workId": "molitva",
+    "difficulty": "easy",
+    "source": "generated-fillblank"
+  },
+  {
+    "id": "qfb-genre-pesenta-na-koleletata",
+    "type": "fill_blank",
+    "category": "fill_blank",
+    "question": "Жанрът на „Песента на колелетата\" е ____.",
+    "correctAnswer": "разказ",
+    "acceptedAnswers": [
+      "разказ"
+    ],
+    "explanation": "Жанрът на „Песента на колелетата\" е разказ.",
+    "authorId": "yordan-yovkov",
+    "workId": "pesenta-na-koleletata",
+    "difficulty": "easy",
+    "source": "generated-fillblank"
+  },
+  {
+    "id": "qfb-genre-balada-za-georg-henig",
+    "type": "fill_blank",
+    "category": "fill_blank",
+    "question": "Жанрът на „Балада за Георг Хених\" е ____.",
+    "correctAnswer": "повест",
+    "acceptedAnswers": [
+      "повест"
+    ],
+    "explanation": "Жанрът на „Балада за Георг Хених\" е повест.",
+    "authorId": "viktor-paskov",
+    "workId": "balada-za-georg-henig",
+    "difficulty": "easy",
+    "source": "generated-fillblank"
+  },
+  {
+    "id": "qfb-genre-potomka",
+    "type": "fill_blank",
+    "category": "fill_blank",
+    "question": "Жанрът на „Потомка\" е ____.",
+    "correctAnswer": "стихотворение",
+    "acceptedAnswers": [
+      "стихотворение"
+    ],
+    "explanation": "Жанрът на „Потомка\" е стихотворение.",
+    "authorId": "elisaveta-bagryana",
+    "workId": "potomka",
+    "difficulty": "easy",
+    "source": "generated-fillblank"
+  },
+  {
+    "id": "qfb-genre-chesten-krast",
+    "type": "fill_blank",
+    "category": "fill_blank",
+    "question": "Жанрът на „Честен кръст\" е ____.",
+    "correctAnswer": "лиро-епическа поема",
+    "acceptedAnswers": [
+      "лиро-епическа поема",
+      "поема"
+    ],
+    "explanation": "Жанрът на „Честен кръст\" е лиро-епическа поема.",
+    "authorId": "boris-hristov",
+    "workId": "chesten-krast",
+    "difficulty": "easy",
+    "source": "generated-fillblank"
+  },
+  {
+    "id": "qfb-year-jelezniyat-svetilnik",
+    "type": "fill_blank",
+    "category": "fill_blank",
+    "question": "Годината на „Железният светилник\" е ____.",
+    "correctAnswer": "1952 г.",
+    "acceptedAnswers": [
+      "1952 г.",
+      "1952",
+      "1952г."
+    ],
+    "explanation": "„Железният светилник\" е написано в 1952 г..",
+    "authorId": "dimitar-talev",
+    "workId": "jelezniyat-svetilnik",
+    "difficulty": "easy",
+    "source": "generated-fillblank"
+  },
+  {
+    "id": "qfb-year-balkanski-sindrom",
+    "type": "fill_blank",
+    "category": "fill_blank",
+    "question": "Годината на „Балкански синдром\" е ____.",
+    "correctAnswer": "1987 г.",
+    "acceptedAnswers": [
+      "1987 г.",
+      "1987",
+      "1987г."
+    ],
+    "explanation": "„Балкански синдром\" е написано в 1987 г..",
+    "authorId": "stanislav-stratiev",
+    "workId": "balkanski-sindrom",
+    "difficulty": "easy",
+    "source": "generated-fillblank"
+  },
+  {
+    "id": "qfb-year-novoto-grobishte-nad-slivnitsa",
+    "type": "fill_blank",
+    "category": "fill_blank",
+    "question": "Годината на „Новото гробище над Сливница\" е ____.",
+    "correctAnswer": "1886 г.",
+    "acceptedAnswers": [
+      "1886 г.",
+      "1886",
+      "1886г."
+    ],
+    "explanation": "„Новото гробище над Сливница\" е написано в 1886 г..",
+    "authorId": "ivan-vazov",
+    "workId": "novoto-grobishte-nad-slivnitsa",
+    "difficulty": "easy",
+    "source": "generated-fillblank"
+  },
+  {
+    "id": "qfb-year-pri-rilskiya-manastir",
+    "type": "fill_blank",
+    "category": "fill_blank",
+    "question": "Годината на „При Рилския манастир\" е ____.",
+    "correctAnswer": "1891 г.",
+    "acceptedAnswers": [
+      "1891 г.",
+      "1891",
+      "1891г."
+    ],
+    "explanation": "„При Рилския манастир\" е написано в 1891 г..",
+    "authorId": "ivan-vazov",
+    "workId": "pri-rilskiya-manastir",
+    "difficulty": "easy",
+    "source": "generated-fillblank"
+  },
+  {
+    "id": "qfb-year-vyara",
+    "type": "fill_blank",
+    "category": "fill_blank",
+    "question": "Годината на „Вяра\" е ____.",
+    "correctAnswer": "1940 г.",
+    "acceptedAnswers": [
+      "1940 г.",
+      "1940",
+      "1940г."
+    ],
+    "explanation": "„Вяра\" е написано в 1940 г..",
+    "authorId": "nikola-vaptsarov",
+    "workId": "vyara",
+    "difficulty": "easy",
+    "source": "generated-fillblank"
+  },
+  {
+    "id": "qfb-year-noev-kovcheg",
+    "type": "fill_blank",
+    "category": "fill_blank",
+    "question": "Годината на „Ноев ковчег\" е ____.",
+    "correctAnswer": "1988 г.",
+    "acceptedAnswers": [
+      "1988 г.",
+      "1988",
+      "1988г."
+    ],
+    "explanation": "„Ноев ковчег\" е написано в 1988 г..",
+    "authorId": "yordan-radichkov",
+    "workId": "noev-kovcheg",
+    "difficulty": "easy",
+    "source": "generated-fillblank"
+  },
+  {
+    "id": "qfb-year-do-moeto-parvo-libe",
+    "type": "fill_blank",
+    "category": "fill_blank",
+    "question": "Годината на „До моето първо либе\" е ____.",
+    "correctAnswer": "1871 г.",
+    "acceptedAnswers": [
+      "1871 г.",
+      "1871",
+      "1871г."
+    ],
+    "explanation": "„До моето първо либе\" е написано в 1871 г..",
+    "authorId": "hristo-botev",
+    "workId": "do-moeto-parvo-libe",
+    "difficulty": "easy",
+    "source": "generated-fillblank"
+  },
+  {
+    "id": "qfb-year-andreshko",
+    "type": "fill_blank",
+    "category": "fill_blank",
+    "question": "Годината на „Андрешко\" е ____.",
+    "correctAnswer": "1903 г.",
+    "acceptedAnswers": [
+      "1903 г.",
+      "1903",
+      "1903г."
+    ],
+    "explanation": "„Андрешко\" е написано в 1903 г..",
+    "authorId": "elin-pelin",
+    "workId": "andreshko",
+    "difficulty": "easy",
+    "source": "generated-fillblank"
+  },
+  {
+    "id": "qfb-year-spasova-mogila",
+    "type": "fill_blank",
+    "category": "fill_blank",
+    "question": "Годината на „Спасова могила\" е ____.",
+    "correctAnswer": "1905 г.",
+    "acceptedAnswers": [
+      "1905 г.",
+      "1905",
+      "1905г."
+    ],
+    "explanation": "„Спасова могила\" е написано в 1905 г..",
+    "authorId": "elin-pelin",
+    "workId": "spasova-mogila",
+    "difficulty": "easy",
+    "source": "generated-fillblank"
+  },
+  {
+    "id": "qfb-year-kradetsat-na-praskovi",
+    "type": "fill_blank",
+    "category": "fill_blank",
+    "question": "Годината на „Крадецът на праскови\" е ____.",
+    "correctAnswer": "1948 г.",
+    "acceptedAnswers": [
+      "1948 г.",
+      "1948",
+      "1948г."
+    ],
+    "explanation": "„Крадецът на праскови\" е написано в 1948 г..",
+    "authorId": "emiliyan-stanev",
+    "workId": "kradetsat-na-praskovi",
+    "difficulty": "easy",
+    "source": "generated-fillblank"
+  },
+  {
+    "id": "qfb-year-gradushka",
+    "type": "fill_blank",
+    "category": "fill_blank",
+    "question": "Годината на „Градушка\" е ____.",
+    "correctAnswer": "1900 г.",
+    "acceptedAnswers": [
+      "1900 г.",
+      "1900",
+      "1900г."
+    ],
+    "explanation": "„Градушка\" е написано в 1900 г..",
+    "authorId": "peyo-yavorov",
+    "workId": "gradushka",
+    "difficulty": "easy",
+    "source": "generated-fillblank"
+  },
+  {
+    "id": "qfb-year-dve-dushi",
+    "type": "fill_blank",
+    "category": "fill_blank",
+    "question": "Годината на „Две души\" е ____.",
+    "correctAnswer": "1910 г.",
+    "acceptedAnswers": [
+      "1910 г.",
+      "1910",
+      "1910г."
+    ],
+    "explanation": "„Две души\" е написано в 1910 г..",
+    "authorId": "peyo-yavorov",
+    "workId": "dve-dushi",
+    "difficulty": "easy",
+    "source": "generated-fillblank"
+  },
+  {
+    "id": "qfb-year-spi-ezeroto",
+    "type": "fill_blank",
+    "category": "fill_blank",
+    "question": "Годината на „Спи езерото\" е ____.",
+    "correctAnswer": "1906 г.",
+    "acceptedAnswers": [
+      "1906 г.",
+      "1906",
+      "1906г."
+    ],
+    "explanation": "„Спи езерото\" е написано в 1906 г..",
+    "authorId": "pencho-slaveykov",
+    "workId": "spi-ezeroto",
+    "difficulty": "easy",
+    "source": "generated-fillblank"
+  },
+  {
+    "id": "qfb-year-az-iskam-da-te-pomnya-vse-taka",
+    "type": "fill_blank",
+    "category": "fill_blank",
+    "question": "Годината на „Аз искам да те помня все така\" е ____.",
+    "correctAnswer": "1913 г.",
+    "acceptedAnswers": [
+      "1913 г.",
+      "1913",
+      "1913г."
+    ],
+    "explanation": "„Аз искам да те помня все така\" е написано в 1913 г..",
+    "authorId": "dimcho-debelyanov",
+    "workId": "az-iskam-da-te-pomnya-vse-taka",
+    "difficulty": "easy",
+    "source": "generated-fillblank"
+  },
+  {
+    "id": "qfb-year-kolko-si-hubava",
+    "type": "fill_blank",
+    "category": "fill_blank",
+    "question": "Годината на „Колко си хубава!\" е ____.",
+    "correctAnswer": "1967 г.",
+    "acceptedAnswers": [
+      "1967 г.",
+      "1967",
+      "1967г."
+    ],
+    "explanation": "„Колко си хубава!\" е написано в 1967 г..",
+    "authorId": "hristo-fotev",
+    "workId": "kolko-si-hubava",
+    "difficulty": "easy",
+    "source": "generated-fillblank"
+  },
+  {
+    "id": "qfb-year-posveshtenie",
+    "type": "fill_blank",
+    "category": "fill_blank",
+    "question": "Годината на „Посвещение\" е ____.",
+    "correctAnswer": "1979 г.",
+    "acceptedAnswers": [
+      "1979 г.",
+      "1979",
+      "1979г."
+    ],
+    "explanation": "„Посвещение\" е написано в 1979 г..",
+    "authorId": "petya-dubarova",
+    "workId": "posveshtenie",
+    "difficulty": "easy",
+    "source": "generated-fillblank"
+  },
+  {
+    "id": "qfb-year-molitva",
+    "type": "fill_blank",
+    "category": "fill_blank",
+    "question": "Годината на „Молитва\" е ____.",
+    "correctAnswer": "1927 г.",
+    "acceptedAnswers": [
+      "1927 г.",
+      "1927",
+      "1927г."
+    ],
+    "explanation": "„Молитва\" е написано в 1927 г..",
+    "authorId": "atanas-dalchev",
+    "workId": "molitva",
+    "difficulty": "easy",
+    "source": "generated-fillblank"
+  },
+  {
+    "id": "qfb-year-pesenta-na-koleletata",
+    "type": "fill_blank",
+    "category": "fill_blank",
+    "question": "Годината на „Песента на колелетата\" е ____.",
+    "correctAnswer": "1926 г.",
+    "acceptedAnswers": [
+      "1926 г.",
+      "1926",
+      "1926г."
+    ],
+    "explanation": "„Песента на колелетата\" е написано в 1926 г..",
+    "authorId": "yordan-yovkov",
+    "workId": "pesenta-na-koleletata",
+    "difficulty": "easy",
+    "source": "generated-fillblank"
+  },
+  {
+    "id": "qfb-year-balada-za-georg-henig",
+    "type": "fill_blank",
+    "category": "fill_blank",
+    "question": "Годината на „Балада за Георг Хених\" е ____.",
+    "correctAnswer": "1987 г.",
+    "acceptedAnswers": [
+      "1987 г.",
+      "1987",
+      "1987г."
+    ],
+    "explanation": "„Балада за Георг Хених\" е написано в 1987 г..",
+    "authorId": "viktor-paskov",
+    "workId": "balada-za-georg-henig",
+    "difficulty": "easy",
+    "source": "generated-fillblank"
+  },
+  {
+    "id": "qfb-year-potomka",
+    "type": "fill_blank",
+    "category": "fill_blank",
+    "question": "Годината на „Потомка\" е ____.",
+    "correctAnswer": "1927 г.",
+    "acceptedAnswers": [
+      "1927 г.",
+      "1927",
+      "1927г."
+    ],
+    "explanation": "„Потомка\" е написано в 1927 г..",
+    "authorId": "elisaveta-bagryana",
+    "workId": "potomka",
+    "difficulty": "easy",
+    "source": "generated-fillblank"
+  },
+  {
+    "id": "qfb-year-chesten-krast",
+    "type": "fill_blank",
+    "category": "fill_blank",
+    "question": "Годината на „Честен кръст\" е ____.",
+    "correctAnswer": "1982 г.",
+    "acceptedAnswers": [
+      "1982 г.",
+      "1982",
+      "1982г."
+    ],
+    "explanation": "„Честен кръст\" е написано в 1982 г..",
+    "authorId": "boris-hristov",
+    "workId": "chesten-krast",
+    "difficulty": "easy",
+    "source": "generated-fillblank"
+  },
+  {
+    "id": "qfb-nick-dimitar-talev",
+    "type": "fill_blank",
+    "category": "fill_blank",
+    "question": "Димитър Талев е известен с прозвището ____.",
+    "correctAnswer": "Родолюбецът",
+    "acceptedAnswers": [
+      "Родолюбецът"
+    ],
+    "explanation": "Димитър Талев е известен с прозвището „Родолюбецът\".",
+    "authorId": "dimitar-talev",
+    "workId": null,
+    "difficulty": "medium",
+    "source": "generated-fillblank"
+  },
+  {
+    "id": "qfb-nick-aleko-konstantinov",
+    "type": "fill_blank",
+    "category": "fill_blank",
+    "question": "Алеко Константинов е известен с прозвището ____.",
+    "correctAnswer": "Щастливеца",
+    "acceptedAnswers": [
+      "Щастливеца",
+      "Щастливеца; съвестта на нацията"
+    ],
+    "explanation": "Алеко Константинов е известен с прозвището „Щастливеца\".",
+    "authorId": "aleko-konstantinov",
+    "workId": null,
+    "difficulty": "medium",
+    "source": "generated-fillblank"
+  },
+  {
+    "id": "qfb-nick-ivan-vazov",
+    "type": "fill_blank",
+    "category": "fill_blank",
+    "question": "Иван Вазов е известен с прозвището ____.",
+    "correctAnswer": "Патриархът на българската литература",
+    "acceptedAnswers": [
+      "Патриархът на българската литература"
+    ],
+    "explanation": "Иван Вазов е известен с прозвището „Патриархът на българската литература\".",
+    "authorId": "ivan-vazov",
+    "workId": null,
+    "difficulty": "medium",
+    "source": "generated-fillblank"
+  },
+  {
+    "id": "qfb-nick-nikola-vaptsarov",
+    "type": "fill_blank",
+    "category": "fill_blank",
+    "question": "Никола Вапцаров е известен с прозвището ____.",
+    "correctAnswer": "огняроинтелигента",
+    "acceptedAnswers": [
+      "огняроинтелигента"
+    ],
+    "explanation": "Никола Вапцаров е известен с прозвището „огняроинтелигента\".",
+    "authorId": "nikola-vaptsarov",
+    "workId": null,
+    "difficulty": "medium",
+    "source": "generated-fillblank"
+  },
+  {
+    "id": "qfb-nick-hristo-botev",
+    "type": "fill_blank",
+    "category": "fill_blank",
+    "question": "Христо Ботев е известен с прозвището ____.",
+    "correctAnswer": "гения",
+    "acceptedAnswers": [
+      "гения"
+    ],
+    "explanation": "Христо Ботев е известен с прозвището „гения\".",
+    "authorId": "hristo-botev",
+    "workId": null,
+    "difficulty": "medium",
+    "source": "generated-fillblank"
+  },
+  {
+    "id": "qfb-nick-elin-pelin",
+    "type": "fill_blank",
+    "category": "fill_blank",
+    "question": "Елин Пелин е известен с прозвището ____.",
+    "correctAnswer": "художник на българското село",
+    "acceptedAnswers": [
+      "художник на българското село",
+      "художник на българското село; майстор на късия разказ; певецът на българското село"
+    ],
+    "explanation": "Елин Пелин е известен с прозвището „художник на българското село\".",
+    "authorId": "elin-pelin",
+    "workId": null,
+    "difficulty": "medium",
+    "source": "generated-fillblank"
+  },
+  {
+    "id": "qfb-nick-atanas-dalchev",
+    "type": "fill_blank",
+    "category": "fill_blank",
+    "question": "Атанас Далчев е известен с прозвището ____.",
+    "correctAnswer": "поетът философ",
+    "acceptedAnswers": [
+      "поетът философ"
+    ],
+    "explanation": "Атанас Далчев е известен с прозвището „поетът философ\".",
+    "authorId": "atanas-dalchev",
+    "workId": null,
+    "difficulty": "medium",
+    "source": "generated-fillblank"
+  },
+  {
+    "id": "qfb-nick-yordan-yovkov",
+    "type": "fill_blank",
+    "category": "fill_blank",
+    "question": "Йордан Йовков е известен с прозвището ____.",
+    "correctAnswer": "хуманистът писател",
+    "acceptedAnswers": [
+      "хуманистът писател"
+    ],
+    "explanation": "Йордан Йовков е известен с прозвището „хуманистът писател\".",
+    "authorId": "yordan-yovkov",
+    "workId": null,
+    "difficulty": "medium",
+    "source": "generated-fillblank"
+  }
+]
