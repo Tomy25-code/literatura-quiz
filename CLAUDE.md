@@ -383,7 +383,7 @@ Migration: if `literaturaQuizWrongQuestionIds` (old array format) exists and `li
 - **Read-only recommendation layer.** Viewing the dashboard does NOT modify stats, wrong-answer review, daily streak, or any localStorage learning state. No new localStorage keys are written.
 - **No invented facts.** Recommendations are derived solely from existing localStorage data and existing JSON question pool metadata.
 - **No JSON data file modifications.** Does not touch any file in `src/data/`.
-- **No new quiz logic.** Recommendation actions reuse existing modes via `handleModeSelect`, `startQuiz`, or `handleStudyGuideSelect`. The only new action type is `category-quiz` which calls `buildQuiz` directly with a fixed length of 5.
+- **No new quiz logic.** Recommendation actions reuse existing modes via `handleModeSelect`, `startQuiz`, or `handleStudyGuideSelect`. New action types (`category-quiz`, `author-quiz`, `work-quiz`) call `buildQuiz` directly with a fixed length of 5.
 - **No backend, no API, no external data.** Fully local and browser-based.
 
 #### Recommendation priority logic
@@ -430,5 +430,7 @@ Up to 3 recommendations are shown. Priority order:
 | Action `type` | Handler | Notes |
 |---------------|---------|-------|
 | `mode` | `handleModeSelect(modeId)` | Covers all standard modes |
-| `category-quiz` | `buildQuiz(..., 'category', category, works, 5)` inline | Hardcoded 5-question length for category recommendations |
+| `category-quiz` | `buildQuiz(..., 'category', category, works, 5)` inline | Hardcoded 5 questions |
+| `author-quiz` | `buildQuiz(..., 'author', authorId, works, 5)` inline | Hardcoded 5 questions |
+| `work-quiz` | `buildQuiz(..., 'work', workId, works, 5)` inline | Hardcoded 5 questions |
 | `study-guide` | `handleStudyGuideSelect(itemType, itemId)` | Deep-links to author or work card |

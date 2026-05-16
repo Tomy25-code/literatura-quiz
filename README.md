@@ -83,10 +83,12 @@ A home-screen widget that recommends up to 3 actionable study steps based on the
 |----------|---------------|-----------|
 | 1 | Wrong review | Active wrong-review queue is non-empty |
 | 2 | Daily Practice | Not yet completed today |
-| 3 | Weakest category (5-question quiz) | At least 3 questions seen in a category |
-| 4 | Thesis Practice | `essay_preparation` category is weak and not already covered |
-| 5 | Flashcards (with author hint) | Derived from wrong/recent answers |
-| 6 | Study Guide deep-link | Top wrong-answer author |
+| 3 | Weakest category (5-question quiz) | ≥ 3 seen, accuracy < 70% |
+| 4 | Weakest author (5-question quiz) | ≥ 3 seen, accuracy < 70% |
+| 5 | Weakest work (5-question quiz) | ≥ 3 seen, accuracy < 70% |
+| 6 | Thesis Practice | `essay_preparation` is weak and not already covered |
+| 7 | Flashcards (with author hint) | Derived from wrong/recent answers |
+| 8 | Study Guide deep-link | Top wrong-answer author |
 | Fallback | Starter plan (3 cards) | No stats and no wrong answers |
 
 Each recommendation card has a title, description, optional badge, and a direct action button. Clicking a button navigates to or starts the appropriate existing mode — no new quiz logic is introduced.

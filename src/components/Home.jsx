@@ -96,7 +96,17 @@ export default function Home({
           </div>
 
           <div className="help-group">
-            <p className="help-group-title">2. Започни с основен режим</p>
+            <p className="help-group-title">2. Какво да уча днес?</p>
+            <p className="help-p">
+              Секцията „Какво да уча днес?" предлага кратък план според досегашните ти резултати.
+              Може да ти препоръча преговор на грешните, дневна тренировка, слаба категория,
+              слаб автор, слабо произведение, флашкарти или справочник. Самото разглеждане на
+              плана не променя статистиката ти.
+            </p>
+          </div>
+
+          <div className="help-group">
+            <p className="help-group-title">3. Основни режими на тест</p>
             <p className="help-p">Всеки от тези режими стартира тест незабавно или след избор на филтър:</p>
             <ul className="help-ul">
               <li><strong>„Случаен тест"</strong> — смес от въпроси за всички автори и теми</li>
@@ -108,7 +118,7 @@ export default function Home({
           </div>
 
           <div className="help-group">
-            <p className="help-group-title">3. Видове въпроси</p>
+            <p className="help-group-title">4. Видове въпроси</p>
             <p className="help-p">В зависимост от режима въпросите могат да бъдат:</p>
             <ul className="help-ul">
               <li>с четири варианта за избор</li>
@@ -123,7 +133,7 @@ export default function Home({
           <div className="help-divider" />
 
           <div className="help-group">
-            <p className="help-group-title">4. Използвай умната практика</p>
+            <p className="help-group-title">5. Умна практика</p>
             <ul className="help-ul">
               <li>
                 <strong>„Дневна тренировка"</strong> — кратък балансиран тест за деня, съставен
@@ -146,7 +156,7 @@ export default function Home({
           <div className="help-divider" />
 
           <div className="help-group">
-            <p className="help-group-title">5. Преговаряй със справочника и флашкартите</p>
+            <p className="help-group-title">6. Справочник и флашкарти</p>
             <ul className="help-ul">
               <li>
                 <strong>„Флашкарти"</strong> — справочни карти за всеки автор и произведение;
@@ -161,7 +171,7 @@ export default function Home({
           </div>
 
           <div className="help-group">
-            <p className="help-group-title">6. Подготви се за съчинение</p>
+            <p className="help-group-title">7. Подготовка за съчинение</p>
             <p className="help-p">
               <strong>„Избери теза"</strong> — тест само с въпроси от тип „Кой акцент е подходящ
               за интерпретативно съчинение?". Помага да упражниш избора на теза преди писмена работа.
@@ -171,11 +181,16 @@ export default function Home({
           <div className="help-divider" />
 
           <div className="help-group">
-            <p className="help-group-title">7. Следи напредъка си</p>
+            <p className="help-group-title">8. Статистика и напредък</p>
             <p className="help-p">
               След всеки завършен тест статистиката се обновява автоматично. От бутона „Статистика"
-              на началния екран виждаш общия брой тестове, средния и най-добрия резултат, точността
-              по трудност и категория и последните опити.
+              виждаш общия брой тестове, средния и най-добрия резултат, точността по трудност и
+              категория, и последните опити.
+            </p>
+            <p className="help-p">
+              В статистиката виждаш и най-слабите автори и произведения. Те се показват само
+              когато има достатъчно отговорени въпроси. С бутона „Тест →" можеш веднага да
+              започнеш насочен преговор.
             </p>
           </div>
 
@@ -185,6 +200,7 @@ export default function Home({
             <p className="help-group-title">Препоръчителен начин на учене</p>
             <ol className="help-ol">
               <li>Започни с „Случаен тест" — виж общото ниво.</li>
+              <li>Провери „Какво да уча днес?" за насочен план.</li>
               <li>Прегледай грешките в „Преговор на грешните".</li>
               <li>Използвай „Слаби места" за целенасочена практика.</li>
               <li>Прави „Дневна тренировка" редовно, за да поддържаш серията.</li>
@@ -196,6 +212,7 @@ export default function Home({
           <div className="help-group">
             <p className="help-group-title">За данните</p>
             <p className="help-p">
+              Всичко се пази само в браузъра на устройството ти — без регистрация, без сървър.
               Съдържанието на справочника отразява наличните полета в записките. Ако дадена секция
               не се вижда в картата, означава, че съответните данни не са посочени в изходния материал.
             </p>

@@ -396,7 +396,7 @@ A home-screen widget that reads existing localStorage data and recommends up to 
 
 #### Implementation
 
-- **Utility:** `src/utils/todayPlan.js` — `buildTodayPlan({ stats, wrongQuestionIds, dailyCompletedToday, questions, authors })`
+- **Utility:** `src/utils/todayPlan.js` — `buildTodayPlan({ stats, wrongQuestionIds, dailyCompletedToday, questions, authors, works })`
 - **Component:** `src/components/TodayPlan.jsx` — renders recommendation cards with title, description, badge, and action button
 - **Placement:** home screen, between `StatsSummary` and `ModeSelector`
 - **Action dispatcher:** `handleTodayPlanAction(action)` in `App.jsx`
@@ -405,19 +405,21 @@ A home-screen widget that reads existing localStorage data and recommends up to 
 
 1. Wrong review — if active wrong queue is non-empty
 2. Daily Practice — if not completed today
-3. Weakest category quiz (5 questions) — lowest accuracy with ≥ 3 seen; if `essay_preparation`, opens Thesis Practice
-4. Thesis Practice — if `essay_preparation` is weak and not already covered
-5. Flashcards — with relevant author hint when derivable from wrong/recent data
-6. Study Guide deep-link — for the top wrong-answer author
-7. Starter fallback (3 cards) — when no stats and no wrong answers
+3. Weakest category (5 questions) — accuracy < 70%, ≥ 3 seen; if `essay_preparation`, opens Thesis Practice
+4. Weakest author (5 questions) — accuracy < 70%, ≥ 3 seen
+5. Weakest work (5 questions) — accuracy < 70%, ≥ 3 seen
+6. Thesis Practice — if `essay_preparation` is weak and not already covered
+7. Flashcards — with relevant author hint; hint suppressed if that author was already targeted
+8. Study Guide deep-link — for the top wrong-answer author; skipped if already targeted
+9. Starter fallback (3 cards) — when no stats and no wrong answers
 
 #### Data sources (read-only)
 
-- `literaturaQuizStats` — category stats, wrong IDs per attempt, recent attempts
+- `literaturaQuizStats` — category/author/work stats, wrong IDs per attempt, recent attempts
 - `literaturaQuizWrongReview` — active wrong-review queue IDs
 - `literaturaQuizDailyPractice` — `lastDate` for daily completion check
-- `questions` array — for category/author metadata
-- `authors.json` — for author name resolution
+- `questions` full merged pool — for category, author, and work metadata
+- `authors.json` / `works.json` — for display name resolution
 
 No new localStorage keys are written. Viewing the dashboard does not affect any learning state.
 
