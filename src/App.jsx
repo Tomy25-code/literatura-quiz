@@ -16,7 +16,7 @@ import FlashcardSelection from './components/FlashcardSelection';
 import Flashcards from './components/Flashcards';
 import StudyGuide from './components/StudyGuide';
 import StudyGuideDetail from './components/StudyGuideDetail';
-import { buildQuiz, shuffle, MODE_LABELS } from './utils/quiz';
+import { buildQuiz, buildThesisPracticeQuiz, shuffle, MODE_LABELS } from './utils/quiz';
 import { buildWeakSpotsQuiz, hasWeakSpots } from './utils/weakSpots';
 import { buildDailyPracticeQuiz, getDailyPracticeState, saveDailyPracticeCompletion, getLocalDateKey } from './utils/dailyPractice';
 import { buildAuthorCards, buildWorkCards, buildMixedCards } from './utils/flashcards';
@@ -80,6 +80,13 @@ export default function App() {
         return;
       }
       qs = result.questions;
+    } else if (mode === 'thesisPractice') {
+      const result = buildThesisPracticeQuiz({ allQuestions: questions, length: quizLength });
+      if (result.emptyReason === 'no-thesis-questions' || result.questions.length === 0) {
+        setScreen('thesis-practice-empty');
+        return;
+      }
+      qs = result.questions;
     } else {
       qs = buildQuiz(questions, mode, filterValue, works, quizLength);
     }
@@ -105,6 +112,8 @@ export default function App() {
       } else {
         startQuiz('wrong', null, MODE_LABELS.wrong);
       }
+    } else if (mode === 'thesisPractice') {
+      startQuiz('thesisPractice', null, MODE_LABELS.thesisPractice);
     } else if (mode === 'flashcards') {
       setScreen('flashcard-select');
     } else if (mode === 'studyGuide') {
@@ -240,6 +249,18 @@ export default function App() {
         <h2 className="wrong-empty-title">Дневна тренировка</h2>
         <p className="wrong-empty-sub">
           Няма налични въпроси за тренировка. Опитай друг режим.
+        </p>
+        <button className="btn-primary" onClick={goHome}>Към началото</button>
+      </div>
+    );
+  }
+
+  if (screen === 'thesis-practice-empty') {
+    return (
+      <div className="wrong-empty-container">
+        <h2 className="wrong-empty-title">Няма налични въпроси за теза</h2>
+        <p className="wrong-empty-sub">
+          Добави или генерирай въпроси за подготовка на теза, за да използваш този режим.
         </p>
         <button className="btn-primary" onClick={goHome}>Към началото</button>
       </div>

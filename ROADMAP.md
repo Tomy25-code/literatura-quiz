@@ -349,26 +349,40 @@ A read-only reference mode. Not a quiz. Does not affect stats, wrong-answer revi
 | `npm run qa:source` | ✅ 0 errors, 261 warnings (pre-existing) |
 | `npm run qa:semantic` | ✅ 0 high-severity findings |
 
-### Essay Prep Mode (planned)
+### Step 2 — Essay Prep Mode ⏸ DEFERRED
 
-Structured practice aligned with the матура essay format (тема, теза, аргументи, заключение).
+Intentionally skipped for now. Requires careful manual content selection (curated essay topics list, reference panel UX). Will be revisited in a later sprint when content is ready.
 
-- Present a тема (topic/prompt) drawn from a curated list.
+Planned shape (for reference):
+- Present a тема (topic/prompt) drawn from a curated list (`src/data/essayTopics.json`).
 - User selects an author and work relevant to the topic.
-- App displays: key themes, motifs, and composition notes from the data files as a reference panel.
-- User works through their теза — no text input required for MVP; just the reference display.
-- Show a checklist of standard essay elements to tick off mentally.
+- App displays key themes, motifs, and composition notes as a reference panel.
+- No text input required for MVP.
 
-Topics list: store as a static array in a new file `src/data/essayTopics.json` (add to QA scope when created).
+### Step 3 — Thesis Practice ✅ IMPLEMENTED
 
-### Thesis Practice
+**Branch:** `v2/feature/thesis-practice`
 
-Quick-fire mode for practising thesis construction.
+Quick-fire mode where the user chooses the most appropriate thesis/essay-focus from four options.
 
-- Show a тема, ask the user to identify which of four provided тези is best-formed.
-- `correctAnswer` is the strongest теза; distractors are weaker or off-topic versions.
-- Implement as a new question category: `"essay_preparation"` (already in `VALID_CATEGORIES`).
-- Questions in this category must have `workId: null` and use `authorId` only where the topic is author-specific.
+#### Implementation
+
+- **Mode ID:** `thesisPractice` — handled in `App.jsx` `handleModeSelect` / `startQuiz`
+- **Builder:** `buildThesisPracticeQuiz({ allQuestions, length })` in `src/utils/quiz.js`
+- **Filter:** `category === 'essay_preparation'` only — no invented content, no fallback to unrelated questions
+- **Pool size:** 47 questions (all from `questions.json`, all `difficulty: hard`)
+- **Quiz label:** "Избери теза"
+- **Empty state:** shown if pool is ever empty; never pads with other question types
+- Stats, wrong-answer review, smart wrong review, weak spots, and daily practice all interact with thesis-practice questions identically to any other quiz mode (they are already tracked by `question.id`)
+
+#### QA status
+
+| Check | Result |
+|-------|--------|
+| `npm run build` | ✅ PASS |
+| `npm run qa:content` | ✅ 0 errors |
+| `npm run qa:source` | ✅ 0 errors |
+| `npm run qa:semantic` | ✅ 0 high-severity findings |
 
 ---
 

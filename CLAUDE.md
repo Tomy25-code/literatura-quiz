@@ -357,3 +357,21 @@ Migration: if `literaturaQuizWrongQuestionIds` (old array format) exists and `li
 - Work card sections: Автор, Жанр, Година / период, Творческа история, Композиция, Теми, Мотиви, Ключови идеи
 - Works listed under an author are clickable — navigate directly to the work study card.
 - Back from detail → study-guide selection screen. Back from selection → home.
+
+---
+
+## Implemented V2 Features (Phase 3 Step 3 — Thesis Practice)
+
+### Phase 3 Step 2 — intentionally skipped/deferred
+
+Essay Prep mode (Step 2) requires careful manual content selection (curated essay topics). It is deferred to a later sprint and must not be implemented until content is ready.
+
+### Thesis Practice mode (`Избери теза`)
+
+- Mode ID: `'thesisPractice'` — handled in `App.jsx` `handleModeSelect` / `startQuiz`
+- Builder: `buildThesisPracticeQuiz({ allQuestions, length })` in `src/utils/quiz.js`
+- **Filter rule:** `category === 'essay_preparation'` only — 47 questions, all from `questions.json`, all `difficulty: hard`
+- **No invented thesis content.** Every answer is directly sourced from existing JSON fields.
+- **No fallback to unrelated random questions.** If the pool is empty, shows a clean empty state (`screen === 'thesis-practice-empty'`); never pads with author/genre/year questions.
+- Quiz length uses the user's selected quiz length from the home screen; if fewer questions exist than the selected length, runs with the available count.
+- Stats, wrong-answer review, smart wrong review, weak spots, and daily practice all interact with thesis-practice questions identically to any other quiz mode.
