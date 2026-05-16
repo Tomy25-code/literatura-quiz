@@ -2071,12 +2071,15 @@ details[open] .help-summary::after {
   border-top: 1px solid var(--border);
   display: flex;
   flex-direction: column;
+  align-items: stretch;
   gap: 1rem;
+  text-align: left;
 }
 
 .help-group {
   display: flex;
   flex-direction: column;
+  align-items: stretch;
   gap: 0.3rem;
 }
 
@@ -2085,6 +2088,7 @@ details[open] .help-summary::after {
   font-weight: 700;
   color: var(--text-h);
   margin: 0;
+  text-align: left;
 }
 
 .help-p {
@@ -2092,6 +2096,7 @@ details[open] .help-summary::after {
   color: var(--text);
   line-height: 1.6;
   margin: 0;
+  text-align: left;
 }
 
 .help-divider {
@@ -2103,10 +2108,13 @@ details[open] .help-summary::after {
 .help-ul,
 .help-ol {
   margin: 0.15rem 0 0;
-  padding-left: 1.15rem;
+  padding-left: 1.25rem;
   display: flex;
   flex-direction: column;
+  align-items: stretch;
   gap: 0.25rem;
+  list-style-position: outside;
+  text-align: left;
 }
 
 .help-ul li,
@@ -2114,6 +2122,7 @@ details[open] .help-summary::after {
   font-size: 0.875rem;
   color: var(--text);
   line-height: 1.55;
+  text-align: left;
 }
 
 .help-ul li strong,
