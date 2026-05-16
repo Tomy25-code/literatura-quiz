@@ -34,6 +34,11 @@ const BASE_MODES = [
     label: 'Падна ми се автор/произведение',
     description: 'Бърз справочник за автор или произведение',
   },
+  {
+    id: 'thesisPractice',
+    label: 'Избери теза',
+    description: 'Упражнявай подходящи тези за съчинение',
+  },
 ];
 
 export default function ModeSelector({ onSelect, wrongCount, onClearWrong, weakSpotsActive, dailyCompletedToday, dailyStreak }) {

@@ -10,6 +10,7 @@ export const MODE_LABELS = {
   weakSpots: 'Слаби места',
   dailyPractice: 'Дневна тренировка',
   studyGuide: 'Падна ми се автор/произведение',
+  thesisPractice: 'Избери теза',
 };
 
 export const CATEGORY_LABELS = {
@@ -58,6 +59,21 @@ export function questionMatchesCategory(q, category) {
   if (q.category !== category) return false;
   if (category === 'true_false') return q.type === 'true_false';
   return true;
+}
+
+/**
+ * Builds a thesis-practice quiz from questions with category === 'essay_preparation'.
+ * Never pads with unrelated questions — if fewer questions exist than `length`, returns all of them.
+ * Returns { questions, emptyReason } where emptyReason is 'no-thesis-questions' when pool is empty.
+ */
+export function buildThesisPracticeQuiz({ allQuestions, length = QUIZ_LENGTH }) {
+  const pool = allQuestions.filter(q => q.category === 'essay_preparation');
+  if (pool.length === 0) return { questions: [], emptyReason: 'no-thesis-questions' };
+  const selected = shuffle([...pool]).slice(0, length);
+  return {
+    questions: selected.map(q => ({ ...q, options: shuffle([...(q.options || [])]) })),
+    emptyReason: null,
+  };
 }
 
 export function buildQuiz(allQuestions, mode, filterValue, allWorks = [], length = QUIZ_LENGTH) {

@@ -19,9 +19,19 @@ Built with Vite + React. Fully static — no backend, no API calls.
 - Flashcards — author and work reference cards
 - Study Guide mode (`Падна ми се автор/произведение`) — structured reference cards for any author or work, sourced from existing JSON data; does not affect quiz stats or review history
 
-### V2 Study Guide (Phase 3 Step 1)
+### V2 Essay Preparation (Phase 3)
+
+#### Step 1 — Study Guide
 
 - **Study Guide mode** (`Падна ми се автор/произведение`) — read-only reference mode; not a quiz. The user selects an author or a work and sees a structured study card drawn entirely from `authors.json` and `works.json`. No new facts are invented; sections with no data are simply hidden. Does not affect quiz stats, wrong-answer review, weak spots, daily practice streak, or any other localStorage learning state.
+
+#### Step 2 — Essay Prep Mode
+
+Deferred. Requires careful manual content selection. Not yet implemented.
+
+#### Step 3 — Thesis Practice
+
+- **Thesis Practice mode** (`Избери теза`) — quiz mode filtered to `category: essay_preparation` questions only (47 questions). The user picks the most appropriate thesis/essay focus from four options. Uses existing question data — no new facts generated. If fewer questions exist than the selected quiz length, runs with the available count; never pads with unrelated questions. Stats, wrong-answer review, and smart wrong review work identically to other quiz modes.
 
 ### V2 Smart Practice
 
