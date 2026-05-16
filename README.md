@@ -48,8 +48,10 @@ The app includes multiple question formats depending on the mode and available d
 
 - Learning statistics per quiz attempt stored in localStorage
 - Per-category and per-difficulty accuracy tracking
+- Per-author and per-work accuracy tracking — shows the 5 weakest authors and works based on answered question history; items appear once ≥ 3 questions have been answered for that author or work
 - Comparison to personal average on results screen
 - Daily practice streak and best streak
+- "Тест →" action button on each author/work row to start a filtered quiz directly from the statistics screen
 
 ---
 
@@ -70,6 +72,7 @@ The app includes multiple question formats depending on the mode and available d
 A home-screen widget that recommends up to 3 actionable study steps based on the user's existing local progress.
 
 - **Widget title:** "Какво да уча днес?" / subtitle: "Кратък план според последните ти резултати."
+- Can recommend weak authors and works once enough quiz history exists (≥ 3 answered questions per author/work, accuracy below 70%)
 - **Placement:** between the stats summary and the mode selector on the home screen.
 - **Read-only:** viewing recommendations does not modify stats, wrong-answer review, daily streak, or any other localStorage learning state.
 - **Local-only and browser-based:** all logic reads from existing localStorage keys — no network calls, no backend.

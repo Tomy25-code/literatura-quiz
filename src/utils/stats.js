@@ -41,6 +41,52 @@ export function computeCategoryStats(stats, allQuestions) {
   return catStats;
 }
 
+/**
+ * Returns per-authorId accuracy across all completed attempts.
+ * Only counts questions that carry a single authorId field.
+ * Match questions (authorIds array) are skipped — they span multiple authors.
+ */
+export function computeAuthorStats(stats, allQuestions) {
+  const questionMap = new Map(allQuestions.map(q => [q.id, q]));
+  const authorStats = {};
+
+  stats.forEach(attempt => {
+    const correctSet = new Set(attempt.correctIds || []);
+    (attempt.questionIds || []).forEach(qId => {
+      const q = questionMap.get(qId);
+      if (!q?.authorId) return;
+      if (!authorStats[q.authorId]) authorStats[q.authorId] = { total: 0, correct: 0 };
+      authorStats[q.authorId].total++;
+      if (correctSet.has(qId)) authorStats[q.authorId].correct++;
+    });
+  });
+
+  return authorStats;
+}
+
+/**
+ * Returns per-workId accuracy across all completed attempts.
+ * Only counts questions that carry a single workId field.
+ * Match questions (workIds array) are skipped — they span multiple works.
+ */
+export function computeWorkStats(stats, allQuestions) {
+  const questionMap = new Map(allQuestions.map(q => [q.id, q]));
+  const workStats = {};
+
+  stats.forEach(attempt => {
+    const correctSet = new Set(attempt.correctIds || []);
+    (attempt.questionIds || []).forEach(qId => {
+      const q = questionMap.get(qId);
+      if (!q?.workId) return;
+      if (!workStats[q.workId]) workStats[q.workId] = { total: 0, correct: 0 };
+      workStats[q.workId].total++;
+      if (correctSet.has(qId)) workStats[q.workId].correct++;
+    });
+  });
+
+  return workStats;
+}
+
 export function computeDifficultyStats(stats, allQuestions) {
   const questionMap = new Map(allQuestions.map(q => [q.id, q]));
   const diffStats = {};

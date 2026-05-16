@@ -391,11 +391,39 @@ Migration: if `literaturaQuizWrongQuestionIds` (old array format) exists and `li
 Up to 3 recommendations are shown. Priority order:
 1. **Wrong review** — if active wrong-review queue is non-empty.
 2. **Daily Practice** — if not yet completed today (checks `dailyPracticeState.lastDate`).
-3. **Weakest category** — lowest accuracy category with ≥ 3 questions seen. If that category is `essay_preparation`, the action opens Thesis Practice instead of a category quiz.
-4. **Thesis Practice** — if `essay_preparation` is weak (accuracy < 70%, ≥ 3 seen) and not already covered above.
-5. **Flashcards** — with descriptive mention of the top wrong-answer author when derivable; opens the flashcard selection screen (direct author filtering in flashcards is not supported).
-6. **Study Guide deep-link** — opens the Study Guide detail card for the top wrong-answer author directly.
-7. **Starter fallback** — when no stats and no wrong answers; shows 3 cards: random quiz, flashcards, study guide.
+3. **Weakest category** — lowest accuracy category with ≥ 3 questions seen and accuracy < 70%. If that category is `essay_preparation`, the action opens Thesis Practice instead of a category quiz.
+4. **Weakest author** — lowest accuracy author with ≥ 3 questions seen and accuracy < 70%. Uses `computeAuthorStats` from `stats.js`. Starts a 5-question author-filtered quiz.
+5. **Weakest work** — lowest accuracy work with ≥ 3 questions seen and accuracy < 70%. Uses `computeWorkStats` from `stats.js`. Starts a 5-question work-filtered quiz.
+6. **Thesis Practice** — if `essay_preparation` is weak (accuracy < 70%, ≥ 3 seen) and not already covered above.
+7. **Flashcards** — with descriptive mention of the top wrong-answer author when derivable; author hint is suppressed if that author was already used in a weak-author recommendation.
+8. **Study Guide deep-link** — opens the Study Guide detail card for the top wrong-answer author directly; skipped if that author was already targeted.
+9. **Starter fallback** — when no stats and no wrong answers; shows 3 cards: random quiz, flashcards, study guide.
+
+#### Today Plan rules for author/work stats
+
+- Reads `computeAuthorStats` and `computeWorkStats` (same functions used by the Stats screen).
+- Weak author/work requires **accuracy < 70% and ≥ 3 answered questions**. Items at or above 70% are never recommended as weak.
+- Author names resolved from `authors.json`; work titles from `works.json`. Raw IDs are never shown in the UI.
+- `usedAuthorIds` set tracks entities already targeted so the same author is not mentioned twice in one 3-card plan.
+- No new localStorage keys written. Viewing the dashboard does not affect any learning state.
+
+---
+
+## Implemented V2 Features (Phase 4 — Guided Learning, continued)
+
+### Author and Work Statistics — Phase 4 Step 2
+
+- Functions: `computeAuthorStats(stats, allQuestions)` and `computeWorkStats(stats, allQuestions)` in `src/utils/stats.js`
+- UI: two new sections ("Най-слаби автори", "Най-слаби произведения") added to `StatsScreen.jsx`
+- **Derive from existing stats only.** Both functions scan completed attempt records and look up `question.authorId` / `question.workId` in the full question pool. No new localStorage keys are written.
+- **Skip missing metadata safely.** If a question has no `authorId`, it is skipped for author stats. If no `workId`, skipped for work stats. Match questions (which use `authorIds[]` / `workIds[]` arrays instead of singular fields) are naturally skipped.
+- **Do not invent metadata.** Names and titles are resolved from `authors.json` and `works.json` only. If an ID cannot be resolved, it is excluded from display.
+- **Do not mutate learning state by viewing statistics.** The stats screen is read-only; no quiz logic, wrong-review, or daily-practice state is touched when viewing these sections.
+- **Do not use raw IDs in UI.** Author names come from `author.name`; work titles from `work.title`. Unresolvable IDs are filtered out via the `nameResolver` in `sortedWeakest`.
+- **Minimum threshold:** `total >= 3` questions answered before an author/work appears in the weakest lists.
+- **Sort order:** accuracy ascending → total descending → Bulgarian name ascending.
+- **Maximum rows:** 5 per section.
+- **Action buttons:** each row has a "Тест →" button that calls `onStartQuiz(mode, id, label)` → `startQuiz` in App.jsx with mode `'author'` or `'work'`. Uses the current quiz length.
 
 #### What `handleTodayPlanAction` dispatches
 

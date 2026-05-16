@@ -215,6 +215,22 @@ export default function App() {
       setModeLabel(action.label);
       setQuizQuestions(pool);
       setScreen('quiz');
+    } else if (action.type === 'author-quiz') {
+      const pool = buildQuiz(questions, 'author', action.authorId, works, 5);
+      if (pool.length === 0) return;
+      setQuizMode('author');
+      setQuizFilter(action.authorId);
+      setModeLabel(action.label);
+      setQuizQuestions(pool);
+      setScreen('quiz');
+    } else if (action.type === 'work-quiz') {
+      const pool = buildQuiz(questions, 'work', action.workId, works, 5);
+      if (pool.length === 0) return;
+      setQuizMode('work');
+      setQuizFilter(action.workId);
+      setModeLabel(action.label);
+      setQuizQuestions(pool);
+      setScreen('quiz');
     } else if (action.type === 'study-guide') {
       handleStudyGuideSelect(action.itemType, action.itemId);
     }
@@ -382,8 +398,12 @@ export default function App() {
     return (
       <StatsScreen
         stats={stats}
+        allQuestions={questions}
+        authors={authors}
+        works={works}
         onHome={goHome}
         onClearStats={handleClearStats}
+        onStartQuiz={startQuiz}
       />
     );
   }
@@ -403,6 +423,7 @@ export default function App() {
     dailyCompletedToday,
     questions,
     authors,
+    works,
   });
 
   return (

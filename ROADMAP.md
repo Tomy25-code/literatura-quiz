@@ -430,6 +430,54 @@ No new localStorage keys are written. Viewing the dashboard does not affect any 
 | `npm run qa:source` | ✅ 0 errors, 261 warnings (pre-existing) |
 | `npm run qa:semantic` | ✅ 0 high-severity findings |
 
+### Step 2 — Author and Work Statistics ✅ IMPLEMENTED
+
+**Branch:** `v2/feature/author-work-stats`
+
+Two new sections added to the Statistics screen showing the weakest authors and works based on completed quiz history.
+
+#### Implementation
+
+- **New utility functions:** `computeAuthorStats(stats, allQuestions)` and `computeWorkStats(stats, allQuestions)` in `src/utils/stats.js`
+- **UI additions:** "Най-слаби автори" and "Най-слаби произведения" sections in `StatsScreen.jsx` (after the category breakdown)
+- **New props on StatsScreen:** `allQuestions`, `authors`, `works`, `onStartQuiz`
+- **App.jsx:** passes the full question pool, `authors`, `works`, and `startQuiz` directly to StatsScreen
+
+#### Calculation logic
+
+- Scans all `attempt.questionIds` across stored attempts
+- For each question: looks up `question.authorId` / `question.workId` in the full merged pool
+- Questions with no `authorId` or no `workId` are skipped (includes match questions, which use plural `authorIds`/`workIds` arrays)
+- `total >= 3` required before an entity appears in the list
+- Sort: accuracy ascending → total descending → Bulgarian name ascending
+- Maximum 5 entries per section
+- Names/titles resolved from `authors.json` / `works.json`; unresolvable IDs excluded
+
+#### Action buttons
+
+Each row has a "Тест →" button that starts a filtered quiz (`'author'` or `'work'` mode) for that entity using the current quiz length.
+
+#### Integration with Today Plan
+
+Author and work stats are also integrated into the "Какво да уча днес?" dashboard (priority 4 and 5). A weak author (accuracy < 70%, ≥ 3 seen) triggers an "Упражни автор" recommendation; a weak work triggers "Упражни произведение". Both start 5-question filtered quizzes via `handleTodayPlanAction` (`author-quiz` / `work-quiz` action types). The dashboard avoids recommending the same author twice in one 3-card plan.
+
+#### Data sources (read-only)
+
+- `literaturaQuizStats` — existing attempt records (questionIds, correctIds)
+- `questions` full merged pool — for authorId/workId metadata lookup
+- `authors.json` / `works.json` — for display name resolution
+
+No new localStorage keys written. Viewing statistics does not affect any learning state.
+
+#### QA status
+
+| Check | Result |
+|-------|--------|
+| `npm run build` | ✅ PASS |
+| `npm run qa:content` | ✅ 0 errors, 19 LONG_OPTION warnings (pre-existing) |
+| `npm run qa:source` | ✅ 0 errors |
+| `npm run qa:semantic` | ✅ 0 high-severity findings |
+
 ---
 
 ## Sprint 4 — UX and Deployment
