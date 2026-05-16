@@ -48,8 +48,10 @@ The app includes multiple question formats depending on the mode and available d
 
 - Learning statistics per quiz attempt stored in localStorage
 - Per-category and per-difficulty accuracy tracking
+- Per-author and per-work accuracy tracking — shows the 5 weakest authors and works based on answered question history; items appear once ≥ 3 questions have been answered for that author or work
 - Comparison to personal average on results screen
 - Daily practice streak and best streak
+- "Тест →" action button on each author/work row to start a filtered quiz directly from the statistics screen
 
 ---
 

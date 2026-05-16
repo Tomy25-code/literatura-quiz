@@ -1,10 +1,42 @@
 import questions from '../data/questions.json';
-import { computeCategoryStats, computeDifficultyStats } from '../utils/stats';
+import { computeCategoryStats, computeDifficultyStats, computeAuthorStats, computeWorkStats } from '../utils/stats';
 import { CATEGORY_LABELS, DIFFICULTY_LABELS } from '../utils/quiz';
 
-export default function StatsScreen({ stats, onHome, onClearStats }) {
+const MIN_SEEN = 3;
+const MAX_ENTITY_ROWS = 5;
+
+function sortedWeakest(statMap, nameResolver) {
+  return Object.entries(statMap)
+    .filter(([, s]) => s.total >= MIN_SEEN)
+    .map(([id, s]) => ({
+      id,
+      name: nameResolver(id) || id,
+      total: s.total,
+      correct: s.correct,
+      accuracy: s.correct / s.total,
+    }))
+    .sort((a, b) => {
+      if (a.accuracy !== b.accuracy) return a.accuracy - b.accuracy;
+      if (b.total !== a.total) return b.total - a.total;
+      return a.name.localeCompare(b.name, 'bg');
+    })
+    .slice(0, MAX_ENTITY_ROWS);
+}
+
+export default function StatsScreen({ stats, allQuestions, authors, works, onHome, onClearStats, onStartQuiz }) {
   const catStats = computeCategoryStats(stats, questions);
   const diffStats = computeDifficultyStats(stats, questions);
+  const authorStats = allQuestions ? computeAuthorStats(stats, allQuestions) : {};
+  const workStats = allQuestions ? computeWorkStats(stats, allQuestions) : {};
+
+  const weakestAuthors = sortedWeakest(
+    authorStats,
+    id => authors?.find(a => a.id === id)?.name
+  );
+  const weakestWorks = sortedWeakest(
+    workStats,
+    id => works?.find(w => w.id === id)?.title
+  );
 
   const avg = stats.length > 0
     ? Math.round(stats.reduce((sum, a) => sum + a.percentage, 0) / stats.length)
@@ -108,6 +140,70 @@ export default function StatsScreen({ stats, onHome, onClearStats }) {
                   );
                 })}
             </div>
+          </section>
+
+          <section className="ss-section">
+            <h3 className="ss-section-title">Най-слаби автори</h3>
+            {weakestAuthors.length === 0 ? (
+              <p className="ss-entity-empty">Все още няма достатъчно данни за автори.</p>
+            ) : (
+              <div className="ss-entity-list">
+                {weakestAuthors.map(item => {
+                  const pct = Math.round(item.accuracy * 100);
+                  return (
+                    <div key={item.id} className="ss-entity-row">
+                      <div className="ss-entity-info">
+                        <span className="ss-entity-name">{item.name}</span>
+                        <span className="ss-entity-meta">
+                          Точност: <span className={pctClass(pct)}>{pct}%</span>
+                          {' · '}{item.total} въпроса
+                        </span>
+                      </div>
+                      {onStartQuiz && (
+                        <button
+                          className="ss-entity-btn"
+                          onClick={() => onStartQuiz('author', item.id, `Тест по автор: ${item.name}`)}
+                        >
+                          Тест →
+                        </button>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+            )}
+          </section>
+
+          <section className="ss-section">
+            <h3 className="ss-section-title">Най-слаби произведения</h3>
+            {weakestWorks.length === 0 ? (
+              <p className="ss-entity-empty">Все още няма достатъчно данни за произведения.</p>
+            ) : (
+              <div className="ss-entity-list">
+                {weakestWorks.map(item => {
+                  const pct = Math.round(item.accuracy * 100);
+                  return (
+                    <div key={item.id} className="ss-entity-row">
+                      <div className="ss-entity-info">
+                        <span className="ss-entity-name">„{item.name}"</span>
+                        <span className="ss-entity-meta">
+                          Точност: <span className={pctClass(pct)}>{pct}%</span>
+                          {' · '}{item.total} въпроса
+                        </span>
+                      </div>
+                      {onStartQuiz && (
+                        <button
+                          className="ss-entity-btn"
+                          onClick={() => onStartQuiz('work', item.id, `Тест по произведение: „${item.name}"`)}
+                        >
+                          Тест →
+                        </button>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+            )}
           </section>
         </>
       )}

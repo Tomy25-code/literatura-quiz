@@ -382,8 +382,12 @@ export default function App() {
     return (
       <StatsScreen
         stats={stats}
+        allQuestions={questions}
+        authors={authors}
+        works={works}
         onHome={goHome}
         onClearStats={handleClearStats}
+        onStartQuiz={startQuiz}
       />
     );
   }

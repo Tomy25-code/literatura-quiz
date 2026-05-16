@@ -397,6 +397,24 @@ Up to 3 recommendations are shown. Priority order:
 6. **Study Guide deep-link** — opens the Study Guide detail card for the top wrong-answer author directly.
 7. **Starter fallback** — when no stats and no wrong answers; shows 3 cards: random quiz, flashcards, study guide.
 
+---
+
+## Implemented V2 Features (Phase 4 — Guided Learning, continued)
+
+### Author and Work Statistics — Phase 4 Step 2
+
+- Functions: `computeAuthorStats(stats, allQuestions)` and `computeWorkStats(stats, allQuestions)` in `src/utils/stats.js`
+- UI: two new sections ("Най-слаби автори", "Най-слаби произведения") added to `StatsScreen.jsx`
+- **Derive from existing stats only.** Both functions scan completed attempt records and look up `question.authorId` / `question.workId` in the full question pool. No new localStorage keys are written.
+- **Skip missing metadata safely.** If a question has no `authorId`, it is skipped for author stats. If no `workId`, skipped for work stats. Match questions (which use `authorIds[]` / `workIds[]` arrays instead of singular fields) are naturally skipped.
+- **Do not invent metadata.** Names and titles are resolved from `authors.json` and `works.json` only. If an ID cannot be resolved, it is excluded from display.
+- **Do not mutate learning state by viewing statistics.** The stats screen is read-only; no quiz logic, wrong-review, or daily-practice state is touched when viewing these sections.
+- **Do not use raw IDs in UI.** Author names come from `author.name`; work titles from `work.title`. Unresolvable IDs are filtered out via the `nameResolver` in `sortedWeakest`.
+- **Minimum threshold:** `total >= 3` questions answered before an author/work appears in the weakest lists.
+- **Sort order:** accuracy ascending → total descending → Bulgarian name ascending.
+- **Maximum rows:** 5 per section.
+- **Action buttons:** each row has a "Тест →" button that calls `onStartQuiz(mode, id, label)` → `startQuiz` in App.jsx with mode `'author'` or `'work'`. Uses the current quiz length.
+
 #### What `handleTodayPlanAction` dispatches
 
 | Action `type` | Handler | Notes |
