@@ -63,6 +63,33 @@ The app includes multiple question formats depending on the mode and available d
 
 ---
 
+## Phase 4 — Guided Learning
+
+### Step 1 — "Какво да уча днес?" Dashboard ✅ Implemented
+
+A home-screen widget that recommends up to 3 actionable study steps based on the user's existing local progress.
+
+- **Widget title:** "Какво да уча днес?" / subtitle: "Кратък план според последните ти резултати."
+- **Placement:** between the stats summary and the mode selector on the home screen.
+- **Read-only:** viewing recommendations does not modify stats, wrong-answer review, daily streak, or any other localStorage learning state.
+- **Local-only and browser-based:** all logic reads from existing localStorage keys — no network calls, no backend.
+
+#### Recommendation priority order
+
+| Priority | Recommendation | Condition |
+|----------|---------------|-----------|
+| 1 | Wrong review | Active wrong-review queue is non-empty |
+| 2 | Daily Practice | Not yet completed today |
+| 3 | Weakest category (5-question quiz) | At least 3 questions seen in a category |
+| 4 | Thesis Practice | `essay_preparation` category is weak and not already covered |
+| 5 | Flashcards (with author hint) | Derived from wrong/recent answers |
+| 6 | Study Guide deep-link | Top wrong-answer author |
+| Fallback | Starter plan (3 cards) | No stats and no wrong answers |
+
+Each recommendation card has a title, description, optional badge, and a direct action button. Clicking a button navigates to or starts the appropriate existing mode — no new quiz logic is introduced.
+
+---
+
 ## Tech Stack
 
 | Layer | Technology |

@@ -17,6 +17,7 @@ import Flashcards from './components/Flashcards';
 import StudyGuide from './components/StudyGuide';
 import StudyGuideDetail from './components/StudyGuideDetail';
 import { buildQuiz, buildThesisPracticeQuiz, shuffle, MODE_LABELS } from './utils/quiz';
+import { buildTodayPlan } from './utils/todayPlan';
 import { buildWeakSpotsQuiz, hasWeakSpots } from './utils/weakSpots';
 import { buildDailyPracticeQuiz, getDailyPracticeState, saveDailyPracticeCompletion, getLocalDateKey } from './utils/dailyPractice';
 import { buildAuthorCards, buildWorkCards, buildMixedCards } from './utils/flashcards';
@@ -199,6 +200,26 @@ export default function App() {
     }
   }
 
+  function handleTodayPlanAction(action) {
+    if (action.type === 'mode') {
+      handleModeSelect(action.modeId);
+    } else if (action.type === 'category-quiz') {
+      const pool = buildQuiz(questions, 'category', action.category, works, 5);
+      if (pool.length === 0) {
+        setQuizMode('category');
+        setScreen('filter');
+        return;
+      }
+      setQuizMode('category');
+      setQuizFilter(action.category);
+      setModeLabel(action.label);
+      setQuizQuestions(pool);
+      setScreen('quiz');
+    } else if (action.type === 'study-guide') {
+      handleStudyGuideSelect(action.itemType, action.itemId);
+    }
+  }
+
   function goHome() {
     setFilterError('');
     setWrongCount(getWrongQuestionIds().length);
@@ -376,6 +397,14 @@ export default function App() {
   const dailyCompletedToday = dailyPracticeState.lastDate === getLocalDateKey();
   const dailyStreak = dailyPracticeState.streak || 0;
 
+  const todayPlanRecs = buildTodayPlan({
+    stats,
+    wrongQuestionIds: getWrongQuestionIds(),
+    dailyCompletedToday,
+    questions,
+    authors,
+  });
+
   return (
     <Home
       authorCount={authors.length}
@@ -387,7 +416,9 @@ export default function App() {
       weakSpotsActive={weakSpotsActive}
       dailyCompletedToday={dailyCompletedToday}
       dailyStreak={dailyStreak}
+      todayPlanRecs={todayPlanRecs}
       onSelectMode={handleModeSelect}
+      onTodayPlanAction={handleTodayPlanAction}
       onSetQuizLength={handleSetQuizLength}
       onClearWrong={handleClearWrong}
       onViewStats={goStats}

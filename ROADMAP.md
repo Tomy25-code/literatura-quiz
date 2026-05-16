@@ -386,6 +386,52 @@ Quick-fire mode where the user chooses the most appropriate thesis/essay-focus f
 
 ---
 
+## Phase 4 — Guided Learning
+
+### Step 1 — "Какво да уча днес?" Dashboard ✅ IMPLEMENTED
+
+**Branch:** `v2/feature/today-plan`
+
+A home-screen widget that reads existing localStorage data and recommends up to 3 actionable study steps for today.
+
+#### Implementation
+
+- **Utility:** `src/utils/todayPlan.js` — `buildTodayPlan({ stats, wrongQuestionIds, dailyCompletedToday, questions, authors })`
+- **Component:** `src/components/TodayPlan.jsx` — renders recommendation cards with title, description, badge, and action button
+- **Placement:** home screen, between `StatsSummary` and `ModeSelector`
+- **Action dispatcher:** `handleTodayPlanAction(action)` in `App.jsx`
+
+#### Recommendation priority
+
+1. Wrong review — if active wrong queue is non-empty
+2. Daily Practice — if not completed today
+3. Weakest category quiz (5 questions) — lowest accuracy with ≥ 3 seen; if `essay_preparation`, opens Thesis Practice
+4. Thesis Practice — if `essay_preparation` is weak and not already covered
+5. Flashcards — with relevant author hint when derivable from wrong/recent data
+6. Study Guide deep-link — for the top wrong-answer author
+7. Starter fallback (3 cards) — when no stats and no wrong answers
+
+#### Data sources (read-only)
+
+- `literaturaQuizStats` — category stats, wrong IDs per attempt, recent attempts
+- `literaturaQuizWrongReview` — active wrong-review queue IDs
+- `literaturaQuizDailyPractice` — `lastDate` for daily completion check
+- `questions` array — for category/author metadata
+- `authors.json` — for author name resolution
+
+No new localStorage keys are written. Viewing the dashboard does not affect any learning state.
+
+#### QA status
+
+| Check | Result |
+|-------|--------|
+| `npm run build` | ✅ PASS |
+| `npm run qa:content` | ✅ 0 errors, 19 LONG_OPTION warnings (pre-existing) |
+| `npm run qa:source` | ✅ 0 errors, 261 warnings (pre-existing) |
+| `npm run qa:semantic` | ✅ 0 high-severity findings |
+
+---
+
 ## Sprint 4 — UX and Deployment
 
 **Branch:** `v2/sprint4-ux-deployment`

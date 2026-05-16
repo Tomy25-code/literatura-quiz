@@ -1,5 +1,6 @@
 import ModeSelector from './ModeSelector';
 import StatsSummary from './StatsSummary';
+import TodayPlan from './TodayPlan';
 import { VALID_LENGTHS } from '../utils/settings';
 
 export default function Home({
@@ -12,7 +13,9 @@ export default function Home({
   weakSpotsActive,
   dailyCompletedToday,
   dailyStreak,
+  todayPlanRecs,
   onSelectMode,
+  onTodayPlanAction,
   onSetQuizLength,
   onClearWrong,
   onViewStats,
@@ -59,6 +62,8 @@ export default function Home({
       </div>
 
       <StatsSummary stats={stats} onViewStats={onViewStats} />
+
+      <TodayPlan recommendations={todayPlanRecs} onAction={onTodayPlanAction} />
 
       <ModeSelector
         onSelect={onSelectMode}
