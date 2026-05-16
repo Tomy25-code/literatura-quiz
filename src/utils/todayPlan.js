@@ -120,9 +120,9 @@ export function buildTodayPlan({ stats, wrongQuestionIds, dailyCompletedToday, q
 
   if (recs.length >= 3) return recs.slice(0, 3);
 
-  // 3. Weakest category
+  // 3. Weakest category — only when accuracy is genuinely below threshold
   const weakCat = hasStats ? findWeakestCategory(stats, questions) : null;
-  if (weakCat) {
+  if (weakCat && weakCat.accuracy < WEAK_THRESHOLD) {
     const label = CATEGORY_LABELS[weakCat.category] || weakCat.category;
     const pct = Math.round(weakCat.accuracy * 100);
     const isEssay = weakCat.category === 'essay_preparation';
@@ -130,7 +130,7 @@ export function buildTodayPlan({ stats, wrongQuestionIds, dailyCompletedToday, q
       id: 'weak-category',
       title: `Упражни категория: ${label}`,
       description: `Точност ${pct}% — тази категория е сред най-слабите ти.`,
-      badge: weakCat.accuracy < WEAK_THRESHOLD ? 'Слаба категория' : null,
+      badge: 'Слаба категория',
       buttonText: isEssay ? 'Избери теза' : '5 въпроса',
       action: isEssay
         ? { type: 'mode', modeId: 'thesisPractice' }
