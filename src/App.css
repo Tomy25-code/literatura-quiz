@@ -453,6 +453,129 @@
   }
 }
 
+/* ---- TODAY PLAN WIDGET ---- */
+
+.today-plan {
+  width: 100%;
+  max-width: 560px;
+  margin-bottom: 0.5rem;
+}
+
+.today-plan-header {
+  margin-bottom: 0.75rem;
+}
+
+.today-plan-title {
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text);
+  margin: 0 0 0.2rem;
+  text-align: center;
+}
+
+.today-plan-subtitle {
+  font-size: 0.78rem;
+  color: var(--text);
+  text-align: center;
+  margin: 0;
+  opacity: 0.85;
+}
+
+.today-plan-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.today-plan-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.875rem 1.1rem;
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  background: var(--bg);
+  transition: border-color 0.15s;
+}
+
+.today-plan-card:hover {
+  border-color: var(--accent-border);
+}
+
+.tpc-body {
+  flex: 1;
+  min-width: 0;
+  text-align: left;
+}
+
+.tpc-badge {
+  display: inline-block;
+  font-size: 0.67rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--accent);
+  background: var(--accent-bg);
+  border: 1px solid var(--accent-border);
+  border-radius: 999px;
+  padding: 0.1rem 0.5rem;
+  margin-bottom: 0.3rem;
+}
+
+.tpc-title {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text-h);
+  margin: 0 0 0.2rem;
+  line-height: 1.3;
+}
+
+.tpc-desc {
+  font-size: 0.78rem;
+  color: var(--text);
+  margin: 0;
+  line-height: 1.4;
+}
+
+.tpc-btn {
+  flex-shrink: 0;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 0.5rem 0.9rem;
+  font-size: 0.8rem;
+  font-family: var(--sans);
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: opacity 0.15s, transform 0.1s;
+}
+
+.tpc-btn:hover {
+  opacity: 0.88;
+}
+
+.tpc-btn:active {
+  transform: scale(0.96);
+}
+
+@media (max-width: 440px) {
+  .today-plan-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .tpc-btn {
+    width: 100%;
+    text-align: center;
+    padding: 0.6rem 0.9rem;
+  }
+}
+
 /* ---- QUIZ SCREEN ---- */
 
 .quiz-container {

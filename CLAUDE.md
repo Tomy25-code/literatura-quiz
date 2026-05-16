@@ -371,3 +371,36 @@ Migration: if `literaturaQuizWrongQuestionIds` (old array format) exists and `li
 - **No fallback to unrelated random questions.** If the pool is empty, shows a clean empty state (`screen === 'thesis-practice-empty'`); never pads with author/genre/year/recognition questions.
 - Quiz length uses the user's selected quiz length from the home screen; if fewer questions exist than the selected length, runs with the available count.
 - Stats, wrong-answer review, smart wrong review, weak spots, and daily practice all interact with thesis-practice questions identically to any other quiz mode.
+
+---
+
+## Implemented V2 Features (Phase 4 — Guided Learning)
+
+### Today Plan dashboard — Phase 4 Step 1 (`Какво да уча днес?`)
+
+- Entry: `src/components/TodayPlan.jsx` (home-screen widget), `src/utils/todayPlan.js` (recommendation logic)
+- Placement: home screen, between `StatsSummary` and `ModeSelector`.
+- **Read-only recommendation layer.** Viewing the dashboard does NOT modify stats, wrong-answer review, daily streak, or any localStorage learning state. No new localStorage keys are written.
+- **No invented facts.** Recommendations are derived solely from existing localStorage data and existing JSON question pool metadata.
+- **No JSON data file modifications.** Does not touch any file in `src/data/`.
+- **No new quiz logic.** Recommendation actions reuse existing modes via `handleModeSelect`, `startQuiz`, or `handleStudyGuideSelect`. The only new action type is `category-quiz` which calls `buildQuiz` directly with a fixed length of 5.
+- **No backend, no API, no external data.** Fully local and browser-based.
+
+#### Recommendation priority logic
+
+Up to 3 recommendations are shown. Priority order:
+1. **Wrong review** — if active wrong-review queue is non-empty.
+2. **Daily Practice** — if not yet completed today (checks `dailyPracticeState.lastDate`).
+3. **Weakest category** — lowest accuracy category with ≥ 3 questions seen. If that category is `essay_preparation`, the action opens Thesis Practice instead of a category quiz.
+4. **Thesis Practice** — if `essay_preparation` is weak (accuracy < 70%, ≥ 3 seen) and not already covered above.
+5. **Flashcards** — with descriptive mention of the top wrong-answer author when derivable; opens the flashcard selection screen (direct author filtering in flashcards is not supported).
+6. **Study Guide deep-link** — opens the Study Guide detail card for the top wrong-answer author directly.
+7. **Starter fallback** — when no stats and no wrong answers; shows 3 cards: random quiz, flashcards, study guide.
+
+#### What `handleTodayPlanAction` dispatches
+
+| Action `type` | Handler | Notes |
+|---------------|---------|-------|
+| `mode` | `handleModeSelect(modeId)` | Covers all standard modes |
+| `category-quiz` | `buildQuiz(..., 'category', category, works, 5)` inline | Hardcoded 5-question length for category recommendations |
+| `study-guide` | `handleStudyGuideSelect(itemType, itemId)` | Deep-links to author or work card |
