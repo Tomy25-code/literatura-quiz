@@ -43,7 +43,7 @@ export default function StudyGuide({ authors, works, onSelect, onBack }) {
     <div className="filter-container">
       <div className="filter-header">
         <button className="btn-back" onClick={onBack}>← Назад</button>
-        <h2 className="filter-title">Падна ми се…</h2>
+        <h2 className="filter-title">Справочник</h2>
       </div>
 
       <div className="sg-tabs">
