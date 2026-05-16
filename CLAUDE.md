@@ -340,3 +340,20 @@ Migration: if `literaturaQuizWrongQuestionIds` (old array format) exists and `li
 - Distractors prefer cross-author works; selection is hash-seeded (deterministic).
 - `sourceFields` array on each question records which work fields produced the clue — used by QA.
 - All existing quiz modes, wrong review, weak spots, daily practice, and filters work automatically since the questions carry `authorId` and `workId`.
+
+---
+
+## Implemented V2 Features (Phase 3 Step 1 — Study Guide)
+
+### Study Guide mode (`Падна ми се автор/произведение`)
+
+- Entry: `src/components/StudyGuide.jsx` (selection screen), `src/components/StudyGuideDetail.jsx` (detail card)
+- Mode ID: `'studyGuide'` — handled in `App.jsx` `handleModeSelect`, sets `screen` to `'study-guide'`
+- Screen states: `'study-guide'` → selection; `'study-guide-detail'` → author or work card
+- **This is not a quiz mode.** It must not affect stats, wrong-answer review, weak spots, daily practice streak, or any localStorage learning state.
+- Data sourced exclusively from `authors.json` and `works.json` — no facts invented.
+- Sections with missing/empty data are hidden (not shown as placeholder text).
+- Author card sections: Период, Литературен контекст, Основни теми, Ключови факти, Произведения
+- Work card sections: Автор, Жанр, Година / период, Творческа история, Композиция, Теми, Мотиви, Ключови идеи
+- Works listed under an author are clickable — navigate directly to the work study card.
+- Back from detail → study-guide selection screen. Back from selection → home.

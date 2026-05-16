@@ -14,6 +14,8 @@ import Results from './components/Results';
 import FilterSelection from './components/FilterSelection';
 import FlashcardSelection from './components/FlashcardSelection';
 import Flashcards from './components/Flashcards';
+import StudyGuide from './components/StudyGuide';
+import StudyGuideDetail from './components/StudyGuideDetail';
 import { buildQuiz, shuffle, MODE_LABELS } from './utils/quiz';
 import { buildWeakSpotsQuiz, hasWeakSpots } from './utils/weakSpots';
 import { buildDailyPracticeQuiz, getDailyPracticeState, saveDailyPracticeCompletion, getLocalDateKey } from './utils/dailyPractice';
@@ -33,6 +35,7 @@ export default function App() {
   const [finalScore, setFinalScore] = useState(0);
   const [wrongCount, setWrongCount] = useState(() => getWrongQuestionIds().length);
   const [flashcardDeck, setFlashcardDeck] = useState([]);
+  const [studyGuideItem, setStudyGuideItem] = useState(null);
   const [filterError, setFilterError] = useState('');
   const [quizLength, setQuizLength] = useState(() => getStoredQuizLength());
   const [stats, setStats] = useState(() => getStats());
@@ -104,6 +107,8 @@ export default function App() {
       }
     } else if (mode === 'flashcards') {
       setScreen('flashcard-select');
+    } else if (mode === 'studyGuide') {
+      setScreen('study-guide');
     } else {
       setQuizMode(mode);
       setScreen('filter');
@@ -118,6 +123,15 @@ export default function App() {
     }
     setFilterError('');
     startQuiz(quizMode, filterValue, label);
+  }
+
+  function handleStudyGuideSelect(type, id) {
+    setStudyGuideItem({ type, id });
+    setScreen('study-guide-detail');
+  }
+
+  function goStudyGuide() {
+    setScreen('study-guide');
   }
 
   function handleFlashcardTypeSelect(type) {
@@ -262,6 +276,34 @@ export default function App() {
       <Flashcards
         deck={flashcardDeck}
         onHome={goHome}
+      />
+    );
+  }
+
+  if (screen === 'study-guide') {
+    return (
+      <StudyGuide
+        authors={authors}
+        works={works}
+        onSelect={handleStudyGuideSelect}
+        onBack={goHome}
+      />
+    );
+  }
+
+  if (screen === 'study-guide-detail') {
+    const { type, id } = studyGuideItem;
+    const item = type === 'author'
+      ? authors.find(a => a.id === id)
+      : works.find(w => w.id === id);
+    return (
+      <StudyGuideDetail
+        type={type}
+        item={item}
+        authors={authors}
+        works={works}
+        onBack={goStudyGuide}
+        onNavigateToWork={workId => handleStudyGuideSelect('work', workId)}
       />
     );
   }

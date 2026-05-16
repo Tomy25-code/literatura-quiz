@@ -9,6 +9,7 @@ export const MODE_LABELS = {
   wrong: 'Преговор на грешните',
   weakSpots: 'Слаби места',
   dailyPractice: 'Дневна тренировка',
+  studyGuide: 'Падна ми се автор/произведение',
 };
 
 export const CATEGORY_LABELS = {
