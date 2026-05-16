@@ -1886,3 +1886,178 @@ details[open] .help-summary::after {
     align-items: stretch;
   }
 }
+
+/* =============================================
+   STUDY GUIDE MODE
+   ============================================= */
+
+/* Type tab switcher (Автор / Произведение) */
+
+.sg-tabs {
+  display: flex;
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 1.25rem;
+}
+
+.sg-tab {
+  flex: 1;
+  padding: 0.65rem 1rem;
+  background: var(--bg);
+  border: none;
+  color: var(--text-h);
+  font-size: 0.92rem;
+  font-family: var(--sans);
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+
+.sg-tab + .sg-tab {
+  border-left: 1.5px solid var(--border);
+}
+
+.sg-tab:hover:not(.sg-tab-active) {
+  background: var(--accent-bg);
+  color: var(--accent);
+}
+
+.sg-tab-active {
+  background: var(--accent);
+  color: #fff;
+}
+
+/* Detail view — header title */
+
+.sg-detail-title {
+  min-width: 0;
+  flex: 1;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+/* Type badge (Автор / Произведение) */
+
+.sg-type-badge {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  border-radius: 999px;
+  padding: 0.2rem 0.65rem;
+  margin-bottom: 0.5rem;
+}
+
+.sg-badge-author {
+  background: var(--accent-bg);
+  color: var(--accent);
+  border: 1px solid var(--accent-border);
+}
+
+.sg-badge-work {
+  background: rgba(16, 185, 129, 0.1);
+  color: #059669;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+@media (prefers-color-scheme: dark) {
+  .sg-badge-work {
+    color: #34d399;
+    background: rgba(52, 211, 153, 0.1);
+    border-color: rgba(52, 211, 153, 0.3);
+  }
+}
+
+/* Subtitle (nickname / author name under title) */
+
+.sg-subtitle {
+  font-size: 0.95rem;
+  color: var(--text);
+  font-style: italic;
+  margin: 0 0 1.5rem;
+}
+
+/* Section blocks */
+
+.sg-section {
+  margin-bottom: 1.375rem;
+}
+
+.sg-section-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  margin-bottom: 0.4rem;
+}
+
+.sg-section-text {
+  font-size: 0.92rem;
+  color: var(--text-h);
+  line-height: 1.65;
+  margin: 0;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+.sg-list {
+  margin: 0;
+  padding-left: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.sg-list li {
+  font-size: 0.92rem;
+  color: var(--text-h);
+  line-height: 1.5;
+}
+
+/* Works list inside author detail */
+
+.sg-works-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.sg-work-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.65rem 0.9rem;
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg);
+  cursor: pointer;
+  text-align: left;
+  transition: border-color 0.15s, background 0.15s;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.sg-work-item:hover {
+  border-color: var(--accent);
+  background: var(--accent-bg);
+}
+
+.sg-work-title {
+  font-size: 0.92rem;
+  font-weight: 500;
+  color: var(--text-h);
+  overflow-wrap: break-word;
+  word-break: break-word;
+  min-width: 0;
+}
+
+.sg-work-genre {
+  font-size: 0.78rem;
+  color: var(--text);
+  white-space: nowrap;
+  flex-shrink: 0;
+}

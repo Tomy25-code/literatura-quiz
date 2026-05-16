@@ -303,16 +303,53 @@ A fifth generated file (`src/data/questions.recognition.json`) adds richer work-
 
 **Branch:** `v2/sprint3-essay-prep`
 
-### Study Guide Mode
+### Step 1 — Study Guide Mode ✅ IMPLEMENTED
 
-A read-only reference mode, not a quiz.
+**Branch:** `v2/feature/study-guide`
 
-- For each author: show name, period, key facts, main themes, literary context.
-- For each work: show title, genre, year/period, composition notes, themes, motifs.
-- Data sourced from existing fields in `authors.json` and `works.json` — no new JSON changes required unless fields are missing.
-- Accessible from the home screen and from author/work selection screens.
+A read-only reference mode. Not a quiz. Does not affect stats, wrong-answer review, weak spots, daily practice streak, or any localStorage learning state.
 
-### Essay Prep Mode
+#### Implementation
+
+- **Entry point:** New mode card on the home screen — "Падна ми се автор/произведение" / "Бърз справочник за автор или произведение"
+- **Selection screen:** `src/components/StudyGuide.jsx` — two-tab switcher (Автор / Произведение), search, grid of cards matching existing filter UI patterns
+- **Detail screen:** `src/components/StudyGuideDetail.jsx` — structured study card; sections hidden when data is absent
+
+#### Author card sections (when data exists)
+
+- Период (`author.period`)
+- Литературен контекст (`author.literary_context`)
+- Основни теми (`author.main_themes`)
+- Ключови факти (`author.key_facts`)
+- Произведения — all works from `works.json` where `work.authorId` matches; each work is clickable and opens the work study card directly
+
+#### Work card sections (when data exists)
+
+- Автор (resolved via `work.authorId` → `author.name`)
+- Жанр (`work.genre`)
+- Година / период (`work.year_or_period`)
+- Творческа история (`work.creative_history`)
+- Композиция (`work.composition`)
+- Теми (`work.themes`)
+- Мотиви (`work.motifs`)
+- Ключови идеи (`work.key_facts`)
+
+#### Data policy
+
+- Uses `authors.json` and `works.json` only — no new facts invented.
+- Neither file was modified for this feature.
+- All five generated question files (`questions.v2.json`, `questions.types.json`, `questions.fillblank.json`, `questions.recognition.json`) remain unchanged.
+
+#### QA status
+
+| Check | Result |
+|-------|--------|
+| `npm run build` | ✅ PASS |
+| `npm run qa:content` | ✅ 0 errors, 19 LONG_OPTION warnings (pre-existing) |
+| `npm run qa:source` | ✅ 0 errors, 261 warnings (pre-existing) |
+| `npm run qa:semantic` | ✅ 0 high-severity findings |
+
+### Essay Prep Mode (planned)
 
 Structured practice aligned with the матура essay format (тема, теза, аргументи, заключение).
 

@@ -29,6 +29,11 @@ const BASE_MODES = [
     label: 'Флашкарти',
     description: 'Преговаряй автори, произведения, жанрове и композиция',
   },
+  {
+    id: 'studyGuide',
+    label: 'Падна ми се автор/произведение',
+    description: 'Бърз справочник за автор или произведение',
+  },
 ];
 
 export default function ModeSelector({ onSelect, wrongCount, onClearWrong, weakSpotsActive, dailyCompletedToday, dailyStreak }) {

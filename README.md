@@ -17,6 +17,11 @@ Built with Vite + React. Fully static — no backend, no API calls.
 - Quiz filtered by difficulty (easy / medium / hard)
 - Configurable quiz length (5 / 10 / 15 / 20 questions)
 - Flashcards — author and work reference cards
+- Study Guide mode (`Падна ми се автор/произведение`) — structured reference cards for any author or work, sourced from existing JSON data; does not affect quiz stats or review history
+
+### V2 Study Guide (Phase 3 Step 1)
+
+- **Study Guide mode** (`Падна ми се автор/произведение`) — read-only reference mode; not a quiz. The user selects an author or a work and sees a structured study card drawn entirely from `authors.json` and `works.json`. No new facts are invented; sections with no data are simply hidden. Does not affect quiz stats, wrong-answer review, weak spots, daily practice streak, or any other localStorage learning state.
 
 ### V2 Smart Practice
 
