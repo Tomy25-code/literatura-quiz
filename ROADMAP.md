@@ -457,6 +457,10 @@ Two new sections added to the Statistics screen showing the weakest authors and 
 
 Each row has a "Тест →" button that starts a filtered quiz (`'author'` or `'work'` mode) for that entity using the current quiz length.
 
+#### Integration with Today Plan
+
+Author and work stats are also integrated into the "Какво да уча днес?" dashboard (priority 4 and 5). A weak author (accuracy < 70%, ≥ 3 seen) triggers an "Упражни автор" recommendation; a weak work triggers "Упражни произведение". Both start 5-question filtered quizzes via `handleTodayPlanAction` (`author-quiz` / `work-quiz` action types). The dashboard avoids recommending the same author twice in one 3-card plan.
+
 #### Data sources (read-only)
 
 - `literaturaQuizStats` — existing attempt records (questionIds, correctIds)

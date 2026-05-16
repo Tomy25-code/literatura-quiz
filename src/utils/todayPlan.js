@@ -1,4 +1,4 @@
-import { computeCategoryStats } from './stats.js';
+import { computeCategoryStats, computeAuthorStats, computeWorkStats } from './stats.js';
 import { CATEGORY_LABELS } from './quiz.js';
 
 const MIN_SEEN = 3;
@@ -22,6 +22,40 @@ function findWeakestCategory(stats, questions) {
     }
   }
   return best ? { category: best, accuracy: bestAcc } : null;
+}
+
+function findWeakestAuthor(stats, questions) {
+  const authorStats = computeAuthorStats(stats, questions);
+  let best = null;
+  let bestAcc = Infinity;
+
+  for (const [authorId, s] of Object.entries(authorStats)) {
+    if (s.total < MIN_SEEN) continue;
+    const acc = s.correct / s.total;
+    if (acc >= WEAK_THRESHOLD) continue;
+    if (acc < bestAcc || (acc === bestAcc && s.total > (best?.total || 0))) {
+      bestAcc = acc;
+      best = { authorId, accuracy: acc, total: s.total };
+    }
+  }
+  return best;
+}
+
+function findWeakestWork(stats, questions) {
+  const workStats = computeWorkStats(stats, questions);
+  let best = null;
+  let bestAcc = Infinity;
+
+  for (const [workId, s] of Object.entries(workStats)) {
+    if (s.total < MIN_SEEN) continue;
+    const acc = s.correct / s.total;
+    if (acc >= WEAK_THRESHOLD) continue;
+    if (acc < bestAcc || (acc === bestAcc && s.total > (best?.total || 0))) {
+      bestAcc = acc;
+      best = { workId, accuracy: acc, total: s.total };
+    }
+  }
+  return best;
 }
 
 function findTopWrongAuthorId(wrongQuestionIds, stats, questions) {
@@ -50,13 +84,15 @@ function findTopWrongAuthorId(wrongQuestionIds, stats, questions) {
  * Priority order:
  *   1. Active wrong review (if wrong queue is non-empty)
  *   2. Daily Practice (if not completed today)
- *   3. Weakest category from stats (≥ 3 seen questions)
- *   4. Thesis Practice (if essay_preparation is weak and not already recommended)
- *   5. Flashcards (with relevant author hint if derivable)
- *   6. Study Guide deep-link (for top wrong-answer author)
+ *   3. Weakest category (accuracy < 70%, ≥ 3 seen)
+ *   4. Weakest author (accuracy < 70%, ≥ 3 seen)
+ *   5. Weakest work (accuracy < 70%, ≥ 3 seen)
+ *   6. Thesis Practice (if essay_preparation is weak and not already covered)
+ *   7. Flashcards (with author hint, avoiding already-used author)
+ *   8. Study Guide deep-link (for top wrong-answer author, avoiding already-used author)
  *   Fallback: starter plan when no stats and no wrong answers
  */
-export function buildTodayPlan({ stats, wrongQuestionIds, dailyCompletedToday, questions, authors }) {
+export function buildTodayPlan({ stats, wrongQuestionIds, dailyCompletedToday, questions, authors, works }) {
   const hasStats = stats.length > 0;
   const hasWrong = wrongQuestionIds.length > 0;
 
@@ -90,6 +126,8 @@ export function buildTodayPlan({ stats, wrongQuestionIds, dailyCompletedToday, q
   }
 
   const recs = [];
+  // Track entities already targeted so flashcard/study-guide hints avoid duplicates.
+  const usedAuthorIds = new Set();
 
   // 1. Wrong review
   if (hasWrong) {
@@ -140,7 +178,46 @@ export function buildTodayPlan({ stats, wrongQuestionIds, dailyCompletedToday, q
 
   if (recs.length >= 3) return recs.slice(0, 3);
 
-  // 4. Thesis Practice if essay_preparation is weak and not already covered
+  // 4. Weakest author
+  const weakAuthor = hasStats ? findWeakestAuthor(stats, questions) : null;
+  if (weakAuthor) {
+    const author = authors?.find(a => a.id === weakAuthor.authorId);
+    if (author) {
+      usedAuthorIds.add(weakAuthor.authorId);
+      const pct = Math.round(weakAuthor.accuracy * 100);
+      recs.push({
+        id: 'weak-author',
+        title: `Упражни автор: ${author.name}`,
+        description: `Точност ${pct}% — този автор има нужда от преговор.`,
+        badge: 'Слаб автор',
+        buttonText: '5 въпроса',
+        action: { type: 'author-quiz', authorId: weakAuthor.authorId, label: `Тест по автор: ${author.name}` },
+      });
+    }
+  }
+
+  if (recs.length >= 3) return recs.slice(0, 3);
+
+  // 5. Weakest work
+  const weakWork = hasStats ? findWeakestWork(stats, questions) : null;
+  if (weakWork) {
+    const work = works?.find(w => w.id === weakWork.workId);
+    if (work) {
+      const pct = Math.round(weakWork.accuracy * 100);
+      recs.push({
+        id: 'weak-work',
+        title: `Упражни произведение: „${work.title}"`,
+        description: `Точност ${pct}% — това произведение има нужда от преговор.`,
+        badge: 'Слабо произведение',
+        buttonText: '5 въпроса',
+        action: { type: 'work-quiz', workId: weakWork.workId, label: `Тест по произведение: „${work.title}"` },
+      });
+    }
+  }
+
+  if (recs.length >= 3) return recs.slice(0, 3);
+
+  // 6. Thesis Practice if essay_preparation is weak and not already covered
   const alreadyHasThesis = recs.some(
     r => r.action.type === 'mode' && r.action.modeId === 'thesisPractice'
   );
@@ -161,9 +238,11 @@ export function buildTodayPlan({ stats, wrongQuestionIds, dailyCompletedToday, q
 
   if (recs.length >= 3) return recs.slice(0, 3);
 
-  // 5. Flashcards — with author hint when derivable from wrong/recent data
+  // 7. Flashcards — with author hint, avoiding already-targeted authors
   const topAuthorId = findTopWrongAuthorId(wrongQuestionIds, stats, questions);
-  const topAuthor = topAuthorId ? authors.find(a => a.id === topAuthorId) : null;
+  const topAuthor = topAuthorId && !usedAuthorIds.has(topAuthorId)
+    ? authors?.find(a => a.id === topAuthorId)
+    : null;
   recs.push({
     id: 'flashcards',
     title: 'Преговори с флашкарти',
@@ -177,8 +256,8 @@ export function buildTodayPlan({ stats, wrongQuestionIds, dailyCompletedToday, q
 
   if (recs.length >= 3) return recs.slice(0, 3);
 
-  // 6. Study Guide deep-link for the top wrong-answer author
-  if (topAuthor) {
+  // 8. Study Guide deep-link — avoid repeating the author already used in weak-author or flashcard hint
+  if (topAuthor && !usedAuthorIds.has(topAuthorId)) {
     recs.push({
       id: 'study-guide',
       title: 'Преговори справочник',
