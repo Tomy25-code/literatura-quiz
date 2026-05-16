@@ -8,36 +8,41 @@ Built with Vite + React. Fully static — no backend, no API calls.
 
 ## Features
 
-### Quiz Modes
+The app supports two types of use: **practice modes** (quiz-style sessions that track progress) and **reference modes** (read-only study aids that do not affect stats or learning state).
 
-- Random quiz — questions from all authors and topics
-- Quiz filtered by author
-- Quiz filtered by literary work
-- Quiz filtered by category (author, genre, period, themes, composition, etc.)
-- Quiz filtered by difficulty (easy / medium / hard)
-- Configurable quiz length (5 / 10 / 15 / 20 questions)
-- Flashcards — author and work reference cards
-- Study Guide mode (`Падна ми се автор/произведение`) — structured reference cards for any author or work, sourced from existing JSON data; does not affect quiz stats or review history
+### Practice — Quiz Modes
 
-### V2 Essay Preparation (Phase 3)
+- **Случаен тест** — random questions from all authors and topics
+- **Тест по автор** — filtered by a selected author
+- **Тест по произведение** — filtered by a selected literary work
+- **Тест по категория** — filtered by category (author, genre, period, themes, composition, motifs, etc.)
+- **Тест по трудност** — filtered by difficulty (easy / medium / hard)
+- **Избери теза** — thesis/essay-focus practice; uses only `essay_preparation` questions from the base `questions.json`; never pads with unrelated questions; uses fewer questions if the pool is smaller than the selected quiz length
+- Configurable quiz length: 5 / 10 / 15 / 20 questions
 
-#### Step 1 — Study Guide
+### Practice — Smart Practice Modes
 
-- **Study Guide mode** (`Падна ми се автор/произведение`) — read-only reference mode; not a quiz. The user selects an author or a work and sees a structured study card drawn entirely from `authors.json` and `works.json`. No new facts are invented; sections with no data are simply hidden. Does not affect quiz stats, wrong-answer review, weak spots, daily practice streak, or any other localStorage learning state.
+- **Слаби места** (`Weak Spots`) — automatically surfaces questions from categories and difficulties where the user's accuracy is below 70% over at least 10 attempts. Shows a positive empty state when no weak areas exist; never falls back to random questions silently.
+- **Дневна тренировка** (`Daily Practice`) — short balanced daily quiz split 40% wrong-queue / 40% weak-area / 20% random (unseen preferred). Tracks daily completion with a streak counter.
+- **Преговор на грешните** (`Wrong Review`) — spaced-repetition style. Wrong answers are queued and require **2 consecutive correct answers** in a focused remediation mode (Wrong Review or Weak Spots) to be marked mastered.
 
-#### Step 2 — Essay Prep Mode
+### Reference — Study Modes
 
-Deferred. Requires careful manual content selection. Not yet implemented.
+- **Флашкарти** — author and work reference cards for quick revision of genres, periods, and composition
+- **Падна ми се автор/произведение** (`Study Guide`) — structured read-only reference card for any author or work, sourced entirely from `authors.json` and `works.json`. Sections with no data are hidden. Does not affect quiz stats, wrong-answer review, weak spots, daily practice streak, or any other localStorage learning state.
 
-#### Step 3 — Thesis Practice
+### Question Formats
 
-- **Thesis Practice mode** (`Избери теза`) — quiz mode filtered to `category: essay_preparation` questions only (47 questions). The user picks the most appropriate thesis/essay focus from four options. Uses existing question data — no new facts generated. If fewer questions exist than the selected quiz length, runs with the available count; never pads with unrelated questions. Stats, wrong-answer review, and smart wrong review work identically to other quiz modes.
+The app includes multiple question formats depending on the mode and available data:
 
-### V2 Smart Practice
-
-- **Weak Spots mode** (`Слаби места`) — selects questions from the active wrong-review queue and from categories/difficulties where the user's accuracy is statistically low (below 70% over at least 10 answered questions). Shows a positive empty state when no weak areas exist; never falls back to random questions silently.
-- **Daily Practice mode** (`Дневна тренировка`) — builds a short balanced quiz using the user's selected quiz length. Selection is split 40% active wrong-review questions, 40% weak-area questions, 20% random (unseen preferred). Tracks daily completion with a streak counter. Repeating on the same day is allowed but does not advance the streak.
-- **Smart Wrong Review** (`Преговор на грешните`) — spaced-repetition style. Wrong answers are tracked with per-question metadata (wrong count, correct streak, last dates). A question requires **2 consecutive correct answers** in a focused remediation mode (Wrong Review or Weak Spots) to be marked mastered and removed from the queue. Priority is given to questions answered wrong more times and with a lower correct streak.
+| Format | Description |
+|--------|-------------|
+| Multiple choice | 4 options; standard format |
+| Вярно/невярно | True/False binary questions |
+| Свържи автор с произведение | Match 4 authors to their works; all pairs must be correct |
+| Попълни липсваща дума | Type the answer; case-insensitive matching |
+| Разпознаване на произведение | Identify a work from its themes or motifs |
+| Избор на теза | Choose the right essay-focus for interpretative writing |
 
 ### Stats and Progress
 
@@ -45,6 +50,16 @@ Deferred. Requires careful manual content selection. Not yet implemented.
 - Per-category and per-difficulty accuracy tracking
 - Comparison to personal average on results screen
 - Daily practice streak and best streak
+
+---
+
+## Phase 3 — Essay Preparation
+
+| Step | Status | Feature |
+|------|--------|---------|
+| Step 1 | ✅ Implemented | **Study Guide** (`Падна ми се автор/произведение`) — read-only reference cards for authors and works |
+| Step 2 | ⏸ Deferred | **Essay Prep mode** — requires careful manual content curation; not yet implemented |
+| Step 3 | ✅ Implemented | **Thesis Practice** (`Избери теза`) — quiz mode using existing `essay_preparation` questions only |
 
 ---
 
@@ -84,58 +99,32 @@ The app merges all five files into one pool. **702 questions total** (415 base +
 #### Regenerating generated files
 
 ```bash
-npm run generate:variants   # regenerate questions.v2.json (after changing authors/works)
-npm run generate:types      # regenerate questions.types.json (after changing authors/works)
-npm run generate:fillblank          # regenerate questions.fillblank.json (after changing authors/works)
-npm run generate:work-recognition   # regenerate questions.recognition.json (after changing authors/works)
+npm run generate:variants          # regenerate questions.v2.json (after changing authors/works)
+npm run generate:types             # regenerate questions.types.json (after changing authors/works)
+npm run generate:fillblank         # regenerate questions.fillblank.json (after changing authors/works)
+npm run generate:work-recognition  # regenerate questions.recognition.json (after changing authors/works)
 npm run build
 npm run qa:content
 npm run qa:source
 npm run qa:semantic
 ```
 
-**Never edit `questions.v2.json`, `questions.types.json`, `questions.fillblank.json`, or `questions.recognition.json` directly.** Edit the generator scripts or source data files instead.
+**Never edit generated question files directly.** Edit the generator scripts or source data files instead.
 
 #### Distractor quality rules
 
-- For question types where all four options are author names, the generator uses `pickDiverseAuthorDistractors()` to ensure no more than 2 options share the same first name.
+- For questions where all four options are author names, the generator uses `pickDiverseAuthorDistractors()` to ensure no more than 2 options share the same first name.
 - `qa:content` will warn `CLUSTERED_FIRST_NAME` if 3+ options share a first name — this should never appear after a clean regeneration.
 
-#### New question types (`questions.types.json`)
+#### Question type breakdown
 
 | Type | Category | Count | Description |
 |------|----------|-------|-------------|
-| `true_false` | `true_false` | 54 | "„X" е произведение на Y." — Вярно/Невярно; 27 true (easy) + 27 false (medium) |
-| `match_author_work` | `match_author_work` | 5 | Match 4 authors to their works; all pairs must be correct to score |
-
-True questions are `difficulty: "easy"`, false statements `"medium"`, and match questions `"medium"`.
-
-#### Fill-in-the-blank questions (`questions.fillblank.json`)
-
-Generated by `scripts/generate-fill-blank-questions.mjs` from structured fields in `authors.json` and `works.json`. No invented facts — every answer is directly traceable to the source data.
-
-| Template | Count | Difficulty | Blank targets |
-|----------|-------|------------|---------------|
-| Author attribution | 27 | medium | `work.authorId` → author name |
-| Genre | 27 | easy | `work.genre` (primary segment) |
-| Year | 21 | easy | `work.year_or_period` (clean single-year works only) |
-| Nickname | 8 | medium | `author.nickname` (first phrase) |
-
-Answer matching is case-insensitive and whitespace-normalised; Bulgarian quotation marks are ignored. Year answers accept both `"1952"` and `"1952 г."`. Genre answers accept both the primary genre segment and the full genre string (plus the base word for compound genres like "епически роман" → "роман").
-
-#### Thematic work-recognition questions (`questions.recognition.json`)
-
-Generated by `scripts/generate-work-recognition-questions.mjs` from structured fields in `works.json`. Richer than the simple fact-based variants in `questions.v2.json` — these ask the student to identify a work from themes, motifs, and essay preparation angles.
-
-| Template | Count | Difficulty | Clue source |
-|----------|-------|------------|-------------|
-| Theme pair | 27 | medium | First unique pair from `work.themes` |
-| Motif pair | 22 | hard | First unique pair from `work.motifs` (≥ 2 motifs required) |
-| Essay theme | 15 | medium | First unique theme ≥ 30 chars (starts lowercase) from `work.themes` |
-
-Clue uniqueness is guaranteed: each clue value (or pair) appears in exactly one work. Distractors are other work titles, preferring cross-author selection for variety.
-
-**Future question types (not yet implemented):** chronological ordering, select-all-correct.
+| `true_false` | `true_false` | 54 | "„X" е произведение на Y." — Вярно/Невярно |
+| `match_author_work` | `match_author_work` | 5 | Match 4 authors to their works |
+| `fill_blank` | `fill_blank` | 83 | Complete the missing word |
+| `multiple_choice` (recognition) | `work_recognition` | 64 | Identify work from themes/motifs clues |
+| `multiple_choice` (variants) | various | 81 | Alternate-phrasing variants of base questions |
 
 ---
 
@@ -178,13 +167,6 @@ All three scripts pass with zero blocking errors. Accepted backlog (non-blocking
 | `ESSAY_WEAK_ANSWER` | ~15 | medium | Short essay anchors; addressed opportunistically during content expansion |
 
 High-severity semantic findings (`CATEGORY_SOURCE_MISMATCH`, `DUPLICATE_CONCEPT`) must be resolved before merging content changes.
-
-### Semantic content cleanup (pre-Phase 2)
-
-Before Phase 2 question expansion, a dedicated cleanup pass was run on `src/data/questions.json`:
-
-- **47 duplicate-concept questions removed** — `q-work-X-002` work-identification duplicates and second composition questions per work (e.g. `-016`, `-018`–`-020` series). Question count reduced from 462 → 415.
-- **8 questions rewritten** — 2 `CATEGORY_SOURCE_MISMATCH` fixes (including two "Спи езерото" questions where `"състоянието"` was replaced with proper thematic answers), and 6 `ESSAY_WEAK_ANSWER`/`TOO_ABSTRACT_ANSWER` fixes where single-word answers were expanded to interpretative phrases.
 
 ---
 

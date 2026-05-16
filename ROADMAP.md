@@ -299,7 +299,7 @@ A fifth generated file (`src/data/questions.recognition.json`) adds richer work-
 
 ---
 
-## Sprint 3 — Essay Preparation
+## Sprint 3 — Essay Preparation ✅ COMPLETED (Step 2 deferred by decision)
 
 **Branch:** `v2/sprint3-essay-prep`
 
