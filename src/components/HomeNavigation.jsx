@@ -9,6 +9,9 @@ const TABS = [
   { id: 'settings', label: 'Настройки' },
 ];
 
+const SCROLL_AMOUNT = 160;
+const SCROLL_THRESHOLD = 4;
+
 export default function HomeNavigation({
   onSelect,
   wrongCount,
@@ -22,33 +25,90 @@ export default function HomeNavigation({
 }) {
   const [activeTab, setActiveTab] = useState('tests');
   const activeTabRef = useRef(null);
+  const tabsRef = useRef(null);
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(false);
+
+  function updateScrollState() {
+    const el = tabsRef.current;
+    if (!el) return;
+    setCanScrollLeft(el.scrollLeft > SCROLL_THRESHOLD);
+    setCanScrollRight(el.scrollLeft + el.clientWidth < el.scrollWidth - SCROLL_THRESHOLD);
+  }
+
+  useEffect(() => {
+    updateScrollState();
+    window.addEventListener('resize', updateScrollState);
+    return () => window.removeEventListener('resize', updateScrollState);
+  }, []);
 
   useEffect(() => {
     if (activeTabRef.current) {
       activeTabRef.current.scrollIntoView({ block: 'nearest', inline: 'nearest', behavior: 'smooth' });
     }
+    // re-check after the smooth scroll settles
+    const id = setTimeout(updateScrollState, 250);
+    return () => clearTimeout(id);
   }, [activeTab]);
+
+  function scrollTabsLeft() {
+    tabsRef.current?.scrollBy({ left: -SCROLL_AMOUNT, behavior: 'smooth' });
+  }
+
+  function scrollTabsRight() {
+    tabsRef.current?.scrollBy({ left: SCROLL_AMOUNT, behavior: 'smooth' });
+  }
 
   return (
     <div className="home-nav">
       <p className="home-nav-heading">Избери раздел</p>
 
-      <div className="home-nav-tabs" role="tablist">
-        {TABS.map(tab => {
-          const isActive = activeTab === tab.id;
-          return (
+      <div className="home-nav-tabs-wrap">
+        <div
+          ref={tabsRef}
+          className="home-nav-tabs"
+          role="tablist"
+          onScroll={updateScrollState}
+        >
+          {TABS.map(tab => {
+            const isActive = activeTab === tab.id;
+            return (
+              <button
+                key={tab.id}
+                ref={isActive ? activeTabRef : null}
+                role="tab"
+                aria-selected={isActive}
+                className={`home-nav-tab${isActive ? ' home-nav-tab-active' : ''}`}
+                onClick={() => setActiveTab(tab.id)}
+              >
+                {tab.label}
+              </button>
+            );
+          })}
+        </div>
+
+        {canScrollLeft && (
+          <>
+            <div className="tab-fade tab-fade-left" aria-hidden="true" />
             <button
-              key={tab.id}
-              ref={isActive ? activeTabRef : null}
-              role="tab"
-              aria-selected={isActive}
-              className={`home-nav-tab${isActive ? ' home-nav-tab-active' : ''}`}
-              onClick={() => setActiveTab(tab.id)}
-            >
-              {tab.label}
-            </button>
-          );
-        })}
+              className="tab-scroll-btn tab-scroll-btn-left"
+              onClick={scrollTabsLeft}
+              aria-label="Покажи предишните раздели"
+              tabIndex={-1}
+            >‹</button>
+          </>
+        )}
+        {canScrollRight && (
+          <>
+            <div className="tab-fade tab-fade-right" aria-hidden="true" />
+            <button
+              className="tab-scroll-btn tab-scroll-btn-right"
+              onClick={scrollTabsRight}
+              aria-label="Покажи следващите раздели"
+              tabIndex={-1}
+            >›</button>
+          </>
+        )}
       </div>
 
       <div className="home-nav-panel">

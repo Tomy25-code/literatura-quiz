@@ -1242,19 +1242,72 @@
   text-align: center;
 }
 
+.home-nav-tabs-wrap {
+  position: relative;
+  margin-bottom: 1rem;
+}
+
 .home-nav-tabs {
   display: flex;
   border: 1.5px solid var(--border);
   border-radius: 12px;
   overflow-x: auto;
   overflow-y: hidden;
-  margin-bottom: 1rem;
   scrollbar-width: none;
   -ms-overflow-style: none;
 }
 
 .home-nav-tabs::-webkit-scrollbar {
   display: none;
+}
+
+.tab-fade {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 52px;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.tab-fade-left {
+  left: 0;
+  background: linear-gradient(to right, var(--bg) 20%, transparent 100%);
+  border-radius: 12px 0 0 12px;
+}
+
+.tab-fade-right {
+  right: 0;
+  background: linear-gradient(to left, var(--bg) 20%, transparent 100%);
+  border-radius: 0 12px 12px 0;
+}
+
+.tab-scroll-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 3;
+  background: transparent;
+  border: none;
+  color: var(--accent);
+  font-size: 1.25rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0.25rem 0.35rem;
+  opacity: 0.85;
+  transition: opacity 0.15s;
+}
+
+.tab-scroll-btn:hover {
+  opacity: 1;
+}
+
+.tab-scroll-btn-left {
+  left: 1px;
+}
+
+.tab-scroll-btn-right {
+  right: 1px;
 }
 
 .home-nav-tab {
