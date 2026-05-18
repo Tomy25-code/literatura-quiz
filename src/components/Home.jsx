@@ -19,6 +19,8 @@ export default function Home({
   onSetQuizLength,
   onClearWrong,
   onViewStats,
+  theme,
+  onSetTheme,
 }) {
   return (
     <div className="home-container">
@@ -73,6 +75,8 @@ export default function Home({
         dailyCompletedToday={dailyCompletedToday}
         dailyStreak={dailyStreak}
         onViewStats={onViewStats}
+        theme={theme}
+        onSetTheme={onSetTheme}
       />
     </div>
   );

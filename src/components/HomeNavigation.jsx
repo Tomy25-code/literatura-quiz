@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 const TABS = [
   { id: 'tests', label: 'Тестове' },
@@ -6,7 +6,11 @@ const TABS = [
   { id: 'cards', label: 'Справочник' },
   { id: 'stats', label: 'Статистика' },
   { id: 'help', label: 'Помощ' },
+  { id: 'settings', label: 'Настройки' },
 ];
+
+const SCROLL_AMOUNT = 160;
+const SCROLL_THRESHOLD = 4;
 
 export default function HomeNavigation({
   onSelect,
@@ -16,25 +20,95 @@ export default function HomeNavigation({
   dailyCompletedToday,
   dailyStreak,
   onViewStats,
+  theme,
+  onSetTheme,
 }) {
   const [activeTab, setActiveTab] = useState('tests');
+  const activeTabRef = useRef(null);
+  const tabsRef = useRef(null);
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(false);
+
+  function updateScrollState() {
+    const el = tabsRef.current;
+    if (!el) return;
+    setCanScrollLeft(el.scrollLeft > SCROLL_THRESHOLD);
+    setCanScrollRight(el.scrollLeft + el.clientWidth < el.scrollWidth - SCROLL_THRESHOLD);
+  }
+
+  useEffect(() => {
+    updateScrollState();
+    window.addEventListener('resize', updateScrollState);
+    return () => window.removeEventListener('resize', updateScrollState);
+  }, []);
+
+  useEffect(() => {
+    if (activeTabRef.current) {
+      activeTabRef.current.scrollIntoView({ block: 'nearest', inline: 'nearest', behavior: 'smooth' });
+    }
+    // re-check after the smooth scroll settles
+    const id = setTimeout(updateScrollState, 250);
+    return () => clearTimeout(id);
+  }, [activeTab]);
+
+  function scrollTabsLeft() {
+    tabsRef.current?.scrollBy({ left: -SCROLL_AMOUNT, behavior: 'smooth' });
+  }
+
+  function scrollTabsRight() {
+    tabsRef.current?.scrollBy({ left: SCROLL_AMOUNT, behavior: 'smooth' });
+  }
 
   return (
     <div className="home-nav">
       <p className="home-nav-heading">Избери раздел</p>
 
-      <div className="home-nav-tabs" role="tablist">
-        {TABS.map(tab => (
-          <button
-            key={tab.id}
-            role="tab"
-            aria-selected={activeTab === tab.id}
-            className={`home-nav-tab${activeTab === tab.id ? ' home-nav-tab-active' : ''}`}
-            onClick={() => setActiveTab(tab.id)}
-          >
-            {tab.label}
-          </button>
-        ))}
+      <div className="home-nav-tabs-wrap">
+        <div
+          ref={tabsRef}
+          className="home-nav-tabs"
+          role="tablist"
+          onScroll={updateScrollState}
+        >
+          {TABS.map(tab => {
+            const isActive = activeTab === tab.id;
+            return (
+              <button
+                key={tab.id}
+                ref={isActive ? activeTabRef : null}
+                role="tab"
+                aria-selected={isActive}
+                className={`home-nav-tab${isActive ? ' home-nav-tab-active' : ''}`}
+                onClick={() => setActiveTab(tab.id)}
+              >
+                {tab.label}
+              </button>
+            );
+          })}
+        </div>
+
+        {canScrollLeft && (
+          <>
+            <div className="tab-fade tab-fade-left" aria-hidden="true" />
+            <button
+              className="tab-scroll-btn tab-scroll-btn-left"
+              onClick={scrollTabsLeft}
+              aria-label="Покажи предишните раздели"
+              tabIndex={-1}
+            >‹</button>
+          </>
+        )}
+        {canScrollRight && (
+          <>
+            <div className="tab-fade tab-fade-right" aria-hidden="true" />
+            <button
+              className="tab-scroll-btn tab-scroll-btn-right"
+              onClick={scrollTabsRight}
+              aria-label="Покажи следващите раздели"
+              tabIndex={-1}
+            >›</button>
+          </>
+        )}
       </div>
 
       <div className="home-nav-panel">
@@ -59,6 +133,9 @@ export default function HomeNavigation({
         )}
         {activeTab === 'help' && (
           <HelpPanel />
+        )}
+        {activeTab === 'settings' && (
+          <SettingsPanel theme={theme} onSetTheme={onSetTheme} />
         )}
       </div>
     </div>
@@ -164,6 +241,38 @@ function StatsPanel({ onViewStats }) {
       <button className="btn-primary" onClick={onViewStats}>
         Виж статистика →
       </button>
+    </div>
+  );
+}
+
+const THEME_OPTIONS = [
+  { value: 'system', label: 'Системна' },
+  { value: 'dark',   label: 'Тъмна' },
+  { value: 'light',  label: 'Светла' },
+];
+
+function SettingsPanel({ theme, onSetTheme }) {
+  return (
+    <div className="settings-panel">
+      <p className="settings-section-title">Тема</p>
+      <p className="settings-section-desc">
+        Избери как да изглежда приложението.
+      </p>
+      <div className="theme-options">
+        {THEME_OPTIONS.map(opt => (
+          <button
+            key={opt.value}
+            className={`theme-option-btn${theme === opt.value ? ' theme-option-active' : ''}`}
+            onClick={() => onSetTheme(opt.value)}
+            aria-pressed={theme === opt.value}
+          >
+            {opt.label}
+          </button>
+        ))}
+      </div>
+      <p className="settings-hint">
+        Системната тема следва настройките на устройството.
+      </p>
     </div>
   );
 }

@@ -488,9 +488,9 @@ No new localStorage keys written. Viewing statistics does not affect any learnin
 
 **Branch:** `v2/feature/navigation`
 
-Reorganised the home screen into a five-tab navigation structure to reduce visual clutter as the feature set has grown.
+Reorganised the home screen into a tabbed navigation structure to reduce visual clutter as the feature set has grown. Extended to six tabs in Step 2.
 
-#### Tab layout
+#### Tab layout (final — six tabs after Step 2)
 
 | Tab | Contents |
 |-----|---------|
@@ -499,15 +499,47 @@ Reorganised the home screen into a five-tab navigation structure to reduce visua
 | **Справочник** | Флашкарти, Падна ми се автор/произведение |
 | **Статистика** | Quick link to the full Statistics screen |
 | **Помощ** | Full guide on how to use the site |
+| **Настройки** | Theme selector (added in Step 2) |
 
 #### Implementation
 
-- **New component:** `src/components/HomeNavigation.jsx` — tab bar + five tab panels
+- **New component:** `src/components/HomeNavigation.jsx` — tab bar + tab panels
 - **Updated component:** `src/components/Home.jsx` — replaced flat `ModeSelector` + `<details>` help with `HomeNavigation`
 - **CSS additions:** `.home-nav-*` classes in `src/App.css`
 - Tab state is local React state; resets to "Тестове" on every home visit
 - "Какво да уча днес?" widget remains above the tabs and is always visible
 - All existing mode actions, wrong-review, weak spots, daily practice, flashcards, and study guide interactions are unchanged
+
+#### QA status
+
+| Check | Result |
+|-------|--------|
+| `npm run build` | ✅ PASS |
+| `npm run qa:content` | ✅ 0 errors, 19 LONG_OPTION warnings (pre-existing) |
+| `npm run qa:source` | ✅ 0 errors |
+| `npm run qa:semantic` | ✅ 0 high-severity findings |
+
+---
+
+### Step 2 — Light/Dark/System Theme Toggle ✅ IMPLEMENTED
+
+**Branch:** `v2/feature/theme-toggle`
+
+#### Implementation
+
+- **Utility:** `src/utils/theme.js` — `getStoredTheme()`, `saveTheme()`, `resolveTheme()`, `applyTheme()`
+- **Storage key:** `literaturaQuizTheme` — values: `"dark"`, `"light"`, `"system"` (default); invalid/missing → `"system"`
+- **Applied via:** `document.documentElement.dataset.theme` set to `"dark"` or `"light"`; JS always resolves "system" to the actual OS preference via `matchMedia`
+- **Early apply:** `main.jsx` calls `applyTheme(getStoredTheme())` synchronously before React mounts, preventing any flash of wrong theme on load
+- **System change listener:** when theme is "system", a `matchMedia` change listener is registered to update the theme if the OS preference changes while the app is open
+- **UI:** sixth tab "Настройки" in `HomeNavigation.jsx` with three centered buttons: Системна / Тъмна / Светла
+- **CSS refactor:** all 19 `@media (prefers-color-scheme: dark)` blocks in `App.css` replaced with `[data-theme="dark"]` selectors; `index.css` dark vars moved to `[data-theme="dark"]` block
+
+#### Follow-up UX polish (same branch)
+
+- **Desktop tab layout:** tabs switched to `flex: 1` with reduced padding so all six labels (Тестове · Практика · Справочник · Статистика · Помощ · Настройки) fit cleanly within the 560 px container without truncation or clipping
+- **Settings panel:** theme option buttons centered via `justify-content: center`; panel uses `align-items: center`
+- **Mobile scroll indicators:** when the tab bar overflows on narrow screens, accent-coloured ‹ › arrow buttons appear at the left/right edges with a gradient fade; clicking scrolls 160 px; arrows show/hide based on `canScrollLeft`/`canScrollRight` state (updated on scroll, resize, and tab change with a 4 px threshold); Bulgarian `aria-label`s on both buttons; no page-level horizontal overflow introduced
 
 #### QA status
 

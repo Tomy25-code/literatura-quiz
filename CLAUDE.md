@@ -166,9 +166,19 @@ main                      ← v1 production (live on Vercel) — protected
 - **All user-facing labels must be in Bulgarian.** No English text visible to the user.
 - **Keep home navigation mobile responsive.** The tab bar must not create horizontal overflow on a 375 px viewport. Tabs may shrink text slightly but must remain readable.
 - **Do not hide core modes behind confusing labels.** Tabs group modes by purpose (tests / smart practice / reference cards / stats / help); the label must clearly indicate what is inside.
-- **Home navigation component:** `src/components/HomeNavigation.jsx` — five tabs: Тестове, Практика, Справочник, Статистика, Помощ.
+- **Home navigation component:** `src/components/HomeNavigation.jsx` — six tabs: Тестове, Практика, Справочник, Статистика, Помощ, Настройки.
 - **Tab state is local React state** in `HomeNavigation.jsx`. It is not persisted to localStorage and resets to "Тестове" on every home screen visit.
-- **ModeSelector.jsx** is superseded by `HomeNavigation.jsx` and may be removed in a cleanup pass if it has no other callers.
+- **ModeSelector.jsx** has been deleted — superseded by `HomeNavigation.jsx`.
+- **Mobile tab overflow is intentional.** On narrow screens the tab bar scrolls horizontally. Accent ‹ › arrow indicators appear when there are hidden tabs in that direction; do not remove them without an equivalent mobile affordance. The indicators use `canScrollLeft`/`canScrollRight` state updated on scroll, resize, and tab change.
+
+## Theme Rules
+
+- **localStorage key:** `literaturaQuizTheme`. Allowed values: `"dark"`, `"light"`, `"system"`. Invalid/missing → `"system"`.
+- **Do not add new theme values** without an explicit request.
+- **Theme is applied by setting `document.documentElement.dataset.theme`** to `"dark"` or `"light"`. JS always resolves "system" to the actual OS preference via `window.matchMedia`.
+- **CSS uses `[data-theme="dark"]` selectors only** for dark overrides — no `@media (prefers-color-scheme: dark)` in `App.css` or `index.css`. The JS handles system preference detection.
+- **All new components must be theme-aware** — use CSS variables (`--bg`, `--text`, `--text-h`, `--border`, `--accent`, etc.) rather than hardcoded colors. Do not add `@media (prefers-color-scheme: dark)` blocks; add `[data-theme="dark"]` overrides if needed.
+- **Theme utility:** `src/utils/theme.js` — `getStoredTheme()`, `saveTheme()`, `resolveTheme()`, `applyTheme()`.
 
 ---
 
