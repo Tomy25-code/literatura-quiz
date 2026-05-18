@@ -6,6 +6,22 @@ Built with Vite + React. Fully static — no backend, no API calls.
 
 ---
 
+## Home Navigation
+
+The home screen is organised into five tabs below the "Какво да уча днес?" widget:
+
+| Tab | Contents |
+|-----|---------|
+| **Тестове** | Случаен тест, Тест по автор, Тест по произведение, Тест по категория, Тест по трудност, Избери теза |
+| **Практика** | Дневна тренировка, Слаби места, Преговор на грешните |
+| **Учебни карти** | Флашкарти, Падна ми се автор/произведение |
+| **Статистика** | Quick link to the full Statistics screen |
+| **Помощ** | Full guide on how to use the site |
+
+The top summary (author / work / question counts, quiz length picker), StatsSummary widget, and "Какво да уча днес?" recommendations remain always visible above the tabs regardless of the active tab.
+
+---
+
 ## Features
 
 The app supports two types of use: **practice modes** (quiz-style sessions that track progress) and **reference modes** (read-only study aids that do not affect stats or learning state).
