@@ -552,6 +552,42 @@ Reorganised the home screen into a tabbed navigation structure to reduce visual 
 
 ---
 
+### Step 3 — Mobile Quiz Polish ✅ IMPLEMENTED
+
+**Branch:** `v2/feature/mobile-quiz-polish`
+
+CSS-only UX improvements for mobile quiz screens. No quiz logic, scoring, wrong-review, daily practice, or localStorage behaviour was changed.
+
+#### Changes
+
+| Area | Change |
+|------|--------|
+| Progress header | `position: sticky; top: 0` on mobile (≤ 600 px) — always visible while scrolling |
+| Answer buttons | `min-height: 52 px; padding: 0.9 rem 1 rem` on mobile |
+| Options gap | Increased to `0.75 rem` on mobile |
+| Quiz action button | Full width (`width: 100%`) on mobile |
+| Fill-blank submit | Full width when input row is stacked (≤ 480 px) |
+| Match dropdowns | `min-height: 44 px` on narrow screens; column layout on ≤ 380 px |
+| Flashcard flip button | Full width on mobile |
+| Flashcard nav buttons | `min-height: 48 px` on mobile |
+| Flashcard top bar | `flex-wrap: wrap` to prevent overflow |
+
+#### Implementation
+
+- **Modified:** `src/App.css` — all changes are CSS-only; no React component logic changed
+- **Modified:** `src/components/Quiz.jsx` — wrapped existing top-bar/header/progress-bar elements in a `<div className="quiz-progress-header">` container for the sticky behaviour
+
+#### QA status
+
+| Check | Result |
+|-------|--------|
+| `npm run build` | ✅ PASS |
+| `npm run qa:content` | ✅ 0 errors |
+| `npm run qa:source` | ✅ 0 errors |
+| `npm run qa:semantic` | ✅ 0 high-severity findings |
+
+---
+
 ## Sprint 4 — UX and Deployment
 
 **Branch:** `v2/sprint4-ux-deployment`
@@ -562,10 +598,8 @@ Reorganised the home screen into a tabbed navigation structure to reduce visual 
 - Add breadcrumb or back-navigation context so the user always knows where they are.
 - Ensure the home screen clearly separates "Practice" modes from "Study" modes.
 
-### Mobile Quiz Polish
+### Mobile Quiz Polish (additional future ideas)
 
-- Increase tap target size for answer options (minimum 48 px height).
-- Show progress indicator (question N of M) throughout the quiz.
 - After answering, animate correct/incorrect feedback before advancing.
 - Prevent accidental double-tap advancing past the feedback screen.
 

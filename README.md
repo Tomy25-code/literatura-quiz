@@ -126,6 +126,29 @@ Each recommendation card has a title, description, optional badge, and a direct 
 
 ---
 
+## Phase 5 — UI Polish
+
+### Step 1 — Home Navigation Tabs ✅ Implemented
+
+Tabbed home navigation groups all modes into six tabs (Тестове, Практика, Справочник, Статистика, Помощ, Настройки) below the always-visible "Какво да уча днес?" widget. On mobile the tab bar is horizontally scrollable with accent-coloured ‹ › scroll indicators.
+
+### Step 2 — Light/Dark/System Theme Toggle ✅ Implemented
+
+Three theme modes (Системна / Тъмна / Светла) accessible from the Настройки tab. Theme is saved in `localStorage` under `literaturaQuizTheme` and applied synchronously before React mounts to prevent a flash of wrong theme.
+
+### Step 3 — Mobile Quiz Polish ✅ Implemented
+
+Mobile quiz UX improvements (no logic changes):
+- **Sticky progress header** — the quiz top bar, question counter, and progress bar stick to the top of the viewport on mobile (≤ 600 px) so progress is always visible while scrolling through long answers.
+- **Larger answer buttons** — minimum height 52 px and extra padding on mobile for comfortable tap targets.
+- **Increased option gap** — 0.75 rem gap between answer options on mobile.
+- **Full-width action button** — "Следващ въпрос / Виж резултата" stretches full width on mobile.
+- **Fill-blank submit button** — full width when the input row is stacked (≤ 480 px).
+- **Match question** — select dropdowns get `min-height: 44 px` on narrow screens; on very narrow screens (≤ 380 px) each match row stacks vertically.
+- **Flashcard viewer** — flip button stretches full width on mobile; nav buttons get `min-height: 48 px`; top bar wraps on small screens.
+
+---
+
 ## Tech Stack
 
 | Layer | Technology |

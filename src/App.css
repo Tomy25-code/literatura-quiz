@@ -595,6 +595,19 @@
   }
 }
 
+/* Sticky progress header on mobile */
+@media (max-width: 600px) {
+  .quiz-progress-header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: var(--bg);
+    margin: -1.25rem -1rem 0.75rem;
+    padding: 1.25rem 1rem 0.625rem;
+    border-bottom: 1px solid var(--border);
+  }
+}
+
 .quiz-header {
   display: flex;
   justify-content: space-between;
@@ -652,6 +665,12 @@
   margin-bottom: 0;
 }
 
+@media (max-width: 600px) {
+  .options {
+    gap: 0.75rem;
+  }
+}
+
 .answer-btn {
   width: 100%;
   text-align: left;
@@ -665,6 +684,13 @@
   line-height: 1.45;
   cursor: pointer;
   transition: border-color 0.15s, background 0.15s;
+}
+
+@media (max-width: 600px) {
+  .answer-btn {
+    min-height: 52px;
+    padding: 0.9rem 1rem;
+  }
 }
 
 .answer-btn:hover:not(:disabled) {
@@ -747,6 +773,13 @@
 
 .quiz-action {
   margin-top: 1.25rem;
+}
+
+@media (max-width: 600px) {
+  .quiz-action .btn-primary {
+    width: 100%;
+    text-align: center;
+  }
 }
 
 /* ---- MATCH QUESTION ---- */
@@ -857,6 +890,20 @@
   .match-select {
     min-width: 6rem;
     font-size: 0.88rem;
+    min-height: 44px;
+  }
+}
+
+@media (max-width: 380px) {
+  .match-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.4rem;
+  }
+
+  .match-select {
+    width: 100%;
+    flex: none;
   }
 }
 
@@ -1597,6 +1644,8 @@ details[open] .help-summary::after {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 1.25rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
 }
 
 .fc-progress {
@@ -1766,6 +1815,13 @@ details[open] .help-summary::after {
   margin-bottom: 1rem;
 }
 
+@media (max-width: 600px) {
+  .fc-flip-area .btn-primary {
+    width: 100%;
+    text-align: center;
+  }
+}
+
 /* Navigation row */
 .fc-nav {
   display: flex;
@@ -1779,6 +1835,13 @@ details[open] .help-summary::after {
   text-align: center;
   padding: 0.7rem 0.75rem;
   font-size: 0.88rem;
+}
+
+@media (max-width: 600px) {
+  .fc-nav .btn-secondary {
+    min-height: 48px;
+    max-width: none;
+  }
 }
 
 .fc-nav .btn-secondary:disabled {
@@ -2299,6 +2362,11 @@ details[open] .help-summary::after {
   .fillblank-input-row {
     flex-direction: column;
     align-items: stretch;
+  }
+
+  .fillblank-input-row .btn-primary {
+    width: 100%;
+    text-align: center;
   }
 }
 

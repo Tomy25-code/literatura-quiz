@@ -83,26 +83,28 @@ export default function Quiz({ questions, modeLabel, isWrongMode, isRemediationM
 
   return (
     <div className="quiz-container">
-      <div className="quiz-top-bar">
-        {modeLabel
-          ? <span className="quiz-mode-label">{modeLabel}</span>
-          : <span />
-        }
-        <button className="btn-ghost" onClick={onHome}>Към началото</button>
-      </div>
+      <div className="quiz-progress-header">
+        <div className="quiz-top-bar">
+          {modeLabel
+            ? <span className="quiz-mode-label">{modeLabel}</span>
+            : <span />
+          }
+          <button className="btn-ghost" onClick={onHome}>Към началото</button>
+        </div>
 
-      <div className="quiz-header">
-        <span>Въпрос {currentIndex + 1} от {questions.length}</span>
-        <span className="quiz-score-label">Верни: {score}</span>
-      </div>
+        <div className="quiz-header">
+          <span>Въпрос {currentIndex + 1} от {questions.length}</span>
+          <span className="quiz-score-label">Верни: {score}</span>
+        </div>
 
-      <div
-        className="progress-bar"
-        role="progressbar"
-        aria-valuenow={currentIndex + 1}
-        aria-valuemax={questions.length}
-      >
-        <div className="progress-fill" style={{ width: `${progressPercent}%` }} />
+        <div
+          className="progress-bar"
+          role="progressbar"
+          aria-valuenow={currentIndex + 1}
+          aria-valuemax={questions.length}
+        >
+          <div className="progress-fill" style={{ width: `${progressPercent}%` }} />
+        </div>
       </div>
 
       <div className="question-card">

@@ -180,6 +180,13 @@ main                      ← v1 production (live on Vercel) — protected
 - **All new components must be theme-aware** — use CSS variables (`--bg`, `--text`, `--text-h`, `--border`, `--accent`, etc.) rather than hardcoded colors. Do not add `@media (prefers-color-scheme: dark)` blocks; add `[data-theme="dark"]` overrides if needed.
 - **Theme utility:** `src/utils/theme.js` — `getStoredTheme()`, `saveTheme()`, `resolveTheme()`, `applyTheme()`.
 
+## Mobile Quiz Rules
+
+- **`.quiz-progress-header`** wraps the quiz top-bar, question counter, and progress bar in `Quiz.jsx`. On mobile (≤ 600 px) it is `position: sticky; top: 0` with a background and border — do not remove this wrapper.
+- **Answer buttons** must have `min-height: 52 px` on mobile. Do not reduce this.
+- **Quiz action button** (Следващ въпрос / Виж резултата) is full width on mobile. Do not override this with a fixed max-width on small screens.
+- **Do not change quiz logic, scoring, wrong-review, or daily-practice behaviour** when working on CSS-only polish tasks.
+
 ---
 
 ## Development Commands
@@ -457,3 +464,34 @@ Up to 3 recommendations are shown. Priority order:
 | `author-quiz` | `buildQuiz(..., 'author', authorId, works, 5)` inline | Hardcoded 5 questions |
 | `work-quiz` | `buildQuiz(..., 'work', workId, works, 5)` inline | Hardcoded 5 questions |
 | `study-guide` | `handleStudyGuideSelect(itemType, itemId)` | Deep-links to author or work card |
+
+---
+
+## Implemented V2 Features (Phase 5 — UI Polish)
+
+### Home Navigation Tabs — Phase 5 Step 1
+
+- Component: `src/components/HomeNavigation.jsx` — six tabs rendered inside `Home.jsx`
+- Tabs: Тестове, Практика, Справочник, Статистика, Помощ, Настройки
+- Tab state is local React state; not persisted; resets to "Тестове" on every home visit
+- "Какво да уча днес?" widget is always visible above the tabs
+
+### Light/Dark/System Theme — Phase 5 Step 2
+
+- Utility: `src/utils/theme.js` (`getStoredTheme`, `saveTheme`, `resolveTheme`, `applyTheme`)
+- localStorage key: `literaturaQuizTheme` (values: `"dark"`, `"light"`, `"system"`; default `"system"`)
+- Applied via `document.documentElement.dataset.theme`; system preference handled in JS via `matchMedia`
+- Applied synchronously in `main.jsx` before React mounts to prevent theme flash
+- UI: Настройки tab in `HomeNavigation.jsx`; CSS: `[data-theme="dark"]` selectors throughout
+
+### Mobile Quiz Polish — Phase 5 Step 3
+
+- **Component change:** `src/components/Quiz.jsx` wraps top-bar + header + progress-bar in `<div className="quiz-progress-header">` for sticky positioning
+- **CSS changes only** — no quiz logic, scoring, wrong-review, or localStorage behaviour changed
+- Sticky progress header on mobile (≤ 600 px): `position: sticky; top: 0; z-index: 10; background: var(--bg); border-bottom: 1px solid var(--border)`
+- Answer buttons: `min-height: 52 px; padding: 0.9 rem 1 rem` on mobile
+- Options gap: `0.75 rem` on mobile
+- Quiz action button: full width on mobile
+- Fill-blank submit: full width when input row stacks (≤ 480 px)
+- Match dropdowns: `min-height: 44 px` on narrow screens; column layout at ≤ 380 px
+- Flashcard flip button: full width on mobile; nav buttons `min-height: 48 px`; top bar `flex-wrap: wrap`
