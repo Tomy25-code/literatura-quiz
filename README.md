@@ -8,7 +8,7 @@ Built with Vite + React. Fully static — no backend, no API calls.
 
 ## Home Navigation
 
-The home screen is organised into five tabs below the "Какво да уча днес?" widget:
+The home screen is organised into six tabs below the "Какво да уча днес?" widget:
 
 | Tab | Contents |
 |-----|---------|
@@ -17,20 +17,23 @@ The home screen is organised into five tabs below the "Какво да уча д
 | **Справочник** | Флашкарти, Падна ми се автор/произведение |
 | **Статистика** | Quick link to the full Statistics screen |
 | **Помощ** | Full guide on how to use the site |
+| **Настройки** | Theme selector (Системна / Тъмна / Светла) |
+
+On desktop all six tabs fit in the tab bar without truncation. On mobile the tab bar is horizontally scrollable; accent-coloured ‹ › arrow indicators appear at the edges whenever there are hidden tabs in that direction and scroll the bar by 160 px on click.
 
 The top summary (author / work / question counts, quiz length picker), StatsSummary widget, and "Какво да уча днес?" recommendations remain always visible above the tabs regardless of the active tab.
 
-### Theme Toggle (Настройки tab)
+### Theme (Настройки tab)
 
-The **Настройки** tab contains a theme selector with three options:
+The app supports three theme modes:
 
 | Option | Behaviour |
 |--------|-----------|
-| **Системна** | Follows the OS/browser dark-mode preference; updates automatically if the system preference changes |
+| **Системна** (default) | Follows the OS/browser dark-mode preference; updates automatically if the system preference changes while the app is open |
 | **Тъмна** | Always dark |
 | **Светла** | Always light |
 
-The selected theme is saved in `localStorage` under the key `literaturaQuizTheme` and restored on every page load.
+The selected theme is saved in `localStorage` under the key `literaturaQuizTheme` and applied synchronously before React mounts (no flash of wrong theme on load). Invalid or missing values fall back to `"system"`.
 
 ---
 
