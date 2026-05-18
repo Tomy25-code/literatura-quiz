@@ -166,7 +166,7 @@ main                      ← v1 production (live on Vercel) — protected
 - **All user-facing labels must be in Bulgarian.** No English text visible to the user.
 - **Keep home navigation mobile responsive.** The tab bar must not create horizontal overflow on a 375 px viewport. Tabs may shrink text slightly but must remain readable.
 - **Do not hide core modes behind confusing labels.** Tabs group modes by purpose (tests / smart practice / reference cards / stats / help); the label must clearly indicate what is inside.
-- **Home navigation component:** `src/components/HomeNavigation.jsx` — five tabs: Тестове, Практика, Учебни карти, Статистика, Помощ.
+- **Home navigation component:** `src/components/HomeNavigation.jsx` — five tabs: Тестове, Практика, Справочник, Статистика, Помощ.
 - **Tab state is local React state** in `HomeNavigation.jsx`. It is not persisted to localStorage and resets to "Тестове" on every home screen visit.
 - **ModeSelector.jsx** is superseded by `HomeNavigation.jsx` and may be removed in a cleanup pass if it has no other callers.
 

@@ -3,7 +3,7 @@ import { useState } from 'react';
 const TABS = [
   { id: 'tests', label: 'Тестове' },
   { id: 'practice', label: 'Практика' },
-  { id: 'cards', label: 'Учебни карти' },
+  { id: 'cards', label: 'Справочник' },
   { id: 'stats', label: 'Статистика' },
   { id: 'help', label: 'Помощ' },
 ];
