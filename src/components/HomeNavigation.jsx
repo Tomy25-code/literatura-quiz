@@ -6,6 +6,7 @@ const TABS = [
   { id: 'cards', label: 'Справочник' },
   { id: 'stats', label: 'Статистика' },
   { id: 'help', label: 'Помощ' },
+  { id: 'settings', label: 'Настройки' },
 ];
 
 export default function HomeNavigation({
@@ -16,6 +17,8 @@ export default function HomeNavigation({
   dailyCompletedToday,
   dailyStreak,
   onViewStats,
+  theme,
+  onSetTheme,
 }) {
   const [activeTab, setActiveTab] = useState('tests');
 
@@ -59,6 +62,9 @@ export default function HomeNavigation({
         )}
         {activeTab === 'help' && (
           <HelpPanel />
+        )}
+        {activeTab === 'settings' && (
+          <SettingsPanel theme={theme} onSetTheme={onSetTheme} />
         )}
       </div>
     </div>
@@ -164,6 +170,38 @@ function StatsPanel({ onViewStats }) {
       <button className="btn-primary" onClick={onViewStats}>
         Виж статистика →
       </button>
+    </div>
+  );
+}
+
+const THEME_OPTIONS = [
+  { value: 'system', label: 'Системна' },
+  { value: 'dark',   label: 'Тъмна' },
+  { value: 'light',  label: 'Светла' },
+];
+
+function SettingsPanel({ theme, onSetTheme }) {
+  return (
+    <div className="settings-panel">
+      <p className="settings-section-title">Тема</p>
+      <p className="settings-section-desc">
+        Избери как да изглежда приложението.
+      </p>
+      <div className="theme-options">
+        {THEME_OPTIONS.map(opt => (
+          <button
+            key={opt.value}
+            className={`theme-option-btn${theme === opt.value ? ' theme-option-active' : ''}`}
+            onClick={() => onSetTheme(opt.value)}
+            aria-pressed={theme === opt.value}
+          >
+            {opt.label}
+          </button>
+        ))}
+      </div>
+      <p className="settings-hint">
+        Системната тема следва настройките на устройството.
+      </p>
     </div>
   );
 }

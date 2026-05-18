@@ -520,6 +520,31 @@ Reorganised the home screen into a five-tab navigation structure to reduce visua
 
 ---
 
+### Step 2 — Light/Dark/System Theme Toggle ✅ IMPLEMENTED
+
+**Branch:** `v2/feature/theme-toggle`
+
+#### Implementation
+
+- **Utility:** `src/utils/theme.js` — `getStoredTheme()`, `saveTheme()`, `resolveTheme()`, `applyTheme()`
+- **Storage key:** `literaturaQuizTheme` — values: `"dark"`, `"light"`, `"system"` (default)
+- **Applied via:** `document.documentElement.dataset.theme` set to `"dark"` or `"light"`; JS always resolves "system" to the actual OS preference via `matchMedia`
+- **Early apply:** `main.jsx` calls `applyTheme(getStoredTheme())` synchronously before React mounts, preventing any flash of wrong theme
+- **System change listener:** when theme is "system", a `matchMedia` change listener is registered to update the theme if the OS preference changes while the app is open
+- **UI:** sixth tab "Настройки" in `HomeNavigation.jsx` with three buttons: Системна / Тъмна / Светла
+- **CSS refactor:** all 19 `@media (prefers-color-scheme: dark)` blocks in `App.css` replaced with `[data-theme="dark"]` selectors; `index.css` dark vars moved to `[data-theme="dark"]` block
+
+#### QA status
+
+| Check | Result |
+|-------|--------|
+| `npm run build` | ✅ PASS |
+| `npm run qa:content` | ✅ 0 errors, 19 LONG_OPTION warnings (pre-existing) |
+| `npm run qa:source` | ✅ 0 errors |
+| `npm run qa:semantic` | ✅ 0 high-severity findings |
+
+---
+
 ## Sprint 4 — UX and Deployment
 
 **Branch:** `v2/sprint4-ux-deployment`

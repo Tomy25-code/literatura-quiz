@@ -20,6 +20,18 @@ The home screen is organised into five tabs below the "Какво да уча д
 
 The top summary (author / work / question counts, quiz length picker), StatsSummary widget, and "Какво да уча днес?" recommendations remain always visible above the tabs regardless of the active tab.
 
+### Theme Toggle (Настройки tab)
+
+The **Настройки** tab contains a theme selector with three options:
+
+| Option | Behaviour |
+|--------|-----------|
+| **Системна** | Follows the OS/browser dark-mode preference; updates automatically if the system preference changes |
+| **Тъмна** | Always dark |
+| **Светла** | Always light |
+
+The selected theme is saved in `localStorage` under the key `literaturaQuizTheme` and restored on every page load.
+
 ---
 
 ## Features

@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { getStoredTheme, saveTheme, applyTheme } from './utils/theme.js';
 import authors from './data/authors.json';
 import works from './data/works.json';
 import baseQuestions from './data/questions.json';
@@ -42,10 +43,25 @@ export default function App() {
   const [stats, setStats] = useState(() => getStats());
   const [lastAttemptOverallAvg, setLastAttemptOverallAvg] = useState(null);
   const [dailyPracticeState, setDailyPracticeState] = useState(() => getDailyPracticeState());
+  const [theme, setTheme] = useState(() => getStoredTheme());
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [screen]);
+
+  useEffect(() => {
+    applyTheme(theme);
+    if (theme !== 'system') return;
+    const mq = window.matchMedia('(prefers-color-scheme: dark)');
+    const handler = () => applyTheme('system');
+    mq.addEventListener('change', handler);
+    return () => mq.removeEventListener('change', handler);
+  }, [theme]);
+
+  function handleSetTheme(t) {
+    saveTheme(t);
+    setTheme(t);
+  }
 
   function handleSetQuizLength(n) {
     storeQuizLength(n);
@@ -447,6 +463,8 @@ export default function App() {
       onSetQuizLength={handleSetQuizLength}
       onClearWrong={handleClearWrong}
       onViewStats={goStats}
+      theme={theme}
+      onSetTheme={handleSetTheme}
     />
   );
 }
