@@ -482,6 +482,44 @@ No new localStorage keys written. Viewing statistics does not affect any learnin
 
 ---
 
+## Phase 5 — Navigation and UX Polish
+
+### Step 1 — Home Navigation Tabs ✅ IMPLEMENTED
+
+**Branch:** `v2/feature/navigation`
+
+Reorganised the home screen into a five-tab navigation structure to reduce visual clutter as the feature set has grown.
+
+#### Tab layout
+
+| Tab | Contents |
+|-----|---------|
+| **Тестове** | Случаен тест, Тест по автор, Тест по произведение, Тест по категория, Тест по трудност, Избери теза |
+| **Практика** | Дневна тренировка, Слаби места, Преговор на грешните |
+| **Справочник** | Флашкарти, Падна ми се автор/произведение |
+| **Статистика** | Quick link to the full Statistics screen |
+| **Помощ** | Full guide on how to use the site |
+
+#### Implementation
+
+- **New component:** `src/components/HomeNavigation.jsx` — tab bar + five tab panels
+- **Updated component:** `src/components/Home.jsx` — replaced flat `ModeSelector` + `<details>` help with `HomeNavigation`
+- **CSS additions:** `.home-nav-*` classes in `src/App.css`
+- Tab state is local React state; resets to "Тестове" on every home visit
+- "Какво да уча днес?" widget remains above the tabs and is always visible
+- All existing mode actions, wrong-review, weak spots, daily practice, flashcards, and study guide interactions are unchanged
+
+#### QA status
+
+| Check | Result |
+|-------|--------|
+| `npm run build` | ✅ PASS |
+| `npm run qa:content` | ✅ 0 errors, 19 LONG_OPTION warnings (pre-existing) |
+| `npm run qa:source` | ✅ 0 errors |
+| `npm run qa:semantic` | ✅ 0 high-severity findings |
+
+---
+
 ## Sprint 4 — UX and Deployment
 
 **Branch:** `v2/sprint4-ux-deployment`

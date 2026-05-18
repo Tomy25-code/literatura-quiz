@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import authors from './data/authors.json';
 import works from './data/works.json';
 import baseQuestions from './data/questions.json';
@@ -42,6 +42,10 @@ export default function App() {
   const [stats, setStats] = useState(() => getStats());
   const [lastAttemptOverallAvg, setLastAttemptOverallAvg] = useState(null);
   const [dailyPracticeState, setDailyPracticeState] = useState(() => getDailyPracticeState());
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [screen]);
 
   function handleSetQuizLength(n) {
     storeQuizLength(n);
