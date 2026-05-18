@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 const TABS = [
   { id: 'tests', label: 'Тестове' },
@@ -21,23 +21,34 @@ export default function HomeNavigation({
   onSetTheme,
 }) {
   const [activeTab, setActiveTab] = useState('tests');
+  const activeTabRef = useRef(null);
+
+  useEffect(() => {
+    if (activeTabRef.current) {
+      activeTabRef.current.scrollIntoView({ block: 'nearest', inline: 'nearest', behavior: 'smooth' });
+    }
+  }, [activeTab]);
 
   return (
     <div className="home-nav">
       <p className="home-nav-heading">Избери раздел</p>
 
       <div className="home-nav-tabs" role="tablist">
-        {TABS.map(tab => (
-          <button
-            key={tab.id}
-            role="tab"
-            aria-selected={activeTab === tab.id}
-            className={`home-nav-tab${activeTab === tab.id ? ' home-nav-tab-active' : ''}`}
-            onClick={() => setActiveTab(tab.id)}
-          >
-            {tab.label}
-          </button>
-        ))}
+        {TABS.map(tab => {
+          const isActive = activeTab === tab.id;
+          return (
+            <button
+              key={tab.id}
+              ref={isActive ? activeTabRef : null}
+              role="tab"
+              aria-selected={isActive}
+              className={`home-nav-tab${isActive ? ' home-nav-tab-active' : ''}`}
+              onClick={() => setActiveTab(tab.id)}
+            >
+              {tab.label}
+            </button>
+          );
+        })}
       </div>
 
       <div className="home-nav-panel">
