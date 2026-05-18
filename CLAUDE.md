@@ -132,6 +132,14 @@ Apply these rules whenever writing or editing questions, explanations, or option
 - Keep components small and readable.
 - Do not introduce a CSS framework unless explicitly requested.
 
+## Responsive Label Rules
+
+- **Do not apply `word-break: break-word` globally** to stat card or section labels — it causes mid-word breaks on desktop (e.g. "ПРОИЗВЕДЕН / ИЯ"). Scope aggressive breaking to mobile-only media queries.
+- **Do not add `text-overflow: ellipsis` unless truncation is genuinely necessary.** For Bulgarian UI labels that have enough surrounding space, prefer `overflow-wrap: break-word` + `line-height: 1.3` so text wraps instead of being hidden.
+- **Prefer responsive font-size and letter-spacing** (via media queries) over truncation for stat card labels and statistics section labels.
+- **When allowing labels to wrap, preserve numeric column alignment.** Use grid `minmax()` sizing on the label column rather than a fixed pixel width so the bar track, percentage, and count columns stay aligned.
+- **All responsive fixes must work in both light and dark themes.** Use CSS variables; do not hardcode colors in mobile overrides.
+
 ---
 
 ## Architecture Rules
