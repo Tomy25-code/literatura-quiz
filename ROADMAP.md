@@ -588,6 +588,31 @@ CSS-only UX improvements for mobile quiz screens. No quiz logic, scoring, wrong-
 
 ---
 
+### Responsive Text Overflow Bugfix ✅ IMPLEMENTED
+
+**Branch:** `v2/fix/responsive-text-overflow`
+
+CSS-only fixes for text clipping and label overflow issues found during real-device mobile testing. No React components, JSON data files, generated question files, or app logic were changed.
+
+| Area | Issue | Fix |
+|------|-------|-----|
+| Home stat cards (mobile) | "ПРОИЗВЕДЕНИЯ" touched/overflowed card border | Reduced font-size and letter-spacing at ≤ 480 px and ≤ 400 px via media queries; wrapping allowed on mobile only |
+| Home stat cards (desktop) | Previous fix caused "ПРОИЗВЕДЕН / ИЯ" word split | Moved `word-break`/`overflow-wrap` into mobile-only media query; desktop label stays one line |
+| Stats overview cards (mobile) | "СРЕДЕН РЕЗУЛТАТ" clipped | `line-height: 1.3`, wrapping allowed, font/letter-spacing reduced at ≤ 500 px |
+| Recent test titles (mobile) | "Случаен тест" cut off by `max-width: 220px` + ellipsis | Removed `white-space: nowrap`, `max-width`, and `text-overflow: ellipsis`; titles wrap; score column stays aligned |
+| Category bar labels | "Псевдоним/прякор" → "Псевдоним/..." even on desktop | Switched label column from `120px` fixed to `minmax(90px, 140px)`; removed ellipsis; labels wrap with `line-height: 1.3` |
+
+#### QA status
+
+| Check | Result |
+|-------|--------|
+| `npm run build` | ✅ PASS |
+| `npm run qa:content` | ✅ 0 errors |
+| `npm run qa:source` | ✅ 0 errors |
+| `npm run qa:semantic` | ✅ 0 high-severity findings |
+
+---
+
 ## Sprint 4 — UX and Deployment
 
 **Branch:** `v2/sprint4-ux-deployment`

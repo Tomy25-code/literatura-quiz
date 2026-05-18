@@ -147,6 +147,15 @@ Mobile quiz UX improvements (no logic changes):
 - **Match question** — select dropdowns get `min-height: 44 px` on narrow screens; on very narrow screens (≤ 380 px) each match row stacks vertically.
 - **Flashcard viewer** — flip button stretches full width on mobile; nav buttons get `min-height: 48 px`; top bar wraps on small screens.
 
+### Responsive Text Overflow Bugfix ✅ Implemented
+
+CSS-only fixes for text clipping and layout overflow issues found during real-device mobile testing. Desktop layout is preserved throughout.
+
+- **Home stat cards** — "ПРОИЗВЕДЕНИЯ" no longer touches or overflows the card border on mobile. Font size and letter-spacing are reduced at ≤ 480 px and ≤ 400 px via media queries. Wrapping is allowed on mobile only; on desktop the label stays on one line.
+- **Statistics overview cards** — "СРЕДЕН РЕЗУЛТАТ" is fully readable on mobile. The label wraps cleanly with adjusted font size and letter-spacing at ≤ 500 px.
+- **Recent test titles** — titles like "Случаен тест" no longer get clipped in the Statistics screen. Removed the fixed `max-width` and `text-overflow: ellipsis` so titles wrap instead of cutting off; score and date columns remain aligned.
+- **Statistics category labels** — "Псевдоним/прякор" and similar labels are no longer unnecessarily truncated. The label column uses `minmax()` sizing so it can grow on desktop; `text-overflow: ellipsis` removed in favour of wrapping with `line-height: 1.3`.
+
 ---
 
 ## Tech Stack
