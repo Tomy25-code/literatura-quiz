@@ -290,7 +290,46 @@ function HelpPanel() {
       <div className="help-divider" />
 
       <div className="help-group">
-        <p className="help-group-title">1. Избери дължина на теста</p>
+        <p className="help-group-title">1. Раздели на начална страница</p>
+        <p className="help-p">Начална страница е разделена на шест раздела:</p>
+        <ul className="help-ul">
+          <li><strong>„Тестове"</strong> — основните режими на тест (случаен, по автор, по произведение, по категория, по трудност, избери теза)</li>
+          <li><strong>„Практика"</strong> — умна практика (дневна тренировка, слаби места, преговор на грешните)</li>
+          <li><strong>„Справочник"</strong> — флашкарти и справочни карти за автори и произведения</li>
+          <li><strong>„Статистика"</strong> — бърз достъп до екрана с подробна статистика</li>
+          <li><strong>„Помощ"</strong> — това ръководство</li>
+          <li><strong>„Настройки"</strong> — избор на тема (светла / тъмна / системна)</li>
+        </ul>
+        <p className="help-p">
+          На телефон разделите могат да се плъзгат хоризонтално. Малките стрелки вляво
+          или вдясно показват, че има още скрити раздели.
+        </p>
+      </div>
+
+      <div className="help-group">
+        <p className="help-group-title">2. Тема на приложението</p>
+        <p className="help-p">
+          В раздел „Настройки" можеш да избереш как да изглежда приложението: „Системна",
+          „Тъмна" или „Светла" тема. „Системна" следва настройките на устройството ти,
+          а избраната тема се запазва автоматично в браузъра.
+        </p>
+      </div>
+
+      <div className="help-divider" />
+
+      <div className="help-group">
+        <p className="help-group-title">3. Тест на телефон</p>
+        <p className="help-p">
+          На телефон тестовете са оптимизирани за по-удобно решаване: прогресът остава
+          лесен за следене, бутоните за отговор са по-големи, а дългите отговори се
+          пренасят на нов ред.
+        </p>
+      </div>
+
+      <div className="help-divider" />
+
+      <div className="help-group">
+        <p className="help-group-title">4. Избери дължина на теста</p>
         <p className="help-p">
           С бутоните 5 / 10 / 15 / 20 задаваш колко въпроса да съдържа следващият тест.
           Специализирани режими като „Избери теза" могат да предложат по-малко въпроси,
@@ -299,7 +338,7 @@ function HelpPanel() {
       </div>
 
       <div className="help-group">
-        <p className="help-group-title">2. Какво да уча днес?</p>
+        <p className="help-group-title">5. Какво да уча днес?</p>
         <p className="help-p">
           Секцията „Какво да уча днес?" предлага кратък план според досегашните ти резултати.
           Може да ти препоръча преговор на грешните, дневна тренировка, слаба категория,
@@ -309,7 +348,7 @@ function HelpPanel() {
       </div>
 
       <div className="help-group">
-        <p className="help-group-title">3. Основни режими на тест</p>
+        <p className="help-group-title">6. Основни режими на тест</p>
         <p className="help-p">Всеки от тези режими стартира тест незабавно или след избор на филтър:</p>
         <ul className="help-ul">
           <li><strong>„Случаен тест"</strong> — смес от въпроси за всички автори и теми</li>
@@ -321,7 +360,7 @@ function HelpPanel() {
       </div>
 
       <div className="help-group">
-        <p className="help-group-title">4. Видове въпроси</p>
+        <p className="help-group-title">7. Видове въпроси</p>
         <p className="help-p">В зависимост от режима въпросите могат да бъдат:</p>
         <ul className="help-ul">
           <li>с четири варианта за избор</li>
@@ -336,7 +375,7 @@ function HelpPanel() {
       <div className="help-divider" />
 
       <div className="help-group">
-        <p className="help-group-title">5. Умна практика</p>
+        <p className="help-group-title">8. Умна практика</p>
         <ul className="help-ul">
           <li>
             <strong>„Дневна тренировка"</strong> — кратък балансиран тест за деня, съставен
@@ -359,7 +398,7 @@ function HelpPanel() {
       <div className="help-divider" />
 
       <div className="help-group">
-        <p className="help-group-title">6. Справочник и флашкарти</p>
+        <p className="help-group-title">9. Справочник и флашкарти</p>
         <ul className="help-ul">
           <li>
             <strong>„Флашкарти"</strong> — справочни карти за всеки автор и произведение;
@@ -374,7 +413,7 @@ function HelpPanel() {
       </div>
 
       <div className="help-group">
-        <p className="help-group-title">7. Подготовка за съчинение</p>
+        <p className="help-group-title">10. Подготовка за съчинение</p>
         <p className="help-p">
           <strong>„Избери теза"</strong> — тест само с въпроси от тип „Кой акцент е подходящ
           за интерпретативно съчинение?". Помага да упражниш избора на теза преди писмена работа.
@@ -384,7 +423,7 @@ function HelpPanel() {
       <div className="help-divider" />
 
       <div className="help-group">
-        <p className="help-group-title">8. Статистика и напредък</p>
+        <p className="help-group-title">11. Статистика и напредък</p>
         <p className="help-p">
           След всеки завършен тест статистиката се обновява автоматично. От раздел „Статистика"
           виждаш общия брой тестове, средния и най-добрия резултат, точността по трудност и

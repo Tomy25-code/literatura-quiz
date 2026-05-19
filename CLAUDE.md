@@ -131,6 +131,22 @@ Apply these rules whenever writing or editing questions, explanations, or option
 - The app must remain mobile-responsive (tested on both mobile and desktop).
 - Keep components small and readable.
 - Do not introduce a CSS framework unless explicitly requested.
+- **Phase 5 is complete.** Do not revert any Phase 5 changes (tab navigation, theme toggle, mobile quiz polish, responsive text overflow fixes) without an explicit request.
+
+## Home Navigation Rules
+
+- **Preserve the six-tab structure** — Тестове, Практика, Справочник, Статистика, Помощ, Настройки. Do not remove or rename tabs without discussion.
+- **Keep "Какво да уча днес?" always visible** above the tab bar. Do not move it inside a tab.
+- **Do not remove mobile tab scroll indicators** (‹ › arrows and gradient fades) without an equivalent mobile affordance.
+- **Tab state resets to "Тестове"** on every home screen visit — this is intentional, do not persist it.
+
+## Theme Rules (summary)
+
+- **localStorage key:** `literaturaQuizTheme`. Values: `"dark"`, `"light"`, `"system"`. Default: `"system"`.
+- **Do not add new theme values** without an explicit request.
+- **Theme is applied via `document.documentElement.dataset.theme`**; JS resolves `"system"` via `matchMedia`.
+- **CSS uses `[data-theme="dark"]` selectors only** — no `@media (prefers-color-scheme: dark)` in app CSS.
+- **All new components must use CSS variables** (`--bg`, `--text`, `--text-h`, `--border`, `--accent`, etc.). Do not hardcode dark-only colors.
 
 ## Responsive Label Rules
 

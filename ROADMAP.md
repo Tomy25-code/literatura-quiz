@@ -482,7 +482,9 @@ No new localStorage keys written. Viewing statistics does not affect any learnin
 
 ---
 
-## Phase 5 — Navigation and UX Polish
+## Phase 5 — Navigation and UX Polish ✅ COMPLETE
+
+All Phase 5 steps and post-step polish are implemented and merged to `v2/main`.
 
 ### Step 1 — Home Navigation Tabs ✅ IMPLEMENTED
 
