@@ -1,287 +1,189 @@
-# Literatura Quiz
+# Literatura Quiz V2
 
-Bulgarian literature quiz app for матура по български език и литература (BEL graduation exam).
+Bulgarian literature quiz and study app for матура по български език и литература (BEL graduation exam).
 
-Built with Vite + React. Fully static — no backend, no API calls.
+V2 is live from branch `v2/main`. Built with Vite + React — fully static, no backend, no authentication, no database. All progress is stored locally in the browser.
 
 ---
 
-## Home Navigation
+## What's in V2
 
-The home screen is organised into six tabs below the "Какво да уча днес?" widget:
+- **702-question pool** across five question files, covering multiple choice, true/false, match, fill-in-the-blank, and thematic recognition formats
+- **Smart practice** — daily practice, weak-spot detection, and spaced-repetition wrong review
+- **Study guide** — read-only reference cards for every author and work
+- **Thesis practice** — focused essay-prep quiz mode
+- **"Какво да уча днес?"** — personalised study plan based on local progress
+- **Author and work statistics** — accuracy tracking per author and per literary work
+- **Tabbed home navigation** with six sections
+- **Light / Dark / System theme** with no-flash synchronous apply
+- **Mobile-optimised quiz** — sticky progress header, larger tap targets, responsive layouts
 
-| Tab | Contents |
-|-----|---------|
-| **Тестове** | Случаен тест, Тест по автор, Тест по произведение, Тест по категория, Тест по трудност, Избери теза |
-| **Практика** | Дневна тренировка, Слаби места, Преговор на грешните |
-| **Справочник** | Флашкарти, Падна ми се автор/произведение |
-| **Статистика** | Quick link to the full Statistics screen |
-| **Помощ** | Full guide on how to use the site |
-| **Настройки** | Theme selector (Системна / Тъмна / Светла) |
+---
 
-On desktop all six tabs fit in the tab bar without truncation. On mobile the tab bar is horizontally scrollable; accent-coloured ‹ › arrow indicators appear at the edges whenever there are hidden tabs in that direction and scroll the bar by 160 px on click.
+## User Features
 
-The top summary (author / work / question counts, quiz length picker), StatsSummary widget, and "Какво да уча днес?" recommendations remain always visible above the tabs regardless of the active tab.
+### Tests (tab: "Тестове")
 
-### Theme (Настройки tab)
+| Mode | Description |
+|------|-------------|
+| **Случаен тест** | Random mix from the full 702-question pool |
+| **Тест по автор** | All questions for a selected author |
+| **Тест по произведение** | All questions for a selected literary work |
+| **Тест по категория** | Filtered by category (genre, period, themes, composition, motifs, etc.) |
+| **Тест по трудност** | Filtered by difficulty (easy / medium / hard) |
+| **Избери теза** | Essay-focus practice using only `essay_preparation` questions; never pads with unrelated content |
 
-The app supports three theme modes:
+Quiz length is configurable: **5 / 10 / 15 / 20 questions**.
+
+### Smart Practice (tab: "Практика")
+
+- **"Какво да уча днес?"** — recommends up to 3 actions based on wrong-review queue, daily completion, and weakest categories/authors/works. Read-only: viewing the dashboard does not modify any learning state.
+- **"Дневна тренировка"** — balanced daily quiz (40% wrong-queue / 40% weak-area / 20% random). Tracks a daily streak. Correct answers do not advance wrong-review mastery.
+- **"Слаби места"** — surfaces questions from categories and difficulties where accuracy is below 70% over at least 10 answered questions. Shows an empty state rather than falling back to random questions.
+- **"Преговор на грешните"** — wrong answers queue for review and require **2 consecutive correct answers** in a focused remediation mode (Wrong Review or Weak Spots) to be marked mastered.
+
+### Reference and Revision (tab: "Справочник")
+
+- **"Флашкарти"** — quick-reference cards for every author and literary work; shows genre, period, themes, motifs, composition, and key facts.
+- **"Падна ми се автор/произведение"** — structured study card for any author or work. Data sourced exclusively from `authors.json` and `works.json`. Sections with no data are hidden. Does not affect stats or the wrong-review queue.
+
+### Statistics (tab: "Статистика")
+
+- Total quizzes, best result, and average accuracy
+- Per-category and per-difficulty accuracy breakdown with bar charts
+- Weakest 5 authors and weakest 5 works (shown after ≥ 3 questions answered per entity)
+- Recent attempt history with score and date
+- "Тест →" button on each author/work row to start a targeted quiz immediately
+
+### Theme (tab: "Настройки")
 
 | Option | Behaviour |
 |--------|-----------|
-| **Системна** (default) | Follows the OS/browser dark-mode preference; updates automatically if the system preference changes while the app is open |
+| **Системна** (default) | Follows the OS/browser dark-mode preference; updates live |
 | **Тъмна** | Always dark |
 | **Светла** | Always light |
 
-The selected theme is saved in `localStorage` under the key `literaturaQuizTheme` and applied synchronously before React mounts (no flash of wrong theme on load). Invalid or missing values fall back to `"system"`.
+Preference is saved in `localStorage` under `literaturaQuizTheme` and applied synchronously before React mounts — no flash of the wrong theme on load.
 
 ---
 
-## Features
-
-The app supports two types of use: **practice modes** (quiz-style sessions that track progress) and **reference modes** (read-only study aids that do not affect stats or learning state).
-
-### Practice — Quiz Modes
-
-- **Случаен тест** — random questions from all authors and topics
-- **Тест по автор** — filtered by a selected author
-- **Тест по произведение** — filtered by a selected literary work
-- **Тест по категория** — filtered by category (author, genre, period, themes, composition, motifs, etc.)
-- **Тест по трудност** — filtered by difficulty (easy / medium / hard)
-- **Избери теза** — thesis/essay-focus practice; uses only `essay_preparation` questions from the base `questions.json`; never pads with unrelated questions; uses fewer questions if the pool is smaller than the selected quiz length
-- Configurable quiz length: 5 / 10 / 15 / 20 questions
-
-### Practice — Smart Practice Modes
-
-- **Слаби места** (`Weak Spots`) — automatically surfaces questions from categories and difficulties where the user's accuracy is below 70% over at least 10 attempts. Shows a positive empty state when no weak areas exist; never falls back to random questions silently.
-- **Дневна тренировка** (`Daily Practice`) — short balanced daily quiz split 40% wrong-queue / 40% weak-area / 20% random (unseen preferred). Tracks daily completion with a streak counter.
-- **Преговор на грешните** (`Wrong Review`) — spaced-repetition style. Wrong answers are queued and require **2 consecutive correct answers** in a focused remediation mode (Wrong Review or Weak Spots) to be marked mastered.
-
-### Reference — Study Modes
-
-- **Флашкарти** — author and work reference cards for quick revision of genres, periods, and composition
-- **Падна ми се автор/произведение** (`Study Guide`) — structured read-only reference card for any author or work, sourced entirely from `authors.json` and `works.json`. Sections with no data are hidden. Does not affect quiz stats, wrong-answer review, weak spots, daily practice streak, or any other localStorage learning state.
-
-### Question Formats
-
-The app includes multiple question formats depending on the mode and available data:
+## Question Formats
 
 | Format | Description |
 |--------|-------------|
 | Multiple choice | 4 options; standard format |
-| Вярно/невярно | True/False binary questions |
-| Свържи автор с произведение | Match 4 authors to their works; all pairs must be correct |
-| Попълни липсваща дума | Type the answer; case-insensitive matching |
+| Вярно/невярно | Binary true/false |
+| Свържи автор с произведение | Match 4 authors to their works; all pairs must be correct to score |
+| Попълни липсваща дума | Type the answer; case-insensitive, whitespace-normalised matching |
 | Разпознаване на произведение | Identify a work from its themes or motifs |
-| Избор на теза | Choose the right essay-focus for interpretative writing |
-
-### Stats and Progress
-
-- Learning statistics per quiz attempt stored in localStorage
-- Per-category and per-difficulty accuracy tracking
-- Per-author and per-work accuracy tracking — shows the 5 weakest authors and works based on answered question history; items appear once ≥ 3 questions have been answered for that author or work
-- Comparison to personal average on results screen
-- Daily practice streak and best streak
-- "Тест →" action button on each author/work row to start a filtered quiz directly from the statistics screen
+| Избор на теза | Choose the correct essay-focus for an interpretative essay |
 
 ---
 
-## Phase 3 — Essay Preparation
+## Data and Question Pool
 
-| Step | Status | Feature |
-|------|--------|---------|
-| Step 1 | ✅ Implemented | **Study Guide** (`Падна ми се автор/произведение`) — read-only reference cards for authors and works |
-| Step 2 | ⏸ Deferred | **Essay Prep mode** — requires careful manual content curation; not yet implemented |
-| Step 3 | ✅ Implemented | **Thesis Practice** (`Избери теза`) — quiz mode using existing `essay_preparation` questions only |
+All content lives in `src/data/`. The canonical base file (`questions.json`) is hand-curated and protected. The four generated files are produced by generator scripts and must not be edited by hand.
 
----
+| File | Contents | Count |
+|------|----------|-------|
+| `src/data/authors.json` | 20 Bulgarian authors | — |
+| `src/data/works.json` | 27 literary works | — |
+| `src/data/questions.json` | Curated base questions — canonical source of truth | 415 |
+| `src/data/questions.v2.json` | Generated alternate-phrasing variants — **do not edit** | 81 |
+| `src/data/questions.types.json` | Generated true/false + match questions — **do not edit** | 59 |
+| `src/data/questions.fillblank.json` | Generated fill-in-the-blank questions — **do not edit** | 83 |
+| `src/data/questions.recognition.json` | Generated thematic work-recognition questions — **do not edit** | 64 |
 
-## Phase 4 — Guided Learning
-
-### Step 1 — "Какво да уча днес?" Dashboard ✅ Implemented
-
-A home-screen widget that recommends up to 3 actionable study steps based on the user's existing local progress.
-
-- **Widget title:** "Какво да уча днес?" / subtitle: "Кратък план според последните ти резултати."
-- Can recommend weak authors and works once enough quiz history exists (≥ 3 answered questions per author/work, accuracy below 70%)
-- **Placement:** between the stats summary and the mode selector on the home screen.
-- **Read-only:** viewing recommendations does not modify stats, wrong-answer review, daily streak, or any other localStorage learning state.
-- **Local-only and browser-based:** all logic reads from existing localStorage keys — no network calls, no backend.
-
-#### Recommendation priority order
-
-| Priority | Recommendation | Condition |
-|----------|---------------|-----------|
-| 1 | Wrong review | Active wrong-review queue is non-empty |
-| 2 | Daily Practice | Not yet completed today |
-| 3 | Weakest category (5-question quiz) | ≥ 3 seen, accuracy < 70% |
-| 4 | Weakest author (5-question quiz) | ≥ 3 seen, accuracy < 70% |
-| 5 | Weakest work (5-question quiz) | ≥ 3 seen, accuracy < 70% |
-| 6 | Thesis Practice | `essay_preparation` is weak and not already covered |
-| 7 | Flashcards (with author hint) | Derived from wrong/recent answers |
-| 8 | Study Guide deep-link | Top wrong-answer author |
-| Fallback | Starter plan (3 cards) | No stats and no wrong answers |
-
-Each recommendation card has a title, description, optional badge, and a direct action button. Clicking a button navigates to or starts the appropriate existing mode — no new quiz logic is introduced.
-
----
-
-## Phase 5 — UI Polish ✅ Complete
-
-### Step 1 — Home Navigation Tabs ✅ Implemented
-
-Tabbed home navigation groups all modes into six tabs (Тестове, Практика, Справочник, Статистика, Помощ, Настройки) below the always-visible "Какво да уча днес?" widget. On mobile the tab bar is horizontally scrollable with accent-coloured ‹ › scroll indicators.
-
-### Step 2 — Light/Dark/System Theme Toggle ✅ Implemented
-
-Three theme modes (Системна / Тъмна / Светла) accessible from the Настройки tab. Theme is saved in `localStorage` under `literaturaQuizTheme` and applied synchronously before React mounts to prevent a flash of wrong theme.
-
-### Step 3 — Mobile Quiz Polish ✅ Implemented
-
-Mobile quiz UX improvements (no logic changes):
-- **Sticky progress header** — the quiz top bar, question counter, and progress bar stick to the top of the viewport on mobile (≤ 600 px) so progress is always visible while scrolling through long answers.
-- **Larger answer buttons** — minimum height 52 px and extra padding on mobile for comfortable tap targets.
-- **Increased option gap** — 0.75 rem gap between answer options on mobile.
-- **Full-width action button** — "Следващ въпрос / Виж резултата" stretches full width on mobile.
-- **Fill-blank submit button** — full width when the input row is stacked (≤ 480 px).
-- **Match question** — select dropdowns get `min-height: 44 px` on narrow screens; on very narrow screens (≤ 380 px) each match row stacks vertically.
-- **Flashcard viewer** — flip button stretches full width on mobile; nav buttons get `min-height: 48 px`; top bar wraps on small screens.
-
-### Responsive Text Overflow Bugfix ✅ Implemented
-
-CSS-only fixes for text clipping and layout overflow issues found during real-device mobile testing. Desktop layout is preserved throughout.
-
-- **Home stat cards** — "ПРОИЗВЕДЕНИЯ" no longer touches or overflows the card border on mobile. Font size and letter-spacing are reduced at ≤ 480 px and ≤ 400 px via media queries. Wrapping is allowed on mobile only; on desktop the label stays on one line.
-- **Statistics overview cards** — "СРЕДЕН РЕЗУЛТАТ" is fully readable on mobile. The label wraps cleanly with adjusted font size and letter-spacing at ≤ 500 px.
-- **Recent test titles** — titles like "Случаен тест" no longer get clipped in the Statistics screen. Removed the fixed `max-width` and `text-overflow: ellipsis` so titles wrap instead of cutting off; score and date columns remain aligned.
-- **Statistics category labels** — "Псевдоним/прякор" and similar labels are no longer unnecessarily truncated. The label column uses `minmax()` sizing so it can grow on desktop; `text-overflow: ellipsis` removed in favour of wrapping with `line-height: 1.3`.
-
----
-
-## Tech Stack
-
-| Layer | Technology |
-|-------|-----------|
-| Build | Vite |
-| UI | React (JSX) |
-| Styling | Plain CSS |
-| Data | Static JSON |
-| Persistence | localStorage |
-| Deployment | Vercel |
-
----
-
-## Data Files
-
-All content lives in `src/data/`. Do not edit these files without running the QA scripts afterwards.
-
-| File | Contents |
-|------|----------|
-| `src/data/authors.json` | 20 Bulgarian authors with biographical metadata |
-| `src/data/works.json` | 27 literary works with genre, period, themes, motifs |
-| `src/data/questions.json` | 415 manually curated base questions — **canonical source of truth** |
-| `src/data/questions.v2.json` | 81 generated alternate-phrasing variants — **do not edit by hand** |
-| `src/data/questions.types.json` | 59 generated new question types (true/false, match) — **do not edit by hand** |
-| `src/data/questions.fillblank.json` | 83 generated fill-in-the-blank questions — **do not edit by hand** |
-| `src/data/questions.recognition.json` | 64 generated thematic work-recognition questions — **do not edit by hand** |
+**Total: 702 questions** (415 + 81 + 59 + 83 + 64)
 
 Source reference notes are in `source/literatura-zapiski.md`.
-
-### Question pool
-
-The app merges all five files into one pool. **702 questions total** (415 base + 81 variants + 59 type questions + 83 fill-blank + 64 thematic recognition questions).
-
-#### Regenerating generated files
-
-```bash
-npm run generate:variants          # regenerate questions.v2.json (after changing authors/works)
-npm run generate:types             # regenerate questions.types.json (after changing authors/works)
-npm run generate:fillblank         # regenerate questions.fillblank.json (after changing authors/works)
-npm run generate:work-recognition  # regenerate questions.recognition.json (after changing authors/works)
-npm run build
-npm run qa:content
-npm run qa:source
-npm run qa:semantic
-```
-
-**Never edit generated question files directly.** Edit the generator scripts or source data files instead.
-
-#### Distractor quality rules
-
-- For questions where all four options are author names, the generator uses `pickDiverseAuthorDistractors()` to ensure no more than 2 options share the same first name.
-- `qa:content` will warn `CLUSTERED_FIRST_NAME` if 3+ options share a first name — this should never appear after a clean regeneration.
-
-#### Question type breakdown
-
-| Type | Category | Count | Description |
-|------|----------|-------|-------------|
-| `true_false` | `true_false` | 54 | "„X" е произведение на Y." — Вярно/Невярно |
-| `match_author_work` | `match_author_work` | 5 | Match 4 authors to their works |
-| `fill_blank` | `fill_blank` | 83 | Complete the missing word |
-| `multiple_choice` (recognition) | `work_recognition` | 64 | Identify work from themes/motifs clues |
-| `multiple_choice` (variants) | various | 81 | Alternate-phrasing variants of base questions |
 
 ---
 
 ## Local Development
 
 ```bash
-npm install              # install dependencies
-npm run dev              # start dev server at http://localhost:5173
-npm run build            # production build → dist/
-npm run preview          # serve the production build locally
-npm run lint             # ESLint
-npm run generate:variants          # regenerate src/data/questions.v2.json
-npm run generate:types             # regenerate src/data/questions.types.json
-npm run generate:fillblank         # regenerate src/data/questions.fillblank.json
-npm run generate:work-recognition  # regenerate src/data/questions.recognition.json
+npm install        # install dependencies
+npm run dev        # dev server → http://localhost:5173
+npm run build      # production build → dist/
+npm run preview    # serve the production build locally
+npm run lint       # ESLint
 ```
 
 ---
 
-## QA Scripts
+## QA and Validation
 
-Run after any changes to the JSON data files.
+Run these after any changes to source data or questions:
 
 ```bash
-npm run qa:content   # structural validation — cross-references, field checks, duplicates (exits 1 on errors)
+npm run qa:content   # structural validation: field checks, cross-references, duplicate IDs (exits 1 on hard errors)
 npm run qa:source    # cross-check data fields against source/literatura-zapiski.md
-npm run qa:semantic  # pedagogical quality — flags weak answers, duplicates, generic explanations
+npm run qa:semantic  # pedagogical quality: flags weak answers, duplicates, generic explanations
 ```
 
-Reports are written to `reports/`. `qa:content` exits with code 1 if hard errors are found; the others always exit 0 but print severity-tagged findings.
+Reports are written to `reports/`. `qa:content` exits with code 1 if hard errors are found. The others always exit 0 but print severity-tagged findings to the console.
 
-### Current QA status
-
-All three scripts pass with zero blocking errors. Accepted backlog (non-blocking):
-
-| Finding | Count | Severity | Notes |
-|---------|-------|----------|-------|
-| `GENERIC_EXPLANATION` | ~95 | low | Explanations that only cite the source notes rather than explaining the answer |
-| `TOO_ABSTRACT_ANSWER` | ~20 | medium | Very short motif/theme labels; some are intentional |
-| `ESSAY_WEAK_ANSWER` | ~15 | medium | Short essay anchors; addressed opportunistically during content expansion |
-
-High-severity semantic findings (`CATEGORY_SOURCE_MISMATCH`, `DUPLICATE_CONCEPT`) must be resolved before merging content changes.
+**Before merging:** all three scripts must pass with zero hard errors. High-severity semantic findings (`CATEGORY_SOURCE_MISMATCH`, `DUPLICATE_CONCEPT`) must be resolved. A small accepted backlog of low/medium findings (~95 `GENERIC_EXPLANATION`, ~20 `TOO_ABSTRACT_ANSWER`, ~15 `ESSAY_WEAK_ANSWER`) exists and is addressed opportunistically.
 
 ---
 
-## Deployment
+## Regenerating Generated Question Files
 
-- **`main`** — v1 production, live on Vercel. Do not push v2 work here.
-- **`v2/main`** — v2 integration branch, merge target for all v2 feature branches.
-- Individual v2 features are developed in branches off `v2/main` and merged back via PR once build and QA pass.
-- A separate Vercel project for v2 preview is planned for Sprint 4.
+Only needed after changes to `authors.json` or `works.json`:
+
+```bash
+npm run generate:variants          # regenerate questions.v2.json
+npm run generate:types             # regenerate questions.types.json
+npm run generate:fillblank         # regenerate questions.fillblank.json
+npm run generate:work-recognition  # regenerate questions.recognition.json
+```
+
+After regenerating, run `npm run build` and all three QA scripts before committing.
 
 ---
 
-## Branch Workflow
+## Technical Overview
+
+| Layer | Choice |
+|-------|--------|
+| Build | Vite |
+| UI | React (JSX) |
+| Styling | Plain CSS — no framework |
+| Data | Static JSON files |
+| Persistence | `localStorage` |
+| Deployment | Vercel |
+
+No backend. No API calls. No authentication. No database. All user progress (wrong answers, stats, daily streak, theme preference) is stored in the browser's `localStorage`.
+
+---
+
+## Branch and Deployment Workflow
 
 ```
-main                      ← v1 production (live on Vercel) — protected
+main       ← v1 legacy production (frozen — do not push new work here)
 │
-└── v2/main               ← v2 integration branch
-    └── v2/feature-xyz    ← individual v2 feature branches
+└── v2/main          ← V2 live branch on Vercel — merge target for all V2 work
+    └── v2/feature-xyz   ← individual feature / fix / docs branches
 ```
+
+- Create feature branches off `v2/main`.
+- Merge back to `v2/main` via pull request once build and QA pass.
+- Never push directly to `v2/main` or `main`.
+
+---
+
+## Deferred Work
+
+Several items were scoped out of V2 and are candidates for a future version. See [ROADMAP.md](ROADMAP.md) for full detail and rationale.
+
+Short list:
+- **Essay plan mode** — requires careful manual content curation per work
+- **Wrong answer history screen** — browse and manage the wrong-review queue with full metadata
+- **Chronological ordering questions** — sort works/events by date
+- **Select-all-correct questions** — multi-select question type
+- **`npm run qa:all` convenience script**
+- **Possible generated-file consolidation** — only after QA strategy is finalised
 
 ---
 
@@ -290,19 +192,15 @@ main                      ← v1 production (live on Vercel) — protected
 ```
 .
 ├── src/
-│   ├── components/     # React components
-│   ├── data/           # JSON data files (authors, works, questions)
-│   ├── utils/          # Quiz logic, stats, localStorage helpers
-│   ├── App.jsx
-│   ├── App.css
-│   ├── main.jsx
-│   └── index.css
-├── public/             # Static assets (favicon, icons)
-├── scripts/            # Node QA and data scripts
-├── reports/            # QA report output (auto-generated)
-├── source/             # Source reference notes (literatura-zapiski.md)
+│   ├── components/     ← React components
+│   ├── data/           ← JSON data files (authors, works, questions)
+│   ├── utils/          ← quiz logic, stats, localStorage helpers
+│   ├── App.jsx / App.css
+│   ├── main.jsx / index.css
+├── public/             ← static assets (favicon, icons)
+├── scripts/            ← Node QA and generator scripts
+├── reports/            ← QA report output (auto-generated, do not hand-edit)
+├── source/             ← source reference notes (literatura-zapiski.md)
 ├── index.html
-├── vite.config.js
-├── eslint.config.js
 └── package.json
 ```
