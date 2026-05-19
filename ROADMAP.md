@@ -1,28 +1,154 @@
-# Literatura Quiz — v2 Roadmap
+# Literatura Quiz V2 Roadmap
+
+---
+
+## V2 Status
+
+- **Status: ✅ Complete**
+- **Production branch:** `v2/main` — live on Vercel
+- **Final scope:** smart practice, expanded question pool (702 questions across 5 files), study guide, thesis practice, Today Plan dashboard, richer statistics, tabbed navigation, theme toggle, mobile polish, responsive text overflow fixes
+- Some originally planned items were intentionally deferred — see [Deferred / Not Implemented in V2](#deferred--not-implemented-in-v2)
+
+---
+
+## Implemented in V2
+
+| Phase | Feature | Status |
+|-------|---------|--------|
+| Phase 1 | Weak Spots mode | ✅ |
+| Phase 1 | Daily Practice with streak | ✅ |
+| Phase 1 | Smart Wrong Review (2-correct mastery) | ✅ |
+| Phase 1 | Statistics foundation | ✅ |
+| Phase 1 | Semantic / content QA script + cleanup | ✅ |
+| Phase 2 | Question variant generator (81 variants) | ✅ |
+| Phase 2 | Distractor diversity (`pickDiverseAuthorDistractors`) | ✅ |
+| Phase 2 | True/false + match-author-work question types | ✅ |
+| Phase 2 | Fill-in-the-blank questions (83 questions) | ✅ |
+| Phase 2 | Thematic work-recognition questions (64 questions) | ✅ |
+| Phase 3 | Study Guide — "Падна ми се автор/произведение" | ✅ |
+| Phase 3 | Thesis Practice — "Избери теза" | ✅ |
+| Phase 4 | Today Plan dashboard — "Какво да уча днес?" | ✅ |
+| Phase 4 | Author and work statistics | ✅ |
+| Phase 5 | Six-tab home navigation | ✅ |
+| Phase 5 | Light / Dark / System theme toggle | ✅ |
+| Phase 5 | Mobile quiz polish | ✅ |
+| Phase 5 | Responsive text overflow bugfixes | ✅ |
+
+**Total question pool:** 415 base + 81 variants + 59 types + 83 fill-blank + 64 recognition = **702 questions**
+
+---
+
+## Deferred / Not Implemented in V2
+
+### Phase 2: Additional Question Types
+
+**Status:** Deferred — not implemented in V2
+
+Items not implemented:
+- Chronological ordering (sort works/events by date)
+- Select-all-correct (choose all correct answers from a list)
+- Separate new multiple-choice type
+
+**Reason:**
+- Multiple choice already exists as the base question format — no separate new implementation was needed.
+- Chronological ordering and select-all-correct require careful UX design, non-trivial scoring rules, and dedicated QA validation. Better suited for a future version.
+
+**Future branch suggestion:** `future/v3/question-types-extended`
+
+---
+
+### Phase 3: Essay Plan Mode
+
+**Status:** Deferred — not implemented in V2
+
+**Original branch placeholder:** `v2/feature/essay-prep`
+
+**Reason:**
+- Requires careful manual content curation for each work.
+- Must not invent essay structures or arguments.
+- Should use either existing source notes (`source/literatura-zapiski.md`) only, or a new dedicated source file (e.g. `src/data/essayTopics.json`) prepared by the content author.
+
+**Possible future scope (for reference only):**
+- For each work, curated sections may include: Увод, Теза, Аргументи, Заключение, Ключови думи, Чести теми
+- UI: present a тема (topic/prompt), user picks relevant author/work, app shows structured essay notes as a reference panel
+
+**Future branch suggestion:** `future/v3/essay-prep`
+
+---
+
+### Phase 4: Wrong Answer History Screen
+
+**Status:** Deferred — not implemented in V2
+
+**Original branch placeholder:** `v2/feature/wrong-answer-history`
+
+**Reason:**
+- V2 keeps the existing wrong-review queue behavior (active/mastered, correctStreak, wrongCount).
+- A richer, browsable wrong-answer history with full metadata is better suited for a future spaced-repetition or smart-review phase.
+- The data model is already in place; only the UI is missing.
+
+**Possible future data fields:**
+- `questionId`, `timesWrong`, `timesCorrectAfterWrong`, `lastWrongAt`, `lastReviewedAt`, `mastered`
+
+**Future branch suggestion:** `future/v3/wrong-answer-history`
+
+---
+
+### Phase 6: Data and QA System
+
+**Status:** Deferred / partially superseded
+
+**Items not implemented:**
+
+**1. questions.v2.json as a single replacement format**
+- V2 did not replace `questions.json`. Instead, the app keeps the protected canonical `questions.json` and uses four separate generated files for new question pools.
+- This preserves the original curated base data and makes generated content easier to validate independently.
+- Current generated files (do not edit by hand):
+  - `src/data/questions.v2.json` — 81 alternate-phrasing variants
+  - `src/data/questions.types.json` — 59 true/false + match questions
+  - `src/data/questions.fillblank.json` — 83 fill-in-the-blank questions
+  - `src/data/questions.recognition.json` — 64 thematic work-recognition questions
+
+**2. `npm run qa:all` convenience script**
+- The project continued using the explicit QA commands: `npm run build`, `npm run qa:content`, `npm run qa:source`, `npm run qa:semantic`.
+- A single `qa:all` convenience script can be added later if needed but was not required for V2.
+
+---
+
+## Future Work
+
+Items explicitly out of scope for V2 but worth considering in a future version:
+
+- **Essay plan mode** — structured essay prep with curated content per work (`future/v3/essay-prep`)
+- **Wrong answer history screen** — browse and manage the wrong-review queue with full metadata (`future/v3/wrong-answer-history`)
+- **Chronological ordering questions** — sort works/events by date (`future/v3/question-types-extended`)
+- **Select-all-correct questions** — multi-select question type (`future/v3/question-types-extended`)
+- **`npm run qa:all` convenience script** — single command running all QA steps
+- **Consolidation of generated question files** — only after QA strategy for combined files is finalized
 
 ---
 
 ## Branch Workflow
 
 ```
-main                      ← v1 production (live on Vercel) — do not touch
+main                      ← v1 production (live on Vercel) — protected
 │
-└── v2/main               ← v2 integration branch (merge target for all sprints)
+└── v2/main               ← v2 integration branch — live on Vercel (v2 deployment)
     └── v2/feature-xyz    ← individual v2 feature branches
 ```
 
 - Branch every feature off `v2/main`. Merge back via PR when DoD is met.
 - Never rebase or force-push `v2/main` or `main`.
-- `main` is frozen for v1 bugfixes only — no v2 code merges there until v2 ships.
+- `main` is frozen — no new development merges there.
 
 ---
 
-## V2 Goals
+## V2 Goals (original — all met)
 
-1. **Smarter practice** — guide the user toward their weakest material, not just random questions.
-2. **More question variety** — reduce repetition; add recognition and variant question types.
-3. **Essay preparation** — structured study mode aligned with the матура essay format.
-4. **Polished UX** — smooth navigation, better mobile quiz experience, v2 deployed independently.
+1. **Smarter practice** — guide the user toward their weakest material, not just random questions. ✅
+2. **More question variety** — reduce repetition; add recognition and variant question types. ✅
+3. **Essay preparation** — structured study mode aligned with the матура essay format. ✅ (Study Guide + Thesis Practice; full essay plan deferred)
+4. **Polished UX** — smooth navigation, better mobile quiz experience, v2 deployed independently. ✅
 
 ---
 
@@ -614,36 +740,6 @@ CSS-only fixes for text clipping and label overflow issues found during real-dev
 | `npm run qa:semantic` | ✅ 0 high-severity findings |
 
 ---
-
-## Sprint 4 — UX and Deployment
-
-**Branch:** `v2/sprint4-ux-deployment`
-
-### Navigation Improvements
-
-- Add a persistent bottom navigation bar on mobile (Home / Practice / Study / Stats).
-- Add breadcrumb or back-navigation context so the user always knows where they are.
-- Ensure the home screen clearly separates "Practice" modes from "Study" modes.
-
-### Mobile Quiz Polish (additional future ideas)
-
-- After answering, animate correct/incorrect feedback before advancing.
-- Prevent accidental double-tap advancing past the feedback screen.
-
-### Wrong Answer History Screen
-
-Browse and manage the wrong-review queue (data model implemented in Sprint 1).
-
-- Show each active wrong-review question with: question text, correct answer, explanation, wrongCount, correctStreak.
-- Allow filtering or grouping by author or category.
-- Allow the user to manually clear individual questions or the full queue.
-
-### Second Vercel Project for V2
-
-- Create a separate Vercel project (`literatura-quiz-v2`) pointing to the `v2/main` branch.
-- Configure it as a preview deployment — not the primary production URL.
-- Once v2 is stable and signed off, merge `v2/main` → `main` and retire the separate v2 project.
-- Update `README.md` with the v2 preview URL when it exists.
 
 ---
 
